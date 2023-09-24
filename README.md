@@ -39,17 +39,17 @@ The system would have the following functions:
 
 
 ## Getting Started
-Before using Laravel, you need to install PHP on your Windows.
-Please follow this video: [How to install PHP](https://www.youtube.com/watch?v=MPRLUd8Pmyo&t=203s)
+1. Before using Laravel, you need to install PHP on your Windows.
+    Please follow this video: [How to install PHP](https://www.youtube.com/watch?v=MPRLUd8Pmyo&t=203s)
 
-After PHP is installed, you need to install Composer for PHP, which is a manager for PHP, we will use this tool on Visual Studio Code
-Please follow this video: [How to install Composer](https://www.youtube.com/watch?time_continue=238&v=nus8eLPNZF8&embeds_referring_euri=https%3A%2F%2Fwww.bing.com%2F&embeds_referring_origin=https%3A%2F%2Fwww.bing.com&source_ve_path=MTM5MTE3LDEzOTExNywxMzkxMTcsMTM5MTE3LDI4NjY2&feature=emb_logo)
+2. After PHP is installed, you need to install Composer for PHP, which is a manager for PHP, we will use this tool on Visual Studio Code
+    Please follow this video: [How to install Composer](https://www.youtube.com/watch?time_continue=238&v=nus8eLPNZF8&embeds_referring_euri=https%3A%2F%2Fwww.bing.com%2F&embeds_referring_origin=https%3A%2F%2Fwww.bing.com&source_ve_path=MTM5MTE3LDEzOTExNywxMzkxMTcsMTM5MTE3LDI4NjY2&feature=emb_logo)
 
-Then download the PHP extension for VSC </br>
-Link: [How to install Laravel for Visual Studio Code](https://blog.devsense.com/2019/how-to-install-laravel-for-visual-studio-code#heading-4)
+3. Then download the PHP extension for VSC </br>
+    Link: [How to install Laravel for Visual Studio Code](https://blog.devsense.com/2019/how-to-install-laravel-for-visual-studio-code#heading-4)
 
-You also need to download NPM, 18.18.0 LTS
-Link: [NPM](https://nodejs.org/en)
+4. You also need to download NPM, 18.18.0 LTS
+    Link: [NPM](https://nodejs.org/en)
 
 
 ## Frontend Checklist
