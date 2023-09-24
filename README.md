@@ -55,7 +55,8 @@ Link: [NPM](https://nodejs.org/en)
 ## Frontend Checklist
 
 ### Logo 
- </br> ![image](https://github.com/moffycream/RepoFCMS/assets/106477441/bfb18ed1-1fd0-49e2-8148-6a4879ebea1f)
+ </br> ![image](https://github.com/moffycream/RepoFCMS/assets/106477441/17ae9c98-0995-47cd-8f2a-ea3b094df104)
+
 
 ### Prefix
 
@@ -99,7 +100,7 @@ Can be changed
 
 ### Colour
 
-   ![image](https://github.com/moffycream/RepoFCMS/assets/106477441/b2c058a3-6bec-4b61-b4c7-d7bb326884a8)
+   ![image](https://github.com/moffycream/RepoFCMS/assets/106477441/5c63973e-b9c0-4bd3-bdf4-92e458993c10)
 
 
 ## License
