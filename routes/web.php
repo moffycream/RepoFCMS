@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function () {
+    return view('welcome');
+});
+
 
 // Route for the main page (GET request)
 // When a user accesses the root URL ('/'), the 'index' method of 'TodoListController' is invoked.
