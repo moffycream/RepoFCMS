@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TodoListController;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\test;  <-- test
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,5 @@ Route::post('/saveItem', [TodoListController::class, 'saveItem'])->name('saveIte
 // Note that this route includes a parameter 'id' in the URL to specify which item to mark as complete.
 Route::post('/markAsComplete/{id}', [TodoListController::class, 'markItem'])->name('markAsComplete');
 
+
+// Route::get('/', [test::class, 'SampleMethod']);
