@@ -5,7 +5,7 @@
         <meta name="author" content="Group 2"/>
         <meta name="description" content="FCMS"/>
         <meta name="keywords" content="FCMS"/> 
-        <link rel="stylesheet" type="text/css" href="..\..\css\app.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
         <!--<script src="..\..\js\test.js"></script>-->
     </head>
 
