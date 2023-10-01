@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('list_items', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('is_complete');
+            $table->unsignedInteger('client_id'); // foreign key
+            $table->decimal('total_amount', 10, 2);
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('list_items');
+        Schema::dropIfExists('orders');
     }
 };
