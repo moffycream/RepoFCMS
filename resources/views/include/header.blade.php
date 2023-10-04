@@ -11,37 +11,37 @@
 
     <header> 
         <!--Logo from top left corner-->
-        <h1><a class="logo" href="">Food Edge</a></h1>
+        <h1><a class="logo" href="{{url('/')}}">Food Edge</a></h1>
 
         <nav class="navi_nav">
             <div>
                 <div class="navi_div">
                     <div>
-                        <a href="" class="navi_link">Home</a>
+                        <a href="{{url('/')}}" class="navi_link">Home</a>
                     </div>
                 </div>
 
                 <div class="navi_div">
                     <div>
-                        <a href="" class="navi_link">Menu</a>
+                        <a href="{{url('menu')}}" class="navi_link">Menu</a>
                     </div>
                 </div>
 
                 <div class="navi_div">
                     <div>
-                        <a href="" class="navi_link">Profile</a>
+                        <a href="{{url('profile')}}" class="navi_link">Profile</a>
                     </div>
                 </div>
 
                 <div class="navi_div">
                     <div>
-                        <a href="" class="navi_link">About</a>
+                        <a href="{{url('about')}}" class="navi_link">About</a>
                     </div>
                 </div>
 
                 <div class="navi_div">
                     <div>
-                        <a href="" class="navi_link">Contact Us</a>
+                        <a href="{{url('contact-us')}}" class="navi_link">Contact Us</a>
                     </div>
                 </div>
 

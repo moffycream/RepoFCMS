@@ -14,7 +14,7 @@ html{
 body{
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /*------------index.html------------*/ 
@@ -117,7 +117,7 @@ header.sticky .navi_div{
 }
 
 /*Footer*/
-footer{
+/* footer{
     padding-top: 0.5%;
     padding-bottom: 1.5%;
     padding-left: 5%;
@@ -171,4 +171,4 @@ footer{
 
 .footer_col ol li a:hover{
     color: #121212;
-}
+} */

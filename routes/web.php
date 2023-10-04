@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\test;  <-- test
@@ -15,7 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// The first page to display
 Route::get('/', function(){return view('welcome');});
+
+// Navigation links
+Route::get('/{link}', [Controller::class, 'handleNavLink']);
+
 
 // Route for the main page (GET request)
 // When a user accesses the root URL ('/'), the 'index' method of 'TodoListController' is invoked.
