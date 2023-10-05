@@ -1,15 +1,17 @@
-{
+*{
     /* Add default font */
     color:#ffffff;
+    padding: 0;
+    margin: 0;
 }
 
 body{
-    margin: 0;
-    padding: 0;
+    background-color: #6d506d;
+    min-height: 100vh;
 }
 
 /* Header */
-header {
+header{
     background-color: #473447;
 }
 
@@ -21,12 +23,17 @@ header div{
 
 .logo{
     display: block;
+    margin: 0 141.74px;
 }
 
 .logo img{
     display: block;
     width: 100px;
     object-fit: cover;
+}
+
+header div ul{
+    padding:0;
 }
 
 header div nav ul{
@@ -40,8 +47,21 @@ header div nav ul li{
 header div nav ul li a{
     display: block;
     padding: 10px;
-    font-size: 18px;
+    font-size: 36px;
     text-decoration: none;
+}
+
+header div form{
+    font-size: 26px;
+}
+
+header div form button{
+    background: none;
+    font-size: 26px;
+}
+
+#search-bar{
+    font-size: 20px;
 }
 
 /* Footer */
