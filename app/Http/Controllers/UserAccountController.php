@@ -15,7 +15,7 @@ class UserAccountController extends Controller
         return view('login', ['listItems' => $accounts]);
     } 
 
-    // Insert function 
+    // register new account
     public function registerNewAccount(Request $request) { 
     $accounts = new UserAccounts(); 
     $accounts->username = $request->username;
@@ -36,21 +36,24 @@ class UserAccountController extends Controller
 // create default admin 
 public function createDefaultAdmin()
     {
-        $account = new UserAccounts();
-        $account->username = "FCMS";
-        $account->password = "admin";
-        $account->phone = "0191231234";
-        $account->firstName = "FCMS";
-        $account->lastName = "FCMS";
-        $account->email = "FCMS@gmail.com";
-        $account->streetAddress = "FCMS";
-        $account->city = "FCMS";
-        $account->postcode = "FCMS";
-        $account->accountType = "DefaultAdmin";
-        $account->save();
-        
-        // Return a JSON response to indicate success
-        return response()->json(['message' => 'Default account created successfully'], 201);
+        // checks whether the database have DefaultAdmin created already
+        $record = UserAccounts::where('accountType', 'DefaultAdmin')->first();
+
+        if(!$record)
+        {
+            $account = new UserAccounts();
+            $account->username = "FCMS";
+            $account->password = "admin";
+            $account->phone = "0191231234";
+            $account->firstName = "FCMS";
+            $account->lastName = "FCMS";
+            $account->email = "FCMS@gmail.com";
+            $account->streetAddress = "FCMS";
+            $account->city = "FCMS";
+            $account->postcode = "FCMS";
+            $account->accountType = "DefaultAdmin";
+            $account->save(); 
+        }
     }
 
     // Update function 

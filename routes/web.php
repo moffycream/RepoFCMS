@@ -17,13 +17,16 @@ use App\Http\Controllers\UserAccountController;
 |
 */
 
-Route::get('/register', [UserAccountController::class, 'createDefaultAdmin']);
 
 // The first page to display
 Route::get('/', function(){return view('welcome');});
 
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
+
+Route::get('/register', [UserAccountController::class, 'createDefaultAdmin']);
+
+Route::post('/register', [UserAccountController::class, 'registerNewAccount']);
 
 // Route for the main page (GET request)
 // When a user accesses the root URL ('/'), the 'index' method of 'TodoListController' is invoked.
