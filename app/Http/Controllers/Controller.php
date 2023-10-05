@@ -32,6 +32,10 @@ class Controller extends BaseController
         {
             return view('contact-us');
         }
+        else if ($link == 'add-menu')
+        {
+            return view('add-menu');
+        }
         else
         {
             // handle 404 
