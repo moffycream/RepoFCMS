@@ -24,7 +24,9 @@ header div{
 }
 
 .logo img{
+    display: block;
     width: 100px;
+    object-fit: cover;
 }
 
 header div nav ul{
