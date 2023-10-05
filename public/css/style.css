@@ -1,174 +1,48 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
-
-/*CSS that apply to all pages*/
 *{
-    box-sizing: border-box;
-}
-
-html{
-    background-color: #121212;
-    font-family: "Poppins", sans-serif;
-    scroll-behavior: smooth;
+    /* Add default font */
+    color:#ffffff;
 }
 
 body{
     margin: 0;
     padding: 0;
-    min-height: 100vh;
 }
 
-/*------------index.html------------*/ 
-
-/*Design for the logo at top left corner*/ 
-header .logo{
-    z-index: 1;
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: 400;
-    color: #e1dbd6;
-    padding-left: 5%;
-    padding-top: 2.9%;
-    position: fixed;
-    top: 0;
-    transition: all 0.5s ease-in-out;
-}
-
-/*Navigation Bar*/ 
-header .navi_nav{
+/* Header */
+header {
     background-color: #473447;
-    height: 16%;
-    width: 100%;
+}
+
+header div{
     display: flex;
-    position: fixed; /*Let navigation always on top*/
-    top: 0;
-    font-size: 21.5px;   
-    padding-top: 3.2%;
-    padding-left: 28%;
-    float: left;
-    transition: all 0.5s ease-out;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header .navi_div{
-    list-style: none;
-    border-left: 2px solid #e1dbd6;
-    display: inline-block;
-    position: relative;
-    padding: 0 35px;
+.logo{
+    display: block;
 }
 
-header .navi_link{
+.logo img{
+    width: 100px;
+}
+
+header div nav ul{
+    list-style-type: none;
+}
+
+header div nav ul li{
     display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
+}
+
+header div nav ul li a{
+    display: block;
+    padding: 10px;
+    font-size: 18px;
     text-decoration: none;
-    color: #e1dbd6;
 }
 
-header .navi_link:hover{
-    color: #121212;
-    transition: all 0.5s ease-out;
-}
-
-.navi_div_search{
-    display:inline-block;
-}
-
-
-/*Fixed navigation bar*/
-header.sticky .navi_nav{
-    position: fixed; /*Let navigation always on top*/
-    padding-top: 2% ;
-    padding-left: 18.5%;
-    background-color: #dbc5ca;
-    transition: all 0.5s ease-in-out;
-    height: 11.5%;
-    font-size: 22px;
-}
-
-header.sticky > .navi_nav > .navi_div_search{
-    position: fixed;
-}
-
-header.sticky .navi_div{
-    transition: all 0.5s ease;
-    padding: 0 20px;
-}
-
-header.sticky .logo{
-    transition: all 0.5s ease;
-    font-size: 20px;
-    padding-top: 2%;
-    padding-left: 5%;
-    color: #473447;
-}
-
-header.sticky .navi_link{
-    color: #473447;
-}
-
-header.sticky .navi_link:hover{
-    color: #ab8dc8;
-    transition: all 0.5s ease-in-out;
-}
-
-
-header.sticky .navi_div{
-    transition: all 1.5s ease;
-    border-left: 2.2px solid #473447;
-}
-
-/*Footer*/
-/* footer{
-    padding-top: 0.5%;
-    padding-bottom: 1.5%;
-    padding-left: 5%;
+/* Footer */
+footer{
     background-color: #473447;
-    width: 100%;
-    height: auto;
-    position: relative;
 }
-
-.footer_col{
-    width: 20%;
-    height: auto;
-    float: left;
-}
-
-.footer h3{
-    font-size: 26px;
-    color: #dacdd0;
-    margin: 0;
-    padding: 0;
-    padding: 2% 0px 1% 0px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 9px;
-}
-
-.clear{
-    clear: both;
-}
-
-.footer_col ol{
-	line-height: 0.75;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.footer_col ol li{
-    color: #9EA3AD;
-    font-weight: 300;
-    font-size: 15px;
-    padding: 3% 0px 1% 0px;
-}
-
-.footer_col ol li a{
-    font-size: 14px;
-    font-weight: 550;
-    text-decoration: none;
-    color: #9EA3AD;
-}
-
-.footer_col ol li a:hover{
-    color: #121212;
-} */

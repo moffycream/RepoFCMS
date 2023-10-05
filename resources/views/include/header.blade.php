@@ -1,57 +1,25 @@
 <head>
-        <title>FCMS</title>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Group 2"/>
-        <meta name="description" content="FCMS"/>
-        <meta name="keywords" content="FCMS"/> 
-        <link rel="stylesheet" href="css/style.css">
-        <!--<script src="..\..\js\test.js"></script>-->
-    </head>
+    <title>FCMS</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Group 2"/>
+    <meta name="description" content="FCMS"/>
+    <meta name="keywords" content="FCMS"/> 
+    <link rel="stylesheet" href="css/style.css">
+    <!--<script src="..\..\js\test.js"></script>-->
+</head>
 
-    <header> 
-        <!--Logo from top left corner-->
-        <h1><a class="logo" href="{{url('/')}}">Food Edge</a></h1>
-
-        <nav class="navi_nav">
-            <div>
-                <div class="navi_div">
-                    <div>
-                        <a href="{{url('/')}}" class="navi_link">Home</a>
-                    </div>
-                </div>
-
-                <div class="navi_div">
-                    <div>
-                        <a href="{{url('menu')}}" class="navi_link">Menu</a>
-                    </div>
-                </div>
-
-                <div class="navi_div">
-                    <div>
-                        <a href="{{url('profile')}}" class="navi_link">Profile</a>
-                    </div>
-                </div>
-
-                <div class="navi_div">
-                    <div>
-                        <a href="{{url('about')}}" class="navi_link">About</a>
-                    </div>
-                </div>
-
-                <div class="navi_div">
-                    <div>
-                        <a href="{{url('contact-us')}}" class="navi_link">Contact Us</a>
-                    </div>
-                </div>
-
-                <div class="navi_div_search">
-                    <!-- Add the search bar here -->
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search">
-                        <button type="submit">Search</button>
-                    </div>
-                </div>
-            </div>
+<header> 
+    <div>
+        <a class="logo" href="{{url('/')}}"><img src="images/logo.png" alt="logo"></a>
+        <nav>
+            <ul>
+                <li><a href="{{url('/')}}">Home</a></li>
+                <li><a href="{{url('menu')}}">Menu</a></li>
+                <li><a href="{{url('profile')}}">Profile</a></li>
+                <li><a href="{{url('about')}}">About</a></li>
+                <li><a href="{{url('contact-us')}}">Contact</a></li>
+            </ul>
         </nav>
-    </header>
+    </div>
+</header>
