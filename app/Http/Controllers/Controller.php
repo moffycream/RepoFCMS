@@ -36,6 +36,14 @@ class Controller extends BaseController
         {
             return view('add-menu');
         }
+        else if ($link == 'register')
+        {
+            return view('register');
+        }
+        else if ($link == 'login')
+        {
+            return view('login');
+        }
         else
         {
             // handle 404 
