@@ -15,22 +15,59 @@ class UserAccountController extends Controller
         return view('login', ['listItems' => $accounts]);
     } 
 
-    // register new account
-    public function registerNewAccount(Request $request) { 
+    // register new account + validations
+    public function registerNewAccount(Request $request) {
+    $errorMsg = ""; // error message
     $accounts = new UserAccounts(); 
     $accounts->username = $request->username;
-    $accounts->password = $request->password;
-    $accounts->phone = $request->phone;
+    if($request->password == $request->confirmpassword)
+    {
+        $accounts->password = $request->password;
+    } 
+    else
+    {
+        $errorMsg .= "Password and confirm password don't match<br>";
+    }
+    $phonePattern = '/^\d{10}$/';
+    if(!preg_match($phonePattern,$request->phone))
+    {
+        $errorMsg .= "Invalid phone number<br>";
+    }
+    else
+    {
+        $accounts->phone = $request->phone;
+    }
     $accounts->firstName = $request->firstName;
     $accounts->lastName = $request->lastName;
-    $accounts->email = $request->email;
+    if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) 
+    {
+        $errorMsg .= "Invalid email format<br>";
+    }
+    else
+    {
+        $accounts->email = $request->email;
+    }
     $accounts->streetAddress = $request->streetAddress;
     $accounts->city = $request->city;
-    $accounts->postcode = $request->postcode;
+    if(!is_numeric($request->postcode))
+    {
+        $errorMsg .= "Invalid postcode<br>";
+    }
+    else
+    {
+        $accounts->postcode = $request->postcode;
+    }
     $accounts->accountType = $request->accountType;
-    $accounts->save();
-
-    return redirect('/register-success');
+    
+    if($errorMsg == "")
+    {
+        $accounts->save();
+        return redirect('/register-success');
+    }
+    else
+    {
+        return view('register')->with('errorMsg', $errorMsg);
+    }
 } 
 
 // create default admin 

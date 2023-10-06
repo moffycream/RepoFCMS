@@ -25,6 +25,9 @@ use App\Http\Controllers\MenuController;
 Route::get('/', function(){return view('welcome');});
 
 Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
+
+Route::get('/login', [UserAccountController::class, 'createDefaultAdmin']);
+Route::post('/register', [UserAccountController::class, 'registerNewAccount']);
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
 
