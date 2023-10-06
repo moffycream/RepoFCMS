@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\Models\UserAccounts;
 
@@ -9,11 +9,9 @@ class UserAccountController extends Controller
 {
     // Retrieve function 
     public function index() { 
-
         $accounts = UserAccounts::all(); 
-
         return view('login', ['listItems' => $accounts]);
-    } 
+    }    
 
     // register new account
     public function registerNewAccount(Request $request) { 

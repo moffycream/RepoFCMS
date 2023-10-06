@@ -6,8 +6,10 @@
 
 <article>
 
-        <h1 class="profile-h1">Profile</h1>
-        <div class="profile-container">
+        
+
+    <h1 class="profile-h1">Profile</h1>
+    <div class="profile-container">
             <div class="profile-img">
                 <img src="images/profile.png" alt="profile default image">
             </div>
@@ -15,15 +17,15 @@
                     <tr>
                         <th colspan="2" class="user-info">User Information</th>
                     </tr>
-
+                    @foreach($listItems as $accounts)
                     <tr>
                         <th>UserID</th>
-                        <td>Jesse</td>
+                        <td></td>
                     </tr>
 
                     <tr>
                         <th>Username</th>
-                        <td></td>
+                        <td>{{$accounts->username}}</td>
                     </tr>
 
                     <tr>
@@ -64,6 +66,7 @@
                         <td>
                         </td>
                     </tr>
+                    @endforeach
                 </table>
             </div>
         </div>
