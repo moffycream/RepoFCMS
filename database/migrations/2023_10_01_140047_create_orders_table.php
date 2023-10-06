@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('client_id'); // foreign key
-            $table->decimal('total_amount', 10, 2);
+            $table->id('orderID');
+            $table->foreignId('menuID');
+            $table->foreignId('userID');
+            $table->char('status');
             $table->timestamps();
         });
     }

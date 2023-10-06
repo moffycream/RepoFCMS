@@ -21,6 +21,9 @@ use App\Http\Controllers\MenuController;
 */
 
 
+Route::get('/op-orders', [OrderController::class, 'index']);
+Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
+Route::get('/profile',[UserAccountController::class, 'index']);
 // The first page to display
 Route::get('/', function(){return view('welcome');});
 
