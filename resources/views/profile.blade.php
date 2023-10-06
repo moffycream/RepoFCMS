@@ -5,7 +5,7 @@
 @include ('include/header')
 
 <article>
-    <h1 class="profile-h1">Profile</h1>
+    <h1 class="title">Profile</h1>
     <div class="profile-container">
             <div class="profile-img">
                 <img src="images/profile.png" alt="profile default image">
