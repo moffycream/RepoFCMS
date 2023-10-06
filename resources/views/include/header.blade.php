@@ -7,6 +7,7 @@
                 <li><a href="{{url('menu')}}">Menu</a></li>
                 <li><a href="{{url('profile')}}">Profile</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
+                <li><a href="{{url('about')}}">Order Listing</a></li>
             </ul>
         </nav>
         <form>

@@ -4,15 +4,21 @@
 
 @include ('include/header')
 
-<article class="Profile Content">
-        <h1 class="Profile_H1">Profile</h1>
-        <div class="Profile Container">
-            <div class="my_info">
-                <img src="images/profile" alt="profile default image">
+<article>
 
-                <table class="Profile_Table">
+        <h1 class="profile-h1">Profile</h1>
+        <div class="profile-container">
+            <div class="profile-img">
+                <img src="images/profile.png" alt="profile default image">
+            </div>
+                <table class="profile-table">
                     <tr>
-                        <th colspan="2" id>Name</th>
+                        <th colspan="2" class="user-info">User Information</th>
+                    </tr>
+
+                    <tr>
+                        <th>UserID</th>
+                        <td>Jesse</td>
                     </tr>
 
                     <tr>
@@ -26,19 +32,35 @@
                     </tr>
 
                     <tr>
+                        <th>First Name</th>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th>Last Name</th>
+                        <td></td>
+                    </tr>
+
+                    <tr>
                         <th>Email</th>
                         <td>
                         </td>
                     </tr>
 
                     <tr>
-                        <th>Gender</th>
+                        <th>Street Address</th>
                         <td>
                         </td>
                     </tr>
 
                     <tr>
-                        <th>Birthday</th>
+                        <th>City</th>
+                        <td>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Postcode</th>
                         <td>
                         </td>
                     </tr>
@@ -48,3 +70,5 @@
     </article>
 @include ('include/footer')
 </html>
+
+<!-- Credit https://www.nicepng.com/downpng/u2y3a9e6t4o0a9w7_profile-picture-default-png/*/  -->
