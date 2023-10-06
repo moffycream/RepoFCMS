@@ -21,18 +21,19 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-
+// operation routes
 Route::get('/op-orders', [OrderController::class, 'index']);
+
 Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
 Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
-// The first page to display
-Route::get('/', function(){return view('welcome');});
 
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
 Route::get('/add-food', [FoodController::class, 'index']);
 Route::get('image/{id}', [FoodController::class, 'displayImage'])->name('image.display');
 
 
+// The first page to display
+Route::get('/', function(){return view('welcome');});
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
 
