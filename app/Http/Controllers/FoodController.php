@@ -20,8 +20,9 @@ class FoodController extends Controller
     $food = new Food(); 
     $food->foodID = $request->foodID;
     $fileName = time().$request->file('image')->getClientOriginalName();
-    $path = $request->file('image')->storeAs('images', $fileName, 'public');
-    $food->imagePath = 'storage/'.$path;
+    $path = $request->file('image')->storeAs('', $fileName, 'addFood');
+
+    $food->imagePath = 'food-images/'.$path;
     $food->name = $request->name;
     $food->description = $request->description;
     $food->price = $request->price;
@@ -52,18 +53,4 @@ class FoodController extends Controller
         echo "Delete Successful!"; 
 
     }
-
-    public function displayImage($id)
-{
-    $image = Food::table('images')->find($id);
-
-    if ($image) {
-        return response($image->image_data)
-            ->header('Content-Type', 'image/jpeg'); // Specify the appropriate image content type
-    }
-
-    // Handle if the image is not found
-    return response('Image not found', 404);
-}
-
 }

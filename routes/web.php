@@ -29,7 +29,6 @@ Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
 
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
 Route::get('/add-food', [FoodController::class, 'index']);
-Route::get('image/{id}', [FoodController::class, 'displayImage'])->name('image.display');
 
 
 // The first page to display
