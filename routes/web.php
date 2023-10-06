@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ProfileController;
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -23,7 +24,7 @@ use App\Http\Controllers\MenuController;
 
 Route::get('/op-orders', [OrderController::class, 'index']);
 Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
-Route::get('/profile',[UserAccountController::class, 'index']);
+Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
 // The first page to display
 Route::get('/', function(){return view('welcome');});
 
