@@ -6,18 +6,18 @@
 <body>
     @include ('include/header')
     <article>
-        <h1 class="title">Add Menu</h1>
+        <h1 class="title">Add Food</h1>
 
         <div class="container">
             <div class="row-add-menu">
                 <div class="col-add-menu">
-                    <a href="{{url('add-menu-form')}}">+</a>
+                    <a href="{{url('add-food-form')}}">+</a>
                 </div>
                 <div class="col-add-menu">
-                    <a href="{{url('add-menu-form')}}">+</a>
+                    <a href="{{url('add-food-form')}}">+</a>
                 </div>
                 <div class="col-add-menu">
-                    <a href="{{url('add-menu-form')}}">+</a>
+                    <a href="{{url('add-food-form')}}">+</a>
                 </div>
             </div>
         </div>
