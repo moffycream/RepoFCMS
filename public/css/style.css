@@ -68,3 +68,46 @@ header div form button{
 footer{
     background-color: #473447;
 }
+
+
+/* register page */
+.register-page{
+    text-align: center;
+}
+
+.register-form input,
+.register-form label {
+    font-size: 15px;
+}
+
+.register-form input{
+    background-color: #473447;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.register-submit-button {
+    font-size: 20px;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-submit-button:hover {
+    background-color: #fff;
+    color:#312431;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.login-here{
+    text-decoration: none;
+    font-style: italic;
+}
+
+.login-here:hover{
+    cursor: pointer;
+    color: #2b0548;
+    transition: 0.2s;
+}
