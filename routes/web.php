@@ -21,10 +21,11 @@ use App\Http\Controllers\MenuController;
 */
 
 
+Route::get('/op-orders', [OrderController::class, 'index']);
+Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
+
 // The first page to display
 Route::get('/', function(){return view('welcome');});
-
-Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
 
