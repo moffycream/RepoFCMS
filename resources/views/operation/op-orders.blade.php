@@ -10,16 +10,23 @@
         <thead>
             <tr>
                 <th>Order ID</th>
+                <th>DateTime</th>
+                <th>Menu Name</th>
                 <th>Total Price</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($orders as $order)
+            @forelse($orders as $order)
                 <tr>
                     <td>{{$order->orderID}}</td>
+                    <td>{{$order->getformattedDateTime()}}</td>
+                    @foreach($order->menus as $menu)
+                        <td>{{$menu->name}}</td>
+                    @endforeach
                     <td>{{$order->getTotalPrice()}}</td>
                 </tr>
-            @endforeach
+                @empty
+            @endforelse
         </tbody>
     </table>
 </article>
