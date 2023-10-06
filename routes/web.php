@@ -29,7 +29,6 @@ Route::get('/', function(){return view('welcome');});
 
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
 Route::get('/add-food', [FoodController::class, 'index']);
-Route::get('image/{id}', [FoodController::class, 'displayImage'])->name('image.display');
 
 
 // Navigation links

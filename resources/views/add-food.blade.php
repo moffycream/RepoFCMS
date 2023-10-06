@@ -18,7 +18,7 @@
                 @foreach($listItems as $food)
                 <div class="col-add-menu">
                     <img src="{{$food->imagePath}}" alt="Image">
-                    <div class="col-add-menu-info">
+                    <div class="">
                         <p>{{$food->name}}</p>
                         <p>{{$food->description}}</p>
                         <p>{{$food->price}}</p>
