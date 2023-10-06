@@ -10,32 +10,33 @@ class FoodController extends Controller
     // Retrieve function 
     public function index() { 
 
-        $menu = Food::all(); 
+        $food = Food::all(); 
 
-        return view('add-menu', ['listItems' => $menu]);
+        return view('add-food', ['listItems' => $food]);
     } 
 
     // Insert function 
     public function registerNewFood(Request $request) { 
-    $menu = new Food(); 
-    $menu->foodID = $request->foodID;
-    $menu->image = $request->image;
-    $menu->name = $request->name;
-    $menu->description = $request->description;
-    $menu->price = $request->price;
-    $menu->save();
+    $food = new Food(); 
+    $food->foodID = $request->foodID;
+    $fileName = time().$request->file('image')->getClientOriginalName();
+    $path = $request->file('image')->storeAs('images', $fileName, 'public');
+    $food->imagePath = 'storage/'.$path;
+    $food->name = $request->name;
+    $food->description = $request->description;
+    $food->price = $request->price;
+    $food->save();
 
-    return redirect('/register-success');
+    return redirect('/add-food');
 } 
-
     // Update function 
     public function update() { 
 
-        $menu = Food::find(1); 
+        $food = Food::find(1); 
 
-        $menu->topic = "Laravel"; 
+        $food->topic = "Laravel"; 
 
-        $menu->save(); 
+        $food->save(); 
 
         echo "Update Successful!"; 
 
@@ -44,11 +45,25 @@ class FoodController extends Controller
     // Delete function 
     public function delete() { 
 
-        $menu = Food::find(1); 
+        $food = Food::find(1); 
 
-        $menu->delete(); 
+        $food->delete(); 
 
         echo "Delete Successful!"; 
 
     }
+
+    public function displayImage($id)
+{
+    $image = Food::table('images')->find($id);
+
+    if ($image) {
+        return response($image->image_data)
+            ->header('Content-Type', 'image/jpeg'); // Specify the appropriate image content type
+    }
+
+    // Handle if the image is not found
+    return response('Image not found', 404);
+}
+
 }

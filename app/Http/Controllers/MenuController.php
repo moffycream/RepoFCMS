@@ -22,7 +22,7 @@ class MenuController extends Controller
     $menu->totalPrice = $request->totalPrice;
     $menu->save();
 
-    return redirect('/register-success');
+    return redirect('/add-menu');
 } 
 
     // Update function 
