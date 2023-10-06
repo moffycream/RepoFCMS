@@ -20,7 +20,7 @@
                     @foreach($listItems as $accounts)
                     <tr>
                         <th>UserID</th>
-                        <td></td>
+                        <td>{{$accounts->userID}}</td>
                     </tr>
 
                     <tr>
@@ -30,40 +30,44 @@
 
                     <tr>
                         <th>Phone Number</th>
-                        <td></td>
+                        <td>{{$accounts->phone}}</td>
                     </tr>
 
                     <tr>
                         <th>First Name</th>
-                        <td></td>
+                        <td>{{$accounts->firstName}}</td>
                     </tr>
 
                     <tr>
                         <th>Last Name</th>
-                        <td></td>
+                        <td>{{$accounts->lastName}}</td>
                     </tr>
 
                     <tr>
                         <th>Email</th>
                         <td>
+                        {{$accounts->email}}
                         </td>
                     </tr>
 
                     <tr>
                         <th>Street Address</th>
                         <td>
+                        {{$accounts->streetAddress}}
                         </td>
                     </tr>
 
                     <tr>
                         <th>City</th>
                         <td>
+                        {{$accounts->city}}
                         </td>
                     </tr>
 
                     <tr>
                         <th>Postcode</th>
                         <td>
+                        {{$accounts->postcode}}
                         </td>
                     </tr>
                     @endforeach
