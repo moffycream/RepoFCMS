@@ -88,6 +88,8 @@ public function createDefaultAdmin()
             $account->accountType = "DefaultAdmin";
             $account->save(); 
         }
+
+        return view('login');
     }
 
     // Update function 

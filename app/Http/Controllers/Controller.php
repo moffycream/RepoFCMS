@@ -52,6 +52,10 @@ class Controller extends BaseController
         {
             return view('register');
         }
+        else if ($link == 'register-successful')
+        {
+            return view('register-successful');
+        }
         else if ($link == 'login')
         {
             return view('login');

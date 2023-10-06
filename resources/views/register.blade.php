@@ -6,12 +6,12 @@
 <body>
     @include ('include/header')
 
-    <div class="register-page">
+    <div class="container-register-page">
         <h1>Registration Form</h1><br>
         <form class="register-form" method="POST" action="{{url('register')}}">
             @csrf
             @if(isset($errorMsg) && !empty($errorMsg))
-            <div class="alert alert-danger">
+            <div>
                 <ul>
                     @foreach(explode('<br>', $errorMsg) as $error)
                     <li>{{ $error }}</li>
