@@ -79,24 +79,45 @@ footer{
 }
 
 /* Add menu */
+.food-logo{
+    object-fit:cover;
+    max-width: 18vw;
+    border-radius: 20px 0 0 20px;
+    margin-right: auto;
+}
+
 .container .row-add-menu{
     display: flex;
+    margin: 50px 0;
 }
 
 .container .row-add-menu .col-add-menu{
     background-color: #e1dbd6;
     height: 30vh;
-    width: 100vw;
+    min-width: 25vw;
     margin: 0 4vw;
     border-radius: 20px;
     display: flex;
     justify-content: center;
 } 
 
-.container .row-add-menu .col-add-menu .col-add-menu-info{
+.container .row-add-menu .col-add-menu .col-add-menu-info-row{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 7vw;
 }
+
+.container .row-add-menu  .col-add-menu .col-add-menu-info-title{
+    font-weight: bold;
+}
+
+
+.container .row-add-menu  .col-add-menu .col-add-menu-info-col p{
+    font-size: 20px;
+    color: black;
+}
+
 
 .container .row-add-menu .col-add-menu a{
     margin:auto;

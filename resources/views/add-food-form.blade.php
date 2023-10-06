@@ -6,7 +6,7 @@
 <body>
     @include ('include/header')
     <article>
-        <h1 class="title">Add Menu</h1>
+        <h1 class="profile-h1">Add Menu</h1>
 
         <div class="container">
             <form class="add-food-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
@@ -18,7 +18,7 @@
                 <label>Description</label>
                 <input type="text" id="description" name="description"><br>
                 <label>Price</label>
-                <input type="number" id="price" name="price"><br>
+                <input type="text" id="price" name="price"><br>
                 <button type="submit">Submit
             </form>
         </div>
