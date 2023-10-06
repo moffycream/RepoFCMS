@@ -5,8 +5,8 @@
     <meta name="author" content="Group 2"/>
     <meta name="description" content="FCMS"/>
     <meta name="keywords" content="FCMS"/> 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/kelvinstyle.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/kelvinstyle.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <!--<script src="..\..\js\test.js"></script>-->
 </head>
