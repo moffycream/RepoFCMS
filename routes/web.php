@@ -4,6 +4,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAccountController;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\MenuController;
+
 // use App\Http\Controllers\test;  <-- test
 
 /*
@@ -22,8 +25,11 @@ Route::get('/register', [UserAccountController::class, 'createDefaultAdmin']);
 // The first page to display
 Route::get('/', function(){return view('welcome');});
 
+Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
+
+
 
 // Route for the main page (GET request)
 // When a user accesses the root URL ('/'), the 'index' method of 'TodoListController' is invoked.

@@ -21,9 +21,10 @@ header div{
     align-items: center;
 }
 
+/*91.75 = (width of search bar (283.75) - logo width (100)) / 2*/
 .logo{
     display: block;
-    margin: 0 141.74px;
+    margin: 0 91.75px;
 }
 
 .logo img{
@@ -67,4 +68,38 @@ header div form button{
 /* Footer */
 footer{
     background-color: #473447;
+}
+
+/* Title */
+.title{
+    font-size: 80px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* Add menu */
+.container .row-add-menu{
+    display: flex;
+}
+
+.container .row-add-menu .col-add-menu{
+    background-color: #e1dbd6;
+    height: 30vh;
+    width: 100vw;
+    margin: 0 4vw;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+} 
+
+.container .row-add-menu .col-add-menu a{
+    margin:auto;
+    color: black;
+    font-size: 100px;
+    font-weight: 900;
+}
+
+.container .row-add-menu .col-add-menu a:link{
+    text-decoration: none;
 }
