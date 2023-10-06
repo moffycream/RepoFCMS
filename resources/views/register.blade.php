@@ -7,7 +7,8 @@
     @include ('include/header')
 
     <h2>Registration Form</h2>
-    <form method="POST" action="register.php">
+    <form method="POST" action="{{url('register')}}">
+    @csrf    
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
 

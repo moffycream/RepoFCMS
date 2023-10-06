@@ -20,7 +20,6 @@ use App\Http\Controllers\MenuController;
 |
 */
 
-Route::get('/register', [UserAccountController::class, 'createDefaultAdmin']);
 
 // The first page to display
 Route::get('/', function(){return view('welcome');});
@@ -28,8 +27,6 @@ Route::get('/', function(){return view('welcome');});
 Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
-
-
 
 // Route for the main page (GET request)
 // When a user accesses the root URL ('/'), the 'index' method of 'TodoListController' is invoked.
