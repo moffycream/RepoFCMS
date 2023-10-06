@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ProfileController;
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -19,6 +20,15 @@ use App\Http\Controllers\MenuController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// operation routes
+Route::get('/op-orders', [OrderController::class, 'index']);
+
+Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
+Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
+
+Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
+Route::get('/add-food', [FoodController::class, 'index']);
 
 
 // The first page to display

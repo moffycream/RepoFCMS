@@ -56,6 +56,10 @@ class Controller extends BaseController
         {
             return view('login');
         }
+        else if($link == 'customer-orders')
+        {
+            return view('customer-orders');
+        }
         else
         {
             // handle 404 

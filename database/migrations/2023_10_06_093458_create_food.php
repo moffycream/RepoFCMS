@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('food', function (Blueprint $table) {
             $table->id('foodID');
-            $table->binary('image');
+            $table->char('imagePath');
             $table->char('name');
             $table->char('description');
             $table->integer('price');

@@ -10,32 +10,34 @@ class FoodController extends Controller
     // Retrieve function 
     public function index() { 
 
-        $menu = Food::all(); 
+        $food = Food::all(); 
 
-        return view('add-menu', ['listItems' => $menu]);
+        return view('add-food', ['listItems' => $food]);
     } 
 
     // Insert function 
     public function registerNewFood(Request $request) { 
-    $menu = new Food(); 
-    $menu->foodID = $request->foodID;
-    $menu->image = $request->image;
-    $menu->name = $request->name;
-    $menu->description = $request->description;
-    $menu->price = $request->price;
-    $menu->save();
+    $food = new Food(); 
+    $food->foodID = $request->foodID;
+    $fileName = time().$request->file('image')->getClientOriginalName();
+    $path = $request->file('image')->storeAs('', $fileName, 'addFood');
 
-    return redirect('/register-success');
+    $food->imagePath = 'food-images/'.$path;
+    $food->name = $request->name;
+    $food->description = $request->description;
+    $food->price = $request->price;
+    $food->save();
+
+    return redirect('/add-food');
 } 
-
     // Update function 
     public function update() { 
 
-        $menu = Food::find(1); 
+        $food = Food::find(1); 
 
-        $menu->topic = "Laravel"; 
+        $food->topic = "Laravel"; 
 
-        $menu->save(); 
+        $food->save(); 
 
         echo "Update Successful!"; 
 
@@ -44,9 +46,9 @@ class FoodController extends Controller
     // Delete function 
     public function delete() { 
 
-        $menu = Food::find(1); 
+        $food = Food::find(1); 
 
-        $menu->delete(); 
+        $food->delete(); 
 
         echo "Delete Successful!"; 
 
