@@ -5,7 +5,7 @@
 @include ('include/header')
 
 <article>
-    <h1 class="profile-h1">Customer Order Listing</h1>
+    <h1 class="title">Customer Order Listing</h1>
     <div class="profile-container">       
             </div>
         </div>
