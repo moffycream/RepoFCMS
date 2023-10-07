@@ -72,10 +72,13 @@ footer {
 
 /* Title */
 .title {
-    font-size: 80px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
+    font-size: 45px;
+    text-align: center;
+    background-color: #dce0e5;
+    padding: 15px;
+    margin: 50px 0;
+    color: #000000;
+    border-radius: 20px;
 }
 
 /* Add menu */
@@ -118,7 +121,6 @@ footer {
     color: black;
 }
 
-
 .container .row-add-menu .col-add-menu a{
     margin:auto;
     color: black;
@@ -130,16 +132,7 @@ footer {
     text-decoration: none;
 }
 
-/*profile*/
-.title {
-    font-size: 45px;
-    text-align: center;
-    background-color: #dce0e5;
-    padding: 15px;
-    margin: 50px 0;
-    color: #000000;
-    border-radius: 20px;
-}
+/* Profile */
 
 .profile-container {
     background-color: #e1dbd6;

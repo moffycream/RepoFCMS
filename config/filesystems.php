@@ -63,6 +63,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'addMenu' => [
+            'driver' => 'local',
+            'root' => public_path('menu-images'),
+            'visibility' => 'public',
+        ],
     ],
 
     /*

@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    protected $table = 'food'; // associated the table in the database
+    protected $table = 'foods'; // associated the table in the database
 }

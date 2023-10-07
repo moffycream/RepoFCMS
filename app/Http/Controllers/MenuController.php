@@ -8,44 +8,53 @@ use App\Models\Menu;
 class MenuController extends Controller
 {
     // Retrieve function 
-    public function index() { 
+    public function index()
+    {
 
-        $menu = Menu::all(); 
+        $menu = Menu::all();
 
         return view('add-menu', ['listItems' => $menu]);
-    } 
+    }
 
     // Insert function 
-    public function registerNewMenu(Request $request) { 
-    $menu = new Menu(); 
-    $menu->foodID = $request->foodID;
-    $menu->totalPrice = $request->totalPrice;
-    $menu->save();
+    public function registerNewMenu(Request $request)
+    {
+        $menu = new Menu();
+        $menu->menuID = $request->menuID;
 
-    return redirect('/add-menu');
-} 
+        $fileName = time() . $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('', $fileName, 'addMenu');
+
+        $menu->imagePath = 'menu-images/' . $path;
+        $menu->name = $request->name;
+        $menu->foodID = $request->foodID;
+        $menu->totalPrice = $request->totalPrice;
+        $menu->save();
+
+        return redirect('/add-menu');
+    }
 
     // Update function 
-    public function update() { 
+    public function update()
+    {
 
-        $menu = Menu::find(1); 
+        $menu = Menu::find(1);
 
-        $menu->topic = "Laravel"; 
+        $menu->topic = "Laravel";
 
-        $menu->save(); 
+        $menu->save();
 
-        echo "Update Successful!"; 
-
-    } 
+        echo "Update Successful!";
+    }
 
     // Delete function 
-    public function delete() { 
+    public function delete()
+    {
 
-        $menu = Menu::find(1); 
+        $menu = Menu::find(1);
 
-        $menu->delete(); 
+        $menu->delete();
 
-        echo "Delete Successful!"; 
-
+        echo "Delete Successful!";
     }
 }
