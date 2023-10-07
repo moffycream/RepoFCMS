@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('menuID')->references('menuID')->on('menus')->onDelete('cascade');
         });
     }
-
+// sss
     /**
      * Reverse the migrations.
      */
