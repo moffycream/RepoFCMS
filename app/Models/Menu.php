@@ -15,4 +15,9 @@ class Menu extends Model
     {
         return $this->belongsToMany(Order::class, 'order_menu', 'orderID', 'menuID');
     }
+
+    public function foods()
+    {
+        return $this->belongsToMany(Food::class, 'menu_food', 'menuID', 'foodID');
+    }
 }

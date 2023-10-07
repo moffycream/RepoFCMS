@@ -7,12 +7,12 @@
         <div class="row">
             <h1>Order List</h1>
         </div>
-        <div class="row">
+        <div class="row-order-item">
             @foreach($orders as $order)
             <form method="post" action="{{route('viewOrder', $order->orderID)}}">
                 {{ csrf_field() }}
                 <button type="submit">
-                    <h2>Order #{{$order->orderID}}</h2>
+                    <p>Order #{{$order->orderID}}</p>
                     <p>{{$order->getformattedDateTime()}}</p>
                 </button>
             </form>

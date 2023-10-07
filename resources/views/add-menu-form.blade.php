@@ -11,15 +11,10 @@
         <label>Menu name</label>
         <input type="text" id="name" name="name"><br>
         <label>Foods</label>
-        @php
-            $i = 0;
-        @endphp
+
         @foreach($listItems as $food)
-        @php
-            $i++;
-        @endphp
         <input type="checkbox" class="add-menu-checkbox" name="{{$food->foodID}}" value="{{$food->price}}">
-        <label for="food{{$i}}">{{$food->name}}</label>
+        <label>{{$food->name}}</label>
 
         @endforeach
         <p>Total price: <span id="add-menu-form-price">0</span></p>
