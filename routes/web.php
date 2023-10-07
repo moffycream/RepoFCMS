@@ -24,7 +24,7 @@ use App\Http\Controllers\ProfileController;
 
 // operation routes
 Route::get('/op-orders', [OrderController::class, 'index']);
-Route::post('op-order/{$orderID}', [OrderController::class, 'viewOrder'])->name('viewOrder');
+Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name('viewOrder');
 
 Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');

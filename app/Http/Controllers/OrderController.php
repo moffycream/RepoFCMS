@@ -13,9 +13,10 @@ class OrderController extends Controller
         return view('operation/op-orders', ['orders'=>$orders]);
     }
 
-    // public function viewOrder($orderID)
-    // {
-
-    //     return view('')
-    // }
+    public function viewOrder($orderID)
+    {
+        $orders = Order::all();
+        $selectedOrder = Order::find($orderID);
+        return view('operation/op-orders', ['orders'=>$orders], ['selectedOrder'=>$selectedOrder]);
+    }
 }
