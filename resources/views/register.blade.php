@@ -6,22 +6,47 @@
 <body>
     @include ('include/header')
 
-    <h2>Registration Form</h2>
-    <form method="POST" action="{{url('register')}}">
-    @csrf    
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
+    <div class="container-register-page">
+        <h1>Registration Form</h1><br>
+        <form class="register-form" method="POST" action="{{url('register')}}">
+            @csrf
+            @if(isset($errorMsg) && !empty($errorMsg))
+            <div>
+                <ul>
+                    @foreach(explode('<br>', $errorMsg) as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            <input type="text" id="username" name="username" placeholder="Username" required><br><br>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required><br><br>
+            <input type="firstName" id="firstName" name="firstName" placeholder="First Name" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required><br><br>
 
-        <input type="submit" value="Register">
-    </form>
-    
-@include ('include/footer')
+            <input type="text" id="phone" name="phone" placeholder="Phone number" required><br><br>
+
+            <input type="text" id="email" name="email" placeholder="Email" required><br><br>
+
+            <input type="text" id="streetAddress" name="streetAddress" placeholder="Street Address" required><br><br>
+
+            <input type="text" id="city" name="city" placeholder="City" required><br><br>
+
+            <input type="text" id="postcode" name="postcode" placeholder="Postcode" required><br><br>
+            <input type="hidden" name="accountType" value="Customer">
+
+            <p>Have an account already? <a href="login" class="login-here">Login here</a></p><br>
+
+            <input class="register-submit-button" type="submit" value="Register">
+        </form>
+
+        <br>
+    </div>
+
+    @include ('include/footer')
 </body>
 
 

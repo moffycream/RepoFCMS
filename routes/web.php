@@ -5,6 +5,7 @@ use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
 
@@ -23,16 +24,16 @@ use App\Http\Controllers\ProfileController;
 
 // operation routes
 Route::get('/op-orders', [OrderController::class, 'index']);
-
-Route::post('/add-food', 'FoodController@registerNewFood')->name('food.register');
 Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
-
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
 Route::get('/add-food', [FoodController::class, 'index']);
 
 
 // The first page to display
 Route::get('/', function(){return view('welcome');});
+Route::get('/login', [UserAccountController::class, 'createDefaultAdmin']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [UserAccountController::class, 'registerNewAccount']);
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
 
