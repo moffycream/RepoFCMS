@@ -2,11 +2,11 @@
 
 .container-op-orders{
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container-op-orders .container-op-orders-col-1{
-    background-color: #e3e0e4;
+    background-color: #e8dcd4;
     display: flex;
     flex-direction: column;
 }
@@ -37,8 +37,16 @@
 }
 
 .container-op-orders .container-op-orders-col-2{
-   flex: 1;
-   padding: 100px;
+    width: 100%;
+   padding: 50px;
+}
+
+.container-op-orders .container-op-orders-col-2 div{
+    margin-bottom: 50px;
+}
+
+.container-op-orders .container-op-orders-col-2 div:last-child p{
+    text-align: right;
 }
 
 .container-op-orders .container-op-orders-col-2 h2{
@@ -46,7 +54,39 @@
     margin: 20px 0;
 }
 
-.container-op-orders .container-op-orders-col-2 table tr th{
-    width: 100px;
+.container-op-orders .container-op-orders-col-2 details summary{
+    cursor: pointer;
     padding: 20px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e4ecec;
+}
+
+.container-op-orders .container-op-orders-col-2 details .container-food-item{
+    table-layout: fixed;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.container-op-orders .container-op-orders-col-2 details table tr td{
+    padding: 10px;
+}
+
+.container-op-orders .container-op-orders-col-2 details table tr td:last-child{
+    text-align: right;
+}
+
+
+.container-op-orders .container-food-image{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container-op-orders .container-food-image img{
+    max-width: 100%;
+    max-height: 100%;
 }
