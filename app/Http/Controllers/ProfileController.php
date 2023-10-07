@@ -14,6 +14,11 @@ class ProfileController extends Controller
             return redirect('/login')->with('error', 'You are not logged in.');
         }
         $user = UserAccounts::where('username', $username)->first();
+        if (!$user) {
+            // Redirect to login if the user doesn't exist in the database
+            return redirect('/register')->with('error', 'User not found.');
+        }
         return view('profile', ['user' => $user]);
-    } 
+    }
+    
 }

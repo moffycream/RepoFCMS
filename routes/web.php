@@ -24,11 +24,14 @@ use App\Http\Controllers\ProfileController;
 
 // operation routes
 Route::get('/op-orders', [OrderController::class, 'index']);
-Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name('viewOrder');
-
 Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
-Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
 Route::get('/add-food', [FoodController::class, 'index']);
+Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
+Route::get('/add-menu', [MenuController::class, 'index']);
+Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
+Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
+
+
 
 
 // The first page to display

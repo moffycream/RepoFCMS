@@ -8,49 +8,62 @@ use App\Models\Food;
 class FoodController extends Controller
 {
     // Retrieve function 
-    public function index() { 
+    public function index()
+    {
 
-        $food = Food::all(); 
+        $food = Food::all();
 
         return view('add-food', ['listItems' => $food]);
-    } 
+    }
+
+    public function addMenuFormIndex()
+    {
+
+        $food = Food::all();
+
+        return view('add-menu-form', ['listItems' => $food]);
+    }
 
     // Insert function 
-    public function registerNewFood(Request $request) { 
-    $food = new Food(); 
-    $food->foodID = $request->foodID;
-    $fileName = time().$request->file('image')->getClientOriginalName();
-    $path = $request->file('image')->storeAs('', $fileName, 'addFood');
+    public function registerNewFood(Request $request)
+    {
+        $food = new Food();
+        $food->foodID = $request->foodID;
+        
+        $fileName = time() . $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->storeAs('', $fileName, 'addFood');
 
-    $food->imagePath = 'food-images/'.$path;
-    $food->name = $request->name;
-    $food->description = $request->description;
-    $food->price = $request->price;
-    $food->save();
+        $food->imagePath = 'food-images/' . $path;
+        $food->name = $request->name;
+        $food->description = $request->description;
+        $food->price = $request->price;
+        $food->save();
 
-    return redirect('/add-food');
-} 
+        return redirect('/add-food');
+    }
+
+
     // Update function 
-    public function update() { 
+    public function update()
+    {
 
-        $food = Food::find(1); 
+        $food = Food::find(1);
 
-        $food->topic = "Laravel"; 
+        $food->topic = "Laravel";
 
-        $food->save(); 
+        $food->save();
 
-        echo "Update Successful!"; 
-
-    } 
+        echo "Update Successful!";
+    }
 
     // Delete function 
-    public function delete() { 
+    public function delete()
+    {
 
-        $food = Food::find(1); 
+        $food = Food::find(1);
 
-        $food->delete(); 
+        $food->delete();
 
-        echo "Delete Successful!"; 
-
+        echo "Delete Successful!";
     }
 }
