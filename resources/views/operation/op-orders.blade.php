@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-op-orders">
-    <div class="container">
+    <div class="container-op-orders-col-1">
         <div class="row">
             <h1>Order List</h1>
         </div>
@@ -19,14 +19,22 @@
             @endforeach
         </div>
     </div>
-    <div class="container">
+    <div class="container-op-orders-col-2">
         @if(isset($selectedOrder))
-        <h3>Menus:</h3>
-        <ul>
+        <h2>Order Info</h2>
+        <table>
             @foreach($selectedOrder->menus as $menu)
-            <li>{{$menu->name}}</li>
+            <tr>
+                <td>{{$menu->name}}</td>
+            </tr>
+                @foreach($menu->foods as $food)
+                    <tr>
+                        <td>food: {{$food->name}}</td>
+                    </tr>
+                @endforeach
             @endforeach
-        </ul>
+        </table>
+        <h2>Add-Ons</h2>
         @endif
     </div>
 </div>
