@@ -6,9 +6,9 @@
 </head>
 <body>
     @include('include/header')
-    <div class="container">
+    <article>
         @yield('content') <!-- This is where the content of specific pages will be inserted -->
-    </div>
+    </article>
     @include('include/footer')
     <!-- Add your JavaScript and other script tags here -->
 </body>

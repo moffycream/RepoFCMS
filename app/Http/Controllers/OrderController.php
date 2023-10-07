@@ -9,6 +9,13 @@ class OrderController extends Controller
 {
     public function index()
     {
-        return view('operation/op-orders');
+        $orders = Order::all();
+        return view('operation/op-orders', ['orders'=>$orders]);
     }
+
+    // public function viewOrder($orderID)
+    // {
+
+    //     return view('')
+    // }
 }

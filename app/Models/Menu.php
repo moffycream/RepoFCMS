@@ -9,8 +9,10 @@ class Menu extends Model
 {
     protected $table = 'menus'; // associated the table in the database
 
+    protected $primaryKey = 'menuID'; 
+
     public function orders()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsToMany(Order::class, 'order_menu', 'orderID', 'menuID');
     }
 }
