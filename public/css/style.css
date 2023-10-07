@@ -1,3 +1,10 @@
+:root{
+    --background-color-1: #473447;
+    --background-color-2: #e8dcd4;
+    --color-1: #000000;
+    --color-2: #ffffff;
+}
+
 * {
     /* Add default font */
     color: #000000;
@@ -6,12 +13,12 @@
 }
 
 body {
-    background-color: #e8dcd4;
+    background-color: var(--background-color-2);
 }
 
 /* Header */
 header {
-    background-color: #473447;
+    background-color: var(--background-color-1);
 }
 
 header div {
@@ -45,7 +52,7 @@ header div nav ul li {
 }
 
 header div nav ul li a {
-    color: #ffffff;
+    color: var(--color-2);
     display: block;
     padding: 10px;
     font-size: 36px;
@@ -67,7 +74,7 @@ header div form button {
 
 /* Footer */
 footer {
-    background-color: #473447;
+    background-color: var(--background-color-1);
 }
 
 /* Article */

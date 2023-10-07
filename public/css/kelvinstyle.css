@@ -2,4 +2,26 @@
 
 .container-op-orders{
     display: flex;
+   
+}
+
+.container-op-orders .container{
+    background-color: #cad8ca;
+    height: 100vh;;
+}
+
+.container-op-orders .container .row h1{
+    margin: 40px 120px;
+}
+
+.container-op-orders .container .row h1{
+    margin: 40px 120px;
+}
+
+.container-op-orders .container .row-order-item form button
+{
+    text-align: left;
+    border: none;
+    padding: 20px;
+    width: 100%;
 }
