@@ -10,6 +10,7 @@
         @yield('content') <!-- This is where the content of specific pages will be inserted -->
     </article>
     @include('include/footer')
+    @yield('js')
     <!-- Add your JavaScript and other script tags here -->
 </body>
 </html>

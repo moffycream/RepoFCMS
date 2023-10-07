@@ -1,13 +1,12 @@
 * {
     /* Add default font */
-    color: #ffffff;
+    color: #000000;
     padding: 0;
     margin: 0;
 }
 
 body {
-    background-color: #6d506d;
-    min-height: 100vh;
+    background-color: #e8dcd4;
 }
 
 /* Header */
@@ -46,6 +45,7 @@ header div nav ul li {
 }
 
 header div nav ul li a {
+    color: #ffffff;
     display: block;
     padding: 10px;
     font-size: 36px;
@@ -68,6 +68,11 @@ header div form button {
 /* Footer */
 footer {
     background-color: #473447;
+}
+
+/* Article */
+article{
+    height: 100vh;
 }
 
 /* Title */
