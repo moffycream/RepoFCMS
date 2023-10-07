@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    protected $table = 'menu'; // associated the table in the database
+    protected $table = 'menus'; // associated the table in the database
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
 }
