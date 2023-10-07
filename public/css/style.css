@@ -75,6 +75,18 @@ header div form button {
 /* Footer */
 footer {
     background-color: var(--background-color-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer img{
+    width: 75px;
+}
+
+footer p{
+    color: white;
+    font-size: 20px;
 }
 
 /* Article */

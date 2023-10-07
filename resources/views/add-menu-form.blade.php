@@ -21,8 +21,8 @@
 
         <!-- This hidden field will store the total price for form submission -->
         <input type="hidden" name="totalPrice" id="add-menu-form-price-submission" value="0">
-        <input type="hidden" name="foodID" id="add-menu-form-foodID-submission" value="0"> 
- 
+        <div id="hidden-inputs-container"></div>        
+
         
         <button type="submit">Submit
     </form>

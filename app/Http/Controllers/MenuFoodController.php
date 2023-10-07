@@ -13,19 +13,17 @@ class MenuFoodController extends Controller
 
         $menuFood = MenuFood::all();
 
-        return view('add-menu-form', ['listItems' => $menuFood]);
+        return view('add-menu', ['listItems' => $menuFood]);
     }
 
     // Insert function 
-    public function registerNewMenuFood(Request $request)
+    public function registerNewMenuFood(Request $request, $menuID, $foodID)
     {
         $menuFood = new MenuFood();
         $menuFood->id = $request->id;
-        $menuFood->menuID = $request->menuID;
-        $menuFood->foodID = $request->foodID;
+        $menuFood->menuID = $menuID;
+        $menuFood->foodID = $foodID;
         $menuFood->save();
-
-        return redirect('/add-menu');
     }
 
     // Update function 

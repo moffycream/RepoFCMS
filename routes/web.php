@@ -8,6 +8,8 @@ use App\Http\Controllers\FoodController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MenuFoodController;
+
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -29,7 +31,9 @@ Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name
 Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
 Route::get('/add-food', [FoodController::class, 'index']);
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
+//Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
 Route::get('/add-menu', [MenuController::class, 'index']);
+
 Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 

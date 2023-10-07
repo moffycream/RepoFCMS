@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\MenuFood;
+
 
 class MenuController extends Controller
 {
     // Retrieve function 
     public function index()
     {
-
         $menu = Menu::all();
 
         return view('add-menu', ['listItems' => $menu]);
     }
+    
+
 
     // Insert function 
     public function registerNewMenu(Request $request)
@@ -27,9 +30,16 @@ class MenuController extends Controller
 
         $menu->imagePath = 'menu-images/' . $path;
         $menu->name = $request->name;
-        $menu->foodID = $request->foodID;
         $menu->totalPrice = $request->totalPrice;
         $menu->save();
+
+        $array = $request->selectedFoodIDs;
+        $menuFoodController = new MenuFoodController();
+
+        foreach ($array as $foodID) {
+            // Call the registerNewMenuFood method for each food item
+            $menuFoodController->registerNewMenuFood($request, $menu->menuID, $foodID);
+        }
 
         return redirect('/add-menu');
     }

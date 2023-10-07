@@ -19,11 +19,15 @@
                 </div>
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Foods</p>
-                    <p>{{$menu->foodID}}</p>
+                    @foreach($menu->foods as $food)
+                    <p>
+                        {{$food->name}}
+                    </p>
+                    @endforeach
                 </div>
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Price</p>
-                    <p>{{$menu->price}}</p>
+                    <p>{{$menu->totalPrice}}</p>
                 </div>
             </div>
         </div>
