@@ -14,60 +14,60 @@
                     <tr>
                         <th colspan="2" class="user-info">User Information</th>
                     </tr>
-                    @foreach($listItems as $accounts)
+                   
                     <tr>
                         <th>UserID</th>
-                        <td>{{$accounts->userID}}</td>
+                        <td>{{ $user->userID }}</td>
                     </tr>
 
                     <tr>
                         <th>Username</th>
-                        <td>{{$accounts->username}}</td>
+                        <td>{{$user->username}}</td>
                     </tr>
 
                     <tr>
                         <th>Phone Number</th>
-                        <td>{{$accounts->phone}}</td>
+                        <td>{{$user->phone}}</td>
                     </tr>
 
                     <tr>
                         <th>First Name</th>
-                        <td>{{$accounts->firstName}}</td>
+                        <td>{{$user->firstName}}</td>
                     </tr>
 
                     <tr>
                         <th>Last Name</th>
-                        <td>{{$accounts->lastName}}</td>
+                        <td>{{$user->lastName}}</td>
                     </tr>
 
                     <tr>
                         <th>Email</th>
                         <td>
-                        {{$accounts->email}}
+                        {{$user->email}}
                         </td>
                     </tr>
 
                     <tr>
                         <th>Street Address</th>
                         <td>
-                        {{$accounts->streetAddress}}
+                        {{$user->streetAddress}}
                         </td>
                     </tr>
 
                     <tr>
                         <th>City</th>
                         <td>
-                        {{$accounts->city}}
+                        {{$user->city}}
                         </td>
                     </tr>
 
                     <tr>
                         <th>Postcode</th>
                         <td>
-                        {{$accounts->postcode}}
+                        {{$user->postcode}}
                         </td>
                     </tr>
-                    @endforeach
+             
                 </table>
             </div>
         </div>

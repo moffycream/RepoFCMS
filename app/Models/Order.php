@@ -11,6 +11,8 @@ class Order extends Model
     // associated the table in the database
     protected $table = 'orders'; 
 
+    protected $primaryKey = 'orderID'; 
+
     protected $casts = [
         'created-at' => 'datetime:d F Y g:i A'
     ];
@@ -18,7 +20,7 @@ class Order extends Model
     //In Order model, define a relationship with the Menu model using Laravel's Eloquent ORM
     public function menus()
     {
-        return $this->belongsToMany(Menu::class);
+        return $this->belongsToMany(Menu::class, 'order_menu', 'orderID', 'menuID');
     }
 
     public function getTotalPrice()

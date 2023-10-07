@@ -39,6 +39,8 @@ Route::get('/', function(){return view('welcome');});
 Route::get('/login', [UserAccountController::class, 'createDefaultAdmin']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [UserAccountController::class, 'registerNewAccount']);
+
+Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
 
