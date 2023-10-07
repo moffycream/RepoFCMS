@@ -6,20 +6,35 @@
 
 <article>
     <h1 class="title">Customer Order Listing</h1>
-    <table>
+    <table class="custom-table">
     <thead>
         <tr>
             <th>Order ID</th>
-            <th>Order Date</th>
-            <th>Delivery/Pickup Date</th>
+            <th>Order Date And Time</th>
             <th>Status</th>
             <th>Total Amount</th>
-            <th>Payment Status</th>
-            <th>Actions</th>
+            <th>Menu Name</th>
+            <th>Notes</th>
         </tr>
     </thead>
-    
+    <tbody>
+        @foreach($orders as $order)
+        <tr>
+            <td>{{ $order->orderID }}</td>
+            <td>{{ $order->getformattedDateTime() }}</td>
+            <td>{{ $order->status }}</td>
+            <td>{{ $order->total }}</td>
+            <td>{{ $order->menu_name }}</td>
+            <td>{{ $order->order_notes }}</td>
+            <td>
+    <a href="{{ route('viewOrder', ['orderID' => $order->orderID]) }}" class="view-details-button">View Details</a>
+</td>
+
+        </tr>
+        @endforeach
+    </tbody>
 </table>
+
 
     </article>
 @include ('include/footer')
