@@ -37,6 +37,9 @@ Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 
 
+// Handle analytics page
+Route::get('/analytics', 'AnalyticsController@index');
+
 
 
 // The first page to display
