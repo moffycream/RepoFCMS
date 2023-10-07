@@ -23,6 +23,12 @@
         @if(isset($selectedOrder))
         <div>
             <h2>Order Info</h2>
+            <p>Name: </p>
+            <p>Contact: </p>
+            <p>Address: </p>
+            <p>Status: </p>
+        </div>
+        <div>
             <h3>Menu</h3>
             @foreach($selectedOrder->menus as $menu)
             <details>
@@ -48,6 +54,7 @@
         </div>
         <div>
             <p>Total Price: RM{{$selectedOrder->getTotalPrice()}}</p>
+            <p><button>Accept Order</button></p>
         </div>
         @endif
     </div>

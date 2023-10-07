@@ -3,12 +3,19 @@
 .container-op-orders{
     display: flex;
     min-height: 100vh;
+    max-height: 100vh;
+}
+
+.container-op-orders .container-op-orders-col-1::-webkit-scrollbar{
+    display: none;
 }
 
 .container-op-orders .container-op-orders-col-1{
-    background-color: #e8dcd4;
+    background-color: #e8dcd4; 
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
+    min-width: 410px;
 }
 
 .container-op-orders .container-op-orders-col-1 .row h1{
