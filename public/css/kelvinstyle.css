@@ -1,0 +1,52 @@
+/* Operation Order Listing */
+
+.container-op-orders{
+    display: flex;
+    height: 100vh;
+}
+
+.container-op-orders .container-op-orders-col-1{
+    background-color: #e3e0e4;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-op-orders .container-op-orders-col-1 .row h1{
+    font-size: 32px;
+    margin: 40px 20px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.container-op-orders .container-op-orders-col-1 .row-order-item form{
+    margin: 10px 20px;
+}
+
+.container-op-orders .container-op-orders-col-1 .row-order-item form button
+{
+    background-color: #ffffff;
+    text-align: left;
+    border: none;
+    padding: 25px;
+    width: 350px;
+}
+
+.container-op-orders .container-op-orders-col-1 .row-order-item form button p:first-child
+{
+    font-size: 18px;
+}
+
+.container-op-orders .container-op-orders-col-2{
+   flex: 1;
+   padding: 100px;
+}
+
+.container-op-orders .container-op-orders-col-2 h2{
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.container-op-orders .container-op-orders-col-2 table tr th{
+    width: 100px;
+    padding: 20px;
+}

@@ -56,6 +56,18 @@ return [
             'throw' => false,
         ],
 
+        //Custom disk
+        'addFood' => [
+            'driver' => 'local',
+            'root' => public_path('food-images'),
+            'visibility' => 'public',
+        ],
+
+        'addMenu' => [
+            'driver' => 'local',
+            'root' => public_path('menu-images'),
+            'visibility' => 'public',
+        ],
     ],
 
     /*
