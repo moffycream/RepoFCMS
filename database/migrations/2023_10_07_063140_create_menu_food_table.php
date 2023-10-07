@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->char('menuID');
-            $table->char('foodID');
+            $table->unsignedBigInteger('menuID');
+            $table->unsignedBigInteger('foodID');
             $table->timestamps();
+
+            $table->foreign('menuID')->references('menuID')->on('menus')->onDelete('cascade');
+            $table->foreign('foodID')->references('foodID')->on('foods')->onDelete('cascade');
         });
     }
 

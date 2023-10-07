@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('menuID');
             $table->char('imagePath');
             $table->char('name');
-            $table->char('foodID');
             $table->integer('totalPrice');
             $table->timestamps();
         });
