@@ -7,6 +7,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MenuFoodController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderListingController;
 
@@ -36,6 +37,8 @@ Route::get('/add-menu', [MenuController::class, 'index']);
 Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 
+
+Route::get('/display-menu', [MenuController::class, 'displayMenu']);
 
 
 

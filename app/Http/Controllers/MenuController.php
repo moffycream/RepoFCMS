@@ -16,7 +16,12 @@ class MenuController extends Controller
 
         return view('add-menu', ['listItems' => $menu]);
     }
-    
+    public function displayMenu()
+    {
+        $menu = Menu::all();
+
+        return view('display-menu', ['listItems' => $menu]);
+    }
 
 
     // Insert function 

@@ -7,13 +7,13 @@
     <form class="register-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
         @csrf
         <label>Image</label>
-        <input type="file" accept=".png, .jpeg, .jpg" id="image" name="image"><br>
+        <input type="file" accept=".png, .jpeg, .jpg" id="food-image" name="image"><br>
         <label>Food name</label>
-        <input type="text" id="name" name="name"><br>
+        <input type="text" id="food-name" name="name"><br>
         <label>Description</label>
-        <input type="text" id="description" name="description"><br>
+        <input type="text" id="food-description" name="description"><br>
         <label>Price</label>
-        <input type="text" id="price" name="price"><br>
+        <input type="text" id="food-price" name="price"><br>
         <button type="submit">Submit
     </form>
 </div>
