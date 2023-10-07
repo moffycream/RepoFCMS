@@ -16,7 +16,7 @@ return new class extends Migration
             $table->char('imagePath');
             $table->char('name');
             $table->char('description');
-            $table->integer('price');
+            $table->decimal('price', 10, 2);
             $table->timestamps();
         });
     }
