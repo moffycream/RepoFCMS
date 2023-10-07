@@ -6,7 +6,7 @@
 
 <div class="container">
     <h1>Login</h1>
-    <form method="post" action="login">
+    <form method="post" action='login'>
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
