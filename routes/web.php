@@ -25,8 +25,6 @@ use App\Http\Controllers\ProfileController;
 // operation routes
 Route::get('/op-orders', [OrderController::class, 'index']);
 Route::post('op-order/{$orderID}', [OrderController::class, 'viewOrder'])->name('viewOrder');
-
-Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
 Route::get('/add-food', [FoodController::class, 'index']);
 
@@ -36,6 +34,8 @@ Route::get('/', function(){return view('welcome');});
 Route::get('/login', [UserAccountController::class, 'createDefaultAdmin']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [UserAccountController::class, 'registerNewAccount']);
+
+Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
 // Navigation links
 Route::get('/{link}', [Controller::class, 'handleNavLink']);
 
