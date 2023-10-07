@@ -1,6 +1,6 @@
 :root{
     --background-color-1: #473447;
-    --background-color-2: #e8dcd4;
+    --background-color-2: #ffffff;
     --color-1: #000000;
     --color-2: #ffffff;
 }
@@ -25,6 +25,7 @@ header div {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
 }
 
 /*91.75 = (width of search bar (283.75) - logo width (100)) / 2*/
@@ -35,7 +36,7 @@ header div {
 
 .logo img {
     display: block;
-    width: 100px;
+    width: 80px;
     object-fit: cover;
 }
 
@@ -55,7 +56,7 @@ header div nav ul li a {
     color: var(--color-2);
     display: block;
     padding: 10px;
-    font-size: 36px;
+    font-size: 24px;
     text-decoration: none;
 }
 
