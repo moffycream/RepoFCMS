@@ -6,9 +6,21 @@
 
 <article>
     <h1 class="title">Customer Order Listing</h1>
-    <div class="profile-container">       
-            </div>
-        </div>
+    <table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Order Date</th>
+            <th>Delivery/Pickup Date</th>
+            <th>Status</th>
+            <th>Total Amount</th>
+            <th>Payment Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    
+</table>
+
     </article>
 @include ('include/footer')
 </html>
