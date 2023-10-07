@@ -94,7 +94,7 @@ W3C compliant: High All pages need to be tested with the W3C validator to identi
 
 Can be changed
    - Normal: 18px
-   - Heading 1: 36px
+   - Heading 1: 32px
    - Heading 2: 28px
    - Heading 3: 24px
 
