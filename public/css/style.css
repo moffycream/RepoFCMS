@@ -1,6 +1,6 @@
 :root{
     --background-color-1: #473447;
-    --background-color-2: #e8dcd4;
+    --background-color-2: #ffffff;
     --color-1: #000000;
     --color-2: #ffffff;
 }
@@ -25,6 +25,7 @@ header div {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
 }
 
 /*91.75 = (width of search bar (283.75) - logo width (100)) / 2*/
@@ -35,7 +36,7 @@ header div {
 
 .logo img {
     display: block;
-    width: 100px;
+    width: 80px;
     object-fit: cover;
 }
 
@@ -55,7 +56,7 @@ header div nav ul li a {
     color: var(--color-2);
     display: block;
     padding: 10px;
-    font-size: 36px;
+    font-size: 24px;
     text-decoration: none;
 }
 
@@ -206,8 +207,6 @@ article{
     font-size: 30px;
 }
 
-
-/* register page */
 .container-register-page {
     text-align: center;
 }
@@ -280,4 +279,57 @@ article{
     color: #312431;
     transform: scale(1.1);
     transition: 0.5s;
+}
+
+
+/* order listing */
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.customer-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+.customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.customer-table th, .custom-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.customer-table th {
+    background-color: #f2f2f2;
+}
+
+.view-details-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.view-details-button:hover {
+    background-color: #2980b9;
 }
