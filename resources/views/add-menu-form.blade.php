@@ -4,12 +4,12 @@
 <h1 class="title">Add Menu</h1>
 
 <div class="container">
-    <form class="register-form" method="POST" action="{{ route('menu.register') }}" enctype="multipart/form-data">
+    <form class="register-form" id="add-menu-form" method="POST" action="{{ route('menu.register') }}" enctype="multipart/form-data">
         @csrf
         <label>Image</label>
-        <input type="file" accept=".png, .jpeg, .jpg" id="image" name="image"><br>
+        <input type="file" accept=".png, .jpeg, .jpg" id="menu-image" name="image"><br>
         <label>Menu name</label>
-        <input type="text" id="name" name="name"><br>
+        <input type="text" id="menu-name" name="name"><br>
         <label>Foods</label>
 
         @foreach($listItems as $food)

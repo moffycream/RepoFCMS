@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    //add menu form
     var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
     var addMenuFormPrice = document.getElementById("add-menu-form-price");
     var paragraphElement = document.createElement("span");
@@ -34,4 +35,43 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
+
+    //add menu form
+    var addMenuForm = document.getElementById("add-menu-form");
+    var menuImage = document.getElementById("menu-image");
+    var menuName = document.getElementById("menu-name");
+    var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
+
+    function validateCheckboxes() {
+        var isCheckEmpty = true;
+        for (var i = 0; i < addMenuCheckboxes.length; i++) {
+            if (addMenuCheckboxes[i].checked) {
+                isCheckEmpty = false;
+                break; // Exit the loop if at least one checkbox is checked
+            }
+        }
+        return isCheckEmpty;
+    }
+
+    addMenuForm.addEventListener("submit", function (event) {
+        // Prevent the form from submitting by default
+        event.preventDefault();
+
+        if (!menuImage.files.length) {
+            alert("Image cannot be empty");
+        }
+        if (menuName.value === "") {
+            alert("Name cannot be empty");
+        }
+
+        var isCheckEmpty = validateCheckboxes(); // Call the checkbox validation function
+
+        if (isCheckEmpty) {
+            alert("You must choose at least 1 food");
+        }
+    });
+
+    //add food form
+
 });
+

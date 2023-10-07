@@ -21,20 +21,41 @@
     </div>
     <div class="container-op-orders-col-2">
         @if(isset($selectedOrder))
-        <h2>Order Info</h2>
-        <table>
+        <div>
+            <h2>Order Info</h2>
+            <p>Name: </p>
+            <p>Contact: </p>
+            <p>Address: </p>
+            <p>Status: </p>
+        </div>
+        <div>
+            <h3>Menu</h3>
             @foreach($selectedOrder->menus as $menu)
-            <tr>
-                <td>{{$menu->name}}</td>
-            </tr>
-                @foreach($menu->foods as $food)
+            <details>
+                <summary>
+                    <span>{{$menu->name}}</span>
+                    <span>RM{{$menu->totalPrice}}</span>
+                </summary>
+                <table class="container-food-item">
+                    @foreach($menu->foods as $food)
                     <tr>
-                        <td>food: {{$food->name}}</td>
+                        <td class="container-food-image"><img src="{{asset($food->imagePath)}}" alt="{{$food->name}}"></td>
+                        <td>{{$food->name}}</td>
+                        <td>RM{{$food->price}}</td>
                     </tr>
-                @endforeach
+                    @endforeach
+                </table>
+            </details>
             @endforeach
-        </table>
-        <h2>Add-Ons</h2>
+        </div>
+        <div>
+            <h3>Add-Ons</h3>
+            <p>{{$selectedOrder->order_notes}}</p>
+        </div>
+        <div>
+            <p>Total Price: RM{{$selectedOrder->getTotalPrice()}}</p>
+            <p><button>Accept Order</button></p>
+        </div>
         @endif
     </div>
 </div>

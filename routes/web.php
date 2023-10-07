@@ -7,6 +7,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MenuFoodController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderListingController;
 
@@ -39,6 +40,7 @@ Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name(
 
 // Handle analytics page
 Route::get('/analytics', 'AnalyticsController@index');
+Route::get('/display-menu', [MenuController::class, 'displayMenu']);
 
 
 

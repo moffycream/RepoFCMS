@@ -31,7 +31,7 @@ header div {
 /*91.75 = (width of search bar (283.75) - logo width (100)) / 2*/
 .logo {
     display: block;
-    margin: 0 91.75px;
+    margin: 0 183.75px 0 0;
 }
 
 .logo img {
@@ -92,7 +92,7 @@ footer p{
 
 /* Article */
 article{
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* Title */
@@ -284,13 +284,13 @@ article{
 
 /* order listing */
 
-.container {
+/* .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f5f5f5;
-}
+} */
 
 .customer-container {
     background-color: #fff;
