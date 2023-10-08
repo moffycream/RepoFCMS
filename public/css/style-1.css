@@ -1,0 +1,234 @@
+/* Title */
+.title {
+    font-size: 45px;
+    text-align: center;
+    background-color: #dce0e5;
+    padding: 15px;
+    margin: 50px 0;
+    color: #000000;
+    border-radius: 20px;
+}
+
+/* Add menu */
+.food-logo{
+    object-fit:cover;
+    max-width: 18vw;
+    border-radius: 20px 0 0 20px;
+    margin-right: auto;
+}
+
+.container .row-add-menu{
+    display: flex;
+    margin: 50px 0;
+}
+
+.container .row-add-menu .col-add-menu {
+    background-color: #e1dbd6;
+    height: 30vh;
+    min-width: 25vw;
+    margin: 0 4vw;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container .row-add-menu .col-add-menu .col-add-menu-info-row{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 7vw;
+}
+
+.container .row-add-menu  .col-add-menu .col-add-menu-info-title{
+    font-weight: bold;
+}
+
+
+.container .row-add-menu  .col-add-menu .col-add-menu-info-col p{
+    font-size: 20px;
+    color: black;
+}
+
+.container .row-add-menu .col-add-menu a{
+    margin:auto;
+    color: black;
+    font-size: 100px;
+    font-weight: 900;
+}
+
+.container .row-add-menu .col-add-menu a:link {
+    text-decoration: none;
+}
+
+/* Profile */
+
+.profile-container {
+    background-color: #e1dbd6;
+    border: 20px solid #cccccc;
+    border-radius: 25px;
+    padding: 20px;
+    text-align: center;
+    max-width: 50vw;
+    /* Set a maximum width of 50% of the viewport width */
+    margin: 0 auto;
+    margin-bottom: 5%;
+}
+
+.profile-img img {
+    max-width: 150px;
+    border-radius: 50%;
+}
+
+.profile-table {
+    margin-top: 20px;
+    width: 50%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.profile-table th,
+.profile-table td {
+    text-align: left;
+    padding: 10px;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    color: black;
+}
+
+
+.profile-table th#Name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-table td {
+    font-size: 20px;
+}
+
+.profile-table th.user-info {
+    text-align: center;
+    font-size: 30px;
+}
+
+.container-register-page {
+    text-align: center;
+}
+
+.register-form input,
+.register-form label {
+    font-size: 15px;
+}
+
+.register-form input {
+    background-color: #473447;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.register-submit-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-submit-button:hover {
+    background-color: #fff;
+    color: #312431;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.login-here {
+    text-decoration: none;
+    font-style: italic;
+}
+
+.login-here:hover {
+    cursor: pointer;
+    color: #2b0548;
+    transition: 0.2s;
+}
+
+/* register success page */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #473447;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #2b0548;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+/* Login page */
+.login-submit-button {
+    font-size: 20px;
+    padding: 10px 20px;
+    background-color:#473447;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-submit-button:hover {
+    background-color: #fff;
+    color: #312431;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+
+/* customer order listing */
+.customer-container-order-listing {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #00000033;
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto; 
+    max-width: 800px; 
+}
+
+.customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.customer-table th, .customer-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.customer-table th {
+    background-color: #f2f2f2;
+}
+
+.view-details-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.view-details-button:hover {
+    background-color: #2980b9;
+}
+
+
+
