@@ -185,22 +185,15 @@
 }
 
 
-/* order listing */
-
-/* .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-} */
-
-.customer-container {
+/* customer order listing */
+.customer-container-order-listing {
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    box-shadow: 0 4px 8px #00000033;
+    padding: 10px;
     text-align: center;
+    margin: 0 auto; 
+    max-width: 800px; 
 }
 
 .customer-table {
@@ -209,7 +202,7 @@
     margin-bottom: 20px;
 }
 
-.customer-table th, .custom-table td {
+.customer-table th, .customer-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
@@ -236,3 +229,6 @@
 .view-details-button:hover {
     background-color: #2980b9;
 }
+
+
+
