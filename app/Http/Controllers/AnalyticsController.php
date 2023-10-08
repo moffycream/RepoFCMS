@@ -25,6 +25,6 @@ class AnalyticsController extends Controller
             'data' => $orders->pluck('order_amount'),
         ];
 
-        // return view('analytics.index', compact('orders', 'totalOrderAmount', 'chartData'));
+        return view('analytics.index', compact('orders', 'totalOrderAmount', 'chartData'));
     }
 }
