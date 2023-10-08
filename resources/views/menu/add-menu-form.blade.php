@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Admin-Orders')
 @section('content')
-<h1 class="title">Add Menu Form</h1>
+<h1 class="title">Add Menu</h1>
 
 <div class="container">
     <form class="register-form" id="add-menu-form" method="POST" action="{{ route('menu.register') }}" enctype="multipart/form-data">
@@ -24,7 +24,7 @@
         <div id="hidden-inputs-container"></div>        
 
         
-        <button type="submit">Submit</button>
+        <button type="submit">Submit
     </form>
 </div>
 @endsection

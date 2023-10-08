@@ -1,8 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Admin-Orders')
+@section('title', 'Menu')
 @section('content')
 <h1 class="title">Menu</h1>
-
 <div class="container">
     <div class="row-add-menu">
         @php
