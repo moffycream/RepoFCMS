@@ -169,5 +169,78 @@ document.addEventListener("DOMContentLoaded", function () {
         addFoodForm.onsubmit = validateFoodForm;
     }
 
+
+
+
+
+    // -------------------------- Guilbert Lam's JS --------------------------
+    const PaymentChocie = document.getElementById('PaymentMethod');
+    const OnlineBankingForm = document.getElementById('OnlineBankingForm');
+    const CreditCardForm = document.getElementById('CreditCardForm');
+    const DebitCardForm = document.getElementById('DebitCardForm');
+    const EwalletForm = document.getElementById('EwalletForm');
+    
+    PaymentChocie.addEventListener('change', function () {
+
+        const SelectedPaymentChoice = PaymentChocie.value;
+
+        // empty variable string
+        let htmlToInsert = '';
+        
+        if (SelectedPaymentChoice === 'OnlineBanking') 
+        {
+
+            htmlToInsert = `
+            <h1>111</h1>
+            `;
+        
+        } 
+        else if (SelectedPaymentChoice === 'CreditCard') 
+        {
+
+            htmlToInsert = `
+            <h1>222</h1>
+            `;
+        }
+        else if (SelectedPaymentChoice === 'DebitCard') 
+        {
+
+            htmlToInsert = `
+            <h1>333</h1>
+            `;
+        }
+        else if (SelectedPaymentChoice === 'Ewallet') 
+        {
+
+            htmlToInsert = `
+            <h1>444</h1>
+            `;
+        }
+
+        // reset 
+        OnlineBankingForm.innerHTML = '';
+        CreditCardForm.innerHTML = '';
+        DebitCardForm.innerHTML = '';
+        EwalletForm.innerHTML = '';
+
+        // Update the content of the forms
+        if (SelectedPaymentChoice === 'OnlineBanking') 
+        {
+            OnlineBankingForm.innerHTML = htmlToInsert;
+        } 
+        else if (SelectedPaymentChoice === 'CreditCard') 
+        {
+            CreditCardForm.innerHTML = htmlToInsert;
+        }
+        else if (SelectedPaymentChoice === 'DebitCard') 
+        {
+            DebitCardForm.innerHTML = htmlToInsert;
+        }
+        else if (SelectedPaymentChoice === 'Ewallet') 
+        {
+            EwalletForm.innerHTML = htmlToInsert;
+        }
+    });
+
 });
 
