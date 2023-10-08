@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Payment')
 @section('content')
+
 <div class="container-payment-page">
 
     <h1>Total Price: ${{ $totalPrice }}</h1>
@@ -44,4 +45,5 @@
 
     </form>
 </div>
+
 @endsection

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Models\Order;
 
 // validations
-class PaymentController extends Controller
+class PurchaseController extends Controller
 {
+
     public function index()
     {
-        return view('purchase');
+        $orders = Order::all(); // Retrieve all orders from the database
+        return view('purchase', compact('orders'));
     }
 }

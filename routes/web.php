@@ -13,6 +13,8 @@ use App\Http\Controllers\MenuFoodController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderListingController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PurchaseController;
+
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -61,9 +63,13 @@ Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name
 // Order - client side
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
-// Purchase & Payment
+// Payment
 Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('showPaymentPage');
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
+
+// Purchase
+Route::get('/purchase', 'App\Http\Controllers\PurchaseController@index')->name('purchase.index');   // when access /purchase, index method triggered
+
 
 // Business analytics
 Route::get('/analytics', [AnalyticsController::class, 'index']);
