@@ -12,4 +12,16 @@ class OrderListingController extends Controller
         $order_list = Order::all();
         return view('customer-orders', ['orders' => $order_list]);
     }
+
+    public function viewOrderDetails($orderID)
+    {
+        $orders = Order::all();
+        $selectedOrder = Order::find($orderID);
+        
+        return view('customer-orders-listings', [
+            'orders' => $orders,
+            'selectedOrder' => $selectedOrder,
+        ]);
+    }
+
 }

@@ -34,6 +34,7 @@ Route::get('/about', [HomeController::class, 'about']);
 
 // Customer profile
 Route::get('/profile',[ProfileController::class, 'index']);
+Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
 
 // Login and register
 Route::get('/login', [UserAccountController::class, 'index']);
@@ -74,8 +75,8 @@ Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
 // Purchase & Payment
-Route::get('/payment', [PaymentController::class, 'index']);
-Route::get('/purchase', [PaymentController::class, 'index']);
+Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('showPaymentPage');
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
 
 // Business analytics
 Route::get('/analytics', [AnalyticsController::class, 'index']);
