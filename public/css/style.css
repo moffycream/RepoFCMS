@@ -4,7 +4,7 @@
     --color-3: #e0ccd4;
     --color-4: #e0e4e4;
     --color-5: #ccdcd0;
-    --color-6: #fff;
+    --color-6: #c5a799;
 }
 
 * {
@@ -95,7 +95,7 @@ header .search-bar button {
     height: 100%;
     background-color: var(--color-1);
     border: none;
-    color: white;
+    color: #ffffff;
     cursor: pointer;
     box-sizing: border-box;
     padding: 0 12px;
@@ -117,7 +117,7 @@ footer {
 
 footer p {
     align-self: flex-end;
-    color: white;
+    color: #ffffff;
     font-size: 20px;
 }
 
@@ -193,7 +193,6 @@ article {
     padding: 15px;
     margin-bottom: 100px;
     color: #000000;
-    border-radius: 20px;
 }
 
 /* Add menu */
@@ -210,13 +209,15 @@ article {
 }
 
 .container .row-add-menu .col-add-menu {
-    background-color: var(--color-3);
+    background-color: var(--color-6);
     height: 30vh;
     min-width: 25vw;
     margin: 0 4vw;
     border-radius: 20px;
     display: flex;
     justify-content: center;
+    box-shadow: #000000;
+    
 }
 
 .container .row-add-menu .col-add-menu .col-add-menu-info-row{
@@ -233,12 +234,12 @@ article {
 
 .container .row-add-menu  .col-add-menu .col-add-menu-info-col p{
     font-size: 20px;
-    color: black;
+    color: #ffffff;
 }
 
 .container .row-add-menu .col-add-menu a{
     margin:auto;
-    color: black;
+    color: #ffffff;
     font-size: 100px;
     font-weight: 900;
 }
@@ -279,7 +280,7 @@ article {
     padding: 10px;
     font-size: 18px;
     border-bottom: 1px solid #ccc;
-    color: black;
+    color: #000000;
 }
 
 
