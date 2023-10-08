@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Controller;
@@ -40,9 +41,21 @@ Route::post('/customer-orders-listings/{orderID}', [OrderListingController::clas
 // Login and register
 Route::get('/login', [UserAccountController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index'])->name('user.login');
+Route::get('/forgot-password', [LoginController::class, 'forgotPassword']);
+Route::post('/forgot-password', [LoginController::class, 'resetPassword'])->name('user.resetpassword');
 Route::get('/register', [UserAccountController::class, 'register']);
 Route::post('/register', [UserAccountController::class, 'registerNewAccount'])->name('user.register');
 Route::get('/register/register-success', [UserAccountController::class, 'registerSuccess']);
+
+// Admin - dashboard
+Route::get('/admin-dashboard', [AdminController::class, 'index']);
+Route::get('/admin-register', [AdminController::class, 'adminRegister']);
+Route::get('/admin-business-analytics', [AdminController::class, 'adminBusinessAnalytics']);
+Route::post('/admin-register', [AdminController::class, 'adminRegisterNewAccount'])->name('admin.register');
+Route::get('/admin-register-success', [AdminController::class, 'adminRegisterSuccess']);
+
+// Admin verification 
+Route::get("/admin-dashboard", [AdminController::class, 'verifyAdmin']);
 
 // Menu - client side
 Route::get('/menu', [MenuController::class, 'index']);
