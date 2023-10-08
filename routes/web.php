@@ -61,8 +61,8 @@ Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
 // Purchase & Payment
-Route::get('/payment', [PaymentController::class, 'index']);
-Route::get('/purchase', [PaymentController::class, 'index']);
+Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('showPaymentPage');
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
 
 // Business analytics
 Route::get('/analytics', [AnalyticsController::class, 'index']);
