@@ -24,13 +24,6 @@ use App\Http\Controllers\OrderListingController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// operation routes
-
-
-
-
-
 // Handle analytics page
 Route::get('/analytics', 'AnalyticsController@index');
 
