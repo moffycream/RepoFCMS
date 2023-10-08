@@ -17,6 +17,9 @@ return new class extends Migration
             $table->decimal('total',10,2);
             $table->char('menu_name');
             $table->char('order_notes');
+            $table->char('name');
+            $table->char('address');
+            $table->char('contact');
             $table->timestamps();
         });
     }
