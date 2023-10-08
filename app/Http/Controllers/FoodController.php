@@ -16,6 +16,11 @@ class FoodController extends Controller
         return view('menu.add-food', ['listItems' => $food]);
     }
 
+    public function addFoodForm()
+    {
+        return view('menu.add-food-form');
+    }
+
     public function addMenuFormIndex()
     {
 

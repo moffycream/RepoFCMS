@@ -13,7 +13,7 @@ class MenuController extends Controller
     public function index()
     {
         $menu = Menu::all();
-        return view('menu.display-menu', ['listItems' => $menu]);
+        return view('menu.add-menu', ['listItems' => $menu]);
     }
     public function displayMenu()
     {
