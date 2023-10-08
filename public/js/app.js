@@ -192,6 +192,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
             htmlToInsert = `
             <h1>111</h1>
+            <td>
+            <label for="recipient_account">Recipient's Account Number:</label>
+            </td>
+
+            <td>
+                <input type="text" id="recipient_account" name="recipient_account" required>
+            </td>
+            
+            <br>
+
+            <td>
+                <label for="amount">Amount:</label>
+            </td>
+
+            <td>
+                <input type="number" id="amount" name="amount" required>
+            </td>
+
+            <br>
+
+            <td>
+                <label for="description">Description:</label>
+            </td>
+
+            <td>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </td>
             `;
         
         } 
@@ -200,6 +227,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
             htmlToInsert = `
             <h1>222</h1>
+            <td>
+            <label for="recipient_account">Recipient's Account Number:</label>
+            </td>
+
+            <td>
+                <input type="text" id="recipient_account" name="recipient_account" required>
+            </td>
+            
+            <br>
+
+            <td>
+                <label for="amount">Amount:</label>
+            </td>
+
+            <td>
+                <input type="number" id="amount" name="amount" required>
+            </td>
+
+            <br>
+
+            <td>
+                <label for="description">Description:</label>
+            </td>
+
+            <td>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </td>
             `;
         }
         else if (SelectedPaymentChoice === 'DebitCard') 
@@ -207,6 +261,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
             htmlToInsert = `
             <h1>333</h1>
+            <td>
+            <label for="recipient_account">Recipient's Account Number:</label>
+            </td>
+
+            <td>
+                <input type="text" id="recipient_account" name="recipient_account" required>
+            </td>
+            
+            <br>
+
+            <td>
+                <label for="amount">Amount:</label>
+            </td>
+
+            <td>
+                <input type="number" id="amount" name="amount" required>
+            </td>
+
+            <br>
+
+            <td>
+                <label for="description">Description:</label>
+            </td>
+
+            <td>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </td>
             `;
         }
         else if (SelectedPaymentChoice === 'Ewallet') 
@@ -214,6 +295,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
             htmlToInsert = `
             <h1>444</h1>
+            <td>
+            <label for="recipient_account">Recipient's Account Number:</label>
+            </td>
+
+            <td>
+                <input type="text" id="recipient_account" name="recipient_account" required>
+            </td>
+            
+            <br>
+
+            <td>
+                <label for="amount">Amount:</label>
+            </td>
+
+            <td>
+                <input type="number" id="amount" name="amount" required>
+            </td>
+
+            <br>
+
+            <td>
+                <label for="description">Description:</label>
+            </td>
+
+            <td>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </td>
             `;
         }
 

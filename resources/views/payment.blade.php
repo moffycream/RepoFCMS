@@ -4,44 +4,65 @@
 
 <div class="container-payment-page">
 
-    <h1>Total Price: ${{ $totalPrice }}</h1>
+    <h1>Orders:</h1>
 
-    <h2>Orders:</h2>
+    <form id="PaymentForm" method="post" action= ''><!-- name at route -->
+        <table border = 1>
 
-    <ul>
-        @foreach ($orders as $order)
-            <li>{{ $order->menu_name }} - ${{ $order->total }}</li>
-        @endforeach
-    </ul>    
+            <tr>
+                <td><h1>Total Price: ${{ $totalPrice }}</h1></td>
+            </tr>
 
-    <form id="PaymentForm" method="post" action="{{route('user.register')}}">
+            <tr>
+                <td>
+                    <ul>
+                        @foreach ($orders as $order)
+                            <li>{{ $order->menu_name }} - ${{ $order->total }}</li>
+                        @endforeach
+                    </ul>  
+                </td>
+            </tr>
 
-        <label for="PaymentMethod">Select Payment Method:</label>
+            <tr>
+                <td><label for="PaymentMethod">Select Payment Method:</label></td>
 
-        <select id="PaymentMethod" name="PaymentMethod">
-            <option value="OnlineBanking">Online Banking</option>
-            <option value="CreditCard">Credit Card</option>
-            <option value="DebitCard">Debit Card</option>
-            <option value="Ewallet">E-Wallet</option>
-        </select>
+            </tr>
 
-        <div id="OnlineBankingForm">
-        <!-- Content to be insert from JS -->
-        </div>
+            <tr>
+                <td>
+                    <select id="PaymentMethod" name="PaymentMethod">
+                        <option value="OnlineBanking">Online Banking</option>
+                        <option value="CreditCard">Credit Card</option>
+                        <option value="DebitCard">Debit Card</option>
+                        <option value="Ewallet">E-Wallet</option>
+                    </select>
+                </td>
+            </tr>
 
-        <div id="CreditCardForm">
-        <!-- Content to be insert from JS -->
-        </div>
+            <tr>
+                <td>
+                    <div id="OnlineBankingForm">
+                    <!-- Content to be insert from JS -->
+                    </div>
 
-        <div id="DebitCardForm">
-        <!-- Content to be insert from JS -->
-        </div>
+                    <div id="CreditCardForm">
+                    <!-- Content to be insert from JS -->
+                    </div>
 
-        <div id="EwalletForm">
-        <!-- Content to be insert from JS -->
-        </div>
+                    <div id="DebitCardForm">
+                    <!-- Content to be insert from JS -->
+                    </div>
 
-        <button type="submit">Comfirm Payment</button>
+                    <div id="EwalletForm">
+                    <!-- Content to be insert from JS -->
+                    </div>
+                </td> 
+            </tr>
+            
+            <tr>
+                <td><button type="submit">Comfirm Payment</button></td>
+            </tr>
+        </table>
 
     </form>
 </div>
