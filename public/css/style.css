@@ -433,7 +433,7 @@ article {
 }
 
 .container-op-orders .container:first-child {
-    background-color: var(--color-2);
+    background-color: #e8dcd4;
     padding: 20px 40px;
 }
 
@@ -492,7 +492,8 @@ article {
 }
 
 .container-op-orders .row-menu summary {
-    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    background-color: #ffffff;
+    box-shadow: #43475545 0px 0px 0.25em, #5a7dbc0d 0px 0.25em 1em;
     padding: 20px;
 }
 
