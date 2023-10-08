@@ -197,55 +197,7 @@ article {
 
 
 
-/* Profile */
 
-.profile-container {
-    background-color: #e1dbd6;
-    border: 20px solid #cccccc;
-    border-radius: 25px;
-    padding: 20px;
-    text-align: center;
-    max-width: 50vw;
-    /* Set a maximum width of 50% of the viewport width */
-    margin: 0 auto;
-    margin-bottom: 5%;
-}
-
-.profile-img img {
-    max-width: 150px;
-    border-radius: 50%;
-}
-
-.profile-table {
-    margin-top: 20px;
-    width: 50%;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-
-.profile-table th,
-.profile-table td {
-    text-align: left;
-    padding: 10px;
-    font-size: 18px;
-    border-bottom: 1px solid #ccc;
-    color: #000000;
-}
-
-
-.profile-table th#Name {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.profile-table td {
-    font-size: 20px;
-}
-
-.profile-table th.user-info {
-    text-align: center;
-    font-size: 30px;
-}
 
 .container-register-page {
     text-align: center;

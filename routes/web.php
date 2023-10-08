@@ -12,6 +12,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\MenuFoodController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderListingController;
+use App\Http\Controllers\PaymentController;
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -58,6 +59,10 @@ Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name
 
 // Order - client side
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
+
+// Purchase & Payment
+Route::get('/payment', [PaymentController::class, 'index']);
+Route::get('/purchase', [PaymentController::class, 'index']);
 
 // Business analytics
 Route::get('/analytics', [AnalyticsController::class, 'index']);

@@ -21,11 +21,12 @@
                     <td>{{ $order->orderID }}</td>
                     <td>{{ $order->getformattedDateTime() }}</td>
                     <td>{{ $order->status }}</td>
-                    <td>{{ $order->total }}</td>
+                    <td>RM{{ $order->total }}</td>
                     <td>{{ $order->menu_name }}</td>
                     <td>{{ $order->order_notes }}</td>
                     <td>
-                        <a href="{{ route('op.order-view', ['orderID' => $order->orderID]) }}" class="view-details-button">View Details</a>
+                    
+
                     </td>
                 </tr>
                 @endforeach
