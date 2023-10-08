@@ -23,7 +23,7 @@ class LoginController extends Controller
             Session::put('username', $user->username); // Store the username in the session
             Session::put('accountType', $user->accountType); // Store 'accountType' in a session variable
             
-            echo ($_SESSION['accountType']);
+            echo Session::get('accountType'); 
             echo "login successful";
         } 
         else {
