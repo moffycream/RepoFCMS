@@ -12,6 +12,19 @@ class AnalyticsController extends Controller
         $profitData = 100; // Logic to calculate profit data
         $revenueData = 100; // Logic to calculate revenue data
 
-        // return view();
+        // Retrieve all orders
+        $orders = \App\Models\Order::all();
+
+        // Calculate the total order amount
+        $totalOrderAmount = $orders->sum('order_amount');
+
+        // Prepare data for a bar chart (example)
+        $chartData = 
+        [
+            'labels' => $orders->pluck('customer_name'),
+            'data' => $orders->pluck('order_amount'),
+        ];
+
+        // return view('analytics.index', compact('orders', 'totalOrderAmount', 'chartData'));
     }
 }
