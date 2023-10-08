@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@include ('include/head')
-
-@include ('include/header')
-
+@extends('layouts.app')
+@section('title', 'Orders')
+@section('content')
 <div class="container">
     <div class="customer-container"> <!-- Apply the custom-container class -->
         <h1 class="title">Customer Order Listing</h1>
@@ -29,7 +26,7 @@
                     <td>{{ $order->menu_name }}</td>
                     <td>{{ $order->order_notes }}</td>
                     <td>
-                        <a href="{{ route('viewOrder', ['orderID' => $order->orderID]) }}" class="view-details-button">View Details</a>
+                        <a href="{{ route('op.order-view', ['orderID' => $order->orderID]) }}" class="view-details-button">View Details</a>
                     </td>
                 </tr>
                 @endforeach
@@ -37,6 +34,4 @@
         </table>
     </div>
 </div>
-
-@include ('include/footer')
-</html>
+@endsection

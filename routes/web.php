@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -25,49 +26,47 @@ use App\Http\Controllers\OrderListingController;
 */
 
 // operation routes
-Route::get('/op-orders', [OrderController::class, 'index']);
-Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name('viewOrder');
-Route::get('/customer-orders', [OrderListingController::class, 'index']);
-Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
-Route::get('/add-food', [FoodController::class, 'index']);
-Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
-//Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
-Route::get('/add-menu', [MenuController::class, 'index']);
 
-Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
-Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
+
+
 
 
 // Handle analytics page
 Route::get('/analytics', 'AnalyticsController@index');
-Route::get('/display-menu', [MenuController::class, 'displayMenu']);
 
+// Homepage links
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'about']);
 
+// Customer profile
+Route::get('/profile',[ProfileController::class, 'index']);
 
-// The first page to display
-Route::get('/', function(){return view('welcome');});
-Route::get('/login', [UserAccountController::class, 'createDefaultAdmin']);
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/register', [UserAccountController::class, 'registerNewAccount']);
+// Login and register
+Route::get('/login', [UserAccountController::class, 'index']);
+Route::post('/login', [LoginController::class, 'index'])->name('user.login');
+Route::get('/register', [UserAccountController::class, 'register']);
+Route::post('/register', [UserAccountController::class, 'registerNewAccount'])->name('user.register');
+Route::get('/register/register-success', [UserAccountController::class, 'registerSuccess']);
 
-Route::get('/profile',[ProfileController::class, 'retrieveInfo']);
+// Menu - client side
+Route::get('/menu', [MenuController::class, 'index']);
+
+// Menu - management side
+Route::get('/add-food', [FoodController::class, 'index']);
+Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
+Route::get('/add-menu', [MenuController::class, 'index']);
+Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
+Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
+Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
+
+// Order - operation side
+Route::get('/op-orders', [OrderController::class, 'index']);
+Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name('op.order-view');
+
+// Order - client side
+Route::get('/customer-orders', [OrderListingController::class, 'index']);
+
+// Route::get('/display-menu', [MenuController::class, 'displayMenu']);
+
 // Navigation links
-Route::get('/{link}', [Controller::class, 'handleNavLink']);
-
-// Route for the main page (GET request)
-// When a user accesses the root URL ('/'), the 'index' method of 'TodoListController' is invoked.
-//Route::get('/', [TodoListController::class, 'index']);
-
-// Route for saving a new item (POST request)
-// When a user submits a form to save an item, this route triggers the 'saveItem' method of 'TodoListController'.
-// It is also given the name 'saveItem' for easy route referencing.
-//Route::post('/saveItem', [TodoListController::class, 'saveItem'])->name('saveItem');
-
-// Route for marking an item as complete (POST request with parameter)
-// When a user submits a form to mark an item as complete, this route triggers the 'markItem' method of 'TodoListController'.
-// It is also given the name 'markAsComplete' for easy route referencing.
-// Note that this route includes a parameter 'id' in the URL to specify which item to mark as complete.
-//Route::post('/markAsComplete/{id}', [TodoListController::class, 'markItem'])->name('markAsComplete');
-
-
-// Route::get('/', [test::class, 'SampleMethod']);
+// Route::get('/{link}', [Controller::class, 'handleNavLink']);
