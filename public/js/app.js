@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
             foodAlert += "Price only accept number\n";
         }
 
-        if (isFoodImageEmpty || isFoodNameEmpty || isFoodDescriptionEmpty || isFoodPriceEmpty || !isFoodPatternCorrect) {
+        if (isFoodImageEmpty || isFoodNameEmpty || isFoodDescriptionEmpty || isFoodPriceEmpty) {
             alert(foodAlert);
             return false;
         } else {

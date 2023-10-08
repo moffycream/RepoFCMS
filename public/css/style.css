@@ -4,6 +4,7 @@
     --color-3: #e0ccd4;
     --color-4: #e0e4e4;
     --color-5: #ccdcd0;
+    --color-6: #fff;
 }
 
 * {
@@ -73,7 +74,7 @@ header .search-bar {
 header .search-bar input {
     color: #ffffff;
     height: 100%;
-    background-color: #473447;
+    background-color: var(--color-1);
     border: none;
     font-size: 14px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -92,7 +93,7 @@ header .search-bar input:focus {
 
 header .search-bar button {
     height: 100%;
-    background-color: #473447;
+    background-color: var(--color-1);
     border: none;
     color: white;
     cursor: pointer;
@@ -108,7 +109,7 @@ header .search-bar button i {
 
 /* footer */
 footer {
-    background-color: #473447;
+    background-color: var(--color-1);
     min-height: 300px;
     display: flex;
     justify-content: center;
@@ -123,11 +124,12 @@ footer p {
 /* article */
 article {
     min-height: 100vh;
+    background-color: var(--color-2);
 }
 
 /* login */
 .container-login {
-    background-color: #e8dcd4;
+    background-color: var(--color-2);
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -176,7 +178,7 @@ article {
     width: 80%;
     font-size: 18px;
     padding: 18px 20px;
-    background-color: #473447;
+    background-color: var(--color-1);
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -187,9 +189,9 @@ article {
 .title {
     font-size: 45px;
     text-align: center;
-    background-color: #dce0e5;
+    background-color: var(--color-3);
     padding: 15px;
-    margin: 50px 0;
+    margin-bottom: 100px;
     color: #000000;
     border-radius: 20px;
 }
@@ -208,7 +210,7 @@ article {
 }
 
 .container .row-add-menu .col-add-menu {
-    background-color: #e1dbd6;
+    background-color: var(--color-3);
     height: 30vh;
     min-width: 25vw;
     margin: 0 4vw;
@@ -305,7 +307,7 @@ article {
 }
 
 .register-form input {
-    background-color: #473447;
+    background-color: var(--color-1);
     border-radius: 5px;
     font-size: 20px;
 }
@@ -339,7 +341,7 @@ article {
 .button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #473447;
+    background-color: var(--color-1);
     color: #fff;
     text-decoration: none;
     border: none;
@@ -357,7 +359,7 @@ article {
 .login-submit-button {
     font-size: 20px;
     padding: 10px 20px;
-    background-color:#473447;
+    background-color:var(--color-1);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -428,7 +430,7 @@ article {
 }
 
 .container-op-orders .container:first-child {
-    background-color: #e8dcd4;
+    background-color: var(--color-2);
     padding: 20px 40px;
 }
 

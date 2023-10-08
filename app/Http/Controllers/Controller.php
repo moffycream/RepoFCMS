@@ -42,7 +42,7 @@ class Controller extends BaseController
         }
         else if ($link == 'add-food')
         {
-            return view('add-food');
+            return view('menu/add-food');
         }
         else if ($link == 'add-food-form')
         {

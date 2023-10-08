@@ -4,7 +4,7 @@
 <h1 class="title">Add Food</h1>
 
 <div class="container">
-    <form class="register-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
+    <form class="register-form" id="add-food-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
         @csrf
         <label>Image</label>
         <input type="file" accept=".png, .jpeg, .jpg" id="food-image" name="image"><br>
