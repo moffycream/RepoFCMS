@@ -23,6 +23,11 @@ class Order extends Model
         return $this->belongsToMany(Menu::class, 'order_menu', 'orderID', 'menuID');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(UserAccounts::class, 'userID');
+    }
+
     public function getTotalPrice()
     {
         return $this->menus->sum('totalPrice');

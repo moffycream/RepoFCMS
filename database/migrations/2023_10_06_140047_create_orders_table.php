@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id('orderID');
+            $table->unsignedBigInteger('userID');
             $table->char('status');
             $table->decimal('total',10,2);
             $table->char('menu_name');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->char('address');
             $table->char('contact');
             $table->timestamps();
+            $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
         });
     }
 

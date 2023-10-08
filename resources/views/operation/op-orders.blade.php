@@ -24,10 +24,10 @@
         @if(isset($selectedOrder))
         <h2>Order Details</h2>
         <div class="row-details">
-            <p>Name: </p>
-            <p>Contact: </p>
-            <p>Address: </p>
-            <p>Status: </p>
+            <p>Name: {{ optional($selectedOrder->user)->firstName }} {{ optional($selectedOrder->user)->lastName }}</p>
+            <p>Contact: {{ optional($selectedOrder->user)->phone }}</p>
+            <p>Address: {{ optional($selectedOrder->user)->address }}</p>
+            <p>Status: {{$selectedOrder->status}}</p>
         </div>
         <div class="row-menu">
             <h3>Menu</h3>
