@@ -274,60 +274,6 @@ article {
 }
 
 
-/* customer order listing */
-
-.customer-container-order-listing {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    text-align: center;
-    margin: 0 auto;
-    max-width: 800px; 
-}
-
-.customer-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.customer-table th, .customer-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.customer-table th {
-    background-color: #f2f2f2;
-}
-
-.view-details-button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.view-details-button:hover {
-    background-color: #2980b9;
-}
-
-.customer-container-order-listing h1 {
-    font-size: 24px;
-}
-
-.customer-table tr {
-    border-bottom: 1px solid #ddd;
-}
-
 /* order listing - operation side */
 .container-op-orders {
     display: flex;

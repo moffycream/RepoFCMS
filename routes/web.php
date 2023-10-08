@@ -33,6 +33,7 @@ Route::get('/about', [HomeController::class, 'about']);
 
 // Customer profile
 Route::get('/profile',[ProfileController::class, 'index']);
+Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
 
 // Login and register
 Route::get('/login', [UserAccountController::class, 'index']);

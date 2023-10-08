@@ -68,9 +68,9 @@ class Controller extends BaseController
         {
             return view('display-menu');
         }
-        else if($link == 'payment')
+        else if($link == 'customer-orders-listings')
         {
-            return view('payment');
+            return view('customer-orders-listings');
         }
         else
         {

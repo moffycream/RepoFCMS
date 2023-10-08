@@ -60,55 +60,6 @@
     text-decoration: none;
 }
 
-/* Profile */
-
-.profile-container {
-    background-color: #e1dbd6;
-    border: 20px solid #cccccc;
-    border-radius: 25px;
-    padding: 20px;
-    text-align: center;
-    max-width: 50vw;
-    /* Set a maximum width of 50% of the viewport width */
-    margin: 0 auto;
-    margin-bottom: 5%;
-}
-
-.profile-img img {
-    max-width: 150px;
-    border-radius: 50%;
-}
-
-.profile-table {
-    margin-top: 20px;
-    width: 50%;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
-
-.profile-table th,
-.profile-table td {
-    text-align: left;
-    padding: 10px;
-    font-size: 18px;
-    border-bottom: 1px solid #ccc;
-    color: black;
-}
-
-
-.profile-table th#Name {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.profile-table td {
-    font-size: 20px;
-}
-
-.profile-table th.user-info {
-    text-align: center;
-    font-size: 30px;
-}
 
 .container-register-page {
     text-align: center;
@@ -183,52 +134,4 @@
     transform: scale(1.1);
     transition: 0.5s;
 }
-
-
-/* customer order listing */
-.customer-container-order-listing {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px #00000033;
-    padding: 10px;
-    text-align: center;
-    margin: 0 auto; 
-    max-width: 800px; 
-}
-
-.customer-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.customer-table th, .customer-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.customer-table th {
-    background-color: #f2f2f2;
-}
-
-.view-details-button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.view-details-button:hover {
-    background-color: #2980b9;
-}
-
-
 
