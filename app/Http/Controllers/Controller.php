@@ -68,6 +68,10 @@ class Controller extends BaseController
         {
             return view('display-menu');
         }
+        else if($link == 'payment')
+        {
+            return view('payment');
+        }
         else
         {
             // handle 404 
