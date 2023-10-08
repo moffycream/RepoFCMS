@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OrderController;
@@ -25,15 +26,6 @@ use App\Http\Controllers\OrderListingController;
 |
 */
 
-// operation routes
-
-
-
-
-
-// Handle analytics page
-Route::get('/analytics', 'AnalyticsController@index');
-
 // Homepage links
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [HomeController::class, 'about']);
@@ -54,6 +46,7 @@ Route::get('/menu', [MenuController::class, 'index']);
 // Menu - management side
 Route::get('/add-food', [FoodController::class, 'index']);
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
+Route::get('/add-food-form', [FoodController::class, 'addFoodForm']);
 Route::get('/add-menu', [MenuController::class, 'index']);
 Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
@@ -66,7 +59,7 @@ Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name
 // Order - client side
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
+// Business analytics
+Route::get('/analytics', [AnalyticsController::class, 'index']);
 // Route::get('/display-menu', [MenuController::class, 'displayMenu']);
 
-// Navigation links
-// Route::get('/{link}', [Controller::class, 'handleNavLink']);
