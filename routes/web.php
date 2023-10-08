@@ -60,8 +60,9 @@ Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name
 // Order - client side
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
-// Payment
-Route::post('/payment', [PaymentController::class, '']);
+// Purchase & Payment
+Route::get('/payment', [PaymentController::class, 'index']);
+Route::get('/purchase', [PaymentController::class, 'index']);
 
 // Business analytics
 Route::get('/analytics', [AnalyticsController::class, 'index']);
