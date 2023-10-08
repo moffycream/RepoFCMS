@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     // login function
-    public function login(Request $request){
+    public function index(Request $request){
         session_start();
 
         // Validate the login credentials (You should connect to a database for this)
@@ -23,13 +23,13 @@ class LoginController extends Controller
             Session::put('username', $user->username); // Store the username in the session
             Session::put('accountType', $user->accountType); // Store 'accountType' in a session variable
             
-            echo ($_SESSION['accountType']);
+            echo Session::get('accountType'); 
             echo "login successful";
         } 
         else {
             echo "failed login";
             session()->flush();   
         }
-        return view('login');
+        return view('login.login');
     }
 }

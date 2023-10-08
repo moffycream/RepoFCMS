@@ -3,32 +3,33 @@
 @section('content')
 
 <div class="container-op-orders">
-    <div class="container-op-orders-col-1">
-        <div class="row">
-            <h1>Order List</h1>
-        </div>
+    <div class="container">
+        <h1>Order List</h1>
+        @foreach($orders as $order)
         <div class="row-order-item">
-            @foreach($orders as $order)
-            <form method="post" action="{{route('viewOrder', $order->orderID)}}">
+            <form method="post" action="{{route('op.order-view', $order->orderID)}}">
                 {{ csrf_field() }}
                 <button type="submit">
-                    <p>Order #{{$order->orderID}}</p>
-                    <p>{{$order->getformattedDateTime()}}</p>
+                    <div class="row">
+                        <p>Order #{{$order->orderID}}</p>
+                        <p>{{$order->getformattedDateTime()}}</p>
+                    </div>
+                    <p class="col">RM{{$order->getTotalPrice()}}</p>
                 </button>
             </form>
-            @endforeach
         </div>
+        @endforeach
     </div>
-    <div class="container-op-orders-col-2">
+    <div class="container">
         @if(isset($selectedOrder))
-        <div>
-            <h2>Order Info</h2>
-            <p>Name: </p>
-            <p>Contact: </p>
-            <p>Address: </p>
-            <p>Status: </p>
+        <h2>Order Details</h2>
+        <div class="row-details">
+            <p>Name: {{ optional($selectedOrder->user)->firstName }} {{ optional($selectedOrder->user)->lastName }}</p>
+            <p>Contact: {{ optional($selectedOrder->user)->phone }}</p>
+            <p>Address: {{ optional($selectedOrder->user)->address }}</p>
+            <p>Status: {{$selectedOrder->status}}</p>
         </div>
-        <div>
+        <div class="row-menu">
             <h3>Menu</h3>
             @foreach($selectedOrder->menus as $menu)
             <details>
@@ -36,10 +37,10 @@
                     <span>{{$menu->name}}</span>
                     <span>RM{{$menu->totalPrice}}</span>
                 </summary>
-                <table class="container-food-item">
+                <table class="food-item">
                     @foreach($menu->foods as $food)
                     <tr>
-                        <td class="container-food-image"><img src="{{asset($food->imagePath)}}" alt="{{$food->name}}"></td>
+                        <td class="food-image"><img src="{{asset($food->imagePath)}}" alt="{{$food->name}}"></td>
                         <td>{{$food->name}}</td>
                         <td>RM{{$food->price}}</td>
                     </tr>
@@ -48,17 +49,18 @@
             </details>
             @endforeach
         </div>
-        <div>
+        <div class="row-addon">
             <h3>Add-Ons</h3>
             <p>{{$selectedOrder->order_notes}}</p>
         </div>
-        <div>
+        <div class="row-price">
             <p>Total Price: RM{{$selectedOrder->getTotalPrice()}}</p>
+        </div>
+        <div class="row-action">
+            <p><button>Cancel Order</button></p>
             <p><button>Accept Order</button></p>
         </div>
         @endif
     </div>
 </div>
-
-
 @endsection

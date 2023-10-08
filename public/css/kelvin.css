@@ -1,0 +1,121 @@
+/* order listing - operation side */
+.container-op-orders {
+    display: flex;
+}
+
+.container-op-orders .container:first-child {
+    padding: 20px 40px;
+}
+
+.container-op-orders .row-order-item {
+    margin: 10px 0;
+}
+
+.container-op-orders .row-order-item form button {
+    background-color: #ffffff;
+    border: none;
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.container-op-orders .row-order-item form button .row {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.container-op-orders .row-order-item form button .row p:first-child {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.container-op-orders .row-order-item form button .col {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.container-op-orders .container:last-child {
+    flex: 1;
+    padding: 20px 40px;
+}
+
+.container-op-orders .container:last-child .row-details {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.container-op-orders .container:last-child .row-details p {
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.container-op-orders .row-menu {
+    margin-top: 50px;
+}
+
+.container-op-orders .row-menu summary {
+    background-color: #ffffff;
+    box-shadow: #43475545 0px 0px 0.25em, #5a7dbc0d 0px 0.25em 1em;
+    padding: 20px;
+}
+
+.container-op-orders .row-menu .food-item {
+    table-layout: fixed;
+    width: 100%;
+    padding: 0 20px;
+    background-color: #ffffff;
+}
+
+.container-op-orders .row-menu .food-item{
+    padding: 10px;
+}
+
+.container-op-orders .row-menu .food-item {
+    text-align: right;
+}
+
+.container-op-orders .row-menu .food-item .food-image {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container-op-orders .row-menu .food-item .food-image img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container-op-orders .row-addon {
+    margin-top: 50px;
+}
+
+.container-op-orders .row-addon p {
+    background-color: #ffffff;
+}
+
+.container-op-orders .row-price {
+    text-align: right;
+    margin-top: 50px;
+    background-color: #ffffff;
+}
+
+.container-op-orders .row-action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.container-op-orders .row-action button {
+    border: none;
+    font-size: 24px;
+    padding: 20px;
+
+}

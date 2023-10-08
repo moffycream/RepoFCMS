@@ -13,7 +13,12 @@ class FoodController extends Controller
 
         $food = Food::all();
 
-        return view('add-food', ['listItems' => $food]);
+        return view('menu.add-food', ['listItems' => $food]);
+    }
+
+    public function addFoodForm()
+    {
+        return view('menu.add-food-form');
     }
 
     public function addMenuFormIndex()
@@ -21,7 +26,7 @@ class FoodController extends Controller
 
         $food = Food::all();
 
-        return view('add-menu-form', ['listItems' => $food]);
+        return view('menu.add-menu-form', ['listItems' => $food]);
     }
 
     // Insert function 
