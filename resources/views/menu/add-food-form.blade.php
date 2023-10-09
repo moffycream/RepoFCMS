@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Admin-Orders')
 @section('content')
-<h1 class="title">Add Food</h1>
+<h1 class="title">Add Food Form</h1>
 
 <div class="container">
     <form class="register-form" id="add-food-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
