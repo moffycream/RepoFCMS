@@ -1,6 +1,6 @@
 /* customer order listing */
 
-.customer-container-order-listing {
+.customer-container {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -10,19 +10,20 @@
     max-width: 800px; 
 }
 
-.customer-table {
+.customer-container-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-.customer-table th, .customer-table td {
+.customer-container-table  th, 
+.customer-container-table  td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-.customer-table th {
+.customer-container-table  th {
     background-color: #f2f2f2;
 }
 
@@ -46,7 +47,7 @@
 /* Profile */
 .profile-container {
     background-color: #ffffff;
-    border: 20px solid #cccccc;
+   
     border-radius: 25px;
     padding: 20px;
     text-align: center;
@@ -91,3 +92,38 @@
     text-align: center;
     font-size: 30px;
 }
+
+/*order listing details*/
+.customer-container-food-menu-container {
+    background-color: #f5f5f5; 
+    border: 1px solid #ddd; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+}
+
+.customer-container-food-menu-container> p {
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #333; 
+}
+
+.customer-container-food-menu-container-food-items {
+    margin-top: 5px; 
+    font-size: 16px; 
+    color: #666666; 
+}
+
+.customer-container-cancel-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.customer-container-cancel-button:hover {
+    background-color: darkred;
+}
+
+
