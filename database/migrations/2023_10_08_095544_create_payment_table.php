@@ -14,12 +14,20 @@ return new class extends Migration
         Schema::create('payment_info', function (Blueprint $table) {
             $table->id('transactionID'); // Primary Key
             $table->unsignedBigInteger('userID');
-            $table->decimal('totalPrice', 10, 2);
+            $table->decimal('totalPrice', 10, 2);   
             $table->string('paymentMethod');
-            $table->boolean('isPaid');
+            $table->string('Username'); // Online banking
+            $table->string('Receipient_Account_Number'); // Online banking
+            $table->string('card_number');
+            $table->string('cvv');
+            $table->string('cardholder_name');
+            $table->text('billing_address');
+            $table->string('type_of_Ewallet');
+            $table->string('recipient_name'); // E-wallet 
             $table->timestamp('dateOfPayment')->default(now());
             $table->timestamp('dateOfPurchase')->default(now());
             $table->timestamps();
+            $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
         });
     }
 

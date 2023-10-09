@@ -6,7 +6,7 @@
 
     <h1>Orders:</h1>
 
-    <form id="PaymentForm" method="post" action= ''><!-- name at route -->
+    <form id="PaymentForm" method="post" action= 'store-payment'><!-- name at route -->
         <table border = 1>
 
             <tr>

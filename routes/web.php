@@ -83,11 +83,14 @@ Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('sho
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
 
 // Purchase
-Route::get('/purchase', 'App\Http\Controllers\PurchaseController@index')->name('purchase.index');   // when access /purchase, index method triggered
+Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase.index');   // when access /purchase, index method triggered
 
 
 // Business analytics
 Route::get('/business-analytics', [AnalyticsController::class, 'index']);
 
 // Display menu
-Route::get('/food-menu', [FoodMenuController::class, 'index']);
+Route::get('/food-menu', [FoodMenuController::class, 'index'])->name('menu.index');
+Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('food-menu.addToCart');
+Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
+

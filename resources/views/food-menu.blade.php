@@ -2,35 +2,25 @@
 @section('title', 'Home')
 @section('content')
 
-<head>
-    <title>Food Menu</title>
-</head>
-<body>
     <h1>Food Menu</h1>
 
-    <h2>Menus</h2>
-    <ul>
-        @foreach($menus as $menu)
-            <li>{{ $menu->name }}</li>
-        @endforeach
-    </ul>
+    <h2></h2>
+    @foreach ($menus as $menu)
+        <div>
+            <h3>{{ $menu->name }}</h3>
+            <p>{{ $menu->description }}</p>
+            <p>Price: ${{ $menu->price }}</p>
+            <form action="{{ route('food-menu.addToCart') }}" method="POST">
+                @csrf
+                <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                <button type="submit">Add to cart</button>
+            </form>
+        </div>
+    @endforeach
 
-    <h2>Food Items</h2>
-    <ul>
-        @foreach($foods as $food)
-            <li>
-                <strong>Name:</strong> {{ $food->name }}<br>
-                <strong>Description:</strong> {{ $food->description }}<br>
-                <strong>Price:</strong> ${{ $food->price }}<br>
-                <strong>Menus:</strong>
-                <ul>
-                    @foreach($food->menus as $menu)
-                        <li>{{ $menu->name }}</li>
-                    @endforeach
-                </ul>
-            </li>
-        @endforeach
-    </ul>
-</body>
+    <form action="{{ route('food-menu.checkout') }}" method="POST">
+        @csrf
+        <button type="submit">Checkout</button>
+    </form>
+    
 @endsection
-
