@@ -26,7 +26,7 @@ class LoginController extends Controller
 
             if (Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin")
             {
-                return view('admin.admin-dashboard');
+                return redirect('/admin-dashboard');
             }
             else if(Session::get('accountType') == "OperationTeam")
             {
@@ -39,6 +39,7 @@ class LoginController extends Controller
         } 
         else {
             Session::flash('error', 'Failed login. Please check your username and password.');
+            Session::flush();
             return view('login.login');
         }
     }
