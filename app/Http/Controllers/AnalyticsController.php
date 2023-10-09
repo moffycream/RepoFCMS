@@ -22,7 +22,7 @@ class AnalyticsController extends Controller
         // Prepare data for a bar chart
         $chartData = $this->prepareChartData($orders);
 
-        return view('analytics.index', compact('orders', 'totalOrderAmount', 'chartData', 'profitData', 'revenueData'));
+        return view('business-analytics', compact('orders', 'totalOrderAmount', 'chartData', 'profitData', 'revenueData'));
     }
 
     private function calculateProfit()
