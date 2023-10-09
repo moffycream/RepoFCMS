@@ -34,7 +34,7 @@
     <title>Food Menu</title>
 </head>
 <body>
-    <h1>Food Menu</h1>
+    <h1>od Menu</h1>
 
     <h2>Menus</h2>
     @foreach ($menus as $menu)
