@@ -2,8 +2,8 @@
 @section('title', 'Orders')
 @section('content')
 <h1 class="title">Customer Order Listing</h1>
-<div class="customer-container-order-listing"> 
-    <table class="customer-table">
+<div class="customer-container"> 
+    <table class="customer-container-table">
         <thead>
             <tr>
                 <th>Order ID</th>

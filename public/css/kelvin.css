@@ -113,7 +113,7 @@
     justify-content: flex-end;
 }
 
-.container-op-orders .row-action button {
+.container-op-orders .row-action a {
     border: none;
     font-size: 24px;
     padding: 20px;

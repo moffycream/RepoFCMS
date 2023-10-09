@@ -1,3 +1,7 @@
+@extends('layouts.app')
+@section('title', 'Home')
+@section('content')
+
 <canvas id="revenueChart" width="400" height="200"></canvas>
 
 <script>
@@ -71,3 +75,4 @@
         @endforeach
     </tbody>
 </table>
+@endsection

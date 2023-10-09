@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderListingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\FoodMenuController;
 
 
 // use App\Http\Controllers\test;  <-- test
@@ -37,6 +38,10 @@ Route::get('/about', [HomeController::class, 'about']);
 // Customer profile
 Route::get('/profile',[ProfileController::class, 'index']);
 Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
+Route::post('/cancel-order/{orderID}', [OrderListingController::class, 'cancelOrder'])->name('cancel-order');
+
+
+
 
 // Login and register
 Route::get('/login', [UserAccountController::class, 'index']);
@@ -72,6 +77,7 @@ Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
 // Order - operation side
 Route::get('/op-orders', [OrderController::class, 'index']);
 Route::post('/op-orders/{orderID}', [OrderController::class, 'viewOrder'])->name('op.order-view');
+Route::get('op-orders/{orderID}/cancel-order', [OrderController::class, 'cancelOrder'])->name('op.order-cancel');
 
 // Order - client side
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
@@ -85,6 +91,7 @@ Route::get('/purchase', 'App\Http\Controllers\PurchaseController@index')->name('
 
 
 // Business analytics
-Route::get('/analytics', [AnalyticsController::class, 'index']);
-// Route::get('/display-menu', [MenuController::class, 'displayMenu']);
+Route::get('/business-analytics', [AnalyticsController::class, 'index']);
 
+// Display menu
+Route::get('/food-menu', [FoodMenuController::class, 'index']);
