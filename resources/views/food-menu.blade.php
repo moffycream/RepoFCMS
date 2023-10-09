@@ -2,19 +2,6 @@
 @section('title', 'Home')
 @section('content')
 
-<!-- <head>
-    <title>Food Menu</title>
-</head>
-<body>
-    <h1>Food Menu</h1>
-
-    <ul>
-        @foreach($foods as $food)
-            <li>{{ $food->name }} - {{ $food->description }}</li>
-        @endforeach
-    </ul>
-</body> -->
-
 <head>
     <title>Food Menu</title>
 </head>
@@ -46,3 +33,4 @@
     </ul>
 </body>
 @endsection
+
