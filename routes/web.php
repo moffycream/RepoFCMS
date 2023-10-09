@@ -96,3 +96,5 @@ Route::get('/business-analytics', [AnalyticsController::class, 'index']);
 // Display menu
 Route::get('/food-menu', [FoodMenuController::class, 'index'])->name('menu.index');
 Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('food-menu.addToCart');
+Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
+

@@ -34,4 +34,18 @@ class FoodMenuController extends Controller
         // Redirect back to the menu page or wherever you prefer
         return redirect()->route('menu.index')->with('success', 'Item added to cart');
     }
+
+    public function checkout(Request $request)
+    {
+        // Retrieve the user's cart from the session
+        $cart = $request->session()->get('cart', []);
+
+        // Perform the checkout process (e.g., create an order in the database)
+
+        // Clear the cart after checkout
+        $request->session()->forget('cart');
+
+        // Redirect to a confirmation page or wherever you prefer
+        return redirect()->route('purchase.index')->with('success', 'Checkout successful');
+    }
 }
