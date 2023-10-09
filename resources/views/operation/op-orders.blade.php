@@ -24,9 +24,9 @@
         @if(isset($selectedOrder))
         <h2>Order Details</h2>
         <div class="row-details">
-            <p>Name: {{ optional($selectedOrder->user)->firstName }} {{ optional($selectedOrder->user)->lastName }}</p>
-            <p>Contact: {{ optional($selectedOrder->user)->phone }}</p>
-            <p>Address: {{ optional($selectedOrder->user)->address }}</p>
+            <p>Name: {{$selectedOrder->name}}</p>
+            <p>Contact: {{$selectedOrder->contact}}</p>
+            <p>Address: {{$selectedOrder->address}}</p>
             <p>Status: {{$selectedOrder->status}}</p>
         </div>
         <div class="row-menu">
@@ -57,8 +57,8 @@
             <p>Total Price: RM{{$selectedOrder->getTotalPrice()}}</p>
         </div>
         <div class="row-action">
-            <p><button>Cancel Order</button></p>
-            <p><button>Accept Order</button></p>
+            <a href="{{route('op.order-cancel', $selectedOrder->orderID)}}">Cancel Order</a>
+            <a>Accept Order</a>
         </div>
         @endif
     </div>
