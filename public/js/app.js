@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
 
             htmlToInsert = `
-            <h1>111</h1>
+            <h1>Online Banking</h1>
 
             <td>
                 <label for="username:">Username: </label>   
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
 
             htmlToInsert = `
-            <h1>222</h1>
+            <h1>Credit Card</h1>
 
             <td>
                 <label for="cardNumber:">Card Number: </label>   
@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
 
             htmlToInsert = `
-            <h1>333</h1>
+            <h1>Debit Card</h1>
 
             <td>
                 <label for="cardNumber:">Card Number: </label>   
@@ -378,7 +378,7 @@ document.addEventListener("DOMContentLoaded", function () {
         {
 
             htmlToInsert = `
-            <h1>444</h1>
+            <h1>E-Wallet</h1>
 
             <td>
                 <label for="eWallet_type">E-Wallet Type: </label>

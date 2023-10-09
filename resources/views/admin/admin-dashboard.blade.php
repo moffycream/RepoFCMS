@@ -35,13 +35,12 @@
 </head>
 
 <body>
-    
     <div class="dashboard">
         <h1>Welcome to the Admin Dashboard</h1>
         <a href="{{url('admin-edit-profile')}}" class="btn">Edit Profile</a>
         <a href="{{url('admin-register')}}" class="btn">Register New Profile</a>
         <a href="/profile/business-analytics" class="btn">Business Analytics</a>
-        <a href="HAVENTDOCIBAIII" class="btn">Logout</a>
+        <a href="{{url('logout')}}" class="btn">Logout</a>
     </div>
 </body>
 
