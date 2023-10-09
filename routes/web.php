@@ -90,5 +90,6 @@ Route::get('/purchase', 'App\Http\Controllers\PurchaseController@index')->name('
 
 // Business analytics
 Route::get('/analytics', [AnalyticsController::class, 'index']);
-// Route::get('/display-menu', [MenuController::class, 'displayMenu']);
 
+// Display menu
+Route::get('/food-menu', 'FoodMenuController@index')->name('food-menu');
