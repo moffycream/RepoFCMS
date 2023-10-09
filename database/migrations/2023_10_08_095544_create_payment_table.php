@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('totalPrice', 10, 2);   
             $table->string('paymentMethod');
             $table->string('Username'); // Online banking
+            $table->string('Receipient_Account_Number'); // Online banking
             $table->string('card_number');
             $table->string('cvv');
             $table->string('cardholder_name');

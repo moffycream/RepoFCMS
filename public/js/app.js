@@ -192,33 +192,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
             htmlToInsert = `
             <h1>111</h1>
+
             <td>
-            <label for="recipient_account">Recipient's Account Number:</label>
+                <label for="username:">Username: </label>   
             </td>
 
             <td>
-                <input type="text" id="recipient_account" name="recipient_account" required>
+                <input type="text" id="username" name="username" placeholder="Username" required>
             </td>
             
-            <br>
+            <br><br>
 
             <td>
-                <label for="amount">Amount:</label>
+                <label for="password:">Password: </label>   
             </td>
 
             <td>
-                <input type="number" id="amount" name="amount" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
             </td>
-
-            <br>
-
-            <td>
-                <label for="description">Description:</label>
-            </td>
+            
+            <br><br>
 
             <td>
-                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                <label for="recipient_account_number">Receipient Account Number: </label>
             </td>
+
+            <td>
+                <input type="text" id="recipient_account_number" name="recipient_account_number" placeholder="Receipient Account Number" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="amount">Amount: </label>
+            </td>
+
+            <td>
+                <input type="text" id="amount" name="amount" placeholder="Amount" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="description">Description: </label>
+            </td>
+
+            <td>
+                <input type="text" id="description" name="description" placeholder="Description" required>
+            </td>
+            
             `;
         
         } 
@@ -227,32 +249,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
             htmlToInsert = `
             <h1>222</h1>
+
             <td>
-            <label for="recipient_account">Recipient's Account Number:</label>
+                <label for="cardNumber:">Card Number: </label>   
             </td>
 
             <td>
-                <input type="text" id="recipient_account" name="recipient_account" required>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" required>
             </td>
             
-            <br>
+            <br><br>
 
             <td>
-                <label for="amount">Amount:</label>
+                <label for="cvv">CVV: </label>
             </td>
 
             <td>
-                <input type="number" id="amount" name="amount" required>
+                <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
             </td>
 
-            <br>
+            <br><br>
 
             <td>
-                <label for="description">Description:</label>
+                <label for="cardholder">Card Holder Name: </label>
             </td>
 
             <td>
-                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                <input type="text" id="cardholder" name="cardholder" placeholder="Card Holder Name" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="billingAddress">Billing Address: </label>
+            </td>
+
+            <td>
+                <input type="text" id="billingAddress" name="billingAddress" placeholder="Billing Address" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="amount">Amount: </label>
+            </td>
+
+            <td>
+                <input type="text" id="amount" name="amount" placeholder="Amount" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="description">Description: </label>
+            </td>
+
+            <td>
+                <input type="text" id="description" name="description" placeholder="Description" required>
             </td>
             `;
         }
@@ -261,32 +314,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
             htmlToInsert = `
             <h1>333</h1>
+
             <td>
-            <label for="recipient_account">Recipient's Account Number:</label>
+                <label for="cardNumber:">Card Number: </label>   
             </td>
 
             <td>
-                <input type="text" id="recipient_account" name="recipient_account" required>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="Card Number" required>
             </td>
             
-            <br>
+            <br><br>
 
             <td>
-                <label for="amount">Amount:</label>
+                <label for="cvv">CVV: </label>
             </td>
 
             <td>
-                <input type="number" id="amount" name="amount" required>
+                <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
             </td>
 
-            <br>
+            <br><br>
 
             <td>
-                <label for="description">Description:</label>
+                <label for="cardholder">Card Holder Name: </label>
             </td>
 
             <td>
-                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                <input type="text" id="cardholder" name="cardholder" placeholder="Card Holder Name" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="billingAddress">Billing Address: </label>
+            </td>
+
+            <td>
+                <input type="text" id="billingAddress" name="billingAddress" placeholder="Billing Address" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="amount">Amount: </label>
+            </td>
+
+            <td>
+                <input type="text" id="amount" name="amount" placeholder="Amount" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="description">Description: </label>
+            </td>
+
+            <td>
+                <input type="text" id="description" name="description" placeholder="Description" required>
             </td>
             `;
         }
@@ -295,32 +379,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
             htmlToInsert = `
             <h1>444</h1>
+
             <td>
-            <label for="recipient_account">Recipient's Account Number:</label>
+                <label for="eWallet_type">E-Wallet Type: </label>
             </td>
 
             <td>
-                <input type="text" id="recipient_account" name="recipient_account" required>
-            </td>
-            
-            <br>
-
-            <td>
-                <label for="amount">Amount:</label>
-            </td>
-
-            <td>
-                <input type="number" id="amount" name="amount" required>
+                <select id="eWallet_type" name="eWallet_type">
+                    <option value="Touch_and_Go">Touch and Go</option>
+                    <option value="Boost">Boost</option>
+                    <option value="Sarawak_Pay">Sarawak Pay</option>
+                    <option value="Grab_Pay">Grab Pay</option>
+                </select>
             </td>
 
-            <br>
+            <br><br>
 
             <td>
-                <label for="description">Description:</label>
+                <label for="receipient_name">Receipient Name: </label>
             </td>
 
             <td>
-                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+                <input type="text" id="receipient_name" name="receipient_name" placeholder="Receipient Name" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="amount">Amount: </label>
+            </td>
+
+            <td>
+                <input type="text" id="amount" name="amount" placeholder="Amount" required>
+            </td>
+
+            <br><br>
+
+            <td>
+                <label for="description">Description: </label>
+            </td>
+
+            <td>
+                <input type="text" id="description" name="description" placeholder="Description" required>
             </td>
             `;
         }
