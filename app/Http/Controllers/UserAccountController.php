@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserAccounts;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\CssSelector\Parser\Shortcut\ElementParser;
 
 class UserAccountController extends Controller
 {
@@ -25,6 +27,8 @@ class UserAccountController extends Controller
             $account->city = "FCMS";
             $account->postcode = "FCMS";
             $account->accountType = "DefaultAdmin";
+
+            $account->password = Hash::make($account->password);
             $account->save();
         }
         return view('login.login');
@@ -40,6 +44,11 @@ class UserAccountController extends Controller
         return view('login.register-successful');
     }
 
+    public function accessDenied()
+    {
+        return view('login.access-denied');
+    }
+
     // register new account + validations
     public function registerNewAccount(Request $request)
     {
@@ -47,7 +56,11 @@ class UserAccountController extends Controller
         $accounts = new UserAccounts();
         $accounts->username = $request->username;
         if ($request->password == $request->confirmpassword) {
-            $accounts->password = $request->password;
+            if (strlen($request->password) < 5) {
+                $errorMsg .= "Password must be more than 5 characters<br>";
+            } else {
+                $accounts->password = Hash::make($request->password);
+            }
         } else {
             $errorMsg .= "Password and confirm password don't match<br>";
         }
@@ -71,7 +84,15 @@ class UserAccountController extends Controller
         } else {
             $accounts->postcode = $request->postcode;
         }
-        $accounts->accountType = $request->accountType;
+        if ($request->accountType == "Customer" || $request->accountType == "Admin" || $request->accountType == "OperationTeam")
+        {
+            $accounts->accountType = $request->accountType;
+        }
+        else {
+            $errorMsg .= "Invalid account type<br>";
+        }
+
+        
 
         if ($errorMsg == "") {
             $accounts->save();

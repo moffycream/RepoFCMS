@@ -169,5 +169,186 @@ document.addEventListener("DOMContentLoaded", function () {
         addFoodForm.onsubmit = validateFoodForm;
     }
 
+
+
+
+
+    // -------------------------- Guilbert Lam's JS --------------------------
+    const PaymentChocie = document.getElementById('PaymentMethod');
+    const OnlineBankingForm = document.getElementById('OnlineBankingForm');
+    const CreditCardForm = document.getElementById('CreditCardForm');
+    const DebitCardForm = document.getElementById('DebitCardForm');
+    const EwalletForm = document.getElementById('EwalletForm');
+    
+    PaymentChocie.addEventListener('change', function () {
+
+        const SelectedPaymentChoice = PaymentChocie.value;
+
+        // empty variable string
+        let htmlToInsert = '';
+        
+        if (SelectedPaymentChoice === 'OnlineBanking') 
+        {
+
+            htmlToInsert = `
+            <h1>111</h1>
+            <td>
+            <label for="recipient_account">Recipient's Account Number:</label>
+            </td>
+
+            <td>
+                <input type="text" id="recipient_account" name="recipient_account" required>
+            </td>
+            
+            <br>
+
+            <td>
+                <label for="amount">Amount:</label>
+            </td>
+
+            <td>
+                <input type="number" id="amount" name="amount" required>
+            </td>
+
+            <br>
+
+            <td>
+                <label for="description">Description:</label>
+            </td>
+
+            <td>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </td>
+            `;
+        
+        } 
+        else if (SelectedPaymentChoice === 'CreditCard') 
+        {
+
+            htmlToInsert = `
+            <h1>222</h1>
+            <td>
+            <label for="recipient_account">Recipient's Account Number:</label>
+            </td>
+
+            <td>
+                <input type="text" id="recipient_account" name="recipient_account" required>
+            </td>
+            
+            <br>
+
+            <td>
+                <label for="amount">Amount:</label>
+            </td>
+
+            <td>
+                <input type="number" id="amount" name="amount" required>
+            </td>
+
+            <br>
+
+            <td>
+                <label for="description">Description:</label>
+            </td>
+
+            <td>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </td>
+            `;
+        }
+        else if (SelectedPaymentChoice === 'DebitCard') 
+        {
+
+            htmlToInsert = `
+            <h1>333</h1>
+            <td>
+            <label for="recipient_account">Recipient's Account Number:</label>
+            </td>
+
+            <td>
+                <input type="text" id="recipient_account" name="recipient_account" required>
+            </td>
+            
+            <br>
+
+            <td>
+                <label for="amount">Amount:</label>
+            </td>
+
+            <td>
+                <input type="number" id="amount" name="amount" required>
+            </td>
+
+            <br>
+
+            <td>
+                <label for="description">Description:</label>
+            </td>
+
+            <td>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </td>
+            `;
+        }
+        else if (SelectedPaymentChoice === 'Ewallet') 
+        {
+
+            htmlToInsert = `
+            <h1>444</h1>
+            <td>
+            <label for="recipient_account">Recipient's Account Number:</label>
+            </td>
+
+            <td>
+                <input type="text" id="recipient_account" name="recipient_account" required>
+            </td>
+            
+            <br>
+
+            <td>
+                <label for="amount">Amount:</label>
+            </td>
+
+            <td>
+                <input type="number" id="amount" name="amount" required>
+            </td>
+
+            <br>
+
+            <td>
+                <label for="description">Description:</label>
+            </td>
+
+            <td>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea>
+            </td>
+            `;
+        }
+
+        // reset 
+        OnlineBankingForm.innerHTML = '';
+        CreditCardForm.innerHTML = '';
+        DebitCardForm.innerHTML = '';
+        EwalletForm.innerHTML = '';
+
+        // Update the content of the forms
+        if (SelectedPaymentChoice === 'OnlineBanking') 
+        {
+            OnlineBankingForm.innerHTML = htmlToInsert;
+        } 
+        else if (SelectedPaymentChoice === 'CreditCard') 
+        {
+            CreditCardForm.innerHTML = htmlToInsert;
+        }
+        else if (SelectedPaymentChoice === 'DebitCard') 
+        {
+            DebitCardForm.innerHTML = htmlToInsert;
+        }
+        else if (SelectedPaymentChoice === 'Ewallet') 
+        {
+            EwalletForm.innerHTML = htmlToInsert;
+        }
+    });
+
 });
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('userID');
             $table->char('username');
             $table->char('password');
-            $table->unsignedInteger('phone');
+            $table->char('phone');
             $table->char('firstName');
             $table->char('lastName');
             $table->char('email');
