@@ -40,13 +40,10 @@ Route::get('/profile',[ProfileController::class, 'index']);
 Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
 Route::post('/cancel-order/{orderID}', [OrderListingController::class, 'cancelOrder'])->name('cancel-order');
 
-
-
-
 // Login and register
 Route::get('/login', [UserAccountController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index'])->name('user.login');
-Route::get('/admin-dashboard', [LoginController::class, 'endSession'])->name('logout');
+Route::get('/logout', [LoginController::class, 'endSession']);
 Route::get('/forgot-password', [LoginController::class, 'forgotPassword']);
 Route::post('/forgot-password', [LoginController::class, 'resetPassword'])->name('user.resetpassword');
 Route::get('/register', [UserAccountController::class, 'register']);
@@ -60,8 +57,6 @@ Route::get('/admin-business-analytics', [AdminController::class, 'adminBusinessA
 Route::post('/admin-register', [AdminController::class, 'adminRegisterNewAccount'])->name('admin.register');
 Route::get('/admin-register-success', [AdminController::class, 'adminRegisterSuccess']);
 
-// Admin verification 
-Route::get("/admin-dashboard", [AdminController::class, 'verifyAdmin']);
 
 // Menu - client side
 Route::get('/menu', [MenuController::class, 'index']);

@@ -91,6 +91,6 @@ class LoginController extends Controller
         Session::forget('accountType');
         session()->flush();
 
-        return view('login.login');
+        return redirect('/login');
     }
 }
