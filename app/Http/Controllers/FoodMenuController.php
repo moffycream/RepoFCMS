@@ -18,7 +18,7 @@ class FoodMenuController extends Controller
     }
 
     public function addToCart(Request $request)
-{
+    {
     // Retrieve the menu item's ID from the form submission
     $menuId = $request->input('menu_id');
 
@@ -32,6 +32,6 @@ class FoodMenuController extends Controller
     $request->session()->put('cart', $cart);
 
     // Redirect back to the menu page or wherever you prefer
-    return redirect()->route('food-menu.index')->with('success', 'Item added to cart');
-}
+    return redirect()->route('menu.index')->with('success', 'Item added to cart');
+    }
 }
