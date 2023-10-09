@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderListingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\FoodMenuController;
 
 
 // use App\Http\Controllers\test;  <-- test
@@ -92,4 +93,4 @@ Route::get('/purchase', 'App\Http\Controllers\PurchaseController@index')->name('
 Route::get('/business-analytics', [AnalyticsController::class, 'index']);
 
 // Display menu
-Route::get('/food-menu', 'FoodMenuController@index')->name('food-menu');
+Route::get('/food-menu', [FoodMenuController::class, 'index']);
