@@ -87,7 +87,7 @@ Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('sho
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
 
 // Purchase
-Route::get('/purchase', 'App\Http\Controllers\PurchaseController@index')->name('purchase.index');   // when access /purchase, index method triggered
+Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase.index');   // when access /purchase, index method triggered
 
 
 // Business analytics
