@@ -46,6 +46,7 @@ Route::post('/cancel-order/{orderID}', [OrderListingController::class, 'cancelOr
 // Login and register
 Route::get('/login', [UserAccountController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index'])->name('user.login');
+Route::get('/admin-dashboard', [LoginController::class, 'endSession'])->name('logout');
 Route::get('/forgot-password', [LoginController::class, 'forgotPassword']);
 Route::post('/forgot-password', [LoginController::class, 'resetPassword'])->name('user.resetpassword');
 Route::get('/register', [UserAccountController::class, 'register']);

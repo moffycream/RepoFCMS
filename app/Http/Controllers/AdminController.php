@@ -83,7 +83,7 @@ class AdminController extends Controller
 
     public function verifyAdmin()
     {
-        if (Session::get('accountType') != "Admin")
+        if (Session::get('accountType') != "Admin" && Session::get('accountType') != "DefaultAdmin")
         {
             return view('login.access-denied');
         }

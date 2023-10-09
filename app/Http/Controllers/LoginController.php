@@ -83,4 +83,13 @@ class LoginController extends Controller
             return view('login.forgot-password');
         }
     }
+
+    public function endSession()
+    {
+        Session::forget('username');
+        Session::forget('accountType');
+        session()->flush();
+
+        return view('login.login');
+    }
 }
