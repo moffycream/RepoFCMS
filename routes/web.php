@@ -94,4 +94,5 @@ Route::get('/purchase', 'App\Http\Controllers\PurchaseController@index')->name('
 Route::get('/business-analytics', [AnalyticsController::class, 'index']);
 
 // Display menu
-Route::get('/food-menu', [FoodMenuController::class, 'index']);
+Route::get('/food-menu', [FoodMenuController::class, 'index'])->name('menu.index');
+Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('food-menu.addToCart');
