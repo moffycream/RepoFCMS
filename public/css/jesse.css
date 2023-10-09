@@ -41,7 +41,6 @@
 
 .view-details-button button:hover {
     background-color: #2980b9;
-    color: #fff; /
 }
 
 /* Profile */
@@ -115,11 +114,14 @@
 
 .customer-container-cancel-button {
     background-color: red;
-    color: white;
+    color: #fff;
     border: none;
     padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 5px;
     cursor: pointer;
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .customer-container-cancel-button:hover {
