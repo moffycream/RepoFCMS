@@ -85,7 +85,7 @@ Route::get('/purchase', 'App\Http\Controllers\PurchaseController@index')->name('
 
 
 // Business analytics
-Route::get('/analytics', [AnalyticsController::class, 'index']);
+Route::get('/business-analytics', [AnalyticsController::class, 'index']);
 
 // Display menu
 Route::get('/food-menu', 'FoodMenuController@index')->name('food-menu');
