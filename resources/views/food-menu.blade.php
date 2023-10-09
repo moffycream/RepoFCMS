@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Home')
 @section('content')
-@endsection
 
 <!-- <head>
     <title>Food Menu</title>
@@ -46,3 +45,4 @@
         @endforeach
     </ul>
 </body>
+@endsection
