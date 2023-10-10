@@ -1,5 +1,5 @@
 /* order listing - operation side */
-.container-op-orders {
+/* .container-op-orders {
     display: flex;
 }
 
@@ -118,4 +118,175 @@
     font-size: 24px;
     padding: 20px;
 
+} */
+
+.dummy-op-orders:first-child{
+  height: 50px;
 }
+
+.dummy-op-orders:last-child {
+    height: 200px;
+}
+
+.container-op-orders{
+    text-align: left;
+}
+
+.container-op-orders .panel{
+    margin: auto;
+    width: 70%;
+    padding-bottom: 20px;
+}
+
+.container-op-orders .row-op-orders{
+    width: 95%;
+    margin: auto;
+}
+
+.container-op-orders .row-op-orders h1{
+    padding: 30px 0;
+    font-size: 28px;
+}
+
+.container-op-orders table.row-op-orders{
+    border-collapse: collapse;
+    border: 5px solid #e8dcd4;
+    overflow: hidden;
+}
+
+.container-op-orders table.row-op-orders tr{
+    background-color: #ffffff;
+}
+
+.container-op-orders table.row-op-orders th,
+.container-op-orders table.row-op-orders td{
+    padding: 20px;
+}
+
+.container-op-orders table.row-op-orders tr th{
+    background-color: #e8dcd4;
+}
+
+.container-op-orders table.row-op-orders button{
+    background-color: #c5a799;
+    padding: 10px 30px;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+}
+
+
+/* op-view-order */
+.container-op-view-order{
+    background-color: #e8dcd4;
+    padding: 20px 0;
+    min-height: 100vh;   
+}
+
+.container-op-view-order h1{
+    margin: 20px 0 20px 200px;
+    font-size: 28px;
+}
+
+.container-op-view-order .panel{
+    display: flex;
+    justify-content: center;
+    min-height: 500px;
+    margin-bottom: 100px;
+}
+
+.container-op-view-order .col-op-view-order:first-child{
+    flex: 1;
+    background-color: #ffffff;
+    margin-left: 10%;
+    margin-right: 10px;
+}
+
+.container-op-view-order .col-op-view-order:first-child h2{
+   padding: 20px 30px;
+}
+
+.container-op-view-order .col-op-view-order details[open] summary {
+    background-color: #ccdcd0;
+    border: none;
+}
+
+.container-op-view-order .col-op-view-order details summary{
+    padding: 30px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-top: 2px solid #0000001a;
+}
+
+.container-op-view-order .col-op-view-order details summary::before{
+    content: '▶';
+    transition: transform 0.3s;
+}
+
+details[open] summary::before {
+    content: '▼';
+    transform: rotate(90deg); 
+}
+
+.container-op-view-order .col-op-view-order details summary:hover 
+{
+    cursor:pointer;
+}
+
+.container-op-view-order .col-op-view-order details summary span{
+    font-size: 14px;
+}
+
+.container-op-view-order .col-op-view-order .row-item table{
+    width: 100%;
+    padding: 20px;
+}
+
+.container-op-view-order .col-op-view-order .row-item table td{
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.container-op-view-order .col-op-view-order .row-item table td:last-child{
+    text-align: right;
+}
+
+.container-op-view-order .col-op-view-order .row-item table .container-food-image{
+    width: 100px;
+    height: 80px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #e0e4e4;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.container-op-view-order .col-op-view-order .row-item table .container-food-image img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container-op-view-order .col-op-view-order .row-add-on{
+    padding: 20px 30px;
+    border-top: 2px solid #0000001a;
+}
+
+.container-op-view-order .col-op-view-order:last-child{
+    flex: 1;
+    margin-right: 10%;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-op-view-order .col-op-view-order .row-details,
+.container-op-view-order .col-op-view-order .row-actions
+{
+    background-color: #ffffff;
+    padding: 20px;
+}
+
