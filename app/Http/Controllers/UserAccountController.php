@@ -34,6 +34,15 @@ class UserAccountController extends Controller
         return view('login.login');
     }
 
+    public function verifyCustomer()
+    {
+        if (session('accountType') != "Customer") {
+            return false;
+        }
+
+        return true;
+    }  
+
     public function register()
     {
         return view('login.register');
@@ -57,19 +66,23 @@ class UserAccountController extends Controller
 
         $exist = UserAccounts::where('username', $request->username)->first();
 
+        echo $exist->username;
+        echo $request->username;
+
         // checks if any existing account has same username or not
         if ($exist)
         {
+            
             // checks if the exisitng username is same as requested username (in terms of casing)
-            if (strcmp($exist->username, $request->username) == 0) 
-            {
+            // if (strcmp($exist->username, $request->username) == 0) 
+            // {
                 $errorMsg .= "Username already exists<br>";
-            }
+            // }
             // not the same casing (accepted)
-            else 
-            {
-                $accounts->username = $request->username;
-            }
+            // else 
+            // {
+            //     $accounts->username = $request->username;
+            // }
         }
         // don't have any same username
         else 
@@ -118,7 +131,7 @@ class UserAccountController extends Controller
 
         if ($errorMsg == "") {
             $accounts->save();
-            return redirect('/register/register-success');
+            // return redirect('/register/register-success');
         } else {
             return view('login.register')->with('errorMsg', $errorMsg);
         }

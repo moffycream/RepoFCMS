@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Register')
+@section('title', 'Register Success')
 @section('content')
 <div class="container-register-successful">
     <h1>Register successful!</h1><br>

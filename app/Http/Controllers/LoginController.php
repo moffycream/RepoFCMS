@@ -39,7 +39,6 @@ class LoginController extends Controller
         } 
         else {
             Session::flash('error', 'Failed login. Please check your username and password.');
-            Session::flush();
             return view('login.login');
         }
     }

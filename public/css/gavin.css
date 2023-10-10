@@ -129,3 +129,28 @@
     transform: scale(1.1);
     transition: 0.5s;
 }
+
+/* Admin Dashboard Page */
+.container-admin-dashboard {
+    text-align: center;
+}
+
+.container-admin-dashboard h1 {
+    font-size: 50px;
+    padding: 50px 0;
+}
+
+.container-admin-dashboard a {
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 10px;
+    font-size: 30px;
+    background-color: #ffff;
+    border-radius: 5px;
+}
+
+.container-admin-dashboard a:hover {
+    background-color: #312431;
+    color: #ffff;
+    transition: 0.5s;
+}

@@ -1,9 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Register')
+@section('title', 'Access Denied')
 @section('content')
 <div class="container-register-successful">
     <h1>This page is forbidden!</h1><br>
-    <p>Please login first before directly access the page!</p>
+    <p>Please login to the right account first before directly access the page!</p>
+    <p>You are logged out now due to security reasons!</p>
     <a href="{{url('login')}}" class="button">Login Page</a>
+    @php
+    Session::flush();
+    @endphp
 </div>
 @endsection

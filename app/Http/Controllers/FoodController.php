@@ -7,26 +7,51 @@ use App\Models\Food;
 
 class FoodController extends Controller
 {
+    // used for verification
+    protected $adminController;
+
     // Retrieve function 
-    public function index()
+    public function index(AdminController $adminController)
     {
 
         $food = Food::all();
 
-        return view('menu.add-food', ['listItems' => $food]);
+        // Checks whether is valid login or not
+        $this->adminController = $adminController;
+
+        if ($this->adminController->verifyAdmin()) {
+            return view('menu.add-food', ['listItems' => $food]);
+        } else {
+            return view('login.access-denied');
+        }
     }
 
-    public function addFoodForm()
+    public function addFoodForm(AdminController $adminController)
     {
-        return view('menu.add-food-form');
+        // Checks whether is valid login or not
+        $this->adminController = $adminController;
+
+        if ($this->adminController->verifyAdmin()) {
+            return view('menu.add-food-form');
+        } else {
+            return view('login.access-denied');
+        }
     }
 
-    public function addMenuFormIndex()
+    public function addMenuFormIndex(AdminController $adminController)
     {
 
         $food = Food::all();
 
-        return view('menu.add-menu-form', ['listItems' => $food]);
+        // Checks whether is valid login or not
+        $this->adminController = $adminController;
+
+        if ($this->adminController->verifyAdmin()) {
+            return view('menu.add-menu-form', ['listItems' => $food]);
+        } else {
+            return view('login.access-denied');
+        }
+        
     }
 
     // Insert function 
@@ -34,7 +59,7 @@ class FoodController extends Controller
     {
         $food = new Food();
         $food->foodID = $request->foodID;
-        
+
         $fileName = time() . $request->file('image')->getClientOriginalName();
         $path = $request->file('image')->storeAs('', $fileName, 'addFood');
 
