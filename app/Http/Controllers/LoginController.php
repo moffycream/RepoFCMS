@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\OrderController;
 
 class LoginController extends Controller
 {
@@ -30,7 +31,9 @@ class LoginController extends Controller
             }
             else if(Session::get('accountType') == "OperationTeam")
             {
-                return view('operation.op-orders');
+                $orderController = app(OrderController::class);
+                $result = $orderController->index();
+                return $result;
             } 
             else if (Session::get('accountType') == "Customer") 
             {

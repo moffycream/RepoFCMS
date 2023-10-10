@@ -30,7 +30,23 @@ class OrderController extends Controller
     {
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
-        return view('operation.op-orders', ['orders' => $orders], ['selectedOrder' => $selectedOrder]);
+        return view('operation.op-view-order', ['orders'=>$orders], ['selectedOrder'=>$selectedOrder]);
+    }
+
+    public function acceptOrder($orderID)
+    {
+        $orders = Order::all();
+        $selectedOrder = Order::find($orderID);
+        $selectedOrder->status = "preparing";
+        return view('operation.op-view-order', ['orders'=>$orders], ['selectedOrder'=>$selectedOrder]);
+    }
+
+    public function rejectOrder($orderID)
+    {
+        $orders = Order::all();
+        $selectedOrder = Order::find($orderID);
+        $selectedOrder->status = "rejected";
+        return view('operation.op-view-order', ['orders'=>$orders], ['selectedOrder'=>$selectedOrder]);
     }
 
     public function cancelOrder($orderID)

@@ -18,7 +18,7 @@ class OrderListingController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            return view('customer-orders', ['orders' => $order_list]);
+            return view('customer.customer-orders', ['orders' => $order_list]);
         } else {
             return view('login.access-denied');
         }
@@ -32,7 +32,7 @@ class OrderListingController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            return view('customer-orders-listings', ['selectedOrder' => $selectedOrder]);
+            return view('customer.customer-orders-listings', ['selectedOrder' => $selectedOrder]);
         } else {
             return view('login.access-denied');
         }
@@ -45,6 +45,6 @@ class OrderListingController extends Controller
         $order = Order::find($orderID);
         $order->delete();
         $order_list = Order::all();
-        return view('customer-orders', ['orders' => $order_list]);
+        return view('customer.customer-orders', ['orders' => $order_list]);
     }
 }

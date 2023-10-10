@@ -33,8 +33,13 @@ class Order extends Model
         return $this->menus->sum('totalPrice');
     }
 
-    public function getformattedDateTime()
+    public function getformattedTime()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('d F Y g:i A');
+        return Carbon::parse($this->attributes['created_at'])->format('h:i A');
+    }
+
+    public function getformattedDate()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('d F Y');
     }
 }

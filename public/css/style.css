@@ -22,6 +22,7 @@ body {
 /* header */
 header {
     background-color: #ffffff;
+    box-shadow: #00000029 0px 1px 4px;
 }
 
 header div {
@@ -124,11 +125,11 @@ footer p {
 /* article */
 article {
     min-height: 100vh;
-    background-color: var(--color-2);
+    /* background-color: var(--color-2); */
 }
 
 /* login */
-.container-login {
+/* .container-login {
     background-color: var(--color-2);
     width: 100vw;
     height: 100vh;
@@ -183,10 +184,10 @@ article {
     border: none;
     border-radius: 5px;
     margin: 5px 0;
-}
+} */
 
 /* Title */
-.title {
+/* .title {
     font-size: 45px;
     text-align: center;
     background-color: var(--color-3);
@@ -237,10 +238,10 @@ article {
     cursor: pointer;
     color: #2b0548;
     transition: 0.2s;
-}
+} */
 
 /* register success page */
-.button {
+/* .button {
     display: inline-block;
     padding: 10px 20px;
     background-color: var(--color-1);
@@ -255,10 +256,10 @@ article {
     background-color: #2b0548;
     transform: scale(1.1);
     transition: 0.5s;
-}
+} */
 
 /* Login page */
-.login-submit-button {
+/* .login-submit-button {
     font-size: 20px;
     padding: 10px 20px;
     background-color:var(--color-1);
@@ -271,11 +272,11 @@ article {
     color: #312431;
     transform: scale(1.1);
     transition: 0.5s;
-}
+} */
 
 
 /* order listing - operation side */
-.container-op-orders {
+/* .container-op-orders {
     display: flex;
 }
 
@@ -395,4 +396,4 @@ article {
     font-size: 24px;
     padding: 20px;
 
-}
+} */

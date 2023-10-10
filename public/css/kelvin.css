@@ -1,121 +1,173 @@
-/* order listing - operation side */
-.container-op-orders {
-    display: flex;
+.container-op-orders{
+    text-align: left;
+   
 }
 
-.container-op-orders .container:first-child {
-    padding: 20px 40px;
+.container-op-orders .panel{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding-bottom: 20px;
 }
 
-.container-op-orders .row-order-item {
-    margin: 10px 0;
+.container-op-orders .row-op-orders{
+    width: 95%;
+    margin: auto;
 }
 
-.container-op-orders .row-order-item form button {
+.container-op-orders .row-op-orders h1{
+    padding: 30px 0;
+    font-size: 28px;
+}
+
+.container-op-orders table.row-op-orders{
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.container-op-orders table.row-op-orders tr{
     background-color: #ffffff;
+    border: 5px solid #e8dcd4;
+}
+
+.container-op-orders table.row-op-orders th,
+.container-op-orders table.row-op-orders td{
+    padding: 20px;
+}
+
+.container-op-orders table.row-op-orders tr th{
+    background-color: #e8dcd4;
+}
+
+.container-op-orders table.row-op-orders button{
+    background-color: #473447;
+    opacity: 80%;
+    padding: 10px 30px;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: bold;
     border: none;
-    width: 300px;
-    height: 100px;
+}
+
+.container-op-orders table.row-op-orders button:hover{
+    opacity: 100%;
+}
+
+
+/* op-view-order */
+.container-op-view-order{
+    background-color: #e8dcd4;
+    padding: 20px 0;
+    min-height: 100vh;   
+}
+
+.container-op-view-order h1{
+    margin: 20px 0 20px 10%;
+    font-size: 28px;
+}
+
+.container-op-view-order .panel{
+    display: flex;
+    justify-content: center;
+    min-height: 500px;
+    margin-bottom: 100px;
+}
+
+.container-op-view-order .col-op-view-order:first-child{
+    flex: 1;
+    background-color: #ffffff;
+    margin-left: 10%;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.container-op-view-order .col-op-view-order:first-child h2{
+   padding: 20px 30px;
+}
+
+.container-op-view-order .col-op-view-order details[open] summary {
+    background-color: #e0e4e4;
+    border: none;
+}
+
+.container-op-view-order .col-op-view-order details summary{
+    padding: 30px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 10px;
-    padding: 10px 20px;
-}
-
-.container-op-orders .row-order-item form button .row {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-.container-op-orders .row-order-item form button .row p:first-child {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
-
-.container-op-orders .row-order-item form button .col {
-    font-size: 14px;
     font-weight: bold;
+    border-top: 2px solid #0000001a;
 }
 
-.container-op-orders .container:last-child {
-    flex: 1;
-    padding: 20px 40px;
+.container-op-view-order .col-op-view-order details summary::before{
+    content: '▶';
+    transition: transform 0.3s;
 }
 
-.container-op-orders .container:last-child .row-details {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 20px;
-    background-color: #ffffff;
+details[open] summary::before {
+    content: '▼';
+    transform: rotate(90deg); 
 }
 
-.container-op-orders .container:last-child .row-details p {
-    margin-right: 20px;
-    font-size: 18px;
+.container-op-view-order .col-op-view-order details summary:hover 
+{
+    cursor:pointer;
 }
 
-.container-op-orders .row-menu {
-    margin-top: 50px;
+.container-op-view-order .col-op-view-order details summary span{
+    font-size: 14px;
 }
 
-.container-op-orders .row-menu summary {
-    background-color: #ffffff;
-    box-shadow: #43475545 0px 0px 0.25em, #5a7dbc0d 0px 0.25em 1em;
-    padding: 20px;
-}
-
-.container-op-orders .row-menu .food-item {
-    table-layout: fixed;
+.container-op-view-order .col-op-view-order .row-item table{
     width: 100%;
-    padding: 0 20px;
-    background-color: #ffffff;
+    padding: 20px;
 }
 
-.container-op-orders .row-menu .food-item{
-    padding: 10px;
+.container-op-view-order .col-op-view-order .row-item table td{
+    padding: 5px 10px;
+    font-size: 14px;
 }
 
-.container-op-orders .row-menu .food-item {
+.container-op-view-order .col-op-view-order .row-item table td:last-child{
     text-align: right;
 }
 
-.container-op-orders .row-menu .food-item .food-image {
+.container-op-view-order .col-op-view-order .row-item table .container-food-image{
     width: 100px;
-    height: 100px;
+    height: 80px;
     overflow: hidden;
     text-align: center;
+    background-color: #e0e4e4;
+    display: block;
+    margin-bottom: 10px;
 }
 
-.container-op-orders .row-menu .food-item .food-image img {
+.container-op-view-order .col-op-view-order .row-item table .container-food-image img{
     max-width: 100%;
     max-height: 100%;
 }
 
-.container-op-orders .row-addon {
-    margin-top: 50px;
+.container-op-view-order .col-op-view-order .row-add-on{
+    padding: 20px 30px;
+    border-top: 2px solid #0000001a;
 }
 
-.container-op-orders .row-addon p {
-    background-color: #ffffff;
-}
-
-.container-op-orders .row-price {
-    text-align: right;
-    margin-top: 50px;
-    background-color: #ffffff;
-}
-
-.container-op-orders .row-action {
+.container-op-view-order .col-op-view-order:last-child{
+    flex: 1;
+    margin-right: 10%;
+    margin-left: 10px;
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.container-op-orders .row-action a {
-    border: none;
-    font-size: 24px;
+.container-op-view-order .col-op-view-order .row-details,
+.container-op-view-order .col-op-view-order .row-actions
+{
+    border-radius: 10px;
+    background-color: #ffffff;
     padding: 20px;
-
 }
+
