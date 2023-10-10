@@ -10,14 +10,14 @@ class OrderListingController extends Controller
     public function index()
     {
         $order_list = Order::all();
-        return view('customer-orders', ['orders' => $order_list]);
+        return view('customer.customer-orders', ['orders' => $order_list]);
     }
 
     public function viewOrderDetails($orderID)
     {
         $selectedOrder = Order::find($orderID);
     
-        return view('customer-orders-listings', ['selectedOrder' => $selectedOrder]);
+        return view('customer.customer-orders-listings', ['selectedOrder' => $selectedOrder]);
     }
 
     public function cancelOrder($orderID)
@@ -26,6 +26,6 @@ class OrderListingController extends Controller
         $order = Order::find($orderID);
         $order->delete();
         $order_list = Order::all();
-        return view('customer-orders', ['orders' => $order_list]);
+        return view('customer.customer-orders', ['orders' => $order_list]);
     }
 }
