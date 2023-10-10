@@ -17,7 +17,7 @@
         @endif
         <form method="post" action="{{route('user.login')}}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-            <input type="text" name="username" required placeholder="Enter username (case sensitive)">
+            <input type="text" name="username" required placeholder="Enter username">
             <input type="password" name="password" required placeholder="Enter password">
             <button type="submit">Sign in</button>
             <p><a href="{{url('forgot-password')}}">Forgot password</a><br>

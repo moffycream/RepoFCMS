@@ -5,16 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Food;
+use App\Http\Controllers\AdminController;
 
 class FoodMenuController extends Controller
 {
-    public function index()
+    // used for verification
+    protected $adminController;
+    public function index(AdminController $adminController)
     {
         // Retrieve data from the database
         $menus = Menu::all();
         $foods = Food::all();
 
-        return view('food-menu', compact('menus', 'foods'));
+        // Checks whether is admin session or not
+        $this->adminController = $adminController;
+
+        if ($this->adminController->verifyAdmin()) {
+            return view('food-menu', compact('menus', 'foods'));
+        } else {
+            return view('login.access-denied');
+        }
     }
 
     public function addToCart(Request $request)

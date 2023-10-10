@@ -57,7 +57,6 @@ Route::get('/admin-business-analytics', [AdminController::class, 'adminBusinessA
 Route::post('/admin-register', [AdminController::class, 'adminRegisterNewAccount'])->name('admin.register');
 Route::get('/admin-register-success', [AdminController::class, 'adminRegisterSuccess']);
 
-
 // Menu - client side
 Route::get('/menu', [MenuController::class, 'index']);
 

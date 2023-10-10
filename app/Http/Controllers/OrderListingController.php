@@ -4,20 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\UserAccountController;
 
 class OrderListingController extends Controller
 {
-    public function index()
+    // used for verification
+    protected $userAccountController;
+    public function index(UserAccountController $userAccountController)
     {
         $order_list = Order::all();
-        return view('customer.customer-orders', ['orders' => $order_list]);
+
+        // Checks whether is customer session or not
+        $this->userAccountController = $userAccountController;
+
+        if ($this->userAccountController->verifyCustomer()) {
+            return view('customer.customer-orders', ['orders' => $order_list]);
+        } else {
+            return view('login.access-denied');
+        }
     }
 
-    public function viewOrderDetails($orderID)
+    public function viewOrderDetails($orderID, UserAccountController $userAccountController)
     {
         $selectedOrder = Order::find($orderID);
-    
-        return view('customer.customer-orders-listings', ['selectedOrder' => $selectedOrder]);
+
+        // Checks whether is customer session or not
+        $this->userAccountController = $userAccountController;
+
+        if ($this->userAccountController->verifyCustomer()) {
+            return view('customer.customer-orders-listings', ['selectedOrder' => $selectedOrder]);
+        } else {
+            return view('login.access-denied');
+        }
+        
     }
 
     public function cancelOrder($orderID)
