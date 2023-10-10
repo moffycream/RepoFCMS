@@ -41,7 +41,7 @@
     background-color: #e8dcd4;
 }
 
-.container-op-orders table.row-op-orders button{
+.container-op-orders table.row-op-orders a{
     background-color: #473447;
     opacity: 80%;
     padding: 10px 30px;
@@ -49,9 +49,10 @@
     border-radius: 5px;
     font-weight: bold;
     border: none;
+    text-decoration: none;
 }
 
-.container-op-orders table.row-op-orders button:hover{
+.container-op-orders table.row-op-orders a:hover{
     opacity: 100%;
 }
 

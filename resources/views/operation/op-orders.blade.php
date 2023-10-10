@@ -25,10 +25,7 @@
                 <td>RM {{$order->getTotalPrice()}}</td>
                 <td>{{$order->status}}</td>
                 <td>
-                    <form method="post" action="{{route('op.view-order', $order->orderID)}}">
-                        @csrf
-                        <button type="submit">View</button>
-                    </form>
+                    <a href="{{route('op.view-order', $order->orderID)}}">View</a>
                 </td>
             </tr>
             @empty
