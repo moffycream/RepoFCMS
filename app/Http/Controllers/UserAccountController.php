@@ -54,7 +54,29 @@ class UserAccountController extends Controller
     {
         $errorMsg = ""; // error message
         $accounts = new UserAccounts();
-        $accounts->username = $request->username;
+
+        $exist = UserAccounts::where('username', $request->username)->first();
+
+        // checks if any existing account has same username or not
+        if ($exist)
+        {
+            // checks if the exisitng username is same as requested username (in terms of casing)
+            if (strcmp($exist->username, $request->username) == 0) 
+            {
+                $errorMsg .= "Username already exists<br>";
+            }
+            // not the same casing (accepted)
+            else 
+            {
+                $accounts->username = $request->username;
+            }
+        }
+        // don't have any same username
+        else 
+        {
+            $accounts->username = $request->username;
+        }
+        
         if ($request->password == $request->confirmpassword) {
             if (strlen($request->password) < 5) {
                 $errorMsg .= "Password must be more than 5 characters<br>";
