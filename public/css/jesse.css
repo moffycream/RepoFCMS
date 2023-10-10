@@ -28,7 +28,7 @@
 }
 
 .view-details-button button {
-    background-color: #3498db;
+    background-color: #473447;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -40,7 +40,8 @@
 }
 
 .view-details-button button:hover {
-    background-color: #2980b9;
+    background-color: #e0ccd4;
+    color: #000000;
 }
 
 /* Profile */
