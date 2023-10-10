@@ -20,13 +20,13 @@ class FoodMenuController extends Controller
     public function addToCart(Request $request)
     {
         // Retrieve the menu item's ID from the form submission
-        $menuId = $request->input('menu_id');
+        $menu = $request->input('menu');
 
         // Initialize the cart session variable if it doesn't exist
         $cart = $request->session()->get('cart', []);
 
         // Add the menu item's ID to the cart array
-        $cart[] = $menuId;
+        $cart[] = $menu;
 
         // Update the cart session variable with the new data
         $request->session()->put('cart', $cart);
