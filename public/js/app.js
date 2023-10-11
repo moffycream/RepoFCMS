@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    //Austin Chung's JS
     //add menu form
     var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
     var addMenuFormPrice = document.getElementById("add-menu-form-price");

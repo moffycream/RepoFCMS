@@ -3,7 +3,7 @@
 @section('content')
 <h1 class="title">Add Food</h1>
 
-<div class="container">
+<div class="add-menu-container">
     <div class="row-add-menu">
         @php
         $count = 0;
