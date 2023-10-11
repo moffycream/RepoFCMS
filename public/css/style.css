@@ -1,8 +1,8 @@
 :root {
     --color-1: #473447;
     --color-2: #e8dcd4;
-    --color-3: #e0ccd4;
-    --color-4: #e0e4e4;
+    --color-3: #fd6085;
+    --color-4: #e0e4e4be;
     --color-5: #ccdcd0;
     --color-6: #c5a799;
 }
@@ -125,6 +125,7 @@ footer p {
 /* article */
 article {
     min-height: 100vh;
+    overflow: hidden;
     /* background-color: var(--color-2); */
 }
 
