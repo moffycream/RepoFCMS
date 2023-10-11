@@ -28,7 +28,7 @@ class HomeController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            return view('menu');
+            return view('menu', ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }
@@ -40,7 +40,7 @@ class HomeController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            return view('about');
+            return view('about', ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }

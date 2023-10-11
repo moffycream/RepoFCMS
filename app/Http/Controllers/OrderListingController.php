@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserAccountController;
+use App\Models\Notification;
 
 class OrderListingController extends Controller
 {
@@ -18,7 +19,7 @@ class OrderListingController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            return view('customer.customer-orders', ['orders' => $order_list]);
+            return view('customer.customer-orders', ['orders' => $order_list], ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }
@@ -32,7 +33,7 @@ class OrderListingController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            return view('customer.customer-orders-listings', ['selectedOrder' => $selectedOrder]);
+            return view('customer.customer-orders-listings', ['selectedOrder' => $selectedOrder], ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\MenuFood;
@@ -20,7 +21,7 @@ class MenuController extends Controller
 
         if ($this->adminController->verifyAdmin()) 
         {
-            return view('menu.add-menu', ['listItems' => $menu]);
+            return view('menu.add-menu', ['listItems' => $menu], ['notifications' => Notification::all()]);
         }
         else
         {
