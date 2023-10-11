@@ -75,11 +75,90 @@ header>div>div {
 
 header .login {
     justify-self: flex-end;
+    position: relative;
 }
 
 header .login i {
     font-size: 36px;
     color: #473447;
+    cursor: pointer;
+}
+
+header .container-header-login{
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: #ffffff;
+    min-width: 200px;
+    border-radius: 10px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    box-shadow: #0000003d 0px 3px 8px;
+    flex-direction: column;
+}
+
+header .container-header-login .row-header-login{
+    width: 100%;
+}
+
+header .container-header-login .row-header-login:first-child{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #0000001a;
+}
+
+header .container-header-login .row-header-login p{
+    padding: 10px 20px;
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+header .container-header-login .row-header-login a.logout{
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #fd6085;
+    font-weight: bold;
+}
+
+header .container-header-login .row-need-login{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .container-header-login .row-need-login a.login{
+    flex: 1;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+header .container-header-login a.login:hover{
+    background-color: #e0e4e4be;
+}
+
+header .container-header-login .row-header-login:last-child{
+    display: flex;
+}
+
+header .container-header-login .row-header-login a.profile{
+    flex: 1;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: 0.3s ease;
+}
+
+header .container-header-login .row-header-login a.profile:hover{
+    background-color: #e0e4e4be;
 }
 
 header .notification {
@@ -91,6 +170,7 @@ header .notification {
 header .notification>i {
     font-size: 28px;
     color: #473447;
+    cursor: pointer;
 }
 
 header .notification>i:hover {
@@ -114,13 +194,14 @@ header .notification .indicator {
 
 header .container-notification{
     position: absolute;
-    top: 170%;
+    top: 150%;
     right: -200%;
     width: 350px;
     height: 300px;
-    background-color: #e8dcd4;
+    background-color: #ffffff;
     border-radius: 10px;
     display: none;
+    box-shadow: #0000003d 0px 3px 8px;
 }
 
 header .container-notification .col-notification{
@@ -155,19 +236,6 @@ header .container-notification h2{
 header .container-notification p{
     padding: 15px;
 }
-
-header .container-notification .arrow {
-    content: "";
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent; /* Adjust the size as needed */
-    border-right: 15px solid transparent; /* Adjust the size as needed */
-    border-bottom: 15px solid #e8dcd4; /* Arrow color */
-    position: absolute;
-    top: -14px; /* Adjust as needed to position the arrow */
-    left: 50%;
-    transform: translateX(100px);
-  }
 
 
 /* header .search-bar {

@@ -36,33 +36,50 @@
             </ul>
         </nav>
         <div>
-        @if (Session::get('accountType') == "Customer")
+            @if (Session::get('accountType') == "Customer")
             <div class="notification">
                 <i class="fas fa-bell" onclick="toggleNotification()"></i>
                 @if($notifications->count() > 0)
                 <span class="indicator">{{$notifications->count()}}</span>
                 @endif
-                <div class="container-notification" id="notification-container">
+                <div class="container-notification" id="container-notification">
                     <div class="arrow"></div>
                     <div class="col-notification">
                         <h2>Notifications</h2>
                         <i class="fas fa-times" onclick="toggleNotification()"></i>
                     </div>
                     @forelse($notifications as $notification)
-                        <p>{{$notification->content}}</p>
+                    <p>{{$notification->content}}</p>
                     @empty
                     @endforelse
                 </div>
             </div>
             @endif
-            <div class="login" href="#"><i class="fas fa-user-circle"></i></i></div>
-        </div>
+            <div class="login">
+                <i class="fas fa-user-circle" onclick="toggleHeaderLogin()"></i></i>
+                <div class="container-header-login" id="container-header-login">
+                    @if (Session::get('accountType') == "Customer")
+                    <div class="row-header-login">
+                        <p>{{Session::get('username')}}</p>
+                        <a class="logout" href="{{url('logout')}}">Logout</a>
+                    </div>
 
-        <!-- <form method="get" action="#" class="search-bar">
+                    <div class="row-header-login">
+                        <a class="profile" href="{{url('profile')}}">My profile</a>
+                    </div>
+                    @else
+                    <div class="row-need-login">
+                        <a class="login" href="{{url('login')}}">Login</a>
+                    </div>
+                    @endif
+                </div>
+            </div>
+
+            <!-- <form method="get" action="#" class="search-bar">
             <input type="text" name="search-bar" placeholder="Search...">
             <button type="submit" title="search"><i class="fas fa-search"></i>
         </form> -->
-    </div>
+        </div>
 </header>
 
 <!--<a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Royyan Wijaya - Flaticon</a>-->
