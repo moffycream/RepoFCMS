@@ -15,12 +15,16 @@
     margin-right: auto;
 }
 
-.container .row-add-menu{
+.add-menu-container{
+    margin-top: 100px;
+}
+
+.add-menu-container .row-add-menu{
     display: flex;
     margin: 50px 0;
 }
 
-.container .row-add-menu .col-add-menu {
+.add-menu-container .row-add-menu .col-add-menu {
     background-color: var(--color-6);
     height: 30vh;
     min-width: 25vw;
@@ -32,40 +36,43 @@
     
 }
 
-.container .row-add-menu .col-add-menu .col-add-menu-info-row{
+.add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-row{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 7vw;
 }
 
-.container .row-add-menu  .col-add-menu .col-add-menu-info-title{
+.col-add-menu-info-title{
+    font-size: 40px;
     font-weight: bold;
 }
 
 
-.container .row-add-menu  .col-add-menu .col-add-menu-info-col p{
+.add-menu-container .row-add-menu  .col-add-menu .col-add-menu-info-col p{
     font-size: 20px;
     color: #ffffff;
+    overflow-wrap: break-word;
 }
 
-.container .row-add-menu .col-add-menu a{
+.add-menu-container .row-add-menu .col-add-menu a{
     margin:auto;
     color: #ffffff;
     font-size: 100px;
     font-weight: 900;
 }
 
-.container .row-add-menu .col-add-menu a:link {
+.add-menu-container .row-add-menu .col-add-menu a:link {
     text-decoration: none;
 }
 
 /* Add menu & food form*/
 .add-menu-form{
-    background-color: var(--color-3);
+    background-color: var(--color-2);
+    border-radius: 20px;
     width: 40vw;
     margin: auto;
-    display: flex-box;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     font-size: 40px;
@@ -73,7 +80,12 @@
 }
 
 .add-menu-form div{
-    margin: 30px 0;
+    margin: 30px 20px;
+}
+
+.add-menu-form-title {
+    font-size: 60px;
+    text-align: center;
 }
 
 .add-menu-form input{
@@ -81,6 +93,11 @@
 }
 
 .add-menu-form button{
+    margin: 10px 20px;
+    background-color:  var(--color-1);
+    color: #ffffff;
+    border-radius: 20px;
+    width: calc(40vw - 40px);
     font-size: 40px;
     padding: 5px;
 }
@@ -88,4 +105,8 @@
 .add-menu-form input[type="checkbox"]{
     width: 25px;
     height: 25px;
+}
+
+.food-description-div input{
+    width: 30vw;
 }

@@ -18,12 +18,12 @@ class OrderController extends Controller
         // Checks whether is valid login or not
         $this->adminController = $adminController;
         
+        return view('operation.op-orders', ['orders' => $orders]);
         // checks whether it is operation team or is admin, if either one access is allow
-        if ($this->adminController->verifyOperationTeam() || $this->adminController->verifyAdmin()) {
-            return view('operation.op-orders', ['orders' => $orders]);
-        } else {
-            return view('login.access-denied');
-        }
+        // if ($this->adminController->verifyOperationTeam() || $this->adminController->verifyAdmin()) {
+        // } else {
+        //     return view('login.access-denied');
+        // }
     }
 
     public function viewOrder($orderID)
@@ -38,7 +38,17 @@ class OrderController extends Controller
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "preparing";
+        $selectedOrder->save();
         return view('operation.op-view-order', ['orders'=>$orders], ['selectedOrder'=>$selectedOrder]);
+    }
+
+    public function completeOrder($orderID)
+    {
+        $orders = Order::all();
+        $selectedOrder = Order::find($orderID);
+        $selectedOrder->status = "completed";
+        $selectedOrder->save();
+        return redirect('/op-orders')->with(['orders'=>$orders]);
     }
 
     public function rejectOrder($orderID)
@@ -46,7 +56,8 @@ class OrderController extends Controller
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "rejected";
-        return view('operation.op-view-order', ['orders'=>$orders], ['selectedOrder'=>$selectedOrder]);
+        $selectedOrder->save();
+        return redirect('/op-orders')->with(['orders'=>$orders]);
     }
 
     public function cancelOrder($orderID)

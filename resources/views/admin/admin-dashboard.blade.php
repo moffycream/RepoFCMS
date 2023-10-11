@@ -9,7 +9,7 @@
     @endif
     <a href="{{url('admin-register')}}" class="btn">Create New Profile</a>
     <a href="{{url('add-menu')}}" class="btn">Add Menu</a>
-    <a href="{{url('add-food')}}" class="btn">Add Food to Menu</a>
+    <a href="{{url('add-food')}}" class="btn">Add Food</a>
     <a href="{{url('business-analytics')}}" class="btn">Business Analytics</a>
     <a href="{{url('logout')}}" class="btn">Logout</a>
 </div>

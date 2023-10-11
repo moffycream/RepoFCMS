@@ -30,7 +30,9 @@ class Order extends Model
 
     public function getTotalPrice()
     {
-        return $this->menus->sum('totalPrice');
+        $totalPrice = $this->menus->sum('totalPrice');
+        $formattedTotalPrice = number_format($totalPrice, 2);
+        return $formattedTotalPrice;
     }
 
     public function getformattedTime()

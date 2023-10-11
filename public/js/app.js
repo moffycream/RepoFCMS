@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    //Austin Chung's JS
     //add menu form
     var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
     var addMenuFormPrice = document.getElementById("add-menu-form-price");
@@ -453,9 +454,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //jesse'js 
+// customer-orders-listings's js 
 function confirmCancel(status) {
     if (status === 'preparing') {
-        alert("You cannot cancel an order that is currently preparing.");
+        alert("Sorry, you cannot cancel that order that is currently preparing.");
         return false;
     }
     return confirm("Are you sure you want to cancel this order?");
