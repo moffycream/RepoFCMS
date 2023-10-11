@@ -127,7 +127,7 @@ class UserAccountController extends Controller
 
         if ($errorMsg == "") {
             $accounts->save();
-            // return redirect('/register/register-success');
+            return redirect('/register/register-success');
         } else {
             return view('login.register')->with('errorMsg', $errorMsg);
         }
