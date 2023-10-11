@@ -1,0 +1,67 @@
+Date/Location: 05-10-2023, Online (Discord)
+Attendees: 
+- Gavin
+- Wong Zing Ung
+- Kelvin
+- Austin 
+- Jesse
+- Guilbert 
+
+Start Time: 9pm
+End Time: 9:19pm
+
+Feedback (Individual)
+=====================
+1. Gavin
+What did you do yesterday?
+- Researched on registration form requirements and database structure
+- Screenshot and saved trello board, burndown chart and github repository
+- Setup for development
+
+What will you do today?
+- Structure basic webpage and form elements based on the research
+- Implement code to create and link database to be used for registered users
+- Registration form validations
+
+What (if anything) is blocking your progress?
+- None for today
+
+
+2. Wong Zing Ung
+3. Kelvin
+4. Austin
+5. Jesse
+6. Guilbert 
+
+
+Actions (Doing today, group based)
+===================================
+Action 1:
+Target Date: 05-10-2023 (Same day, Day 2)
+Personals: Gavin
+- Screenshot and jot down trello board, burndown chart and github repository
+
+Action 2:
+Target Date: 05-10-2023 (Same day, Day 2)
+Personals: Gavin, Zing Ung, Kelvin, Austin, Jesse, Guilbert
+- Doing template / function for creating database
+
+
+Action 3:
+Target Date: 05-10-2023 (Same day, Day 2)
+Personals: Gavin, Zing Ung, Kelvin, Austin, Jesse, Guilbert
+- Finishing refining header and footer of the website
+
+
+Action 4:
+Target Date: 06-10-2023 (Day 3)
+Personals: Gavin
+- Finishing register webpage to receive all inputs needed for database 
+- Doing validations for registration page
+
+Action 5:?
+
+Decisions / Outcomes (Expected in next meeting)
+================================================
+- Database creation and implementation code template
+- 

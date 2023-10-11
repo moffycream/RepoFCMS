@@ -1,0 +1,61 @@
+Date/Location: 06-10-2023, Online (Discord)
+Attendees: 
+- Gavin
+- Wong Zing Ung
+- Kelvin
+- Austin 
+- Jesse
+- Guilbert 
+
+Start Time: 9pm
+End Time: 9:20pm
+
+
+Feedback (Individual)
+=====================
+1. Gavin
+What did you do yesterday?
+- Structured basic webpage and form elements based on the research
+- Implemented code to create and link database to be used for registered users
+
+What will you do today?
+- Tidy up, finish register page and do some designing based on updated theme for webpage
+- Start on login page
+- Start implementing forgot password feature for logging in 
+
+What (if anything) is blocking your progress?
+- None for today
+
+
+2. Wong Zing Ung
+3. Kelvin
+4. Austin
+5. Jesse
+6. Guilbert 
+
+
+Actions (Doing today, group based)
+===================================
+Action 1:
+Target Date: 06-10-2023 (Same day, Day 3)
+Personals: Gavin
+- Screenshot and jot down trello board, burndown chart and github repository
+
+Action 2:
+Target Date: 07-10-2023 (Day 4)
+Personals: Gavin
+- Tidying up register page and do some designing based on updated theme for webpage
+- Started on login page
+- Started implementing forgot password feature for logging in (using framework given features)
+
+
+Action 3:
+Target Date: 07-10-2023 (Day 4)
+Personals: 
+
+
+
+Decisions / Outcomes (Expected in next meeting)
+================================================
+- Registration page finished
+- Login page started development
