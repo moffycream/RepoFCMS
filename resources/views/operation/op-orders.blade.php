@@ -29,6 +29,9 @@
                 </td>
             </tr>
             @empty
+            <tr class="empty">
+                <td colspan="7">No orders right now</td>
+            </tr>
             @endforelse
         </table>
     </div>
