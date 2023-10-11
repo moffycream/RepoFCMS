@@ -71,6 +71,7 @@ class LoginController extends Controller
                 else
                 {
                     $user->password = Hash::make($newpassword);
+                    $user->save();
                     Session::flash('success', 'Password updated, you may login with your new password now');
                     return view('login.login');
                 }
