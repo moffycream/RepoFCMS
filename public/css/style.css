@@ -111,15 +111,30 @@ header .search-bar button i {
 /* footer */
 footer {
     background-color: var(--color-1);
-    min-height: 300px;
+    min-height: 150px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 footer p {
-    align-self: flex-end;
     color: #ffffff;
     font-size: 20px;
+}
+
+footer .footer-logo img{
+    width: 75px;
+    height: 75px;
+}
+
+footer .footer-logo-text{
+    text-decoration: none;
+}
+
+footer .footer-copyright{
+    font-size: 15px;
+    color: #ffffff7c;
 }
 
 /* article */
