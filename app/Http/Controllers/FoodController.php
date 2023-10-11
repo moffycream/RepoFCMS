@@ -71,29 +71,4 @@ class FoodController extends Controller
 
         return redirect('/add-food');
     }
-
-
-    // Update function 
-    public function update()
-    {
-
-        $food = Food::find(1);
-
-        $food->topic = "Laravel";
-
-        $food->save();
-
-        echo "Update Successful!";
-    }
-
-    // Delete function 
-    public function delete()
-    {
-
-        $food = Food::find(1);
-
-        $food->delete();
-
-        echo "Delete Successful!";
-    }
 }
