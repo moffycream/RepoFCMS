@@ -36,7 +36,7 @@
             </ul>
         </nav>
         <div>
-        @if (Session::get('accountType') == "Customer")
+            @if (Session::get('accountType') == "Customer")
             <div class="notification">
                 <i class="fas fa-bell" onclick="toggleNotification()"></i>
                 @if($notifications->count() > 0)
@@ -49,7 +49,7 @@
                         <i class="fas fa-times" onclick="toggleNotification()"></i>
                     </div>
                     @forelse($notifications as $notification)
-                        <p>{{$notification->content}}</p>
+                    <p>{{$notification->content}}</p>
                     @empty
                     @endforelse
                 </div>

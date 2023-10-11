@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\UserAccountController;
 use App\Models\Payment;
 use App\Models\Order;
+use App\Models\Notification;
 
 // validations
 class PurchaseController extends Controller
@@ -19,7 +20,7 @@ class PurchaseController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            return view('purchase', compact('orders'));
+            return view('purchase', compact('orders'), ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }
