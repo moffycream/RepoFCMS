@@ -2,6 +2,8 @@
 @section('title', 'Admin-Orders')
 @section('content')
 
+<h1></h1>
+
 <div class="add-menu-container">
     <form class="add-menu-form" id="add-food-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
         @csrf

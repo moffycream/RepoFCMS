@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Admin-Orders')
 @section('content')
-<h1 class="title">Add Food</h1>
+<h1 class="add-menu-title">Add Food</h1>
 
 <div class="add-menu-container">
     <div class="row-add-menu">

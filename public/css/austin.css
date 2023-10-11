@@ -4,7 +4,6 @@
     --color-3: #e0ccd4;
     --color-4: #e0e4e4;
     --color-5: #ccdcd0;
-    --color-6: #c5a799;
 }
 
 /* Add menu */
@@ -15,8 +14,14 @@
     margin-right: auto;
 }
 
+.add-menu-title{
+    font-size: 60px;
+    text-align: center;
+    margin: 25px 0;
+}
+
 .add-menu-container{
-    margin-top: 100px;
+    margin: 100px 0;
 }
 
 .add-menu-container .row-add-menu{
@@ -25,15 +30,14 @@
 }
 
 .add-menu-container .row-add-menu .col-add-menu {
-    background-color: var(--color-6);
+    background-color: var(--color-2);
     height: 30vh;
     min-width: 25vw;
     margin: 0 4vw;
     border-radius: 20px;
     display: flex;
     justify-content: center;
-    box-shadow: #000000;
-    
+    box-shadow: #00000029 0px 1px 4px;
 }
 
 .add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-row{
@@ -51,13 +55,11 @@
 
 .add-menu-container .row-add-menu  .col-add-menu .col-add-menu-info-col p{
     font-size: 20px;
-    color: #ffffff;
     overflow-wrap: break-word;
 }
 
 .add-menu-container .row-add-menu .col-add-menu a{
     margin:auto;
-    color: #ffffff;
     font-size: 100px;
     font-weight: 900;
 }
@@ -77,6 +79,7 @@
     justify-content: center;
     font-size: 40px;
     font-weight: bold;
+    box-shadow: #00000029 0px 1px 4px;
 }
 
 .add-menu-form div{
