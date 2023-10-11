@@ -25,7 +25,7 @@ header {
     box-shadow: #00000029 0px 1px 4px;
 }
 
-header div {
+header>div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,6 +48,10 @@ header .logo-text {
     margin-left: 20px;
 }
 
+header div nav{
+    margin-right: 100px;
+}
+
 header div nav ul {
     list-style-type: none;
 }
@@ -63,7 +67,110 @@ header div nav ul li a {
     padding: 10px;
 }
 
-header .search-bar {
+header>div>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .login {
+    justify-self: flex-end;
+}
+
+header .login i {
+    font-size: 36px;
+    color: #473447;
+}
+
+header .notification {
+    position: relative;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+header .notification>i {
+    font-size: 28px;
+    color: #473447;
+}
+
+header .notification>i:hover {
+    opacity: 80%;
+}
+
+header .notification .indicator {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #fd6085;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+header .container-notification{
+    position: absolute;
+    top: 170%;
+    right: -200%;
+    width: 350px;
+    height: 300px;
+    background-color: #e8dcd4;
+    border-radius: 10px;
+    display: none;
+}
+
+header .container-notification .col-notification{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #0000001a;
+}
+
+header .container-notification .col-notification h2{
+    flex: 1;
+}
+
+header .container-notification .col-notification i{
+    flex:1;
+    text-align: right;
+    padding-right: 15px;
+    opacity: 80%;
+    color: #473447;
+    font-size: 24px;
+}
+
+header .container-notification .col-notification i:hover{
+    opacity: 100%;
+}
+
+header .container-notification h2{
+    font-size: 18px;
+    padding: 15px;
+}
+
+header .container-notification p{
+    padding: 15px;
+}
+
+header .container-notification .arrow {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent; /* Adjust the size as needed */
+    border-right: 15px solid transparent; /* Adjust the size as needed */
+    border-bottom: 15px solid #e8dcd4; /* Arrow color */
+    position: absolute;
+    top: -14px; /* Adjust as needed to position the arrow */
+    left: 50%;
+    transform: translateX(100px);
+  }
+
+
+/* header .search-bar {
     height: 36px;
     display: flex;
     align-items: center;
@@ -106,7 +213,7 @@ header .search-bar button i {
     color: #ffffff;
     text-align: center;
     font-size: 18px;
-}
+} */
 
 /* footer */
 footer {

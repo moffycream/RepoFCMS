@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserAccounts;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\CssSelector\Parser\Shortcut\ElementParser;
 
@@ -31,7 +32,7 @@ class UserAccountController extends Controller
             $account->password = Hash::make($account->password);
             $account->save();
         }
-        return view('login.login');
+        return view('login.login',['notifications' => Notification::all()]);
     }
 
     public function verifyCustomer()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\UserAccounts;
+use App\Models\Notifiable;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
@@ -37,7 +38,7 @@ class LoginController extends Controller
             } 
             else if (Session::get('accountType') == "Customer") 
             {
-                return redirect('/');
+                return redirect('/')->with(['notifications' => Notifiable::all()]);
             }
         } 
         else {

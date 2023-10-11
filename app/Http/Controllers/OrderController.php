@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Notification;
 use App\Http\Controllers\AdminController;
 
 class OrderController extends Controller
@@ -30,7 +31,7 @@ class OrderController extends Controller
     {
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
-        return view('operation.op-view-order', ['orders'=>$orders], ['selectedOrder'=>$selectedOrder]);
+        return view('operation.op-view-order', ['orders'=>$orders, 'selectedOrder'=>$selectedOrder]);
     }
 
     public function acceptOrder($orderID)
@@ -39,7 +40,12 @@ class OrderController extends Controller
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "preparing";
         $selectedOrder->save();
-        return view('operation.op-view-order', ['orders'=>$orders], ['selectedOrder'=>$selectedOrder]);
+
+        $notification = new Notification();
+        $notification->content = 'Your order#' . $orderID . ' is accepted'; 
+        $notification->save();
+
+        return view('operation.op-view-order', ['orders'=>$orders, 'selectedOrder'=>$selectedOrder]);
     }
 
     public function completeOrder($orderID)
@@ -48,6 +54,11 @@ class OrderController extends Controller
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "completed";
         $selectedOrder->save();
+
+        $notification = new Notification();
+        $notification->content = 'Your order#' . $orderID . ' is completed'; 
+        $notification->save();
+
         return redirect('/op-orders')->with(['orders'=>$orders]);
     }
 
@@ -57,6 +68,10 @@ class OrderController extends Controller
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "rejected";
         $selectedOrder->save();
+
+        $notification = new Notification();
+        $notification->content = 'Your order#' . $orderID . ' is cancelled'; 
+        $notification->save();
         return redirect('/op-orders')->with(['orders'=>$orders]);
     }
 

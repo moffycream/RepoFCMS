@@ -1,3 +1,15 @@
+
+// notification
+function toggleNotification() {
+    var notificationContainer = document.getElementById('notification-container');
+    if (notificationContainer.style.display === 'none') {
+        notificationContainer.style.display = 'block';
+    } else {
+        notificationContainer.style.display = 'none';
+    }
+};
+
+
 document.addEventListener("DOMContentLoaded", function () {
     //add menu form
     var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
