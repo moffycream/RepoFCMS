@@ -5,7 +5,6 @@ use App\Models\UserAccounts;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Models\Notification;
 
 class ProfileController extends Controller
 {

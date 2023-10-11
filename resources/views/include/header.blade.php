@@ -3,7 +3,6 @@
         <a class="logo" href="{{url('/')}}"><img class src="{{ asset('images/logo.png') }}" alt="logo"><span class="logo-text">Food Edge</span></a>
         <nav>
             <ul>
-                {{--
                 <!--Change header options based on session-->
                 @if (Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin")
                 <li><a href="{{url('admin-dashboard')}}">Dashboard</a></li>
@@ -23,16 +22,7 @@
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('profile')}}">Profile</a></li>
-
-                @else
-
                 @endif
-                --}}
-                <li><a href="{{url('/')}}">Home</a></li>
-                <li><a href="{{url('display-menu')}}">Menu</a></li>
-                <li><a href="{{url('customer-orders')}}">Orders</a></li>
-                <li><a href="{{url('about')}}">About</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li>
             </ul>
         </nav>
         <div>
@@ -58,7 +48,7 @@
             <div class="login">
                 <i class="fas fa-user-circle" onclick="toggleHeaderLogin()"></i></i>
                 <div class="container-header-login" id="container-header-login">
-                    @if (Session::get('accountType') == "Customer")
+                    @if (Session::get('accountType') == "Customer" || Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin" || Session::get('accountType') == "OperationTeam" )
                     <div class="row-header-login">
                         <p>{{Session::get('username')}}</p>
                         <a class="logout" href="{{url('logout')}}">Logout</a>

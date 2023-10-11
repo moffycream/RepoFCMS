@@ -10,36 +10,36 @@ class HomeController extends Controller
 {
     // used for verification
     protected $userAccountController;
-    public function index(UserAccountController $userAccountController)
+    public function index()
     {
         // Checks whether is customer session or not
-        $this->userAccountController = $userAccountController;
+        $userAccountController = app(UserAccountController::class);
 
-        if ($this->userAccountController->verifyCustomer()) {
+        if ($userAccountController->verifyCustomer()) {
             return view('welcome',['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }
     }
 
-    public function menu(UserAccountController $userAccountController)
+    public function menu()
     {
         // Checks whether is customer session or not
-        $this->userAccountController = $userAccountController;
+        $userAccountController = app(UserAccountController::class);
 
-        if ($this->userAccountController->verifyCustomer()) {
+        if ($userAccountController->verifyCustomer()) {
             return view('menu', ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }
     }
 
-    public function about(UserAccountController $userAccountController)
+    public function about()
     {
         // Checks whether is customer session or not
-        $this->userAccountController = $userAccountController;
+        $userAccountController = app(UserAccountController::class);
 
-        if ($this->userAccountController->verifyCustomer()) {
+        if ($userAccountController->verifyCustomer()) {
             return view('about', ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');

@@ -34,7 +34,7 @@ class LoginController extends Controller
             {
                 $orderController = app(OrderController::class);
                 $result = $orderController->index();
-                return $result;
+                return redirect('op-orders');
             } 
             else if (Session::get('accountType') == "Customer") 
             {

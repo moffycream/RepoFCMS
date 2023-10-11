@@ -12,12 +12,12 @@ class OrderController extends Controller
     // used for verification
     protected $adminController;
 
-    public function index(AdminController $adminController)
+    public function index()
     {
         $orders = Order::all();
 
         // Checks whether is valid login or not
-        $this->adminController = $adminController;
+        $adminController = app(AdminController::class);
         
         return view('operation.op-orders', ['orders' => $orders]);
         // checks whether it is operation team or is admin, if either one access is allow
