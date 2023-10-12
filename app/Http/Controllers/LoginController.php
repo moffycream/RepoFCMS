@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\UserAccounts;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\OrderController;
 
 class LoginController extends Controller
 {
@@ -26,15 +28,17 @@ class LoginController extends Controller
 
             if (Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin")
             {
-                return view('admin.admin-dashboard');
+                return redirect('/admin-dashboard');
             }
             else if(Session::get('accountType') == "OperationTeam")
             {
-                return view('operation.op-orders');
+                $orderController = app(OrderController::class);
+                $result = $orderController->index();
+                return redirect('op-orders');
             } 
             else if (Session::get('accountType') == "Customer") 
             {
-                return redirect('/');
+                return redirect('/')->with(['notifications' => Notification::all()]);
             }
         } 
         else {
@@ -68,6 +72,7 @@ class LoginController extends Controller
                 else
                 {
                     $user->password = Hash::make($newpassword);
+                    $user->save();
                     Session::flash('success', 'Password updated, you may login with your new password now');
                     return view('login.login');
                 }
@@ -82,5 +87,14 @@ class LoginController extends Controller
             Session::flash('forgotpassworderror', 'Failed to reset password. Please check your username and new password.');
             return view('login.forgot-password');
         }
+    }
+
+    public function endSession()
+    {
+        Session::forget('username');
+        Session::forget('accountType');
+        session()->flush();
+
+        return redirect('/login');
     }
 }

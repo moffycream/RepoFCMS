@@ -9,28 +9,73 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    // function to check login session as admin
+    public function verifyAdmin()
+    {
+        if (session('accountType') != "Admin" && session('accountType') != "DefaultAdmin") {
+            return false;
+        }
+
+        return true;
+    }  
+
+    // function to check login session as operation team
+    public function verifyOperationTeam()
+    {
+        if (session('accountType') != "OperationTeam") {
+            return false;
+        }
+
+        return true;
+    }
+    
     public function index()
     {
-        return view('admin/admin-dashboard');
+        // admin verification
+        if($this->verifyAdmin())
+        {
+            return view('admin.admin-dashboard');
+        }
+        else
+        {
+            return view('login.access-denied');
+        }
     }
 
     public function adminRegister()
     {
-        return view('admin/admin-register');    
+        // admin verification
+        if ($this->verifyAdmin()) {
+            return view('admin.admin-register');  
+        } else {
+            return view('login.access-denied');
+        }
+          
     }
 
     public function adminBusinessAnalytics()
     {
-        return view('admin/business-analytics');
+        // admin verification
+        if ($this->verifyAdmin()) {
+            return view('business-analytics');
+        } else {
+            return view('login.access-denied');
+        }
+        
     }
     public function adminEditProfile()
     {
-        return view('admin/admin-edit-profile');
+        return view('admin.admin-edit-profile');
     }
 
     public function adminRegisterSuccess()
     {
-        return view('admin/admin-register-success');
+        // admin verification
+        if ($this->verifyAdmin()) {
+            return view('admin.admin-register-success');
+        } else {
+            return view('login.access-denied');
+        }
     }
 
     public function adminRegisterNewAccount(Request $request)
@@ -78,14 +123,6 @@ class AdminController extends Controller
             return redirect('/admin-register-success');
         } else {
             return view('admin.admin-register')->with('errorMsg', $errorMsg);
-        }
-    }
-
-    public function verifyAdmin()
-    {
-        if (Session::get('accountType') != "Admin")
-        {
-            return view('login.access-denied');
         }
     }
 }

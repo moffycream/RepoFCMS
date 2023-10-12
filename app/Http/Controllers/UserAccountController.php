@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserAccounts;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\CssSelector\Parser\Shortcut\ElementParser;
 
@@ -31,8 +32,17 @@ class UserAccountController extends Controller
             $account->password = Hash::make($account->password);
             $account->save();
         }
-        return view('login.login');
+        return view('login.login',['notifications' => Notification::all()]);
     }
+
+    public function verifyCustomer()
+    {
+        if (session('accountType') != "Customer") {
+            return false;
+        }
+
+        return true;
+    }  
 
     public function register()
     {
@@ -54,45 +64,67 @@ class UserAccountController extends Controller
     {
         $errorMsg = ""; // error message
         $accounts = new UserAccounts();
-        $accounts->username = $request->username;
-        if ($request->password == $request->confirmpassword) {
-            if (strlen($request->password) < 5) {
-                $errorMsg .= "Password must be more than 5 characters<br>";
-            } else {
-                $accounts->password = Hash::make($request->password);
-            }
-        } else {
-            $errorMsg .= "Password and confirm password don't match<br>";
-        }
-        $phonePattern = '/^\d{10}$/';
-        if (!preg_match($phonePattern, $request->phone)) {
-            $errorMsg .= "Invalid phone number<br>";
-        } else {
-            $accounts->phone = $request->phone;
-        }
-        $accounts->firstName = $request->firstName;
-        $accounts->lastName = $request->lastName;
-        if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-            $errorMsg .= "Invalid email format<br>";
-        } else {
-            $accounts->email = $request->email;
-        }
-        $accounts->streetAddress = $request->streetAddress;
-        $accounts->city = $request->city;
-        if (!is_numeric($request->postcode)) {
-            $errorMsg .= "Invalid postcode<br>";
-        } else {
-            $accounts->postcode = $request->postcode;
-        }
-        if ($request->accountType == "Customer" || $request->accountType == "Admin" || $request->accountType == "OperationTeam")
-        {
-            $accounts->accountType = $request->accountType;
-        }
-        else {
-            $errorMsg .= "Invalid account type<br>";
-        }
 
-        
+        $exist =  UserAccounts::where(UserAccounts::raw("BINARY username"), $request->username)->first();
+
+        // checks if any existing account has same username or not
+        if ($exist !== null)
+        {
+            
+            // checks if the exisitng username is same as requested username (in terms of casing)
+            // if (strcmp($exist->username, $request->username) == 0) 
+            // {
+            // if (strcmp($exist->username, $request->username) == 0) 
+            // {
+                $errorMsg .= "Username already exists<br>";
+            //}
+            // not the same casing (accepted)
+            // else 
+            // {
+             //   $accounts->username = $request->username;
+            //}
+        }
+        // don't have any same username
+        else 
+        {
+            $accounts->username = $request->username;
+            if ($request->password == $request->confirmpassword) {
+                if (strlen($request->password) < 5) {
+                    $errorMsg .= "Password must be more than 5 characters<br>";
+                } else {
+                    $accounts->password = Hash::make($request->password);
+                }
+            } else {
+                $errorMsg .= "Password and confirm password don't match<br>";
+            }
+            $phonePattern = '/^\d{10}$/';
+            if (!preg_match($phonePattern, $request->phone)) {
+                $errorMsg .= "Invalid phone number<br>";
+            } else {
+                $accounts->phone = $request->phone;
+            }
+            $accounts->firstName = $request->firstName;
+            $accounts->lastName = $request->lastName;
+            if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+                $errorMsg .= "Invalid email format<br>";
+            } else {
+                $accounts->email = $request->email;
+            }
+            $accounts->streetAddress = $request->streetAddress;
+            $accounts->city = $request->city;
+            if (!is_numeric($request->postcode)) {
+                $errorMsg .= "Invalid postcode<br>";
+            } else {
+                $accounts->postcode = $request->postcode;
+            }
+            if ($request->accountType == "Customer" || $request->accountType == "Admin" || $request->accountType == "OperationTeam")
+            {
+                $accounts->accountType = $request->accountType;
+            }
+            else {
+                $errorMsg .= "Invalid account type<br>";
+            }
+        }
 
         if ($errorMsg == "") {
             $accounts->save();

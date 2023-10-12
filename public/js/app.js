@@ -1,4 +1,51 @@
+
+// Define an array of container IDs
+var containerIds = ['container-notification', 'container-header-login'];
+
+// Function to toggle container visibility
+function toggleContainerVisibility(containerId) {
+    var container = document.getElementById(containerId);
+    var currentDisplay = container.style.display;
+
+    if (currentDisplay === 'none' || currentDisplay === '') {
+        container.style.display = 'block';
+    } else {
+        container.style.display = 'none';
+    }
+}
+
+// Function to hide all containers except the specified one
+function hideAllContainersExcept(containerIdToKeepOpen) {
+    containerIds.forEach(function (containerId) {
+        if (containerId !== containerIdToKeepOpen) {
+            var container = document.getElementById(containerId);
+            container.style.display = 'none';
+        }
+    });
+}
+
+// notification
+function toggleNotification() {
+    toggleContainerVisibility('container-notification');
+    hideAllContainersExcept('container-notification');
+}
+
+// header login
+function toggleHeaderLogin() {
+    var container = document.getElementById('container-header-login');
+    var currentDisplay = container.style.display;
+    if (currentDisplay === 'none' || currentDisplay === '') {
+        container.style.display = 'flex';
+    } else {
+        container.style.display = 'none';
+    }
+    hideAllContainersExcept('container-header-login');
+}
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
+    //Austin Chung's JS
     //add menu form
     var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
     var addMenuFormPrice = document.getElementById("add-menu-form-price");
@@ -456,9 +503,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //jesse'js 
+// customer-orders-listings's js 
 function confirmCancel(status) {
     if (status === 'preparing') {
-        alert("You cannot cancel an order that is currently preparing.");
+        alert("Sorry, you cannot cancel that order that is currently preparing.");
         return false;
     }
     return confirm("Are you sure you want to cancel this order?");

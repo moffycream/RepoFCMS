@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_accounts', function (Blueprint $table) {
             $table->id('userID');
-            $table->char('username');
-            $table->char('password');
+            $table->string('username');
+            $table->string('password');
             $table->char('phone');
             $table->char('firstName');
             $table->char('lastName');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->char('city');
             $table->char('postcode');
             $table->char('accountType');
-             $table->timestamps();
+            $table->timestamps();
         });
     }
 

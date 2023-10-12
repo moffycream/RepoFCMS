@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Http\Controllers\AdminController;
 
 class AnalyticsController extends Controller
 {
-    public function index()
+    // used for verification
+    protected $adminController;
+    public function index(AdminController $adminController)
     {
         // Retrieve and process your business data here
         $profitData = $this->calculateProfit(); // Logic to calculate profit data
@@ -22,7 +24,14 @@ class AnalyticsController extends Controller
         // Prepare data for a bar chart
         $chartData = $this->prepareChartData($orders);
 
-        return view('business-analytics', compact('orders', 'totalOrderAmount', 'chartData', 'profitData', 'revenueData'));
+        // Checks whether is admin session or not
+        $this->adminController = $adminController;
+
+        if ($this->adminController->verifyAdmin()) {
+            return view('business-analytics', compact('orders', 'totalOrderAmount', 'chartData', 'profitData', 'revenueData'));
+        } else {
+            return view('login.access-denied');
+        }
     }
 
     private function calculateProfit()
@@ -44,11 +53,11 @@ class AnalyticsController extends Controller
     private function prepareChartData($orders)
     {
         // Prepare data for a bar chart
-        $chartData = 
-        [
-            'labels' => $orders->pluck('customer_name'),
-            'data' => $orders->pluck('order_amount'),
-        ];
+        $chartData =
+            [
+                'labels' => $orders->pluck('customer_name'),
+                'data' => $orders->pluck('order_amount'),
+            ];
 
         return $chartData;
     }

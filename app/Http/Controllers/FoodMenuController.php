@@ -5,28 +5,39 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Food;
+use App\Http\Controllers\AdminController;
+use App\Models\Notification;
 
 class FoodMenuController extends Controller
 {
-    public function index()
+    // used for verification
+    protected $adminController;
+    public function index(AdminController $adminController)
     {
         // Retrieve data from the database
         $menus = Menu::all();
         $foods = Food::all();
 
-        return view('food-menu', compact('menus', 'foods'));
+        // Checks whether is admin session or not
+        $this->adminController = $adminController;
+
+        if ($this->adminController->verifyAdmin()) {
+            return view('food-menu', compact('menus', 'foods'),['notifications' => Notification::all()]);
+        } else {
+            return view('login.access-denied');
+        }
     }
 
     public function addToCart(Request $request)
     {
         // Retrieve the menu item's ID from the form submission
-        $menuId = $request->input('menu_id');
+        $menu = $request->input('menu');
 
         // Initialize the cart session variable if it doesn't exist
         $cart = $request->session()->get('cart', []);
 
         // Add the menu item's ID to the cart array
-        $cart[] = $menuId;
+        $cart[] = $menu;
 
         // Update the cart session variable with the new data
         $request->session()->put('cart', $cart);

@@ -1,22 +1,42 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\UserAccountController;
+use App\Models\Notification;
 
 // validations
 class PaymentController extends Controller
 {
-    public function index()
+    // used for verification
+    protected $userAccountController;
+    public function index(UserAccountController $userAccountController)
     {
-        return view('payment');
+        // Checks whether is customer session or not
+        $this->userAccountController = $userAccountController;
+
+        if ($this->userAccountController->verifyCustomer()) {
+            return view('payment', ['notifications' => Notification::all()]);
+        } else {
+            return view('login.access-denied');
+        }
     }
 
-    public function showPaymentPage()
+    public function showPaymentPage(UserAccountController $userAccountController)
     {
         $totalPrice = DB::table('orders')->sum('total');
         $orders = DB::table('orders')->get();
 
-        return view('payment', compact('totalPrice', 'orders'));
+        // Checks whether is customer session or not
+        $this->userAccountController = $userAccountController;
+
+        if ($this->userAccountController->verifyCustomer()) {
+            return view('payment', compact('totalPrice', 'orders'), ['notifications' => Notification::all()]);
+        } else {
+            return view('login.access-denied');
+        }
     }
 }

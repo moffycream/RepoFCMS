@@ -21,7 +21,7 @@
             @if($selectedOrder)
                 <tr>
                     <td>{{ $selectedOrder->orderID }}</td>
-                    <td>{{ $selectedOrder->getformattedDateTime() }}</td>
+                    <td>{{ $selectedOrder->getformattedDate() }}</td>
                     <td>{{ $selectedOrder->status }}</td>
                     <td>RM{{ $selectedOrder->total }}</td>
                     <td>{{ $selectedOrder->name }}</td>

@@ -22,5 +22,5 @@
         @csrf
         <button type="submit">Checkout</button>
     </form>
-    
+
 @endsection
