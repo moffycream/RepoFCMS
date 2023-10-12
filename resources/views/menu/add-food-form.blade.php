@@ -16,15 +16,15 @@
         </div>
         <div>
             <label for="food-name">Food name</label><br>
-            <input type="" id="food-name" name="name" maxlength="20">
+            <input type="text" id="food-name" name="name" maxlength="20" placeholder="Enter food name">
         </div>
         <div class="food-description-div">
             <label for="food-description">Description</label><br>
-            <input type="text" id="food-description" name="description" maxlength="40">
+            <textarea id="food-description" name="description" maxlength="80" rows="3" cols="50" placeholder="Enter food decription"></textarea>
         </div>
         <div>
             <label for="food-price">Price</label><br>
-            <input type="text" id="food-price" name="price">
+            <input type="text" id="food-price" name="price" maxlength="8" placeholder="Enter food price">
         </div>
 
         <button type="submit">Submit</button>

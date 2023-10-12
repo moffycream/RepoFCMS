@@ -7,7 +7,7 @@
 }
 
 /* Admin article */
-.admin-article{
+.admin-article {
     width: 95vw;
     margin-left: 5vw;
 }
@@ -15,9 +15,9 @@
 /* Add menu */
 .food-logo {
     object-fit: cover;
-    max-width: 18vw;
-    border-radius: 20px 0 0 20px;
-    margin-right: auto;
+    width: 25vw;
+    height: 30vh;
+    border-radius: 20px 20px 0 0;
 }
 
 .add-menu-title {
@@ -37,11 +37,12 @@
 
 .add-menu-container .row-add-menu .col-add-menu {
     background-color: var(--color-2);
-    height: 30vh;
-    min-width: 25vw;
-    margin: 0 4vw;
+    height: 50vh;
+    width: 25vw;
+    margin: 0 calc(20vw/6);
     border-radius: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     box-shadow: #00000029 0px 1px 4px;
 }
@@ -50,14 +51,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 7vw;
+    height: 20vh;
+    margin: 0 10px;
 }
 
 .col-add-menu-info-title {
     font-size: 40px;
     font-weight: bold;
 }
-
 
 .add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-col p {
     font-size: 20px;
@@ -99,6 +100,15 @@
 
 .add-menu-form input {
     font-size: 25px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#food-description{
+    font-size: 25px;
+    padding: 10px;
+    resize: none;
+    border-radius: 5px;
 }
 
 .add-menu-form button {
