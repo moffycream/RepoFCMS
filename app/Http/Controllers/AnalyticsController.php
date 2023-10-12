@@ -27,21 +27,30 @@ class AnalyticsController extends Controller
         // Checks whether is admin session or not
         $this->adminController = $adminController;
 
-        if ($this->adminController->verifyAdmin()) {
+        if ($this->adminController->verifyAdmin()) 
+        {
             return view('business-analytics', compact('orders', 'totalOrderAmount', 'chartData', 'profitData', 'revenueData'));
-        } else {
+        } 
+        else 
+        {
             return view('login.access-denied');
         }
     }
 
     private function calculateProfit()
     {
-        return 100; //replace with your actual calculation
+        $totalRevenue = $this->calculateRevenue();
+        $profit = $totalRevenue - 100;
+
+        return $profit;
     }
 
     private function calculateRevenue()
     {
-        return 100; // Example value, replace with your actual calculation
+        $orders = Order::all();
+        $totalRevenue = $orders->sum('order_amount');
+
+        return $totalRevenue;
     }
 
     private function calculateTotalOrderAmount($orders)

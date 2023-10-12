@@ -15,4 +15,9 @@ class UserAccounts extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'userID');
+    }
 }

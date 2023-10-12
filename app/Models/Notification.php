@@ -9,5 +9,16 @@ class Notification extends Model
 {
     protected $table = 'notifications'; 
     protected $primaryKey = 'notificationID';
+
+    protected $fillable = ['isRead', 'content'];
     
+    public function user()
+    {
+        return $this->belongsTo(UserAccounts::class, 'userID');
+    }
+
+    public static function unreadCount()
+    {
+        return Notification::where('isRead', false)->count();
+    }
 }
