@@ -37,12 +37,18 @@ class AnalyticsController extends Controller
 
     private function calculateProfit()
     {
-        return 100; //replace with your actual calculation
+        $totalRevenue = $this->calculateRevenue();
+        $profit = $totalRevenue - 100;
+
+        return $profit;
     }
 
     private function calculateRevenue()
     {
-        return 100; // Example value, replace with your actual calculation
+        $orders = Order::all();
+        $totalRevenue = $orders->sum('order_amount');
+
+        return $totalRevenue;
     }
 
     private function calculateTotalOrderAmount($orders)

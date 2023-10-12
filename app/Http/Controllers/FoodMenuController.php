@@ -35,7 +35,7 @@ class FoodMenuController extends Controller
         // Initialize the cart session variable if it doesn't exist
         $cart = $request->session()->get('cart', []);
 
-        // Add the menu item's ID to the cart array
+        // Add the menu to the cart array
         $cart[] = $menu;
 
         // Update the cart session variable with the new data
