@@ -203,6 +203,7 @@ header .container-notification{
     border-radius: 10px;
     display: none;
     box-shadow: #0000003d 0px 3px 8px;
+    overflow-y: scroll;
 }
 
 header .container-notification .col-notification{

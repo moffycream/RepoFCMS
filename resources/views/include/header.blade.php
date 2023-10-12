@@ -37,7 +37,6 @@
                         @else
                         <h2>Notifications</h2>
                         @endif
-                        <i class="fas fa-times" onclick="toggleNotification()"></i>
                     </div>
                     @foreach($notifications as $notification)
                     @if($notification->isRead == false)
