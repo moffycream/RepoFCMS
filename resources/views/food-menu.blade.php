@@ -10,7 +10,7 @@
         <div class="foodMenu">
             <h3>{{ $menu->name }}</h3>
             <p>{{ $menu->description }}</p>
-            <p>Price: ${{ $menu->price }}</p>
+            <p>Price: ${{ $menu->totalPrice }}</p>
             <form action="{{ route('food-menu.addToCart') }}" method="POST">
                 @csrf
                 <input type="hidden" name="menu_id" value="{{ $menu->id }}">

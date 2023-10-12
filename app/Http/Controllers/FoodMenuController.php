@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Food;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NotificationController;
 
 class FoodMenuController extends Controller
 {
@@ -17,12 +18,14 @@ class FoodMenuController extends Controller
         $menus = Menu::all();
         $foods = Food::all();
 
+        $notificationController = app(NotificationController::class);
+
         // Checks whether is admin session or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) 
         {
-            return view('food-menu', compact('menus', 'foods'));
+            return view('food-menu', compact('menus', 'foods'),['notifications' => $notificationController->getNotification()]);
         } else 
         {
             return view('login.access-denied');
@@ -32,7 +35,7 @@ class FoodMenuController extends Controller
     public function addToCart(Request $request)
     {
         // Retrieve the menu item's ID from the form submission
-        $menu = $request->input('menu');
+        $menu = $request->input('menu_id');
 
         // Initialize the cart session variable if it doesn't exist
         $cart = $request->session()->get('cart', []);
@@ -46,6 +49,7 @@ class FoodMenuController extends Controller
         // Redirect back to the menu page or wherever you prefer
         return redirect()->route('menu.index')->with('success', 'Item added to cart');
     }
+
 
     public function checkout(Request $request)
     {
