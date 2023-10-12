@@ -23,6 +23,17 @@
         @csrf
         <button type="submit">Checkout</button>
     </form>
+
+    <h2>Cart Items</h2>
+    @if (count($cart ?? []) > 0)
+        <ul>
+            @foreach ($cart as $item)
+                <li>{{ $item }}</li>
+            @endforeach
+        </ul>
+    @else
+        <p>Your cart is empty.</p>
+    @endif
 </div>
 
 @endsection
