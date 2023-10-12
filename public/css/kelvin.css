@@ -4,7 +4,7 @@
 }
 
 .container-op-orders .panel{
-    margin: 50px auto;
+    margin: 0 auto 50px auto;
     width: 70%;
     padding-bottom: 20px;
 }
@@ -43,7 +43,7 @@
     background-color: #473447;
     padding: 10px 30px;
     color: #ffffff;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: bold;
     border: none;
     text-decoration: none;
@@ -57,13 +57,49 @@
     text-align: center;
 }
 
+.container-op-orders .row-op-orders span.status-preparing,
+.container-op-view-order span.status-preparing{
+    border-radius: 20px;
+    background-color: #041ae037;
+    padding: 5px 15px;
+    color: #041ae0;
+    font-weight: bold;
+}
+
+.container-op-orders .row-op-orders span.status-readyforpickup,
+.container-op-view-order span.status-readyforpickup{
+    border-radius: 20px;
+    background-color: #ffc40037;
+    padding: 5px 15px;
+    color: #f3aa00;
+    font-weight: bold;
+}
+
+.container-op-orders .row-op-orders span.status-completed,
+.container-op-view-order span.status-completed{
+    border-radius: 20px;
+    background-color: #04e01337;
+    padding: 5px 15px;
+    color: #00c40d;
+    font-weight: bold;
+}
+
+.container-op-orders .row-op-orders span.status-cancelled,
+.container-op-view-order span.status-cancelled {
+    border-radius: 20px;
+    background-color: #c4000037;
+    padding: 5px 15px;
+    color: #ff0000;
+    font-weight: bold;
+}
+
 
 /* op-view-order */
 .container-op-view-order{
     box-sizing: border-box; 
     padding: 20px;
     width: 80%;
-    margin: 50px auto; 
+    margin: 25px auto; 
     background-color: #e8dcd4;
     border-radius: 10px;
     position: relative;
@@ -110,7 +146,7 @@
 .container-op-view-order .col-op-view-order details[open] summary {
     background-color: #e0e4e4be;
     border: none;
-    border-left: 20px solid #473447;
+    border-left: 5px solid #473447;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -213,25 +249,80 @@ details[open] summary::before {
     justify-content: space-between;
 }
 
-.container-op-view-order .col-op-view-order .row-details,
-.container-op-view-order .col-op-view-order .row-actions
+.container-op-view-order .col-op-view-order .row-status{
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px 30px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-op-view-order .col-op-view-order .row-status .customer-title{
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 50%;
+}
+
+.container-op-view-order .col-op-view-order .row-details
 {
     border-radius: 10px;
     background-color: #ffffff;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 20px 30px;
 }
 
 .container-op-view-order .col-op-view-order .row-details .col-row-details{
-    flex: 1;
     display: flex;
-    flex-direction: column;
 }
 
-.container-op-view-order .col-op-view-order .row-details .col-row-details p{
-    padding: 20px;
+.container-op-view-order .col-op-view-order .row-details .col-row-details div{
+    flex: 1;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-title{
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 50%;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-name{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 0 20px 0;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-address{
+    opacity: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-contact{
+    font-size: 18px;
+    font-weight: bold;
+    color: #041ae0;
+    margin-top: 10px;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-address i,
+.container-op-view-order .col-op-view-order .row-details .customer-contact i{
+    margin-right: 10px;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-contact i{
+    color: #041ae0;
+}
+
+.container-op-view-order .col-op-view-order .row-actions
+{
+    flex: 1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .container-op-view-order .col-op-view-order .row-actions a{
@@ -252,8 +343,8 @@ details[open] summary::before {
 .container-op-view-order .col-op-view-order .row-actions a.cancel{
     background-color: #fd6085;
     padding: 0;
-    height: 100%;
-    width: 60px;
+    width: 68.4px;
+    height: 68.4px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -44,4 +44,10 @@ class Order extends Model
     {
         return Carbon::parse($this->attributes['created_at'])->format('d F Y');
     }
+
+    public function getformattedDateTime()
+{
+    return Carbon::parse($this->attributes['created_at'])->format('Y-m-d h:i A');
+}
+
 }

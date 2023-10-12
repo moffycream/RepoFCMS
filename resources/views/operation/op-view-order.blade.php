@@ -36,21 +36,35 @@
         <div class="col-op-view-order">
             <div class="row-details">
                 <div class="col-row-details">
-                    <p>Name: {{$selectedOrder->name}}</p>
-                    <p>Address: {{$selectedOrder->address}}</p>
+                    <div>
+                        <p class="customer-title">Customer</p>
+                        <p class="customer-name">{{$selectedOrder->name}}</p>
+
+                    </div>
+                    <div>
+                        <p class="customer-title">Contact</p>
+                        <p class="customer-contact"><i class="fas fa-phone-alt"></i>{{$selectedOrder->contact}}</p>
+                    </div>
                 </div>
-                <div class="col-row-details">
-                    <p>Contact: {{$selectedOrder->contact}}</p>
-                    <p>Status: {{$selectedOrder->status}}</p>
+                <div>
+                    <p class="customer-title">Address</p>
+                    <p class="customer-address"><i class="fas fa-map-marker-alt"></i>{{$selectedOrder->address}}</p>
                 </div>
+
+            </div>
+            <div class="row-status">
+                <p class="customer-title">Order Status</p>
+                <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($selectedOrder->status))}}">{{$selectedOrder->status}}</span></p>
             </div>
             <div class="row-actions">
-                @if($selectedOrder->status == 'preparing')
-                <a href="{{route('op.complete-order', $selectedOrder->orderID)}}">Ready for pickup</a>
+                @if($selectedOrder->status == 'Preparing')
+                <a href="{{route('op.ready-for-pickup-order', $selectedOrder->orderID)}}">Ready for pickup</a>
+                @elseif($selectedOrder->status == 'Ready for pickup')
+                <a href="{{route('op.complete-order', $selectedOrder->orderID)}}">Complete</a>
                 @else
                 <a href="{{route('op.accept-order', $selectedOrder->orderID)}}">Accept</a>
                 @endif
-                <a class="cancel" href="{{route('op.reject-order', $selectedOrder->orderID)}}" title="cancel order"><i class="fas fa-trash"></i></a>
+                <a class="cancel" href="{{route('op.cancel-order', $selectedOrder->orderID)}}" title="cancel order"><i class="fas fa-trash"></i></a>
             </div>
         </div>
     </div>

@@ -129,4 +129,16 @@
     background-color: darkred;
 }
 
+.customer-container-disabled-button {
+    background-color: #cccccc; 
+    color: #999; 
+    cursor: not-allowed;
+   
+}
+
+.customer-container-disabled-button:hover{
+    color: #999;
+    background-color: #ccc; 
+}
+
 

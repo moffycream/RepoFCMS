@@ -203,6 +203,7 @@ header .container-notification{
     border-radius: 10px;
     display: none;
     box-shadow: #0000003d 0px 3px 8px;
+    overflow-y: scroll;
 }
 
 header .container-notification .col-notification{
@@ -379,7 +380,7 @@ article {
 } */
 
 /* Title */
-/* .title {
+ .title {
     font-size: 45px;
     text-align: center;
     background-color: var(--color-3);
@@ -391,7 +392,7 @@ article {
 
 
 
-
+/* 
 .container-register-page {
     text-align: center;
 }
@@ -430,7 +431,7 @@ article {
     cursor: pointer;
     color: #2b0548;
     transition: 0.2s;
-} */
+} */ 
 
 /* register success page */
 /* .button {
