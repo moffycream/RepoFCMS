@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id('notificationID');
+            $table->unsignedBigInteger('userID');
             $table->char('content');
             $table->boolean('isRead')->default(false);
             $table->timestamps();
+            $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
         });
     }
 
