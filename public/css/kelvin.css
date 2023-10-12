@@ -4,9 +4,7 @@
 }
 
 .container-op-orders .panel{
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 50px auto;
     width: 70%;
     padding-bottom: 20px;
 }
@@ -43,45 +41,102 @@
 
 .container-op-orders table.row-op-orders a{
     background-color: #473447;
-    opacity: 80%;
     padding: 10px 30px;
     color: #ffffff;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: bold;
     border: none;
     text-decoration: none;
 }
 
 .container-op-orders table.row-op-orders a:hover{
-    opacity: 100%;
+    opacity: 80%;
+}
+
+.container-op-orders .row-op-orders .empty{
+    text-align: center;
+}
+
+.container-op-orders .row-op-orders span.status-preparing,
+.container-op-view-order span.status-preparing{
+    border-radius: 20px;
+    background-color: #041ae037;
+    padding: 5px 15px;
+    color: #041ae0;
+    font-weight: bold;
+}
+
+.container-op-orders .row-op-orders span.status-readyforpickup,
+.container-op-view-order span.status-readyforpickup{
+    border-radius: 20px;
+    background-color: #ffc40037;
+    padding: 5px 15px;
+    color: #f3aa00;
+    font-weight: bold;
+}
+
+.container-op-orders .row-op-orders span.status-completed,
+.container-op-view-order span.status-completed{
+    border-radius: 20px;
+    background-color: #04e01337;
+    padding: 5px 15px;
+    color: #00c40d;
+    font-weight: bold;
+}
+
+.container-op-orders .row-op-orders span.status-cancelled,
+.container-op-view-order span.status-cancelled {
+    border-radius: 20px;
+    background-color: #c4000037;
+    padding: 5px 15px;
+    color: #ff0000;
+    font-weight: bold;
 }
 
 
 /* op-view-order */
 .container-op-view-order{
+    box-sizing: border-box; 
+    padding: 20px;
+    width: 80%;
+    margin: 25px auto; 
     background-color: #e8dcd4;
-    padding: 20px 0;
-    min-height: 100vh;   
+    border-radius: 10px;
+    position: relative;
 }
 
 .container-op-view-order h1{
-    margin: 20px 0 20px 10%;
+    margin-bottom: 20px;
     font-size: 28px;
+}
+
+.container-op-view-order> a .fas{
+    color: #473447;
+    font-size: 36px;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    opacity: 80%;
+}
+
+.container-op-view-order> a .fas:hover{
+    opacity: 100%;
 }
 
 .container-op-view-order .panel{
     display: flex;
     justify-content: center;
     min-height: 500px;
-    margin-bottom: 100px;
 }
 
 .container-op-view-order .col-op-view-order:first-child{
     flex: 1;
-    background-color: #ffffff;
-    margin-left: 10%;
     margin-right: 10px;
     border-radius: 10px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .container-op-view-order .col-op-view-order:first-child h2{
@@ -89,15 +144,16 @@
 }
 
 .container-op-view-order .col-op-view-order details[open] summary {
-    background-color: #e0e4e4;
+    background-color: #e0e4e4be;
     border: none;
+    border-left: 5px solid #473447;
+    transition: transform 0.3s ease-in-out;
 }
+
 
 .container-op-view-order .col-op-view-order details summary{
     padding: 30px 30px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     font-weight: bold;
     border-top: 2px solid #0000001a;
 }
@@ -119,16 +175,26 @@ details[open] summary::before {
 
 .container-op-view-order .col-op-view-order details summary span{
     font-size: 14px;
+    flex: 1;
+}
+
+.container-op-view-order .col-op-view-order details summary span:last-child{
+    text-align: right;
+}
+
+.container-op-view-order .col-op-view-order details summary span:first-child{
+    margin-left: 20px;
 }
 
 .container-op-view-order .col-op-view-order .row-item table{
     width: 100%;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .container-op-view-order .col-op-view-order .row-item table td{
-    padding: 5px 10px;
+    padding: 0 10px;
     font-size: 14px;
+    width: 100%;
 }
 
 .container-op-view-order .col-op-view-order .row-item table td:last-child{
@@ -136,39 +202,160 @@ details[open] summary::before {
 }
 
 .container-op-view-order .col-op-view-order .row-item table .container-food-image{
-    width: 100px;
-    height: 80px;
+    padding: 0;
+    width: 120px;
+    height: 100px;
     overflow: hidden;
     text-align: center;
     background-color: #e0e4e4;
     display: block;
-    margin-bottom: 10px;
+    margin: 10px 10px 10px 0;
+    border-radius: 10px;
 }
 
 .container-op-view-order .col-op-view-order .row-item table .container-food-image img{
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .container-op-view-order .col-op-view-order .row-add-on{
+    flex: 1;
     padding: 20px 30px;
     border-top: 2px solid #0000001a;
 }
 
+.container-op-view-order .col-op-view-order .row-total-price{
+    padding: 20px 30px;
+}
+
+.container-op-view-order .col-op-view-order .row-total-price p{
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.container-op-view-order .col-op-view-order .row-total-price p span{
+    margin-left: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
 .container-op-view-order .col-op-view-order:last-child{
     flex: 1;
-    margin-right: 10%;
     margin-left: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.container-op-view-order .col-op-view-order .row-details,
-.container-op-view-order .col-op-view-order .row-actions
+.container-op-view-order .col-op-view-order .row-status{
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px 30px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-op-view-order .col-op-view-order .row-status .customer-title{
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 50%;
+}
+
+.container-op-view-order .col-op-view-order .row-details
 {
     border-radius: 10px;
     background-color: #ffffff;
-    padding: 20px;
+    padding: 20px 30px;
 }
 
+.container-op-view-order .col-op-view-order .row-details .col-row-details{
+    display: flex;
+}
+
+.container-op-view-order .col-op-view-order .row-details .col-row-details div{
+    flex: 1;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-title{
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 50%;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-name{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 0 20px 0;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-address{
+    opacity: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-contact{
+    font-size: 18px;
+    font-weight: bold;
+    color: #041ae0;
+    margin-top: 10px;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-address i,
+.container-op-view-order .col-op-view-order .row-details .customer-contact i{
+    margin-right: 10px;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-contact i{
+    color: #041ae0;
+}
+
+.container-op-view-order .col-op-view-order .row-actions
+{
+    flex: 1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.container-op-view-order .col-op-view-order .row-actions a{
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 5px;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.container-op-view-order .col-op-view-order .row-actions a:first-child{
+    flex: 1;
+    background-color: #473447;
+}
+
+.container-op-view-order .col-op-view-order .row-actions a.cancel{
+    background-color: #fd6085;
+    padding: 0;
+    width: 68.4px;
+    height: 68.4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-op-view-order .col-op-view-order .row-actions a.cancel .fas{
+    color: #ffffff;
+    font-size: 36px;
+    flex: 1;
+}
+
+.container-op-view-order .col-op-view-order .row-actions a:hover{
+    opacity: 80%;
+}

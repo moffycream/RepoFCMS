@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id('orderID');
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->id('notificationID');
             $table->unsignedBigInteger('userID');
-            $table->string('status');
-            $table->decimal('total',10,2);
-            $table->string('menu_name');
-            $table->text('order_notes');
-            $table->string('name');
-            $table->text('address');
-            $table->string('contact');
-            $table->date('date');
+            $table->char('content');
+            $table->boolean('isRead')->default(false);
             $table->timestamps();
             $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
         });
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('notifiables');
     }
 };

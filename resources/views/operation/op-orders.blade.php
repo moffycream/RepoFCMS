@@ -23,12 +23,15 @@
                 <td>{{$order->getformattedDate()}}</td>
                 <td>{{$order->getformattedTime()}}</td>
                 <td>RM {{$order->getTotalPrice()}}</td>
-                <td>{{$order->status}}</td>
+                <td ><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($order->status))}}">{{$order->status}}</span></td>
                 <td>
                     <a href="{{route('op.view-order', $order->orderID)}}">View</a>
                 </td>
             </tr>
             @empty
+            <tr class="empty">
+                <td colspan="7">No orders right now</td>
+            </tr>
             @endforelse
         </table>
     </div>

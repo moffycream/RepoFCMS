@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Food;
 
@@ -70,30 +70,5 @@ class FoodController extends Controller
         $food->save();
 
         return redirect('/add-food');
-    }
-
-
-    // Update function 
-    public function update()
-    {
-
-        $food = Food::find(1);
-
-        $food->topic = "Laravel";
-
-        $food->save();
-
-        echo "Update Successful!";
-    }
-
-    // Delete function 
-    public function delete()
-    {
-
-        $food = Food::find(1);
-
-        $food->delete();
-
-        echo "Delete Successful!";
     }
 }

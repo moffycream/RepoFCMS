@@ -30,7 +30,9 @@ class Order extends Model
 
     public function getTotalPrice()
     {
-        return $this->menus->sum('totalPrice');
+        $totalPrice = $this->menus->sum('totalPrice');
+        $formattedTotalPrice = number_format($totalPrice, 2);
+        return $formattedTotalPrice;
     }
 
     public function getformattedTime()
@@ -42,4 +44,10 @@ class Order extends Model
     {
         return Carbon::parse($this->attributes['created_at'])->format('d F Y');
     }
+
+    public function getformattedDateTime()
+{
+    return Carbon::parse($this->attributes['created_at'])->format('Y-m-d h:i A');
+}
+
 }

@@ -17,7 +17,7 @@
             @forelse($orders as $order)
             <tr>
                 <td>{{ $order->orderID }}</td>
-                <td>{{ $order->getformattedDate() }}</td>
+                <td>{{ $order->getformattedDateTime() }}</td>
                 <td>{{ $order->status }}</td>
                 <td>RM{{ $order->total }}</td>
                 <td>

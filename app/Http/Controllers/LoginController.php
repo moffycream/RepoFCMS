@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\UserAccounts;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Http\Request;
-use App\Http\Controllers\OrderController;
 
 class LoginController extends Controller
 {
@@ -31,9 +29,9 @@ class LoginController extends Controller
             }
             else if(Session::get('accountType') == "OperationTeam")
             {
-                $orderController = app(OrderController::class);
-                $result = $orderController->index();
-                return $result;
+                // $orderController = app(OrderController::class);
+                // $result = $orderController->index();
+                return redirect('op-orders');
             } 
             else if (Session::get('accountType') == "Customer") 
             {
@@ -71,6 +69,7 @@ class LoginController extends Controller
                 else
                 {
                     $user->password = Hash::make($newpassword);
+                    $user->save();
                     Session::flash('success', 'Password updated, you may login with your new password now');
                     return view('login.login');
                 }

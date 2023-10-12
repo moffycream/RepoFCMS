@@ -1,9 +1,9 @@
-@extends('layouts.app')
-@section('title', 'Admin-Orders')
+@extends('layouts.admin')
+@section('title', 'Dashboard')
 @section('content')
-<h1 class="title">Add Menu</h1>
+<h1 class="add-menu-title">Add Menu</h1>
 
-<div class="container">
+<div class="add-menu-container">
     <div class="row-add-menu">
         @php
         $count = 0;
@@ -19,11 +19,22 @@
                 </div>
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Foods</p>
-                    @foreach($menu->foods as $food)
                     <p>
-                        {{$food->name}}
+                        @php
+                        $foodNameArray = [];
+                        @endphp
+
+                        @foreach($menu->foods as $food)
+                        @php
+                        array_push($foodNameArray, "{$food->name}");
+                        @endphp
+                        @endforeach
+
+                        @php
+                        $foodNameArray = join(', ', $foodNameArray);
+                        echo $foodNameArray;
+                        @endphp
                     </p>
-                    @endforeach
                 </div>
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Price</p>
