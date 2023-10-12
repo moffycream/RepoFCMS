@@ -35,7 +35,11 @@
                 <div class="container-notification" id="container-notification">
                     <div class="arrow"></div>
                     <div class="col-notification">
+                        @if($notifications->count() == 0)
+                        <h2>No new notifications</h2>
+                        else
                         <h2>Notifications</h2>
+                        @endif
                         <i class="fas fa-times" onclick="toggleNotification()"></i>
                     </div>
                     @forelse($notifications as $notification)
