@@ -19,11 +19,22 @@
                 </div>
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Foods</p>
-                    @foreach($menu->foods as $food)
                     <p>
-                        {{$food->name}}
+                        @php
+                        $foodNameArray = [];
+                        @endphp
+
+                        @foreach($menu->foods as $food)
+                        @php
+                        array_push($foodNameArray, "{$food->name}");
+                        @endphp
+                        @endforeach
+
+                        @php
+                        $foodNameArray = join(', ', $foodNameArray);
+                        echo $foodNameArray;
+                        @endphp
                     </p>
-                    @endforeach
                 </div>
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Price</p>
