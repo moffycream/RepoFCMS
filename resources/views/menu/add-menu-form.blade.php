@@ -15,12 +15,16 @@
             <label for="menu-name">Menu name</label><br>
             <input type="text" id="menu-name" name="name" maxlength="20"><br>
         </div>
-        <div>
-            <label>Foods</label><br>
-            @foreach($listItems as $food)
-            <input type="checkbox" id="{{$food->foodID}}{{$food->name}}" class="add-menu-checkbox" name="{{$food->foodID}}" value="{{$food->price}}">
-            <label for="{{$food->foodID}}{{$food->name}}">{{$food->name}}</label>
-            @endforeach
+        <div id="food-dropdown-list" class="food-dropdown-check-list">
+            <span id="food-dropdown-anchor">Select Foods</span>
+            <ul>
+                @foreach($listItems as $food)
+                <li>
+                    <input type="checkbox" id="{{$food->foodID}}{{$food->name}}" class="add-menu-checkbox" name="{{$food->foodID}}" value="{{$food->price}}">
+                    <label for="{{$food->foodID}}{{$food->name}}">{{$food->name}}</label>
+                </li>
+                @endforeach
+            </ul>
         </div>
         <div>
             <p>Total price: <span id="add-menu-form-price">0</span></p>

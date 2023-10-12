@@ -235,22 +235,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Attach the event listeners
-        adminDashboardExpand.addEventListener('click', expandDashboard);
-        adminDashboardMinimize.addEventListener('click', minimizeDashboard);
+        adminDashboardExpand.addEventListener("click", expandDashboard);
+        adminDashboardMinimize.addEventListener("click", minimizeDashboard);
     }
 
+
+    //Dropdown checkbox
+
+    var dropdownCheckbox = document.getElementById("food-dropdown-list");
+    var dropdownAnchor = document.getElementById("food-dropdown-anchor")
+
+    if (dropdownCheckbox) {
+        dropdownAnchor.addEventListener("click", function () {
+            if (dropdownCheckbox.classList.contains('visible'))
+                dropdownCheckbox.classList.remove('visible');
+            else
+                dropdownCheckbox.classList.add('visible');
+        });
+    }
 
     // -------------------------- Guilbert Lam's JS --------------------------
 
     const PaymentForm = document.getElementById('PaymentForm');
-    const PaymentChocie = document.getElementById('PaymentMethod');
+    const PaymentChoice = document.getElementById('PaymentMethod');
     const OnlineBankingForm = document.getElementById('OnlineBankingForm');
     const CreditCardForm = document.getElementById('CreditCardForm');
     const DebitCardForm = document.getElementById('DebitCardForm');
     const EwalletForm = document.getElementById('EwalletForm');
 
-    if (PaymentChocie) {
-        PaymentChocie.addEventListener('change', function () {
+    if (PaymentChoice) {
+        PaymentChoice.addEventListener('change', function () {
             const SelectedPaymentChoice = PaymentChocie.value;
 
             // empty variable string
@@ -518,11 +532,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //jesse'js 
 // customer-orders-listings's js 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Get cancel buttons
     const cancelButtons = document.querySelectorAll('.customer-container-cancel-button');
 
-    cancelButtons.forEach(function(button) {
+    cancelButtons.forEach(function (button) {
         // Get the order status from the data-status attribute from the data-status
         const status = button.getAttribute('data-status');
 
@@ -532,7 +546,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Add click event listeners
-        button.addEventListener('click', function(event) {
+        button.addEventListener('click', function (event) {
             if (status !== 'preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.') {
                 // Ask for confirmation
                 const confirmation = confirm("Are you sure you want to cancel this order?");
