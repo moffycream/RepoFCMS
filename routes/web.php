@@ -73,9 +73,9 @@ Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
 Route::get('/op-orders', [OrderController::class, 'index']);
 Route::get('/op-view-order/{orderID}', [OrderController::class, 'viewOrder'])->name('op.view-order');
 Route::get('/op-view-order/accept/{orderID}', [OrderController::class, 'acceptOrder'])->name('op.accept-order');
+Route::get('/op-view-order/ready-for-pickup/{orderID}', [OrderController::class, 'readyForPickupOrder'])->name('op.ready-for-pickup-order');
 Route::get('/op-view-order/complete/{orderID}', [OrderController::class, 'completeOrder'])->name('op.complete-order');
-Route::get('/op-view-order/reject/{orderID}', [OrderController::class, 'rejectOrder'])->name('op.reject-order');
-// Route::get('op-orders/{orderID}/cancel-order', [OrderController::class, 'cancelOrder'])->name('op.order-cancel');
+Route::get('/op-view-order/cancel/{orderID}', [OrderController::class, 'cancelOrder'])->name('op.cancel-order');
 
 // Order - client side
 Route::get('/customer-orders', [OrderListingController::class, 'index']);

@@ -18,68 +18,74 @@ class OrderController extends Controller
 
         // Checks whether is valid login or not
         $adminController = app(AdminController::class);
-        
-        return view('operation.op-orders', ['orders' => $orders]);
+
         // checks whether it is operation team or is admin, if either one access is allow
-        // if ($this->adminController->verifyOperationTeam() || $this->adminController->verifyAdmin()) {
-        // } else {
-        //     return view('login.access-denied');
-        // }
+        if ($adminController->verifyOperationTeam() || $adminController->verifyAdmin()) {
+            return view('operation.op-orders', ['orders' => $orders, 'Notifications' => Notification::all()]);
+        } else {
+            return view('login.access-denied');
+        }
     }
 
     public function viewOrder($orderID)
     {
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
-        return view('operation.op-view-order', ['orders'=>$orders, 'selectedOrder'=>$selectedOrder]);
+        return view('operation.op-view-order', ['orders' => $orders, 'selectedOrder' => $selectedOrder]);
     }
 
     public function acceptOrder($orderID)
     {
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
-        $selectedOrder->status = "preparing";
+        $selectedOrder->status = "Preparing";
         $selectedOrder->save();
 
         $notification = new Notification();
-        $notification->content = 'Your order#' . $orderID . ' is accepted'; 
+        $notification->content = 'Your order#' . $orderID . ' is processing';
         $notification->save();
 
-        return view('operation.op-view-order', ['orders'=>$orders, 'selectedOrder'=>$selectedOrder]);
+        return view('operation.op-view-order', ['orders' => $orders, 'selectedOrder' => $selectedOrder]);
+    }
+
+    public function readyForPickupOrder($orderID)
+    {
+        $orders = Order::all();
+        $selectedOrder = Order::find($orderID);
+        $selectedOrder->status = "Ready for pickup";
+        $selectedOrder->save();
+
+        $notification = new Notification();
+        $notification->content = 'Your order#' . $orderID . ' is ready for pickup';
+        $notification->save();
+
+        return view('operation.op-view-order', ['orders' => $orders, 'selectedOrder' => $selectedOrder]);
     }
 
     public function completeOrder($orderID)
     {
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
-        $selectedOrder->status = "completed";
+        $selectedOrder->status = "Completed";
         $selectedOrder->save();
 
         $notification = new Notification();
-        $notification->content = 'Your order#' . $orderID . ' is completed'; 
+        $notification->content = 'Your order#' . $orderID . ' is completed';
         $notification->save();
 
-        return redirect('/op-orders')->with(['orders'=>$orders]);
-    }
-
-    public function rejectOrder($orderID)
-    {
-        $orders = Order::all();
-        $selectedOrder = Order::find($orderID);
-        $selectedOrder->status = "rejected";
-        $selectedOrder->save();
-
-        $notification = new Notification();
-        $notification->content = 'Your order#' . $orderID . ' is cancelled'; 
-        $notification->save();
-        return redirect('/op-orders')->with(['orders'=>$orders]);
+        return redirect('/op-orders')->with(['orders' => $orders]);
     }
 
     public function cancelOrder($orderID)
     {
         $orders = Order::all();
-        $selectedOrder = Order::all()->find($orderID);
-        $selectedOrder->delete();
-        return redirect('/op-orders');
+        $selectedOrder = Order::find($orderID);
+        $selectedOrder->status = "Cancelled";
+        $selectedOrder->save();
+
+        $notification = new Notification();
+        $notification->content = 'Your order#' . $orderID . ' is cancelled';
+        $notification->save();
+        return redirect('/op-orders')->with(['orders' => $orders]);
     }
 }

@@ -18,7 +18,7 @@ class HomeController extends Controller
         if ($userAccountController->verifyCustomer()) {
             return view('welcome',['notifications' => Notification::all()]);
         } else {
-            return view('login.access-denied');
+            return view('welcome');
         }
     }
 
