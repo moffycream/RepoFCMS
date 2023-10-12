@@ -169,19 +169,20 @@ document.addEventListener("DOMContentLoaded", function () {
         addFoodForm.onsubmit = validateFoodForm;
     }
 
-
-
-
+});
 
     // -------------------------- Guilbert Lam's JS --------------------------
+document.addEventListener("DOMContentLoaded", function () {
+
+    const PaymentForm = document.getElementById('PaymentForm');
     const PaymentChocie = document.getElementById('PaymentMethod');
     const OnlineBankingForm = document.getElementById('OnlineBankingForm');
     const CreditCardForm = document.getElementById('CreditCardForm');
     const DebitCardForm = document.getElementById('DebitCardForm');
     const EwalletForm = document.getElementById('EwalletForm');
-    
-    PaymentChocie.addEventListener('change', function () {
 
+
+    PaymentChocie.addEventListener('change', function () {
         const SelectedPaymentChoice = PaymentChocie.value;
 
         // empty variable string
@@ -449,8 +450,10 @@ document.addEventListener("DOMContentLoaded", function () {
             EwalletForm.innerHTML = htmlToInsert;
         }
     });
+})
 
-});
+
+
 
 //jesse'js 
 function confirmCancel(status) {

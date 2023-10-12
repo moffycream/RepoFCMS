@@ -7,6 +7,7 @@
     <h1>Orders:</h1>
 
     <form id="PaymentForm" method="post" action= 'store-payment'><!-- name at route -->
+        @csrf
         <table border = 1>
 
             <tr>
