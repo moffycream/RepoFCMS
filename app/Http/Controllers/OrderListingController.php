@@ -37,15 +37,14 @@ class OrderListingController extends Controller
         } else {
             return view('login.access-denied');
         }
-        
     }
 
     public function cancelOrder($orderID)
     {
-        // Retrieve the order by ID
         $order = Order::find($orderID);
-        $order->delete();
-        $order_list = Order::all();
-        return view('customer.customer-orders', ['orders' => $order_list]);
+        $selectedOrder = $order;
+        $selectedOrder->status = 'Order Cancelled. The refund will be done within 5-7 working days.';
+        $selectedOrder->save();
+        return redirect('/customer-orders')->with(['orders' => $order]);
     }
 }

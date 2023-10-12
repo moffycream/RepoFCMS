@@ -16,7 +16,7 @@
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('profile')}}">Profile</a></li>
 
-                @elseif (Session::get('accountType' == "Customer"))
+                @elseif (Session::get('accountType') == "Customer")
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="{{url('display-menu')}}">Menu</a></li>
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
@@ -37,7 +37,7 @@
                     <div class="col-notification">
                         @if($notifications->count() == 0)
                         <h2>No new notifications</h2>
-                        else
+                        @else
                         <h2>Notifications</h2>
                         @endif
                         <i class="fas fa-times" onclick="toggleNotification()"></i>
