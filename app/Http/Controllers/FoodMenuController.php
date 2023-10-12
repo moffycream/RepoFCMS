@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Food;
 use App\Http\Controllers\AdminController;
-use App\Models\Notification;
 
 class FoodMenuController extends Controller
 {
@@ -21,9 +20,11 @@ class FoodMenuController extends Controller
         // Checks whether is admin session or not
         $this->adminController = $adminController;
 
-        if ($this->adminController->verifyAdmin()) {
-            return view('food-menu', compact('menus', 'foods'),['notifications' => Notification::all()]);
-        } else {
+        if ($this->adminController->verifyAdmin()) 
+        {
+            return view('food-menu', compact('menus', 'foods'));
+        } else 
+        {
             return view('login.access-denied');
         }
     }

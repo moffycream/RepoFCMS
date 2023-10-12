@@ -9,11 +9,14 @@
 <script>
     var ctx = document.getElementById('revenueChart').getContext('2d');
 
-    var chart = new Chart(ctx, {
+    var chart = new Chart(ctx, 
+    {
         type: 'bar', // Change the chart type as needed
-        data: {
+        data: 
+        {
             labels: <?php echo json_encode($chartData['labels']); ?>,
-            datasets: [{
+            datasets: [
+            {
                 label: 'Revenue',
                 data: <?php echo json_encode($chartData['data']); ?>,
                 backgroundColor: 'rgba(75, 192, 192, 0.2)', // Customize the chart colors
@@ -21,9 +24,12 @@
                 borderWidth: 1
             }]
         },
-        options: {
-            scales: {
-                y: {
+        options: 
+        {
+            scales: 
+            {
+                y: 
+                {
                     beginAtZero: true
                 }
             }

@@ -27,9 +27,12 @@ class AnalyticsController extends Controller
         // Checks whether is admin session or not
         $this->adminController = $adminController;
 
-        if ($this->adminController->verifyAdmin()) {
+        if ($this->adminController->verifyAdmin()) 
+        {
             return view('business-analytics', compact('orders', 'totalOrderAmount', 'chartData', 'profitData', 'revenueData'));
-        } else {
+        } 
+        else 
+        {
             return view('login.access-denied');
         }
     }
