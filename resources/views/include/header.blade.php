@@ -3,27 +3,17 @@
         <a class="logo" href="{{url('/')}}"><img class src="{{ asset('images/logo.png') }}" alt="logo"><span class="logo-text">Food Edge</span></a>
         <nav>
             <ul>
-                {{-- @if (Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin")
-                <li><a href="{{url('admin-dashboard')}}">Dashboard</a></li>
-                <li><a href="{{url('business-analytics')}}">Menu</a></li>
-                <li><a href="{{url('about')}}">About</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li>
-
-                @elseif (Session::get('accountType') == "OperationTeam")
-                <li><a href="{{url('/')}}">Home</a></li>
-                <li><a href="{{url('op-orders')}}">Orders</a></li>
-                <li><a href="{{url('about')}}">About</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li> --}}
-
+                @if(Session::get('accountType') == "Customer")
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="{{url('display-menu')}}">Menu</a></li>
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('profile')}}">Profile</a></li>
+                @endif
             </ul>
         </nav>
         <div>
-            @if (Session::get('accountType') == "Customer")
+            @if (Session::get('accountType') == "Customer" || (Session::get('accountType') == "OperationTeam"))
             <div class="notification">
                 <i class="fas fa-bell" onclick="toggleNotification()"></i>
                 @if($notifications->count() > 0)
@@ -40,7 +30,17 @@
                     </div>
                     @foreach($notifications as $notification)
                     @if($notification->isRead == false)
-                    <p>{{$notification->content}}</p>
+                    <div class="row-notification">
+                        <p>{{$notification->content}}</p>
+                        <form method="POST" action="{{route('mark-notification-as-read', $notification->notificationID) }}">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit">
+                                <i class="fas fa-times" title="mark as read"></i>
+                            </button>
+                        </form>
+                    </div>
                     @endif
                     @endforeach
                 </div>

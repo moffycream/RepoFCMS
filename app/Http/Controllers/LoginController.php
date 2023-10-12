@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\UserAccounts;
-use App\Models\Notification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
-
 use Illuminate\Http\Request;
-use App\Http\Controllers\OrderController;
 
 class LoginController extends Controller
 {
@@ -32,13 +29,13 @@ class LoginController extends Controller
             }
             else if(Session::get('accountType') == "OperationTeam")
             {
-                $orderController = app(OrderController::class);
-                $result = $orderController->index();
+                // $orderController = app(OrderController::class);
+                // $result = $orderController->index();
                 return redirect('op-orders');
             } 
             else if (Session::get('accountType') == "Customer") 
             {
-                return redirect('/')->with(['notifications' => Notification::all()]);
+                return redirect('/');
             }
         } 
         else {

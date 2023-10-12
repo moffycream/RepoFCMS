@@ -16,7 +16,7 @@ use App\Http\Controllers\OrderListingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\FoodMenuController;
-
+use App\Http\Controllers\NotificationController;
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -34,6 +34,9 @@ use App\Http\Controllers\FoodMenuController;
 // Homepage links
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/about', [HomeController::class, 'about']);
+
+// Notification
+Route::put('/mark-notification-as-read/{notificationID}', [NotificationController::class, 'markAsRead'])->name('mark-notification-as-read');
 
 // Customer profile
 Route::get('/profile',[ProfileController::class, 'index']);
