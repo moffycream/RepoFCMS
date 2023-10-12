@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', 'Admin-Orders')
+@extends('layouts.admin')
+@section('title', 'Dashboard')
 @section('content')
 <div class="add-menu-container">
     <form class="add-menu-form" id="add-menu-form" method="POST" action="{{ route('menu.register') }}" enctype="multipart/form-data">

@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', 'Register')
+@extends('layouts.admin')
+@section('title', 'Dashboard')
 @section('content')
 <div class="container-register-page">
     <h1>Register New Account</h1>

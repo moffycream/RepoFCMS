@@ -6,25 +6,31 @@
     --color-5: #ccdcd0;
 }
 
+/* Admin article */
+.admin-article{
+    width: 95vw;
+    margin-left: 5vw;
+}
+
 /* Add menu */
-.food-logo{
-    object-fit:cover;
+.food-logo {
+    object-fit: cover;
     max-width: 18vw;
     border-radius: 20px 0 0 20px;
     margin-right: auto;
 }
 
-.add-menu-title{
+.add-menu-title {
     font-size: 60px;
     text-align: center;
     margin: 25px 0;
 }
 
-.add-menu-container{
+.add-menu-container {
     margin: 100px 0;
 }
 
-.add-menu-container .row-add-menu{
+.add-menu-container .row-add-menu {
     display: flex;
     margin: 50px 0;
 }
@@ -40,26 +46,26 @@
     box-shadow: #00000029 0px 1px 4px;
 }
 
-.add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-row{
+.add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-row {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 7vw;
 }
 
-.col-add-menu-info-title{
+.col-add-menu-info-title {
     font-size: 40px;
     font-weight: bold;
 }
 
 
-.add-menu-container .row-add-menu  .col-add-menu .col-add-menu-info-col p{
+.add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-col p {
     font-size: 20px;
     overflow-wrap: break-word;
 }
 
-.add-menu-container .row-add-menu .col-add-menu a{
-    margin:auto;
+.add-menu-container .row-add-menu .col-add-menu a {
+    margin: auto;
     font-size: 100px;
     font-weight: 900;
 }
@@ -69,7 +75,7 @@
 }
 
 /* Add menu & food form*/
-.add-menu-form{
+.add-menu-form {
     background-color: var(--color-2);
     border-radius: 20px;
     width: 40vw;
@@ -82,7 +88,7 @@
     box-shadow: #00000029 0px 1px 4px;
 }
 
-.add-menu-form div{
+.add-menu-form div {
     margin: 30px 20px;
 }
 
@@ -91,13 +97,13 @@
     text-align: center;
 }
 
-.add-menu-form input{
+.add-menu-form input {
     font-size: 25px;
 }
 
-.add-menu-form button{
+.add-menu-form button {
     margin: 10px 20px;
-    background-color:  var(--color-1);
+    background-color: var(--color-1);
     color: #ffffff;
     border-radius: 20px;
     width: calc(40vw - 40px);
@@ -105,77 +111,139 @@
     padding: 5px;
 }
 
-.add-menu-form input[type="checkbox"]{
+.add-menu-form input[type="checkbox"] {
     width: 25px;
     height: 25px;
 }
 
-.food-description-div input{
+.food-description-div input {
     width: 30vw;
 }
 
 /* Admin dashboard */
-.admin-dashboard-container{
+.admin-dashboard-container {
     display: flex;
     flex-direction: column;
     background-color: var(--color-1);
-    width: 300px;
+    width: 15vw;
     position: fixed;
     height: 100vh;
     align-items: start;
 }
 
-.admin-dashboard-container a{
+#admin-dashboard-container-expand a {
     display: flex;
     justify-content: center;
+    align-items: center;
     text-decoration: none;
     margin: 5px 0;
 }
 
-.admin-dashboard-container span{
+#admin-dashboard-container-expand span {
     color: #ffffff;
-    font-size: 22px;    
+    font-size: 22px;
     line-height: 40px;
-    vertical-align:bottom;
+    vertical-align: bottom;
     margin-left: 10px;
 }
 
 /* logout */
-.admin-dashboard-container a:last-child{
+#admin-dashboard-container-expand a:last-child {
     margin: auto 0 25px;
 }
 
-.admin-dashboard-container p{
+#admin-dashboard-container-expand p {
     color: #ffffff69;
     font-size: 22px;
     margin: 40px 30px 20px;
 }
 
-.admin-dashboard-container .logo{
+#admin-dashboard-container-expand .logo {
+    margin: 0;
     display: flex;
     align-items: center;
 }
 
-.admin-dashboard-container .logo img{
-    height: 75px;
+#admin-dashboard-container-expand .logo img {
+    width: 75px;
     margin: 10px;
 }
 
-.admin-dashboard-container .logo-text{
+#admin-dashboard-container-expand .logo-text {
     font-size: 30px;
     color: #ffffff;
     text-decoration: none;
 }
 
-.admin-dashboard-icon{
+#admin-dashboard-container-expand .admin-dashboard-icon {
     margin-left: 30px;
     height: 40px;
     object-fit: contain;
-
+    margin: 10px 0;
 }
 
-.admin-dashboard-container .admin-dashboard-line{
+#admin-dashboard-container-expand .admin-dashboard-line {
     width: 240px;
     margin: 40px 30px 0;
     border-color: rgba(255, 255, 255, 0.164);
+}
+
+/* Minimize icon (<<)*/
+#admin-dashboard-minimize-icon {
+    width: 20px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+/* Minimized dashboard */
+#admin-dashboard-container-minimize {
+    width: 3vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#admin-dashboard-container-minimize .logo img {
+    margin: 10px auto 20px;
+    width: 75px;
+}
+
+#admin-dashboard-container-minimize .admin-dashboard-icon {
+    width: 40px;
+    object-fit: contain;
+    margin: 10px 0;
+}
+
+/* Expand icon (>>)*/
+#admin-dashboard-expand-icon {
+    width: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#admin-dashboard-container-minimize a {
+    text-decoration: none;
+}
+
+#admin-dashboard-container-minimize p {
+    color: #ffffff69;
+    font-size: 15px;
+    margin: 40px 0 20px;
+}
+
+#admin-dashboard-container-minimize .admin-dashboard-line {
+    width: 3vw;
+    border-color: rgba(255, 255, 255, 0.164);
+    margin-top: 10px;
+}
+
+/* logout */
+#admin-dashboard-container-minimize a:last-child {
+    margin: auto 0 25px;
+}
+
+.hidden {
+    display: none;
 }

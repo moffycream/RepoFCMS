@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', 'Admin-Orders')
+@extends('layouts.admin')
+@section('title', 'Dashboard')
 @section('content')
 <h1 class="add-menu-title">Add Food</h1>
 
