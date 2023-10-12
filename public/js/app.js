@@ -504,10 +504,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //jesse'js 
 // customer-orders-listings's js 
-function confirmCancel(status) {
-    if (status === 'preparing') {
-        alert("Sorry, you cannot cancel that order that is currently preparing.");
-        return false;
-    }
-    return confirm("Are you sure you want to cancel this order?");
-}
+document.addEventListener('DOMContentLoaded', function() {
+    // Get cancel buttons
+    const cancelButtons = document.querySelectorAll('.customer-container-cancel-button');
+
+    cancelButtons.forEach(function(button) {
+        // Get the order status from the data-status attribute from the data-status
+        const status = button.getAttribute('data-status');
+
+        // Check the status and disable the button if it's "preparing" or "Order Cancelled"
+        if (status === 'preparing' || status === 'Order Cancelled. The refund will be done within 5-7 working days.') {
+            button.disabled = true;
+        }
+
+        // Add click event listeners
+        button.addEventListener('click', function(event) {
+            if (status !== 'preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.') {
+                // Ask for confirmation
+                const confirmation = confirm("Are you sure you want to cancel this order?");
+                if (!confirmation) {
+                    event.preventDefault(); // Prevent form submission
+                }
+            }
+        });
+    });
+});

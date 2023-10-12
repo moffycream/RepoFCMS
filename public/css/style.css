@@ -379,7 +379,7 @@ article {
 } */
 
 /* Title */
-/* .title {
+ .title {
     font-size: 45px;
     text-align: center;
     background-color: var(--color-3);
@@ -391,7 +391,7 @@ article {
 
 
 
-
+/* 
 .container-register-page {
     text-align: center;
 }
@@ -430,7 +430,7 @@ article {
     cursor: pointer;
     color: #2b0548;
     transition: 0.2s;
-} */
+} */ 
 
 /* register success page */
 /* .button {
