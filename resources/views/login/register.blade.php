@@ -14,23 +14,23 @@
             </ul>
         </div>
         @endif
-        <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+        <input type="text" id="username" name="username" placeholder="Username" value="{{isset($_POST['username']) ? $_POST['username'] : ''}}" required><br><br>
 
         <input type="password" id="password" name="password" placeholder="Password" required>
         <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required><br><br>
-        <input type="firstName" id="firstName" name="firstName" placeholder="First Name" required>
+        <input type="firstName" id="firstName" name="firstName" placeholder="First Name" value="{{isset($_POST['firstName']) ? $_POST['firstName'] : ''}}" required>
 
-        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required><br><br>
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{isset($_POST['lastName']) ? $_POST['lastName'] : ''}}" required><br><br>
 
-        <input type="text" id="phone" name="phone" placeholder="Phone number" required><br><br>
+        <input type="text" id="phone" name="phone" placeholder="Phone number" value="{{isset($_POST['phone']) ? $_POST['phone'] : ''}}" required><br><br>
 
-        <input type="text" id="email" name="email" placeholder="Email" required><br><br>
+        <input type="text" id="email" name="email" placeholder="Email" value="{{isset($_POST['email']) ? $_POST['email'] : ''}}" required><br><br>
 
-        <input type="text" id="streetAddress" name="streetAddress" placeholder="Street Address" required><br><br>
+        <input type="text" id="streetAddress" name="streetAddress" placeholder="Street Address" value="{{isset($_POST['streetAddress']) ? $_POST['streetAddress'] : ''}}" required><br><br>
 
-        <input type="text" id="city" name="city" placeholder="City" required><br><br>
+        <input type="text" id="city" name="city" placeholder="City" value="{{isset($_POST['city']) ? $_POST['city'] : ''}}" required><br><br>
 
-        <input type="text" id="postcode" name="postcode" placeholder="Postcode" required><br><br>
+        <input type="text" id="postcode" name="postcode" placeholder="Postcode" value="{{isset($_POST['postcode']) ? $_POST['postcode'] : ''}}" required><br><br>
         <input type="hidden" name="accountType" value="Customer">
 
         <p>Have an account already? <a href="{{url('login')}}" class="login-here">Login here</a></p><br>
