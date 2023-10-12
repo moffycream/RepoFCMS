@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserAccounts;
 use App\Models\Notification;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\CssSelector\Parser\Shortcut\ElementParser;
 
 class UserAccountController extends Controller
 {
@@ -37,11 +37,16 @@ class UserAccountController extends Controller
 
     public function verifyCustomer()
     {
+        session_start();
+
         if (session('accountType') != "Customer") {
+            Session(['accountType' => 'Guest']);           
             return false;
         }
+        else{
+            return true;
+        }
 
-        return true;
     }  
 
     public function register()

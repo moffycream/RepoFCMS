@@ -2,8 +2,8 @@
     <div>
         <a class="logo" href="{{url('/')}}"><img class src="{{ asset('images/logo.png') }}" alt="logo"><span class="logo-text">Food Edge</span></a>
         <nav>
-            <ul>
-                @if(Session::get('accountType') == "Customer")
+            <ul>  
+                @if(Session::get('accountType') == "Guest" || Session::get('accountType') == "Customer")
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="{{url('display-menu')}}">Menu</a></li>
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
