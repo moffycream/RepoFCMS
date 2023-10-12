@@ -43,7 +43,9 @@
                         <i class="fas fa-times" onclick="toggleNotification()"></i>
                     </div>
                     @forelse($notifications as $notification)
+                    @if($notification->isRead == false)
                     <p>{{$notification->content}}</p>
+                    @endif
                     @empty
                     @endforelse
                 </div>

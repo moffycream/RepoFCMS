@@ -113,3 +113,69 @@
 .food-description-div input{
     width: 30vw;
 }
+
+/* Admin dashboard */
+.admin-dashboard-container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-1);
+    width: 300px;
+    position: fixed;
+    height: 100vh;
+    align-items: start;
+}
+
+.admin-dashboard-container a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.admin-dashboard-container span{
+    color: #ffffff;
+    font-size: 22px;    
+    line-height: 40px;
+    vertical-align:bottom;
+    margin-left: 10px;
+}
+
+/* logout */
+.admin-dashboard-container a:last-child{
+    margin: auto 0 25px;
+}
+
+.admin-dashboard-container p{
+    color: #ffffff69;
+    font-size: 22px;
+    margin: 40px 30px 20px;
+}
+
+.admin-dashboard-container .logo{
+    display: flex;
+    align-items: center;
+}
+
+.admin-dashboard-container .logo img{
+    height: 75px;
+    margin: 10px;
+}
+
+.admin-dashboard-container .logo-text{
+    font-size: 30px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.admin-dashboard-icon{
+    margin-left: 30px;
+    height: 40px;
+    object-fit: contain;
+
+}
+
+.admin-dashboard-container .admin-dashboard-line{
+    width: 240px;
+    margin: 40px 30px 0;
+    border-color: rgba(255, 255, 255, 0.164);
+}
