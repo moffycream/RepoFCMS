@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\MenuFood;
 use App\http\Controllers\AdminController;
+use App\Http\Controllers\NotificationController;
 
 class MenuController extends Controller
 {
@@ -14,6 +14,7 @@ class MenuController extends Controller
     // Retrieve data 
     public function index(AdminController $adminController)
     {
+        $notificationController = app(NotificationController::class);
         $menu = Menu::all();
 
         // Checks whether is valid login or not
@@ -21,7 +22,7 @@ class MenuController extends Controller
 
         if ($this->adminController->verifyAdmin()) 
         {
-            return view('menu.add-menu', ['listItems' => $menu], ['notifications' => Notification::all()]);
+            return view('menu.add-menu', ['listItems' => $menu, 'notifications' => $notificationController->getNotification()]);
         }
         else
         {
