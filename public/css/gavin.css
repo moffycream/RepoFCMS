@@ -176,6 +176,104 @@
     transition: 0.5s;
 }
 
+/* Admin Register page */
+.admin-register-page-logo {
+    width: 100px;
+    height: 100px;
+    padding-bottom: 20px;
+
+}
+
+.container-admin-register-page {
+    text-align: center;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.admin-register-left-column {
+    flex: 1;
+    float: left;
+    width: 50%;
+    text-align: left;
+    margin-right: 200px;
+}
+
+.admin-register-right-column {
+    flex: 1;
+    float: right;
+    width: 50%;
+    text-align: left;
+    padding-left: 1vh;
+}
+
+.admin-register-centre-column {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.admin-register-left-column p,
+.admin-register-right-column p {
+    opacity: 50%;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.container-admin-register-page form input[type="text"],
+.container-admin-register-page form input[type="password"],
+.container-admin-register-page form textarea {
+    font-size: 15px;
+    border-radius: 5px;
+    border-color: #dadada;
+    padding: 10px;
+    vertical-align: top;
+    resize: none;
+}
+
+.container-admin-register-page #streetAddress {
+    padding: 40px 10px;
+}
+
+.admin-register-centre-column select {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.container-admin-register-page form ::placeholder {
+    font-size: 15px;
+}
+
+.admin-register-submit-button {
+    background-color: var(--color-1);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.admin-register-submit-button:hover {
+    background-color: #ffffff;
+    color: var(--color-1);
+    border-color: #ffffff;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.admin-register-box-columns {
+    display: flex;
+}
+
+.admin-register-box {
+    padding: 100px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+}
+
 /* Register successful page */
 .container-register-successful {
     background-color: var(--color-2);
