@@ -28,7 +28,7 @@
     @if (count($cart ?? []) > 0)
         <ul>
             @foreach ($cart as $item)
-                <li>{{ $item }}</li>
+                <li>{{ $item['menu']->name }} (Quantity: {{ $item['quantity'] }})</li>
             @endforeach
         </ul>
     @else
@@ -37,3 +37,4 @@
 </div>
 
 @endsection
+
