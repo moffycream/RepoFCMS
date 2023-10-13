@@ -53,6 +53,11 @@
 
             </div>
             <div class="row-status">
+                 @php
+                    if($selectedOrder->status == "Order Cancelled. The refund will be done within 5-7 working days.") {
+                        $selectedOrder->status = "Cancelled";
+                    }
+                @endphp
                 <p class="customer-title">Order Status</p>
                 <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($selectedOrder->status))}}">{{$selectedOrder->status}}</span></p>
             </div>
