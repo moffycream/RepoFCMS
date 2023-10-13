@@ -34,33 +34,47 @@ class FoodMenuController extends Controller
             return view('login.access-denied');
         }
     }
+    
+    public function addToCart(Request $request)
+    {
+        $menu = Menu::find($request->menu_id);
 
-
-    public function addToCart(Request $request, Menu $menu)
+        if (!$menu) 
         {
-            // Check if the menu item already exists in the cart.
-            $cart = session()->get('cart', []);
-            
-            if (array_key_exists($menu->id, $cart)) 
-            {
-                // If it exists, increase the quantity by 1.
-                $cart[$menu->id]['quantity'] += 1;
-            } 
-            else 
-            {
-                // If it doesn't exist, add it to the cart with a quantity of 1.
-                $cart[$menu->id] = [
-                    'menu' => $menu->name,
-                    'quantity' => 1,
-                ];
-            }
-
-            // Store the updated cart in the session.
-            session()->put('cart', $cart);
-
-            // Optionally, you can redirect the user back to the menu page or to the cart page.
-            return redirect()->route('menu.index');
+            return redirect()->route('menu.index')->with('error', 'Menu not found.');
         }
+
+        // Get the cart items from the session
+        $cart = session('cart', []);
+
+        // Check if the menu item is already in the cart
+        $existingItem = collect($cart)->first(function ($item) use ($menu) 
+        {
+            return $item['menu']->id === $menu->id;
+        });
+
+        if ($existingItem) 
+        {
+            $existingItem['quantity'] += 1;
+        } 
+        else 
+        {
+            // If the menu item is not in the cart, add it
+            $cart[] = ['menu' => $menu, 'quantity' => 1];
+        }
+
+    // Store the updated cart in the session
+    session(['cart' => $cart]);
+
+    return redirect()->route('food-menu.index')->with('success', 'Menu item added to cart.');
+}
+
+public function showCart()
+{
+    $cart = session('cart', []);
+    return view('cart.index', ['cart' => $cart]);
+}
+
 
 
     public function checkout(Request $request)
