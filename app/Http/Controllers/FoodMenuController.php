@@ -34,7 +34,7 @@ class FoodMenuController extends Controller
             return view('login.access-denied');
         }
     }
-    
+
     public function addToCart(Request $request)
     {
         $menu = Menu::find($request->menu_id);
@@ -63,19 +63,17 @@ class FoodMenuController extends Controller
             $cart[] = ['menu' => $menu, 'quantity' => 1];
         }
 
-    // Store the updated cart in the session
-    session(['cart' => $cart]);
+        // Store the updated cart in the session
+        session(['cart' => $cart]);
 
-    return redirect()->route('food-menu.index')->with('success', 'Menu item added to cart.');
-}
+        return redirect()->route('food-menu.index')->with('success', 'Menu item added to cart.');
+    }
 
-public function showCart()
-{
-    $cart = session('cart', []);
-    return view('cart.index', ['cart' => $cart]);
-}
-
-
+    public function showCart()
+    {
+        $cart = session('cart', []);
+        return view('cart.index', ['cart' => $cart]);
+    }
 
     public function checkout(Request $request)
     {

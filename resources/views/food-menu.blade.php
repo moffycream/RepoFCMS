@@ -24,11 +24,27 @@
         <button type="submit">Checkout</button>
     </form>
 
-    <div id="cartItems" style="display: none;">
+    <div id="cartItems">
         <h2>Cart Items</h2>
         <ul id="cartItemList"></ul>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () 
+    {
+        // When the "Add to Cart" button is clicked, toggle the visibility of cart items.
+        $('form[action*="addToCart"]').submit(function (event) 
+        {
+            event.preventDefault(); // Prevent form submission
+            $('#cartItems').show(); // Show cart items
+            console.log('Form submitted'); // Debugging: Check if the form submission event is triggered
+
+            // Add logic to update the cart items list here (you may use AJAX to fetch and display cart contents).
+            // console.log('Update cart items'); // Debugging: Check if this part is executing
+        });
+    });
+</script>
 
 @endsection
 
