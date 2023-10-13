@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\Notification;
 use App\Http\Controllers\AdminController;
-use App\Models\UserAccounts;
+
 
 class OrderController extends Controller
 {
@@ -46,11 +44,7 @@ class OrderController extends Controller
         $selectedOrder->status = "Preparing";
         $selectedOrder->save();
 
-        $notification = new Notification();
-        $notification->userID = $selectedOrder->userID;
-        $notification->content = 'Your order#' . $orderID . ' is processing';
-        $notification->save();
-
+        $notificationController->createNotification('Order ' . $orderID . ' has been accepted.', $selectedOrder->userID);
         return view('operation.op-view-order', ['orders' => $orders, 'selectedOrder' => $selectedOrder, 'notifications' => $notificationController->getNotification()]);
     }
 
@@ -62,11 +56,7 @@ class OrderController extends Controller
         $selectedOrder->status = "Ready for pickup";
         $selectedOrder->save();
 
-        $notification = new Notification();
-        $notification->userID = $selectedOrder->userID;
-        $notification->content = 'Your order#' . $orderID . ' is ready for pickup';
-        $notification->save();
-
+        $notificationController->createNotification('Order ' . $orderID . ' is ready for pickup.', $selectedOrder->userID);
         return view('operation.op-view-order', ['orders' => $orders, 'selectedOrder' => $selectedOrder, 'notifications' => $notificationController->getNotification()]);
     }
 
@@ -77,10 +67,8 @@ class OrderController extends Controller
         $selectedOrder->status = "Completed";
         $selectedOrder->save();
 
-        $notification = new Notification();
-        $notification->userID = $selectedOrder->userID;
-        $notification->content = 'Your order#' . $orderID . ' is completed';
-        $notification->save();
+        $notificationController = app(NotificationController::class);
+        $notificationController->createNotification('Order ' . $orderID . ' has been completed.', $selectedOrder->userID);
 
         return redirect('/op-orders')->with(['orders' => $orders]);
     }
@@ -92,10 +80,8 @@ class OrderController extends Controller
         $selectedOrder->status = "Cancelled";
         $selectedOrder->save();
 
-        $notification = new Notification();
-        $notification->userID = $selectedOrder->userID;
-        $notification->content = 'Your order#' . $orderID . ' is cancelled';
-        $notification->save();
+        $notificationController = app(NotificationController::class);
+        $notificationController->createNotification('Order ' . $orderID . ' has been cancelled.', $selectedOrder->userID);
         return redirect('/op-orders')->with(['orders' => $orders]);
     }
 }

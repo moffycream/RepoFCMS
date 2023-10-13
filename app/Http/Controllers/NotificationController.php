@@ -36,4 +36,21 @@ class NotificationController extends Controller
         }
         return collect(); // Return an empty collection if there are no notifications
     }
+
+    public function createNotification($content, $userID)
+    {
+        $notification = new Notification();
+        $notification->content = $content;
+        $notification->userID = $userID;
+        $notification->isRead = false;
+        $notification->save();
+    }
+
+    public function notifyOperationTeam($content)
+    {
+        $operationTeam = UserAccounts::where('accountType', 'OperationTeam')->get();
+        foreach ($operationTeam as $operation) {
+            $this->createNotification($content, $operation->userID);
+        }
+    }
 }
