@@ -18,6 +18,9 @@ class FoodMenuController extends Controller
         $menus = Menu::all();
         $foods = Food::all();
 
+        // Retrieve the cart items from the session
+        $cart = session('cart', []);
+
         $notificationController = app(NotificationController::class);
 
         // Checks whether is admin session or not
@@ -25,31 +28,39 @@ class FoodMenuController extends Controller
 
         if ($this->adminController->verifyAdmin()) 
         {
-            return view('food-menu', compact('menus', 'foods'),['notifications' => $notificationController->getNotification()]);
-        } else 
+            return view('food-menu', compact('menus', 'foods', 'cart'),['notifications' => $notificationController->getNotification()]);
+        } 
+        else 
         {
             return view('login.access-denied');
         }
     }
 
-    public function addToCart(Request $request)
+    public function addToCart(Request $request, Menu $menu)
     {
-        // Retrieve the menu item's ID from the form submission
-        $menu = $request->input('menu_id');
+        // Check if the menu item already exists in the cart.
+        $cart = session()->get('cart', []);
+            
+        if (array_key_exists($menu->id, $cart)) 
+        {
+            // If it exists, increase the quantity by 1.
+            $cart[$menu->id]['quantity'] += 1;
+        } 
+        else 
+        {
+            // If it doesn't exist, add it to the cart with a quantity of 1.
+            $cart[$menu->id] = [
+                'menu' => $menu->name,
+                'quantity' => 1,
+            ];
+        }
 
-        // Initialize the cart session variable if it doesn't exist
-        $cart = $request->session()->get('cart', []);
+        // Store the updated cart in the session.
+        session()->put('cart', $cart);
 
-        // Add the menu to the cart array
-        $cart[] = $menu;
-
-        // Update the cart session variable with the new data
-        $request->session()->put('cart', $cart);
-
-        // Redirect back to the menu page or wherever you prefer
-        return redirect()->route('menu.index')->with('success', 'Item added to cart');
+        // Optionally, you can redirect the user back to the menu page or to the cart page.
+        return redirect()->route('menu.index');
     }
-
 
     public function checkout(Request $request)
     {

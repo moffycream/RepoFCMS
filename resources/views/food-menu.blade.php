@@ -28,12 +28,14 @@
     @if (count($cart ?? []) > 0)
         <ul>
             @foreach ($cart as $item)
-                <li>{{ $item }}</li>
+                <li>{{ $item['menu'] }}</li>
             @endforeach
         </ul>
     @else
         <p>Your cart is empty.</p>
     @endif
+
 </div>
 
 @endsection
+
