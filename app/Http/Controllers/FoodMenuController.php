@@ -17,50 +17,51 @@ class FoodMenuController extends Controller
         // Retrieve data from the database
         $menus = Menu::all();
         $foods = Food::all();
-
+        
         // Retrieve the cart items from the session
         $cart = session('cart', []);
 
         $notificationController = app(NotificationController::class);
 
-        // Checks whether is admin session or not
+        // Checks whether it's an admin session or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) 
         {
-            return view('food-menu', compact('menus', 'foods', 'cart'),['notifications' => $notificationController->getNotification()]);
-        } 
-        else 
+            return view('food-menu', compact('menus', 'foods', 'cart'), ['notifications' => $notificationController->getNotification()]);
+        } else 
         {
             return view('login.access-denied');
         }
     }
 
+
     public function addToCart(Request $request, Menu $menu)
-    {
-        // Check if the menu item already exists in the cart.
-        $cart = session()->get('cart', []);
+        {
+            // Check if the menu item already exists in the cart.
+            $cart = session()->get('cart', []);
             
-        if (array_key_exists($menu->id, $cart)) 
-        {
-            // If it exists, increase the quantity by 1.
-            $cart[$menu->id]['quantity'] += 1;
-        } 
-        else 
-        {
-            // If it doesn't exist, add it to the cart with a quantity of 1.
-            $cart[$menu->id] = [
-                'menu' => $menu->name,
-                'quantity' => 1,
-            ];
+            if (array_key_exists($menu->id, $cart)) 
+            {
+                // If it exists, increase the quantity by 1.
+                $cart[$menu->id]['quantity'] += 1;
+            } 
+            else 
+            {
+                // If it doesn't exist, add it to the cart with a quantity of 1.
+                $cart[$menu->id] = [
+                    'menu' => $menu->name,
+                    'quantity' => 1,
+                ];
+            }
+
+            // Store the updated cart in the session.
+            session()->put('cart', $cart);
+
+            // Optionally, you can redirect the user back to the menu page or to the cart page.
+            return redirect()->route('menu.index');
         }
 
-        // Store the updated cart in the session.
-        session()->put('cart', $cart);
-
-        // Optionally, you can redirect the user back to the menu page or to the cart page.
-        return redirect()->route('menu.index');
-    }
 
     public function checkout(Request $request)
     {
