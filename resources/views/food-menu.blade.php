@@ -24,10 +24,15 @@
         <button type="submit">Checkout</button>
     </form>
 
-    <div id="cartItems">
-        <h2>Cart Items</h2>
-        <ul id="cartItemList"></ul>
-    </div>
+    <h1>Cart Items</h1>
+    <ul>
+    @foreach ($cart as $item)
+        <li>
+            {{ $item['menu']->name }} - Quantity: {{ $item['quantity'] }}
+        </li>
+    @endforeach
+</ul>
+
 </div>
 
 <script>
@@ -39,9 +44,6 @@
             event.preventDefault(); // Prevent form submission
             $('#cartItems').show(); // Show cart items
             console.log('Form submitted'); // Debugging: Check if the form submission event is triggered
-
-            // Add logic to update the cart items list here (you may use AJAX to fetch and display cart contents).
-            // console.log('Update cart items'); // Debugging: Check if this part is executing
         });
     });
 </script>

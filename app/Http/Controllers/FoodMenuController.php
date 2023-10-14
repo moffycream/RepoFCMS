@@ -35,6 +35,40 @@ class FoodMenuController extends Controller
         }
     }
 
+    // public function addToCart(Request $request)
+    // {
+    //     $menu = Menu::find($request->menu_id);
+
+    //     if (!$menu) 
+    //     {
+    //         return redirect()->route('menu.index')->with('error', 'Menu not found.');
+    //     }
+
+    //     // Get the cart items from the session
+    //     $cart = session('cart', []);
+
+    //     // Check if the menu item is already in the cart
+    //     $existingItem = collect($cart)->first(function ($item) use ($menu) 
+    //     {
+    //         return $item['menu']->id === $menu->id;
+    //     });
+
+    //     if ($existingItem) 
+    //     {
+    //         $existingItem['quantity'] += 1;
+    //     } 
+    //     else 
+    //     {
+    //         // If the menu item is not in the cart, add it
+    //         $cart[] = ['menu' => $menu, 'quantity' => 1];
+    //     }
+
+    //     // Store the updated cart in the session
+    //     session(['cart' => $cart]);
+
+    //     return redirect()->route('menu.index')->with('success', 'Menu item added to cart.');
+    // }
+
     public function addToCart(Request $request)
     {
         $menu = Menu::find($request->menu_id);
@@ -48,14 +82,15 @@ class FoodMenuController extends Controller
         $cart = session('cart', []);
 
         // Check if the menu item is already in the cart
-        $existingItem = collect($cart)->first(function ($item) use ($menu) 
+        $existingItemKey = collect($cart)->search(function ($item) use ($menu) 
         {
             return $item['menu']->id === $menu->id;
         });
 
-        if ($existingItem) 
+        if ($existingItemKey !== false) 
         {
-            $existingItem['quantity'] += 1;
+            // If the menu item is in the cart, increment the quantity
+            $cart[$existingItemKey]['quantity'] += 1;
         } 
         else 
         {
@@ -66,7 +101,7 @@ class FoodMenuController extends Controller
         // Store the updated cart in the session
         session(['cart' => $cart]);
 
-        return redirect()->route('food-menu.index')->with('success', 'Menu item added to cart.');
+        return redirect()->route('menu.index')->with('success', 'Menu item added to cart.');
     }
 
     public function showCart()
