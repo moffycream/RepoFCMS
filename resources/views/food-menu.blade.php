@@ -13,7 +13,7 @@
             <p>Price: ${{ $menu->totalPrice }}</p>
             <form action="{{ route('food-menu.addToCart') }}" method="POST">
                 @csrf
-                <input type="hidden" name="menu_id" value="{{ $menu->id }}">
+                <input type="hidden" name="menu_id" value="{{ $menu->menuID }}">
                 <button type="submit">Add to cart</button>
             </form>
         </div>
@@ -27,21 +27,23 @@
     <!-- Display Cart Items -->
     <div id="cartItems">
         <h2>Cart Items</h2>
+        
         <ul>
             @foreach ($cart as $item)
                 <li>
-                    {{ $item['menu']->name }} - Quantity: {{ $item['quantity'] }}
+                {{ $item['menu']->menuID}}- {{ $item['menu']->name }} - Quantity: {{ $item['quantity'] }}
                 </li>
             @endforeach
         </ul>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
     $(document).ready(function () 
     {
         // When the "Add to Cart" button is clicked, toggle the visibility of cart items.
-        $('form[action*="addToCart"]').submit(function (event) 
+        $('form[action*="addToCart"]').on("click",function (event) 
         {
             event.preventDefault(); // Prevent form submission
             $('#cartItems').show(); // Show cart items
