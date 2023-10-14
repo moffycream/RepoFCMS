@@ -4,11 +4,11 @@
 
 <div class="foodMenu container">
     <h1>Food Menu</h1>
-
     <h2></h2>
     @foreach ($menus as $menu)
         <div class="foodMenu">
             <h3>{{ $menu->name }}</h3>
+            <img src="{{ $menu->imagePath }}" alt="{{ $menu->name }}" width="200"> <!-- Display the image -->
             <p>{{ $menu->description }}</p>
             <p>Price: ${{ $menu->totalPrice }}</p>
             <form action="{{ route('food-menu.addToCart') }}" method="POST">
@@ -24,15 +24,17 @@
         <button type="submit">Checkout</button>
     </form>
 
-    <h1>Cart Items</h1>
-    <ul>
-    @foreach ($cart as $item)
-        <li>
-            {{ $item['menu']->name }} - Quantity: {{ $item['quantity'] }}
-        </li>
-    @endforeach
-</ul>
-
+    <!-- Display Cart Items -->
+    <div id="cartItems">
+        <h2>Cart Items</h2>
+        <ul>
+            @foreach ($cart as $item)
+                <li>
+                    {{ $item['menu']->name }} - Quantity: {{ $item['quantity'] }}
+                </li>
+            @endforeach
+        </ul>
+    </div>
 </div>
 
 <script>
@@ -49,4 +51,5 @@
 </script>
 
 @endsection
+
 
