@@ -59,49 +59,94 @@
 
 /* register page */
 .container-register-page {
-    text-align: center;
-    background-color: #e8dcd4;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register-left-column {
+    width: 300px;
+    margin: 20px 50px 0 40px;
+}
+
+.register-right-column {
+    width: 300px;
+    margin: 20px 40px 0 50px;
+}
+
+.register-left-column h2,
+.register-right-column h2 {
+    margin-bottom: 10px;
+}
+
+.register-left-column p,
+.register-right-column p {
+    opacity: 50%;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.container-register-page .register-left-column>div,
+.container-register-page .register-right-column>div {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-.container-register-page form ul li {
-    list-style-type: none;
+.container-register-page form input,
+.container-register-page form textarea {
+    padding: 15px 20px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
 }
 
-.container-register-page h1 {
-    padding: 50px;
-    font-size: 30px;
-    background-color: #ffc9a7;
-    border-radius: 10px;
-    width: 20%;
-    margin: 30px;
+.container-register-page #streetAddress {
+    resize: none;
+    height: 50px;
 }
 
-.register-form input,
-.register-form label {
+.register-centre-column select {
+    border-radius: 5px;
+    padding: 10px;
     font-size: 15px;
 }
 
-.register-form input {
-    background-color: #473447;
-    border-radius: 5px;
-    font-size: 20px;
+.container-register-page form ::placeholder {
+    font-size: 15px;
 }
 
 .register-submit-button {
-    font-size: 20px;
-    padding: 10px 20px;
+    background-color: var(--color-1);
+    color: #ffffff;
+    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    transition: 0.5s;
 }
 
 .register-submit-button:hover {
-    background-color: #fff;
-    color: #312431;
+    background-color: #ffffff;
+    color: var(--color-1);
+    border-color: #ffffff;
+    cursor: pointer;
     transform: scale(1.1);
     transition: 0.5s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.register-box-columns {
+    display: flex;
+}
+
+.register-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
 }
 
 .login-here {
@@ -177,63 +222,71 @@
 }
 
 /* Admin Register page */
-.admin-register-page-logo {
-    width: 100px;
-    height: 100px;
-    padding-bottom: 20px;
-
-}
-
 .container-admin-register-page {
-    text-align: center;
+    height: 100vh;
     background-color: #ffffff;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
+    justify-content: center;
 }
 
 .admin-register-left-column {
-    flex: 1;
-    float: left;
-    width: 50%;
-    text-align: left;
-    margin-right: 200px;
+    width: 300px;
+    margin: 20px 50px 0 40px;
 }
 
 .admin-register-right-column {
-    flex: 1;
-    float: right;
-    width: 50%;
-    text-align: left;
-    padding-left: 1vh;
+    width: 300px;
+    margin: 20px 40px 0 50px;
 }
 
 .admin-register-centre-column {
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
+    display: flex;
+    flex-direction: column;
     text-align: center;
+}
+
+.admin-register-centre-column #accountType{
+    padding: 10px 20px;
+    text-align: left;
+}
+
+.admin-register-centre-column select,
+.admin-register-centre-column button
+{
+    margin-bottom: 10px;
+}
+
+.admin-register-left-column h2,
+.admin-register-right-column h2{
+    margin-bottom: 10px;
 }
 
 .admin-register-left-column p,
 .admin-register-right-column p {
     opacity: 50%;
-    font-size: 15px;
-    margin-bottom: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.container-admin-register-page .admin-register-left-column> div,
+.container-admin-register-page .admin-register-right-column> div 
+{
+    display: flex;
+    flex-direction: column;
 }
 
-.container-admin-register-page form input[type="text"],
-.container-admin-register-page form input[type="password"],
-.container-admin-register-page form textarea {
-    font-size: 15px;
+.container-admin-register-page form input,
+.container-admin-register-page form textarea{
+    padding: 15px 20px;
+    border: 1px solid #00000077;
     border-radius: 5px;
-    border-color: #dadada;
-    padding: 10px;
-    vertical-align: top;
-    resize: none;
+    margin: 5px 0;
 }
 
 .container-admin-register-page #streetAddress {
-    padding: 40px 10px;
+    resize: none; 
+    height: 50px;
 }
 
 .admin-register-centre-column select {
@@ -269,7 +322,11 @@
 }
 
 .admin-register-box {
-    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
     border-radius: 20px;
     background: linear-gradient(135deg, #fff3e8, #f3d7d7);
 }
