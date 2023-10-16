@@ -1,19 +1,18 @@
 @extends('layouts.admin')
 @section('title', 'Dashboard')
 @section('content')
-<div class="add-menu-container">
+<div class="add-menu-form-container">
     <form class="add-menu-form" id="add-menu-form" method="POST" action="{{ route('menu.register') }}" enctype="multipart/form-data">
         @csrf
         <div>
             <p class="add-menu-form-title">Add Menu Form</p>
         </div>
         <div>
-            <label for="menu-image">Image</label><br>
-            <input type="file" accept=".png, .jpeg, .jpg" id="menu-image" name="image"><br>
+            <label for="menu-image">Image</label>
+            <input type="file" accept=".png, .jpeg, .jpg" id="menu-image" name="image">
         </div>
         <div>
-            <label for="menu-name">Menu name</label><br>
-            <input type="text" id="menu-name" name="name" maxlength="20"><br>
+            <input type="text" id="menu-name" name="name" maxlength="20" placeholder="Menu name"><br>
         </div>
         <div id="food-dropdown-list" class="food-dropdown-check-list">
             <span id="food-dropdown-anchor">Select Foods</span>
@@ -35,7 +34,7 @@
         <div id="hidden-inputs-container"></div>
 
 
-        <button type="submit">Submit</button>
+        <button class="admin-register-submit-button" type="submit">Submit</button>
     </form>
 </div>
 @endsection

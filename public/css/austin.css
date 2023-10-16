@@ -44,6 +44,7 @@
     flex-direction: column;
     justify-content: center;
     box-shadow: #00000029 0px 1px 4px;
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
 }
 
 .add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-row {
@@ -75,49 +76,61 @@
 }
 
 /* Add menu & food form*/
+.add-menu-form-container {
+    margin: 10vh 0;
+}
+
 .add-menu-form {
-    background-color: var(--color-2);
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
     border-radius: 10px;
     width: 40vw;
+    height: 80vh;
     margin: auto;
+    font-size: 30px;
+    box-shadow: #00000029 0px 1px 4px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 40px;
-    font-weight: bold;
-    box-shadow: #00000029 0px 1px 4px;
+    align-items: center;
 }
 
 .add-menu-form div {
-    margin: 30px 20px;
+    margin: 20px 20px;
+}
+
+.add-menu-form div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .add-menu-form-title {
     font-size: 60px;
+    font-weight: bold;
     text-align: center;
 }
 
 .add-menu-form input[type="file"] {
-    padding: 0;
+    align-self: center;
+    display: block;
+    text-align-last: center;
 }
 
 .add-menu-form input[type=file]::file-selector-button {
-    background-color: var(--color-1);
-    color: #ffffff;
-    border-radius: 5px;
+    background-color: #e6d2cf;
+    color: #000000;
+    border: 1px solid var(--color-1);
 }
 
-.add-menu-form input {
-    font-size: 25px;
-    padding: 10px;
-    border-radius: 5px;
-}
-
+.add-menu-form input,
 #food-description {
     font-size: 25px;
     padding: 10px;
+    width: 20vw;
+}
+
+#food-description{
     resize: none;
-    border-radius: 5px;
 }
 
 .add-menu-form button {
@@ -125,9 +138,9 @@
     background-color: var(--color-1);
     color: #ffffff;
     border-radius: 10px;
-    width: calc(40vw - 40px);
-    font-size: 40px;
-    padding: 5px;
+    width: 10vw;
+    font-size: 30px;
+    padding: 10px 5px;
 }
 
 .add-menu-form input[type="checkbox"] {
@@ -145,7 +158,8 @@
     cursor: pointer;
     display: inline-block;
     padding: 5px 50px 5px 10px;
-    border: 3px solid var(--color-1);
+    border: 1px solid var(--color-1);
+    background-color: #e6d2cf;
 }
 
 /* Create arrow */
@@ -164,7 +178,8 @@
 .food-dropdown-check-list ul {
     padding: 5px;
     display: none;
-    border: 3px solid var(--color-1);
+    border: 1px solid var(--color-1);
+    background-color: #e6d2cf;
 }
 
 .food-dropdown-check-list ul li {
@@ -172,7 +187,7 @@
 }
 
 /* Make dropdown visible */
-.food-dropdown-check-list.visible ul{
+.food-dropdown-check-list.visible ul {
     display: block;
 }
 
