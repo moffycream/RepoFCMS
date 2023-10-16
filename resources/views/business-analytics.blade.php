@@ -5,25 +5,41 @@
 <div class="businessAnalytics-chart-container">
     <canvas id="revenueChart" width="400" height="200"></canvas>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     var ctx = document.getElementById('revenueChart').getContext('2d');
 
-    var chart = new Chart(ctx, 
+    // Function to generate random data
+    function generateRandomData(count) 
     {
-        type: 'bar', // Change the chart type as needed
-        data: 
+        var data = [];
+        for (var i = 0; i < count; i++) 
         {
-            labels: <?php echo json_encode($chartData['labels']); ?>,
-            datasets: [
+            data.push(Math.floor(Math.random() * 1000)); // Change the range and logic as needed
+        }
+        return data;
+    }
+
+    var chartData = 
+    {
+        labels: <?php echo json_encode($chartData['labels']); ?>,
+        datasets: 
+        [
             {
                 label: 'Revenue',
-                data: <?php echo json_encode($chartData['data']); ?>,
+                data: generateRandomData(<?php echo count($chartData['labels']); ?>), // Generate random data
                 backgroundColor: 'rgba(75, 192, 192, 0.2)', // Customize the chart colors
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
-            }]
-        },
+            }
+        ]
+    };
+
+    var chart = new Chart(ctx, 
+    {
+        type: 'bar', // Change the chart type as needed
+        data: chartData,
         options: 
         {
             scales: 
@@ -39,10 +55,6 @@
 
 <div class="businessAnalytics-total-order-amount">
     <h1>Total Order Amount: ${{ $totalOrderAmount }}</h1>
-</div>
-
-<div class="businessAnalytics-chart-container">
-    <canvas id="orderChart" width="400" height="200"></canvas>
 </div>
 
 <div class="businessAnalytics-data-table">

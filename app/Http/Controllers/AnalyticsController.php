@@ -53,21 +53,29 @@ class AnalyticsController extends Controller
         return $totalRevenue;
     }
 
-    private function calculateTotalOrderAmount($orders)
+    private function calculateTotalOrderAmount()
     {
+        $totalRevenue = 1000;
         // Calculate the total order amount
-        return $orders->sum('order_amount');
+        return $totalRevenue;
     }
 
     private function prepareChartData($orders)
     {
-        // Prepare data for a bar chart
-        $chartData =
-            [
-                'labels' => $orders->pluck('customer_name'),
-                'data' => $orders->pluck('order_amount'),
-            ];
+        // You can change this logic to generate random data as needed
+        $randomLabels = ['Menu 1', 'Menu 2', 'Menu 3', 'Menu 4', 'Menu 5'];
+        $randomData = [];
+        
+        foreach ($randomLabels as $label) {
+            $randomData[] = rand(100, 1000); // Generate random data values (adjust the range as needed)
+        }
+
+        $chartData = [
+            'labels' => $randomLabels,
+            'data' => $randomData,
+        ];
 
         return $chartData;
     }
+
 }
