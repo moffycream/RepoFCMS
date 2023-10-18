@@ -54,7 +54,7 @@
 </script>
 
 <div class="businessAnalytics-total-order-amount">
-    <h1>Total Order Amount: ${{ $totalOrderAmount }}</h1>
+    <h1>Total Order Amount: RM {{ $totalOrderAmount }}</h1>
 </div>
 
 <div class="businessAnalytics-data-table">
