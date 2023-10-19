@@ -5,31 +5,33 @@
 <div class="businessAnalytics-chart-container">
     <canvas id="revenueChart" width="400" height="200"></canvas>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     var ctx = document.getElementById('revenueChart').getContext('2d');
 
-    var chart = new Chart(ctx, 
-    {
-        type: 'bar', // Change the chart type as needed
-        data: 
-        {
-            labels: <?php echo json_encode($chartData['labels']); ?>,
-            datasets: [
+    // Your chart data from the server
+    var chartData = {
+        labels: <?php echo json_encode($chartData['labels']); ?>,
+        datasets: [
             {
                 label: 'Revenue',
-                data: <?php echo json_encode($chartData['data']); ?>,
+                data: <?php echo json_encode($chartData['data']); ?>, // Use the actual data from your Laravel controller
                 backgroundColor: 'rgba(75, 192, 192, 0.2)', // Customize the chart colors
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
-            }]
-        },
-        options: 
-        {
-            scales: 
-            {
-                y: 
-                {
+            }
+        ]
+    };
+
+    console.log(chartData);
+
+    var chart = new Chart(ctx, {
+        type: 'bar', // Change the chart type as needed
+        data: chartData,
+        options: {
+            scales: {
+                y: {
                     beginAtZero: true
                 }
             }
@@ -38,11 +40,7 @@
 </script>
 
 <div class="businessAnalytics-total-order-amount">
-    <h1>Total Order Amount: ${{ $totalOrderAmount }}</h1>
-</div>
-
-<div class="businessAnalytics-chart-container">
-    <canvas id="orderChart" width="400" height="200"></canvas>
+    <h1>Total Order Amount: RM {{ $totalOrderAmount }}</h1>
 </div>
 
 <div class="businessAnalytics-data-table">

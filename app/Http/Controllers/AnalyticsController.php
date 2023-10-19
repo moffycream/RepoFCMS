@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Models\Menu;
 use App\Models\Order;
 use App\Http\Controllers\AdminController;
 
@@ -17,12 +18,13 @@ class AnalyticsController extends Controller
 
         // Retrieve all orders
         $orders = Order::all();
+        $menus = Menu::all();
 
         // Calculate the total order amount
-        $totalOrderAmount = $this->calculateTotalOrderAmount($orders);
+        $totalOrderAmount = $this->calculateTotalOrderAmount($menus, $orders);
 
         // Prepare data for a bar chart
-        $chartData = $this->prepareChartData($orders);
+        $chartData = $this->prepareChartData($orders, $menus);
 
         // Checks whether is admin session or not
         $this->adminController = $adminController;
@@ -48,26 +50,38 @@ class AnalyticsController extends Controller
     private function calculateRevenue()
     {
         $orders = Order::all();
-        $totalRevenue = $orders->sum('order_amount');
+        $totalRevenue = $orders->sum('total');
 
         return $totalRevenue;
     }
 
-    private function calculateTotalOrderAmount($orders)
+    private function calculateTotalOrderAmount($menuItem, $orders)
     {
+        $totalRevenue = $orders->sum('total');
         // Calculate the total order amount
-        return $orders->sum('order_amount');
+        return $totalRevenue;
     }
 
-    private function prepareChartData($orders)
+    private function prepareChartData($orders, $menu)
     {
-        // Prepare data for a bar chart
-        $chartData =
-            [
-                'labels' => $orders->pluck('customer_name'),
-                'data' => $orders->pluck('order_amount'),
-            ];
+        $chartData = 
+        [
+            'labels' => [],
+            'data' => [],
+        ];
+
+        foreach ($menu as $menu) 
+        {
+            $chartData['labels'][] = $menu->name; // Assuming the menu item has a 'name' attribute
+            $chartData['data'][] = $this->getTotalOrderAmountForMenuItem($menu, $orders);
+        }
 
         return $chartData;
+    }
+
+    private function getTotalOrderAmountForMenuItem($menuItem, $orders)
+    {
+        // Calculate the total order amount for a specific menu item
+        return $orders->where('menu_name', $menuItem->name)->sum('total');
     }
 }
