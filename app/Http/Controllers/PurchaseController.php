@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\Notification;
 use App\Models\UserAccounts;
 
+use Carbon\Carbon;
+
 // validations
 class PurchaseController extends Controller
 {
@@ -41,7 +43,7 @@ class PurchaseController extends Controller
                 $order->name = $request->input('purchase_realname');
                 $order->address = $request->input('purchase_address');
                 $order->contact = $request->input('purchase_contact');
-                $order->dates = $request->input('purchase_dates');
+
                 $order->status = 'pending'; // Manually set thestatus to "pending"
                 $order->total = '10'; // Manually set the status to"pending"
                 $order->menu_name = 'menu 1'; // Manually set thestatus to "pending"
