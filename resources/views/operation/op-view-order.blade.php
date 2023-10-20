@@ -59,12 +59,32 @@
 
             <div class="row-status">
                  @php
+                 $status = " ";
                     if($selectedOrder->status == "Order Cancelled. The refund will be done within 5-7 working days.") {
-                        $selectedOrder->status = "Cancelled";
+                        $status = "Cancelled";
                     }
+                    else if ($selectedOrder->status == "Pending"){
+                        $status = "Pending";
+                    }
+                    else if ($selectedOrder->status == "Preparing"){
+                        $status = "Preparing";
+                    }
+                    else if ($selectedOrder->status == "Ready for pickup"){
+                        $status = "Ready for pickup";
+                    }
+                    else if ($selectedOrder->status == "Delivery on the way"){
+                        $status = "Delivery on the way";
+                    }
+                    elseif ($selectedOrder->status == "Completed"){
+                        $status = "Completed";
+                    }
+                    else if ($selectedOrder->status == "cancelled"){
+                        $status = "Cancelled";
+                    }
+      
                 @endphp
                 <p class="customer-title">Order Status</p>
-                <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($selectedOrder->status))}}">{{$selectedOrder->status}}</span></p>
+                <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($status))}}">{{$selectedOrder->status}}</span></p>
             </div>
             @if ($selectedOrder->status=="Completed" || $selectedOrder->status=="Cancelled")
             <div class="row-actions">
