@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Orders')
 @section('content')
-<h1 class="title">Customer Order Details</h1>
+<h1 class="title">Order Details</h1>
 <div class="customer-container">
     <table class="customer-container-table ">
         <thead>
@@ -13,7 +13,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Contact Number</th>
-                <th>Add On</th>
+                <th>Order Notes</th>
                 <th>Action</th>
             </tr>
         </thead>
