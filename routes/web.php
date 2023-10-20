@@ -95,7 +95,7 @@ Route::post('/payment', [PurchaseController::class, 'ProcessPurchase'])->name('p
 Route::get('/business-analytics', [AnalyticsController::class, 'index']);
 
 // Display menu
-Route::get('/food-menu', [FoodMenuController::class, 'index'])->name('menu.index');
+Route::get('/display-food-menu', [FoodMenuController::class, 'index'])->name('menu.index');
 Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('food-menu.addToCart');
 Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
 Route::get('/cart', [FoodMenuController::class, 'showCart'])->name('food-menu.cart');

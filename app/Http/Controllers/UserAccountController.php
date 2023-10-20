@@ -15,6 +15,11 @@ class UserAccountController extends Controller
     {
         // create default admin 
         // checks whether the database have DefaultAdmin created already
+        return view('login.login',['notifications' => Notification::all()]);
+    }
+
+    public function setDefaultAdmin()
+    {
         $record = UserAccounts::where('accountType', 'DefaultAdmin')->first();
         if (!$record) {
             $account = new UserAccounts();
@@ -32,7 +37,6 @@ class UserAccountController extends Controller
             $account->password = Hash::make($account->password);
             $account->save();
         }
-        return view('login.login',['notifications' => Notification::all()]);
     }
 
     public function verifyCustomer()
@@ -122,16 +126,10 @@ class UserAccountController extends Controller
             } else {
                 $accounts->postcode = $request->postcode;
             }
-            if ($request->accountType == "Customer" || $request->accountType == "Admin" || $request->accountType == "OperationTeam")
-            {
-                $accounts->accountType = $request->accountType;
-            }
-            else {
-                $errorMsg .= "Invalid account type<br>";
-            }
         }
 
         if ($errorMsg == "") {
+            $accounts->accountType = "Customer";
             $accounts->save();
             return redirect('/register/register-success');
         } else {

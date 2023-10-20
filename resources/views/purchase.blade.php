@@ -48,18 +48,6 @@
                     <input type="text" id="purchase_contact" name="purchase_contact" placeholder="Contact" required>
                 </td>
             </tr>
-
-            <tr>
-            <td>
-                    <label for="dates:">Dates: </label>   
-                </td>
-
-                <td>
-                    <input type="date" id="purchase_dates" name="purchase_dates" placeholder="Dates" required>
-                </td>
-            </tr>
-
-            <tr>
                 <td><button type="submit">Next</button></td>
             </tr>
         </table> 
