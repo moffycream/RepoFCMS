@@ -9,18 +9,24 @@
         $count = 0;
         @endphp
 
+        <!-- Get each food from database -->
         @foreach($listItems as $food)
+        <!-- Block of display food image and details -->
         <div class="col-add-menu">
+            <!-- Display food image -->
             <img src="{{$food->imagePath}}" alt="Image" class="food-logo">
             <div class="col-add-menu-info-row">
+                <!-- Display food name -->
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Name</p>
                     <p>{{$food->name}}</p>
                 </div>
+                <!-- Display food description -->
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Description</p>
                     <p>{{$food->description}}</p>
                 </div>
+                <!-- Display food price -->
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Price</p>
                     <p>{{$food->price}}</p>
@@ -39,6 +45,7 @@
 
         @endforeach
 
+        <!-- The block for user to redirect to add food form -->
         <div class="col-add-menu">
             <a href="{{url('add-food-form')}}">+</a>
         </div>
