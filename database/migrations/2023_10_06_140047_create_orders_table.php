@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('address');
             $table->string('contact');
-            $table->date('date');
+            $table->date('dates');
             $table->timestamps();
             $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
         });

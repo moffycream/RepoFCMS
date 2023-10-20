@@ -89,7 +89,7 @@ Route::post('/process-payment', [PaymentController::class, 'processPayment'])->n
 
 // Purchase
 Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase.index');   // when access /purchase, index method triggered
-
+Route::post('/payment', [PurchaseController::class, 'ProcessPurchase'])->name('process.purchase');
 
 // Business analytics
 Route::get('/business-analytics', [AnalyticsController::class, 'index']);

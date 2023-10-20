@@ -26,13 +26,9 @@ class FoodMenuController extends Controller
         // Checks whether it's an admin session or not
         $this->adminController = $adminController;
 
-        if ($this->adminController->verifyAdmin()) 
-        {
-            return view('food-menu', compact('menus', 'foods', 'cart'), ['notifications' => $notificationController->getNotification()]);
-        } else 
-        {
-            return view('login.access-denied');
-        }
+
+        return view('food-menu', compact('menus', 'foods', 'cart'), ['notifications' => $notificationController->getNotification()]);
+ 
     }
 
     public function addToCart(Request $request)
