@@ -86,6 +86,10 @@ Route::get('/customer-orders', [OrderListingController::class, 'index']);
 // Payment
 Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('showPaymentPage');
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
+Route::get('/payment-success', [PaymentController::class, 'success'])->name('payment-success');
+Route::post('/store-payment', [PaymentController::class, 'store'])->name('store-payment');
+Route::get('food-menu', [FoodMenuController::class, 'index'])->name('food-menu');
+
 
 // Purchase
 Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase.index');   // when access /purchase, index method triggered
@@ -99,5 +103,6 @@ Route::get('/display-food-menu', [FoodMenuController::class, 'index'])->name('me
 Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('food-menu.addToCart');
 Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
 Route::get('/cart', [FoodMenuController::class, 'showCart'])->name('food-menu.cart');
+
 
 

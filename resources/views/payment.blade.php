@@ -6,12 +6,12 @@
 
     <h1>Orders:</h1>
 
-    <form id="PaymentForm" method="post" action= 'store-payment'><!-- name at route -->
+    <form id="PaymentForm" method="post" action"{{ route('store-payment') }}"><!-- name at route -->
         @csrf
-        <table border = 1>
+        <table id="payment_form_table">
 
             <tr>
-                <td><h1>Total Price: ${{ $totalPrice }}</h1></td>
+                <td><h1>Total Price: ${{$totalPrice}}</h1></td>
             </tr>
 
             <tr>
@@ -64,8 +64,14 @@
                 <td><button type="submit">Comfirm Payment</button></td>
             </tr>
         </table>
-
     </form>
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
 </div>
 
 @endsection
