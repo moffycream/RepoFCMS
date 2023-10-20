@@ -1,13 +1,13 @@
 /* customer order listing */
 
 .customer-container {
-    background-color: #fff;
+    background-color:  #e8dcd4;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 10px;
     text-align: center;
     margin: 0 auto;
-    max-width: 800px; 
+    max-width: 1000px; 
 }
 
 .customer-container-table {
@@ -18,14 +18,18 @@
 
 .customer-container-table  th, 
 .customer-container-table  td {
-    border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
 .customer-container-table  th {
-    background-color: #f2f2f2;
+    background-color:  #e8dcd4;
 }
+
+.customer-container-table  td {
+    background-color:  #ffffff;
+}
+
 
 .view-details-button button {
     background-color: #473447;
@@ -46,8 +50,7 @@
 
 /* Profile */
 .profile-container {
-    background-color: #ffffff;
-   
+    background:linear-gradient(135deg, #fff3e8, #f3d7d7);
     border-radius: 25px;
     padding: 20px;
     text-align: center;
@@ -95,10 +98,11 @@
 
 /*order listing details*/
 .customer-container-food-menu-container {
-    background-color: #f5f5f5; 
+    background-color:  #e8dcd4; 
     border: 1px solid #ddd; 
     padding: 10px; 
     margin-bottom: 10px; 
+    text-align: center;
 }
 
 .customer-container-food-menu-container> p {
@@ -109,8 +113,6 @@
 
 .customer-container-food-menu-container-food-items {
     margin-top: 5px; 
-    font-size: 16px; 
-    color: #666666; 
 }
 
 .customer-container-cancel-button {
@@ -131,13 +133,13 @@
 
 .customer-container-disabled-button {
     background-color: #cccccc; 
-    color: #999; 
+    color: #999999; 
     cursor: not-allowed;
    
 }
 
 .customer-container-disabled-button:hover{
-    color: #999;
+    color: #999999;
     background-color: #ccc; 
 }
 
