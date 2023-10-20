@@ -4,11 +4,11 @@
 <div class="container-op-orders">
     <div class="panel">
         <div class="row-op-orders">
-            <h1>Orders</h1>
+            <h1>Customer Orders</h1>
         </div>
         <table class="row-op-orders">
             <tr>
-                <th>ID</th>
+                <th>Order ID</th>
                 <th>Customer</th>
                 <th>Date</th>
                 <th>Time</th>
@@ -28,7 +28,7 @@
                         $order->status = "Cancelled";
                     }
                 @endphp
-                <td ><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($order->status))}}">{{$order->status}}</span></td>
+                <td ><span class="status status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($order->status))}}">{{$order->status}}</span></td>
                 <td>
                     <a href="{{route('op.view-order', $order->orderID)}}">View</a>
                 </td>
