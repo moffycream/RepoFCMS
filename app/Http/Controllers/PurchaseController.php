@@ -44,7 +44,7 @@ class PurchaseController extends Controller
                 $order->address = $request->input('purchase_address');
                 $order->contact = $request->input('purchase_contact');
 
-                $order->status = 'pending'; // Manually set thestatus to "pending"
+                $order->status = 'Pending'; // Manually set thestatus to "pending"
                 $order->total = '5000'; // Manually set the status to"pending"
                 $order->menu_name = 'menu 1'; // Manually set thestatus to "pending"
                 $totalPrice = 100; // Replace with your actual calculation.
