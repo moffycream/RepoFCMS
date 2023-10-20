@@ -7,7 +7,7 @@
     padding: 10px;
     text-align: center;
     margin: 0 auto;
-    max-width: 1000px; 
+    max-width: 1500px; 
 }
 
 .customer-container-table {
@@ -16,11 +16,43 @@
     margin-bottom: 20px;
 }
 
+.customer-container-table tr{
+    border: 5px solid #e8dcd4;
+}
+
 .customer-container-table  th, 
 .customer-container-table  td {
     padding: 8px;
     text-align: left;
 }
+
+.customer-container .customer-container-table span.status-pending
+{
+    border-radius: 20px;
+    background-color: #ffc40037;
+    padding: 5px 15px;
+    color: #f3aa00;
+    font-weight: bold;
+}
+
+.customer-container .customer-container-table span.status-preparing
+{
+    border-radius: 20px;
+    background-color: #041ae037;
+    padding: 5px 15px;
+    color: #041ae0;
+    font-weight: bold;
+}
+
+.customer-container .customer-container-table span.status-cancelled
+{
+    border-radius: 20px;
+    background-color: #c4000037;
+    padding: 5px 15px;
+    color: #ff0000;
+    font-weight: bold;
+}
+
 
 .customer-container-table  th {
     background-color:  #e8dcd4;
@@ -98,8 +130,7 @@
 
 /*order listing details*/
 .customer-container-food-menu-container {
-    background-color:  #e8dcd4; 
-    border: 1px solid #ddd; 
+    background-color:  #ffffff; 
     padding: 10px; 
     margin-bottom: 10px; 
     text-align: center;

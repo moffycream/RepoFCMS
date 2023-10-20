@@ -45,7 +45,6 @@ class OrderListingController extends Controller
     public function cancelOrder($orderID)
     {
         $notificationController = app(NotificationController::class);
-
         $notificationController->notifyOperationTeam('Order ' . $orderID . ' has been cancelled.');
         $order = Order::find($orderID);
         $selectedOrder = $order;

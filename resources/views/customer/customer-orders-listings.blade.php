@@ -14,6 +14,7 @@
                 <th>Address</th>
                 <th>Contact Number</th>
                 <th>Order Notes</th>
+                <th>Delivery Method</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -22,12 +23,30 @@
             <tr>
                 <td>{{ $selectedOrder->orderID }}</td>
                 <td>{{ $selectedOrder->getformattedDateTime() }}</td>
-                <td>{{ $selectedOrder->status }}</td>
+                @php
+                $classStatus="";
+                if($selectedOrder->status == "Order Cancelled. The refund will be done within 5-7 working days.")
+                {
+                    $classStatus ="cancelled";
+                    $selectedOrder->status = "Refund process in 5-7 days.";
+                }
+                elseif ($selectedOrder->status=="pending")
+                {
+                    $classStatus="pending";
+                }
+
+                elseif($selectedOrder->status=="preparing")
+                {
+                    $classStatus ="preparing";
+                }
+                @endphp
+                <td><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '', strtolower($classStatus)) }}">{{ $selectedOrder->status }}</span></td>
                 <td>RM{{ $selectedOrder->total }}</td>
                 <td>{{ $selectedOrder->name }}</td>
                 <td>{{ $selectedOrder->address }}</td>
                 <td>{{ $selectedOrder->contact }}</td>
                 <td>{{ $selectedOrder->order_notes }}</td>
+                <td>{{ $selectedOrder->delivery }}</td>
                 <td>
                     <form method="post" action="{{ route('customer-cancel-order', ['orderID' => $selectedOrder->orderID]) }}">
                         @csrf
@@ -35,13 +54,13 @@
                         <!--the ? is used to detect the status is cancel or preparing, if yes then it will called customer container disabled button class, else it will call the customer container cancel button class-->
                         <button type="submit" data-status="{{ $selectedOrder->status }}" 
                         class="customer-container-cancel-button {{ $selectedOrder->status === 'preparing' 
-                            || $selectedOrder->status === 'Order Cancelled. The refund will be done within 5-7 working days.' ? 'customer-container-disabled-button' : '' }}">Cancel Order</button>
+                            || $selectedOrder->status === 'Order Cancelled. The refund will be done within 5-7 working days.' ||  $selectedOrder->status === 'Refund process in 5-7 days.'? 'customer-container-disabled-button' : '' }}">Cancel Order</button>
                     </form>
                 </td>
             </tr>
             @foreach($selectedOrder->menus as $menu)
             <tr>
-                <td colspan="9">
+                <td colspan="10">
                     <div class="customer-container-food-menu-container">
                         <p>Food Menu Name: {{ $menu->name }}</p>
                         <div class="customer-container-food-menu-container-food-items">
@@ -55,7 +74,7 @@
             @endforeach
             @else
             <tr>
-                <td colspan="9">No order details found</td>
+                <td colspan="10">No order details found</td>
             </tr>
             @endif
         </tbody>
