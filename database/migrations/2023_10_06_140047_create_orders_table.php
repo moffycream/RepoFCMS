@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('orderID');
             $table->unsignedBigInteger('userID');
             $table->string('status');
+            $table->string('delivery');
             $table->decimal('total',10,2);
             $table->string('menu_name');
             $table->text('order_notes');

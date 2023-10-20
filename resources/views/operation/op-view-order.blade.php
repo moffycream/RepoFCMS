@@ -50,8 +50,13 @@
                     <p class="customer-title">Address</p>
                     <p class="customer-address"><i class="fas fa-map-marker-alt"></i>{{$selectedOrder->address}}</p>
                 </div>
-
+                <div>
+                    <p class="customer-title">Delivery method</p>
+                    <p class="customer-delivery"><span><i class="fas fa-truck"></i>{{$selectedOrder->delivery}}</span></p>
+                </div>
             </div>
+
+
             <div class="row-status">
                  @php
                     if($selectedOrder->status == "Order Cancelled. The refund will be done within 5-7 working days.") {
