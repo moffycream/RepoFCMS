@@ -15,8 +15,10 @@ class LoginController extends Controller
         // Validate the login credentials (You should connect to a database for this)
         $username = $request->username;
         $password = $request->password;
-
+        
         $user = UserAccounts::where('username', $username)->first();
+
+        $notificationController = app(NotificationController::class);
  
         if ($user && Hash::check($password, $user->password)) {
             // Authentication successful
@@ -40,13 +42,14 @@ class LoginController extends Controller
         } 
         else {
             Session::flash('error', 'Failed login. Please check your username and password.');
-            return view('login.login');
+            return view('login.login')->with(['notifications' => $notificationController->getNotification()]);
         }
     }
 
     public function forgotPassword()
     {
-        return view('login.forgot-password');
+        $notificationController = app(NotificationController::class);
+        return view('login.forgot-password')->with(['notifications' => $notificationController->getNotification()]);
     }
 
     public function resetPassword(Request $request)
