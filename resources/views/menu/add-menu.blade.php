@@ -43,7 +43,7 @@
                 <!-- Display menu price -->
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Price</p>
-                    <p>{{$menu->totalPrice}}</p>
+                    <p>RM {{$menu->totalPrice}}</p>
                 </div>
             </div>
         </div>

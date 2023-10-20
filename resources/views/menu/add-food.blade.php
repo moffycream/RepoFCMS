@@ -29,7 +29,7 @@
                 <!-- Display food price -->
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Price</p>
-                    <p>{{$food->price}}</p>
+                    <p>RM {{$food->price}}</p>
                 </div>
             </div>
         </div>
