@@ -43,7 +43,7 @@ class PurchaseController extends Controller
                 $order->contact = $request->input('purchase_contact');
                 $order->dates = $request->input('purchase_dates');
                 $order->status = 'pending'; // Manually set thestatus to "pending"
-                $order->total = '5000'; // Manually set the status to"pending"
+                $order->total = '10'; // Manually set the status to"pending"
                 $order->menu_name = 'menu 1'; // Manually set thestatus to "pending"
                 $totalPrice = 100; // Replace with your actual calculation.
                 $order->save();

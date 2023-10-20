@@ -1,0 +1,173 @@
+/* Styles for the container-purchase-page */
+.container-purchase-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles for the h1 heading */
+.container-purchase-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    margin: 0 auto;
+}
+
+/* Styles for the container-purchase-page */
+.container-purchase-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles for the h1 heading */
+.container-purchase-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Styles for the main container holding the tables and form */
+.container-purchase-page form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Styles for the cart items table */
+#display_purchase_item_table {
+    width: 45%; /* Adjust the width as needed */
+    border-collapse: collapse;
+}
+
+#display_purchase_item_table, #display_purchase_item_table th, #display_purchase_item_table td {
+    border: 1px solid #000;
+}
+
+/* Styles for table header cells (th) */
+#display_purchase_item_table th {
+    text-align: left;
+    background-color: #473447;
+    color: #fff;
+    padding: 10px;
+}
+
+/* Styles for table data cells (td) */
+#display_purchase_item_table td {
+    text-align: left;
+    padding: 10px;
+}
+
+/* Styles for the purchase form table */
+#purchase_form_table {
+    width: 45%; /* Adjust the width as needed */
+}
+
+/* Styles for the form labels and input fields */
+#purchase_form_table label {
+    font-weight: bold;
+}
+
+#purchase_form_table input[type="text"],
+#purchase_form_table input[type="date"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+/* Styles for the "Next" button */
+#purchase_form_table button[type="submit"] {
+    background-color: #473447;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#purchase_form_table button[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Styles for the container-payment-page */
+.container-payment-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styles for the h1 heading */
+.container-payment-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Styles for the main form container */
+#PaymentForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styles for the payment_form_table */
+#payment_form_table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#payment_form_table td {
+    padding: 10px;
+}
+
+/* Styles for the total price heading */
+#payment_form_table h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Styles for the list of orders */
+#payment_form_table ul {
+    list-style: none;
+    padding: 0;
+}
+
+#payment_form_table li {
+    margin-bottom: 5px;
+}
+
+/* Styles for the payment method label and select */
+#payment_form_table label {
+    font-weight: bold;
+}
+
+#payment_form_table select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+
+/* Styles for the "Confirm Payment" button */
+#payment_form_table button[type="submit"] {
+    background-color: #473447;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#payment_form_table button[type="submit"]:hover {
+    background-color: #272127;
+    transition: all 0.8s ease;
+}
+
+#payment_form_table select,
+#payment_form_table input[type="text"],
+#payment_form_table input[type="date"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}

@@ -34,9 +34,18 @@ class PaymentController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            return view('payment', compact('totalPrice', 'orders'), ['notifications' => Notification::all()]);
+            return view('payment', ['totalPrice' => $totalPrice, 'orders' => $orders, 'notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }
+    }
+
+    public function store(Request $request){
+        return redirect()->route('food-menu')->with('success', 'Payment successful');
+    }
+
+    public function success()
+    {
+        return view('payment-success');
     }
 }

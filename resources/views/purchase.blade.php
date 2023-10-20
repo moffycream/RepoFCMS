@@ -7,7 +7,35 @@
 
     <form id="PurchaseForm" method="post" action="{{ route('process.purchase') }}">
         @csrf
-        <table border = 1>
+        <table id= "display_purchase_item_table">
+            <tr>
+                <th>Menu ID</th>
+                <th>Menu Name</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+            </tr>
+
+            <tr>
+                @foreach ($cart as $item)
+                    
+                    @php
+                        $overallTotalPrice = 0; // Initialize overall total price
+                        $itemTotalPrice = $item['quantity'] * $item['price']; // Calculate total price per item
+                        $overallTotalPrice += $itemTotalPrice; // Add item total to overall total
+                    @endphp
+
+                <tr>
+                    <td>{{ $item['menu']->menuID }}</td>
+                    <td>{{ $item['menu']->name }}</td>
+                    <td>{{ $item['quantity'] }}</td>
+                    <td>$ {{ $itemTotalPrice }}</td>
+                </tr>
+                @endforeach
+            </tr>
+        </table>
+
+        <table id="purchase_form_table">
+
             <tr>
                 <td>
                     <label for="orderNotes:">Order Notes: </label>   
