@@ -66,16 +66,22 @@
                 <p class="customer-title">Order Status</p>
                 <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($selectedOrder->status))}}">{{$selectedOrder->status}}</span></p>
             </div>
+            @if ($selectedOrder->status=="Completed")
+            <div class="row-actions">
+
+            </div>
+            @else
             <div class="row-actions">
                 @if($selectedOrder->status == 'Preparing')
                 <a href="{{route('op.ready-for-pickup-order', $selectedOrder->orderID)}}">Ready for pickup</a>
-                @elseif($selectedOrder->status == 'Ready for pickup')
+                @elseif($selectedOrder->status == 'Ready for pickup' || $selectedOrder->status == 'Delivery on the way')
                 <a href="{{route('op.complete-order', $selectedOrder->orderID)}}">Complete</a>
                 @else
                 <a href="{{route('op.accept-order', $selectedOrder->orderID)}}">Accept</a>
                 @endif
                 <a class="cancel" href="{{route('op.cancel-order', $selectedOrder->orderID)}}" title="cancel order"><i class="fas fa-trash"></i></a>
             </div>
+            @endif
         </div>
     </div>
 </div>

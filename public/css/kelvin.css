@@ -60,9 +60,9 @@
 .container-op-orders .row-op-orders span.status-pending,
 .container-op-view-order span.status-pending{
     border-radius: 20px;
-    background-color: #041ae037;
+    background-color: #ffc40037;
     padding: 5px 15px;
-    color: #041ae0;
+    color: #f3aa00;
     font-weight: bold;
 }
 
@@ -77,12 +77,12 @@
 
 .container-op-orders .row-op-orders span.status-readyforpickup,
 .container-op-orders .row-op-orders span.status-deliveryontheway,
-.container-op-view-order span.status-readyforpickup
+.container-op-view-order span.status-readyforpickup,
 .container-op-view-order span.status-deliveryontheway{
     border-radius: 20px;
-    background-color: #ffc40037;
+    background-color: #00c2c237;
     padding: 5px 15px;
-    color: #f3aa00;
+    color: #009494;
     font-weight: bold;
 }
 
@@ -91,7 +91,7 @@
     border-radius: 20px;
     background-color: #04e01337;
     padding: 5px 15px;
-    color: #00c40d;
+      color: #f3aa00;
     font-weight: bold;
 }
 
