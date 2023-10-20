@@ -4,15 +4,6 @@
 <div class="container-register-page">
     <form method="post" action="{{route('user.register')}}">
         @csrf
-        @if(isset($errorMsg) && !empty($errorMsg))
-        <div>
-            <ul>
-                @foreach(explode('<br>', $errorMsg) as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
         <div class="register-box">
             <div class="register-box-columns">
                 <div class="register-left-column">
@@ -40,6 +31,8 @@
                 </div>
             </div>
 
+            
+            
             <p>Have an account already? <a href="{{url('login')}}" class="login-here">Login here</a></p><br>
 
             <button class="register-submit-button" type="submit">Sign up</button>
