@@ -150,6 +150,16 @@
     background: linear-gradient(135deg, #fff3e8, #f3d7d7);
 }
 
+.register-error-messages {
+    text-align: center;
+}
+
+.register-error-messages p {
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-size: larger;
+}
+
 .login-here {
     text-decoration: none;
     font-style: italic;
@@ -159,24 +169,6 @@
     cursor: pointer;
     color: #2b0548;
     transition: 0.2s;
-}
-
-/* register success page */
-.button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #473447;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #2b0548;
-    transform: scale(1.1);
-    transition: 0.5s;
 }
 
 /* Login page */
@@ -224,7 +216,7 @@
 
 /* Admin Register page */
 .container-admin-register-page {
-    height: 100vh;
+    height: 120vh;
     background-color: #ffffff;
     display: flex;
     align-items: center;
@@ -338,6 +330,27 @@
     height: 100vh;
     text-align: center;
     padding-top: 50px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #473447;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #2b0548;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.container-register-successful p {
+    padding-bottom: 20px;
 }
 
 /* Access denied page */
