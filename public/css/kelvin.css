@@ -57,6 +57,15 @@
     text-align: center;
 }
 
+.container-op-orders .row-op-orders span.status-pending,
+.container-op-view-order span.status-pending{
+    border-radius: 20px;
+    background-color: #041ae037;
+    padding: 5px 15px;
+    color: #041ae0;
+    font-weight: bold;
+}
+
 .container-op-orders .row-op-orders span.status-preparing,
 .container-op-view-order span.status-preparing{
     border-radius: 20px;
