@@ -1,12 +1,11 @@
 @extends('layouts.app')
 @section('title', 'Orders')
 @section('content')
-<h1 class="title">Customer Order Listing</h1>
+<h1 class="title">Order Listing</h1>
 <div class="customer-container"> 
     <table class="customer-container-table">
         <thead>
             <tr>
-                <th>Order ID</th>
                 <th>Order Date And Time</th>
                 <th>Status</th>
                 <th>Total Amount</th>
@@ -16,7 +15,6 @@
         <tbody>
             @forelse($orders as $order)
             <tr>
-                <td>{{ $order->orderID }}</td>
                 <td>{{ $order->getformattedDateTime() }}</td>
                 <td>{{ $order->status }}</td>
                 <td>RM{{ $order->total }}</td>
