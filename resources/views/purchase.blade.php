@@ -31,7 +31,7 @@
                         <td>{{ $item['menu']->menuID }}</td>
                         <td>{{ $item['menu']->name }}</td>
                         <td>{{ $item['quantity'] }}</td>
-                        <td>$ {{ $itemTotalPrice }}</td>
+                        <td>RM {{ $itemTotalPrice }}</td>
                     </tr>
                     @endforeach
                 </tr>
@@ -39,17 +39,6 @@
         </table>
 
         <table id="purchase_form_table">
-
-            <tr>
-                <td>
-                    <label for="orderNotes:">Order Notes: </label>   
-                </td>
-
-                <td>
-                    <input type="text" id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Order Notes: (e.g. Cleaning crew, special request )" reqired>
-                    
-                </td>
-            </tr>
 
             <tr>
                 <td>
@@ -72,7 +61,7 @@
             </tr>
 
             <tr>
-            <td>
+                <td>
                     <label for="contact:">Contact: </label>   
                 </td>
 
@@ -80,8 +69,31 @@
                     <input type="text" id="purchase_contact" name="purchase_contact" placeholder="Contact" required>
                 </td>
             </tr>
-                <td><button type="submit">Next</button></td>
+
+            <tr>
+                <td>
+                    <label for="deliveryMethod:">Delivery Method: </label>   
+                </td>
+
+                <td>
+                    <select id="DeliveryMethod" name="DeliveryMethod">
+                        <option value="Delivery">Delivery</option>
+                        <option value="Self_Pickup">Self Pick Up</option>
+                    </select>
+                </td>
             </tr>
+
+            <tr>
+                <td>
+                    <label for="orderNotes:">Message: </label>   
+                </td>
+
+                <td>
+                    <textarea type="text area" id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Message: (e.g. Cleaning crew, special request )" reqired rows="4" cols="50"></textarea>
+                </td>
+            </tr>
+
+            <td><button type="submit">Next</button></td>
         </table> 
     </form>
 
