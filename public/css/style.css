@@ -85,6 +85,7 @@ header .login i {
 }
 
 header .container-header-login{
+    z-index: 99;
     position: absolute;
     top: 120%;
     right: 0;
@@ -194,6 +195,7 @@ header .notification .indicator {
 }
 
 header .container-notification{
+    z-index: 99;
     position: absolute;
     top: 150%;
     right: -200%;
