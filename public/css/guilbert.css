@@ -38,26 +38,37 @@
 
 /* Styles for the cart items table */
 #display_purchase_item_table {
-    width: 45%; /* Adjust the width as needed */
     border-collapse: collapse;
+    margin-left: -100px;
+    font-size: 18px;
+    font-family: sans-serif;
+    min-width: 500px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
 }
 
-#display_purchase_item_table, #display_purchase_item_table th, #display_purchase_item_table td {
-    border: 1px solid #000;
-}
-
-/* Styles for table header cells (th) */
-#display_purchase_item_table th {
-    text-align: left;
+#display_purchase_item_table thead tr {
+    color: #e0ccd4;
     background-color: #473447;
-    color: #fff;
-    padding: 10px;
+    text-align: left;
 }
 
-/* Styles for table data cells (td) */
+#display_purchase_item_table thead tr th{
+    color: #e0ccd4;
+}
+
+#display_purchase_item_table tbody {
+    background-color: #D3D3D3; /* Gray background color */
+}
+
+#display_purchase_item_table th,
 #display_purchase_item_table td {
-    text-align: left;
-    padding: 10px;
+    padding: 12px 15px;
+}
+
+
+#display_purchase_item_table tbody tr:last-of-type {
+    border-bottom: 2px solid #473447;
 }
 
 /* Styles for the purchase form table */
@@ -88,7 +99,8 @@
 }
 
 #purchase_form_table button[type="submit"]:hover {
-    background-color: #555;
+    background-color: #322032;
+    transition: all 0.8s ease;
 }
 
 /* Styles for the container-payment-page */
@@ -160,7 +172,7 @@
 }
 
 #payment_form_table button[type="submit"]:hover {
-    background-color: #272127;
+    background-color: #342934;
     transition: all 0.8s ease;
 }
 
