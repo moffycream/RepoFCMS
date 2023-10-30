@@ -80,12 +80,10 @@ class FoodMenuController extends Controller
         // Retrieve the user's cart from the session
         $cart = $request->session()->get('cart', []);
 
-        // Perform the checkout process (e.g., create an order in the database)
-
         // Clear the cart after checkout
         $request->session()->forget('cart');
 
-        // Retrieve notifications (adjust this based on how you fetch notifications in your application)
+        // Retrieve notifications
         $notificationController = app(NotificationController::class);
         $notifications = $notificationController->getNotification();
 

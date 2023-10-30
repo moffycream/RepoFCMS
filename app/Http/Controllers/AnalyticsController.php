@@ -11,6 +11,7 @@ class AnalyticsController extends Controller
 {
     // used for verification
     protected $adminController;
+    protected $date;
     public function index(AdminController $adminController)
     {
         // Retrieve and process your business data here
@@ -19,14 +20,17 @@ class AnalyticsController extends Controller
 
         // Retrieve all orders
         $orders = Order::all();
+        $sortedOrders = Order::orderBy('date')->get();
         $menus = Menu::all();
         $accounts = UserAccounts::all();
 
         // Calculate the total order amount
         $totalOrderAmount = $this->calculateTotalOrderAmount($menus, $orders);
 
-        // Prepare data for a bar chart
+        // Prepare data for the first graph
         $chartData = $this->prepareChartData($orders, $menus);
+
+        
 
         // Checks whether is admin session or not
         $this->adminController = $adminController;
@@ -40,6 +44,7 @@ class AnalyticsController extends Controller
             return view('login.access-denied');
         }
     }
+
 
     private function calculateProfit()
     {
@@ -74,7 +79,7 @@ class AnalyticsController extends Controller
 
         foreach ($menu as $menu) 
         {
-            $chartData['labels'][] = $menu->name; // Assuming the menu item has a 'name' attribute
+            $chartData['labels'][] = $menu->name; 
             $chartData['data'][] = $this->getTotalOrderAmountForMenuItem($menu, $orders);
         }
 

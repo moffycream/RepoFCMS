@@ -5,18 +5,25 @@
 <div class="businessAnalytics-chart-container">
     <canvas id="revenueChart" width="400" height="200"></canvas>
 </div>
+
+<div class="businessAnalytics-chart-container">
+    <canvas id="dateChart" width="400" height="200"></canvas>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
     var ctx = document.getElementById('revenueChart').getContext('2d');
 
-    // Your chart data from the server
-    var chartData = {
+    // Chart data from the server
+    var chartData = 
+    {
         labels: <?php echo json_encode($chartData['labels']); ?>,
-        datasets: [
+        datasets: 
+        [
             {
                 label: 'Revenue',
-                data: <?php echo json_encode($chartData['data']); ?>, // Use the actual data from your Laravel controller
+                data: <?php echo json_encode($chartData['data']); ?>, 
                 backgroundColor: 'rgba(75, 192, 192, 0.2)', // Customize the chart colors
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
@@ -26,12 +33,16 @@
 
     console.log(chartData);
 
-    var chart = new Chart(ctx, {
-        type: 'bar', // Change the chart type as needed
+    var chart = new Chart(ctx, 
+    {
+        type: 'bar',
         data: chartData,
-        options: {
-            scales: {
-                y: {
+        options: 
+        {
+            scales: 
+            {
+                y: 
+                {
                     beginAtZero: true
                 }
             }
@@ -65,39 +76,5 @@
     </table>
 </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-    var ctx = document.getElementById('revenueChart').getContext('2d');
-
-    // Your chart data from the server
-    var chartData = {
-        labels: <?php echo json_encode($chartData['labels']); ?>,
-        datasets: [
-            {
-                label: 'Revenue',
-                data: <?php echo json_encode($chartData['data']); ?>, // Use the actual data from your Laravel controller
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Customize the chart colors
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }
-        ]
-    };
-
-    console.log(chartData);
-
-    var chart = new Chart(ctx, {
-        type: 'bar', // Change the chart type as needed
-        data: chartData,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
-
 
 @endsection
