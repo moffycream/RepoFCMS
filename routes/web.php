@@ -84,7 +84,7 @@ Route::get('/op-view-order/cancel/{orderID}', [OrderController::class, 'cancelOr
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
 // Payment
-Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('showPaymentPage');
+Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment.show');
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
 Route::get('/payment-success', [PaymentController::class, 'success'])->name('payment-success');
 Route::post('/store-payment', [PaymentController::class, 'store'])->name('store-payment');

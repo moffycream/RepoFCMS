@@ -6,23 +6,23 @@
 
     <h1>Orders:</h1>
 
-    <form id="PaymentForm" method="post" action"{{ route('store-payment') }}"><!-- name at route -->
+    <form id="PaymentForm" method="post" action="{{ route('store-payment') }}"><!-- name at route -->
         @csrf
         <table id="payment_form_table">
 
-            <tr>
-                <td><h1>Total Price: ${{$totalPrice}}</h1></td>
-            </tr>
-
-            <tr>
-                <td>
-                    <ul>
-                        @foreach ($orders as $order)
-                            <li>{{ $order->menu_name }} - ${{ $order->total }}</li>
-                        @endforeach
-                    </ul>  
-                </td>
-            </tr>
+            {{--@if(count($cart) > 0)
+                @foreach ($cart as $cartItem)
+                    <div class="cartItem">
+                        <h3>{{ $cartItem['menu']->name }}</h3>
+                        <img src="{{ $cartItem['menu']->imagePath }}" alt="{{ $cartItem['menu']->name }}" width="200">
+                        <p>{{ $cartItem['menu']->description }}</p>
+                        <p>Price: ${{ $cartItem['price'] }}</p>
+                        <p>Quantity: {{ $cartItem['quantity'] }}</p>
+                    </div>
+                @endforeach
+            @else
+                <p>Your cart is empty.</p>
+            @endif--}}
 
             <tr>
                 <td><label for="PaymentMethod">Select Payment Method:</label></td>
