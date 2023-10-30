@@ -52,7 +52,7 @@
     flex-direction: column;
     justify-content: space-around;
     height: 20vh;
-    margin: 0 10px;
+    margin: 0 20px;
 }
 
 .col-add-menu-info-title {
@@ -84,7 +84,7 @@
     background: linear-gradient(135deg, #fff3e8, #f3d7d7);
     border-radius: 10px;
     width: 40vw;
-    height: 80vh;
+    min-height: 80vh;
     margin: auto;
     font-size: 30px;
     box-shadow: #00000029 0px 1px 4px;

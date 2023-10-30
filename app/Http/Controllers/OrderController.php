@@ -53,7 +53,14 @@ class OrderController extends Controller
         $notificationController = app(NotificationController::class);
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
-        $selectedOrder->status = "Ready for pickup";
+        if ($selectedOrder->delivery == "Delivery") {
+            $selectedOrder->status = "Delivery on the way";
+        } else if ($selectedOrder->delivery == "Self-pickup") {
+            $selectedOrder->status = "Ready for pickup";
+        } else
+        {
+            $selectedOrder->status = "Ready for pickup";
+        }
         $selectedOrder->save();
 
         $notificationController->createNotification('Order ' . $orderID . ' is ready for pickup.', $selectedOrder->userID);

@@ -5,7 +5,7 @@
 
 .container-op-orders .panel{
     margin: 0 auto 50px auto;
-    width: 70%;
+    width: 80%;
     padding-bottom: 20px;
 }
 
@@ -32,7 +32,7 @@
 
 .container-op-orders table.row-op-orders th,
 .container-op-orders table.row-op-orders td{
-    padding: 20px;
+    padding: 20px 10px;
 }
 
 .container-op-orders table.row-op-orders tr th{
@@ -57,6 +57,15 @@
     text-align: center;
 }
 
+.container-op-orders .row-op-orders span.status-pending,
+.container-op-view-order span.status-pending{
+    border-radius: 20px;
+    background-color: #ffc40037;
+    padding: 5px 15px;
+    color: #f3aa00;
+    font-weight: bold;
+}
+
 .container-op-orders .row-op-orders span.status-preparing,
 .container-op-view-order span.status-preparing{
     border-radius: 20px;
@@ -67,11 +76,13 @@
 }
 
 .container-op-orders .row-op-orders span.status-readyforpickup,
-.container-op-view-order span.status-readyforpickup{
+.container-op-orders .row-op-orders span.status-deliveryontheway,
+.container-op-view-order span.status-readyforpickup,
+.container-op-view-order span.status-deliveryontheway{
     border-radius: 20px;
-    background-color: #ffc40037;
+    background-color: #00c2c237;
     padding: 5px 15px;
-    color: #f3aa00;
+    color: #009494;
     font-weight: bold;
 }
 
@@ -80,7 +91,7 @@
     border-radius: 20px;
     background-color: #04e01337;
     padding: 5px 15px;
-    color: #00c40d;
+      color: #00ba0c;
     font-weight: bold;
 }
 
@@ -308,12 +319,20 @@ details[open] summary::before {
 }
 
 .container-op-view-order .col-op-view-order .row-details .customer-address i,
-.container-op-view-order .col-op-view-order .row-details .customer-contact i{
+.container-op-view-order .col-op-view-order .row-details .customer-contact i,
+.container-op-view-order .col-op-view-order .row-details .customer-delivery i{
     margin-right: 10px;
 }
 
 .container-op-view-order .col-op-view-order .row-details .customer-contact i{
     color: #041ae0;
+}
+
+.container-op-view-order .col-op-view-order .row-details .customer-delivery{
+    opacity: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .container-op-view-order .col-op-view-order .row-actions

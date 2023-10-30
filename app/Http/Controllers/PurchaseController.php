@@ -6,6 +6,9 @@ use App\Http\Controllers\UserAccountController;
 use App\Models\Payment;
 use App\Models\Order;
 use App\Models\Notification;
+use App\Models\UserAccounts;
+
+use Carbon\Carbon;
 
 // validations
 class PurchaseController extends Controller
@@ -25,5 +28,31 @@ class PurchaseController extends Controller
             return view('login.access-denied');
         }
         
+    }
+
+    public function ProcessPurchase(Request $request){
+
+        if (session()->has('username')) {
+            $userID = UserAccounts::where('username', session('username'))->first()->userID;
+            if ($userID != null)
+            {
+                 //  New order instance
+                $order = new Order();
+                $order->userID = $userID;
+                $order->order_notes = $request->input('purchase_orderNotes');
+                $order->name = $request->input('purchase_realname');
+                $order->address = $request->input('purchase_address');
+                $order->contact = $request->input('purchase_contact');
+
+                $order->status = 'Pending'; // Manually set thestatus to "pending"
+                $order->total = '5000'; // Manually set the status to"pending"
+                $order->menu_name = 'menu 1'; // Manually set thestatus to "pending"
+                $totalPrice = 100; // Replace with your actual calculation.
+                $order->save();
+            }
+        }
+
+        return view('payment', ['totalPrice' => $totalPrice]);
+
     }
 }

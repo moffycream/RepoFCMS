@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', 'Home')
+@extends('layouts.admin')
+@section('title', 'Business Analytics')
 @section('content')
 
 <div class="businessAnalytics-chart-container">
@@ -11,11 +11,9 @@
     var ctx = document.getElementById('revenueChart').getContext('2d');
 
     // Your chart data from the server
-    var chartData = 
-    {
+    var chartData = {
         labels: <?php echo json_encode($chartData['labels']); ?>,
-        datasets: 
-        [
+        datasets: [
             {
                 label: 'Revenue',
                 data: <?php echo json_encode($chartData['data']); ?>, // Use the actual data from your Laravel controller
@@ -28,15 +26,12 @@
 
     console.log(chartData);
 
-    var chart = new Chart(ctx, 
-    {
+    var chart = new Chart(ctx, {
         type: 'bar', // Change the chart type as needed
         data: chartData,
         options: {
-            scales: 
-            {
-                y: 
-                {
+            scales: {
+                y: {
                     beginAtZero: true
                 }
             }
@@ -69,5 +64,40 @@
         </tbody>
     </table>
 </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var ctx = document.getElementById('revenueChart').getContext('2d');
+
+    // Your chart data from the server
+    var chartData = {
+        labels: <?php echo json_encode($chartData['labels']); ?>,
+        datasets: [
+            {
+                label: 'Revenue',
+                data: <?php echo json_encode($chartData['data']); ?>, // Use the actual data from your Laravel controller
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Customize the chart colors
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }
+        ]
+    };
+
+    console.log(chartData);
+
+    var chart = new Chart(ctx, {
+        type: 'bar', // Change the chart type as needed
+        data: chartData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
 
 @endsection

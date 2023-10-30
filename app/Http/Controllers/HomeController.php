@@ -15,6 +15,8 @@ class HomeController extends Controller
         // Checks whether is customer session or not
         $userAccountController = app(UserAccountController::class);
         $notificationController = app(NotificationController::class);
+        $userAccountController->setDefaultAdmin();
+
 
         if ($userAccountController->verifyCustomer()) {
             return view('welcome',['notifications' => $notificationController->getNotification()]);
@@ -41,13 +43,8 @@ class HomeController extends Controller
     public function about()
     {
         // Checks whether is customer session or not
-        $userAccountController = app(UserAccountController::class);
         $notificationController = app(NotificationController::class);
 
-        if ($userAccountController->verifyCustomer()) {
-            return view('about', ['notifications' => $notificationController->getNotification()]);
-        } else {
-            return view('login.access-denied');
-        }
+        return view('about', ['notifications' => $notificationController->getNotification()]);
     }
 }

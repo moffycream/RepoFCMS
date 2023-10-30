@@ -56,7 +56,11 @@ class FoodMenuController extends Controller
         else 
         {
             // If the menu item is not in the cart, add it
-            $cart[] = ['menu' => $menu, 'quantity' => 1];
+            $cart[] = [
+                'menu' => $menu,
+                'quantity' => 1,
+                'price' => $menu->totalPrice // Store the price
+            ];
         }
 
         // Store the updated cart in the session
@@ -81,7 +85,11 @@ class FoodMenuController extends Controller
         // Clear the cart after checkout
         $request->session()->forget('cart');
 
-        // Redirect to a confirmation page or wherever you prefer
-        return redirect()->route('purchase.index')->with('success', 'Checkout successful');
+        // Retrieve notifications (adjust this based on how you fetch notifications in your application)
+        $notificationController = app(NotificationController::class);
+        $notifications = $notificationController->getNotification();
+
+        // Pass the cart and notifications to the 'purchase' view
+        return view('purchase', ['cart' => $cart, 'notifications' => $notifications])->with('success', 'Checkout successful');
     }
 }

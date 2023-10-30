@@ -4,16 +4,6 @@
 <div class="container-admin-register-page">
     <form method="post" action="{{route('admin.register')}}">
         @csrf
-        @if(isset($errorMsg) && !empty($errorMsg))
-        <div>
-            <ul>
-                @foreach(explode('<br>', $errorMsg) as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-                <br>
-            </ul>
-        </div>
-        @endif
         <div class="admin-register-box">
             <div class="admin-register-box-columns">
                 <div class="admin-register-left-column">
@@ -41,7 +31,18 @@
                 </div>
             </div>
 
+            @if(isset($errorMsg) && !empty($errorMsg))
+            <br>
+            <div class="register-error-messages">
+                <p>Please fix these errors to register your account</p>
+                @foreach(explode('<br>', $errorMsg) as $error)
+                {{ $error }} <br>
+                @endforeach
+            </div>
+            <br>
             <div class="admin-register-centre-column">
+
+                @endif
                 <select name="accountType" id="accountType" title="select account type">
                     <optgroup label="Choose account type">
                         <option value="Customer">Customer</option>
@@ -49,6 +50,7 @@
                         <option value="Admin">Admin</option>
                     </optgroup>
                 </select>
+
                 <button class="admin-register-submit-button" type="submit">Create account</button>
             </div>
         </div>

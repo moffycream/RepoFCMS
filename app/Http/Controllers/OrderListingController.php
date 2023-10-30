@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\UserAccounts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\NotificationController;
@@ -16,6 +17,13 @@ class OrderListingController extends Controller
         $notificationController = app(NotificationController::class);
         $userAccountController = app(UserAccountController::class);
         $order_list = Order::all();
+
+        $userID = UserAccounts::where('username', session('username'))->first()->userID;
+        $order_list = [];
+        if ($userID != null)
+        {
+            $order_list = Order::where('userID', $userID)->get();
+        }
 
         // Checks whether is customer session or not
         $this->userAccountController = $userAccountController;
@@ -45,7 +53,6 @@ class OrderListingController extends Controller
     public function cancelOrder($orderID)
     {
         $notificationController = app(NotificationController::class);
-
         $notificationController->notifyOperationTeam('Order ' . $orderID . ' has been cancelled.');
         $order = Order::find($orderID);
         $selectedOrder = $order;

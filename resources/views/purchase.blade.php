@@ -4,46 +4,41 @@
 
 <div class="container-purchase-page">
     <h1>Purchase Page</h1>
-    <!-- <table>
-        <tr>
-            <th>Order ID</th>
-            <th>User ID</th>
-            <th>Status</th>
-            <th>Total</th>
-            <th>Menu Name</th>
-            <th>Order Notes</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Contact</th>
-        </tr>
-    
-        @foreach($orders as $order)
-            <tr>
-                <td>{{ $order->orderID }}</td>
-                <td>{{ $order->userID }}</td>
-                <td>{{ $order->status }}</td>
-                <td>{{ $order->total }}</td>
-                <td>{{ $order->menu_name }}</td>
-                <td>{{ $order->order_notes }}</td>
-                <td>{{ $order->name }}</td>
-                <td>{{ $order->address }}</td>
-                <td>{{ $order->contact }}</td>
-            </tr>
-        @endforeach
-    </table> -->
 
-    <form id="PurchaseForm" method="post" action="">
+    <form id="PurchaseForm" method="post" action="{{ route('process.purchase') }}">
         @csrf
-        <table border = 1>
-            <tr>
-                <td>
-                    <label for="orderNotes:">Order Notes: </label>   
-                </td>
+        <table id= "display_purchase_item_table">
+            <thead>
+                <tr>
+                    <th>Menu ID</th>
+                    <th>Menu Name</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
 
-                <td>
-                    <input type="text" id="orderNotes" name="orderNotes" placeholder="Order Notes" required>
-                </td>
-            </tr>
+            <tbody>
+                <tr>
+                    @foreach ($cart as $item)
+                        
+                        @php
+                            $overallTotalPrice = 0; // Initialize overall total price
+                            $itemTotalPrice = $item['quantity'] * $item['price']; // Calculate total price per item
+                            $overallTotalPrice += $itemTotalPrice; // Add item total to overall total
+                        @endphp
+
+                    <tr>
+                        <td>{{ $item['menu']->menuID }}</td>
+                        <td>{{ $item['menu']->name }}</td>
+                        <td>{{ $item['quantity'] }}</td>
+                        <td>RM {{ $itemTotalPrice }}</td>
+                    </tr>
+                    @endforeach
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="purchase_form_table">
 
             <tr>
                 <td>
@@ -51,7 +46,7 @@
                 </td>
 
                 <td>
-                    <input type="text" id="realname" name="realname" placeholder="Name" required>
+                    <input type="text" id="purchase_realname" name="purchase_realname" placeholder="Name" required>
                 </td>
             </tr>
 
@@ -61,33 +56,44 @@
                 </td>
 
                 <td>
-                    <input type="text" id="address" name="address" placeholder="Address" required>
+                    <input type="text" id="purchase_address" name="purchase_address" placeholder="Address" required>
                 </td>
             </tr>
 
             <tr>
-            <td>
+                <td>
                     <label for="contact:">Contact: </label>   
                 </td>
 
                 <td>
-                    <input type="text" id="contact" name="contact" placeholder="Contact" required>
+                    <input type="text" id="purchase_contact" name="purchase_contact" placeholder="Contact" required>
                 </td>
             </tr>
 
             <tr>
-            <td>
-                    <label for="dates:">Dates: </label>   
+                <td>
+                    <label for="deliveryMethod:">Delivery Method: </label>   
                 </td>
 
                 <td>
-                    <input type="date" id="dates" name="dates" placeholder="Dates" required>
+                    <select id="DeliveryMethod" name="DeliveryMethod">
+                        <option value="Delivery">Delivery</option>
+                        <option value="Self_Pickup">Self Pick Up</option>
+                    </select>
                 </td>
             </tr>
 
             <tr>
-                <td><button type="submit">Next</button></td>
+                <td>
+                    <label for="orderNotes:">Message: </label>   
+                </td>
+
+                <td>
+                    <textarea type="text area" id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Message: (e.g. Cleaning crew, special request )" reqired rows="4" cols="50"></textarea>
+                </td>
             </tr>
+
+            <td><button type="submit">Next</button></td>
         </table> 
     </form>
 
