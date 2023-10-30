@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAccountController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\FoodMenuController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrderTrackingController;
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -103,6 +105,13 @@ Route::get('/display-food-menu', [FoodMenuController::class, 'index'])->name('me
 Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('food-menu.addToCart');
 Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
 Route::get('/cart', [FoodMenuController::class, 'showCart'])->name('food-menu.cart');
+
+
+// Membership Controller 
+Route::get('/membership', [MembershipController::class, 'index']);
+
+// Order tracking 
+Route::get('/order-tracking', [OrderTrackingController::class, 'index']);
 
 
 
