@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Order;
+use App\Models\UserAccounts;
 use App\Http\Controllers\AdminController;
 
 class AnalyticsController extends Controller
@@ -19,6 +20,7 @@ class AnalyticsController extends Controller
         // Retrieve all orders
         $orders = Order::all();
         $menus = Menu::all();
+        $accounts = UserAccounts::all();
 
         // Calculate the total order amount
         $totalOrderAmount = $this->calculateTotalOrderAmount($menus, $orders);

@@ -1,7 +1,7 @@
 .foodMenu.container 
 {
-    width: 80%;
-    margin: 0 auto;
+    width: 12.5%;
+    margin: 1 auto;
     padding: 20px;
 }
 
@@ -10,7 +10,7 @@
 {
     border: 1px solid #ccc;
     padding: 10px;
-    margin: 10px 0;
+    margin: 20px 0;
     background-color: #f5f5f5;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

@@ -11,9 +11,11 @@
     var ctx = document.getElementById('revenueChart').getContext('2d');
 
     // Your chart data from the server
-    var chartData = {
+    var chartData = 
+    {
         labels: <?php echo json_encode($chartData['labels']); ?>,
-        datasets: [
+        datasets: 
+        [
             {
                 label: 'Revenue',
                 data: <?php echo json_encode($chartData['data']); ?>, // Use the actual data from your Laravel controller
@@ -26,12 +28,15 @@
 
     console.log(chartData);
 
-    var chart = new Chart(ctx, {
+    var chart = new Chart(ctx, 
+    {
         type: 'bar', // Change the chart type as needed
         data: chartData,
         options: {
-            scales: {
-                y: {
+            scales: 
+            {
+                y: 
+                {
                     beginAtZero: true
                 }
             }
@@ -46,38 +51,19 @@
 <div class="businessAnalytics-data-table">
     <h2>Revenue Data Table</h2>
     <table>
-        <thead>
-            <tr>
-                <th>Customer Name</th>
-                <th>Order Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($orders as $order)
-                <tr>
-                    <td>{{ $order->customer_name }}</td>
-                    <td>{{ $order->order_amount }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-
-<div class="businessAnalytics-data-table">
-    <table>
-        <thead>
+    <thead>
             <tr>
                 <th>Order ID</th>
-                <th>Customer Name</th>
+                <th>User ID</th>
                 <th>Order Amount</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($orders as $order)
+            @foreach ($orders as $UserAccounts)
                 <tr>
-                    <td>{{ $order->id }}</td>
-                    <td>{{ $order->customer_name }}</td>
-                    <td>{{ $order->order_amount }}</td>
+                    <td>{{ $UserAccounts->orderID }}</td>
+                    <td>{{ $UserAccounts->userID }}</td>
+                    <td>RM {{ $UserAccounts->total }}</td>
                 </tr>
             @endforeach
         </tbody>
