@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAccountController;
@@ -17,6 +18,9 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\FoodMenuController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrderTrackingController;
+use App\Http\Controllers\InventoryController;
+
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -72,6 +76,17 @@ Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
 
+// Menu - edit food and menu
+Route::match(['get', 'post'],'/edit-food', [FoodController::class, 'editFood'])->name('food.editFood');
+
+// Inventory
+Route::get('/inventory-management', [InventoryController::class, 'index']);
+Route::post('/inventory-management', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
+Route::post('/inventory-management}', [InventoryController::class, 'editInventory'])->name('inventory.edit');
+Route::get('/inventory-management/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
+
+
+
 // Order - operation side
 Route::get('/op-orders', [OrderController::class, 'index']);
 Route::get('/op-view-order/{orderID}', [OrderController::class, 'viewOrder'])->name('op.view-order');
@@ -84,7 +99,7 @@ Route::get('/op-view-order/cancel/{orderID}', [OrderController::class, 'cancelOr
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
 // Payment
-Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('showPaymentPage');
+Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment.show');
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
 Route::get('/payment-success', [PaymentController::class, 'success'])->name('payment-success');
 Route::post('/store-payment', [PaymentController::class, 'store'])->name('store-payment');
@@ -104,5 +119,19 @@ Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('foo
 Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
 Route::get('/cart', [FoodMenuController::class, 'showCart'])->name('food-menu.cart');
 
+// Feedback
+Route::get('/feedback', [FeedbackController::class, 'index']);
+Route::post('/feedback', [FeedbackController::class, 'submitFeedback'])->name('user.feedback');
+Route::get('/feedback-success', [FeedbackController::class, 'feedbackSuccess']);
 
+// Membership Controller 
+Route::get('/membership', [MembershipController::class, 'index']);
+
+// Order tracking 
+Route::get('/order-tracking', [OrderTrackingController::class, 'index']);
+
+// Reviews
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+Route::get('/reviews/review-form', [ReviewController::class, 'reviewForm']);
+Route::post('/review/review-form/submit', [ReviewController::class, 'submitReviewForm'])->name('review.submit');
 

@@ -1,83 +1,106 @@
 @extends('layouts.app')
 @section('title', 'Orders')
 @section('content')
+
 <h1 class="title">Order Details</h1>
-<div class="customer-container">
-    <table class="customer-container-table ">
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Order Date And Time</th>
-                <th>Status</th>
-                <th>Total Amount</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Contact Number</th>
-                <th>Order Notes</th>
-                <th>Delivery Method</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if($selectedOrder)
-            <tr>
-                <td>{{ $selectedOrder->orderID }}</td>
-                <td>{{ $selectedOrder->getformattedDateTime() }}</td>
+<div class="container-customer-view-order">
+    <h1>Order #{{$selectedOrder->orderID}}</h1>
+    <a href="{{url('customer-orders')}}" title="close"><i class="fas fa-times"></i></a>
+    <div class="panel">
+        <div class="col-customer-view-order">
+            <div class="row-element">
+                <h2>Food Menu Ordered: {{$selectedOrder->menus->count()}}</h2>
+                @foreach($selectedOrder->menus as $menu)
+                <details>
+                    <summary>
+                        <span>{{$menu->name}}</span>
+                        <span>RM{{$menu->totalPrice}}</span>
+                    </summary>
+                    <table>
+                        @foreach($menu->foods as $food)
+                        <tr>
+                            <td class="container-food-image"><img src="{{asset($food->imagePath)}}" alt="{{$food->name}}"></td>
+                            <td>{{$food->name}}</td>
+                            <td>RM{{$food->price}}</td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </details>
+                @endforeach
+            </div>
+            <div class="row-total-price">
+                <p>Order total price <span>RM{{$selectedOrder->getTotalPrice()}}</span></p>
+            </div>
+        </div>
+        <div class="col-customer-view-order">
+            <div class="row-details">
+                <div class="col-row-details">
+                    <div>
+                        <p class="customer-title">Customer</p>
+                        <p class="customer-name">{{$selectedOrder->name}}</p>
+                    </div>
+                    <div>
+                        <p class="customer-title">Contact</p>
+                        <p class="customer-contact"><i class="fas fa-phone-alt"></i>{{$selectedOrder->contact}}</p>
+                    </div>
+                </div>
+                <div>
+                    <p class="customer-title">Address</p>
+                    <p class="customer-address"><i class="fas fa-map-marker-alt"></i>{{$selectedOrder->address}}</p>
+                </div>
+
+                <div>
+                        <p class="customer-title">Order Notes</p>
+                        <p class="customer-notes"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
+                    </div>
+                <div>
+
+                        <p class="customer-title">Order Data And Time</p>
+                        <p class="customer-time"><span><i class="fas fa-clock"></i>{{$selectedOrder->getformattedDateTime()}}</span></p>
+                    </div>
+                <div>
+                    <p class="customer-title">Delivery method</p>
+                    <p class="customer-delivery"><span><i class="fas fa-truck"></i>{{$selectedOrder->delivery}}</span></p>
+                </div>
+
+            </div>
+
+
+            <div class="row-status">
                 @php
                 $classStatus="";
                 if($selectedOrder->status == "Order Cancelled. The refund will be done within 5-7 working days.")
                 {
-                    $classStatus ="cancelled";
-                    $selectedOrder->status = "Refund process in 5-7 days.";
+                $classStatus ="cancelled";
+                $selectedOrder->status = "Order Cancelled. The refund will be done within 5-7 working days.";
                 }
-                elseif ($selectedOrder->status=="pending")
+                elseif ($selectedOrder->status=="Pending")
                 {
-                    $classStatus="pending";
+                $classStatus="pending";
                 }
 
-                elseif($selectedOrder->status=="preparing")
+                elseif($selectedOrder->status=="Preparing")
                 {
-                    $classStatus ="preparing";
+                $classStatus ="preparing";
                 }
                 @endphp
-                <td><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '', strtolower($classStatus)) }}">{{ $selectedOrder->status }}</span></td>
-                <td>RM{{ $selectedOrder->total }}</td>
-                <td>{{ $selectedOrder->name }}</td>
-                <td>{{ $selectedOrder->address }}</td>
-                <td>{{ $selectedOrder->contact }}</td>
-                <td>{{ $selectedOrder->order_notes }}</td>
-                <td>{{ $selectedOrder->delivery }}</td>
-                <td>
-                    <form method="post" action="{{ route('customer-cancel-order', ['orderID' => $selectedOrder->orderID]) }}">
-                        @csrf
-                        <!-- the data status is to store the status of the order then used in js validation-->
-                        <!--the ? is used to detect the status is cancel or preparing, if yes then it will called customer container disabled button class, else it will call the customer container cancel button class-->
-                        <button type="submit" data-status="{{ $selectedOrder->status }}" 
-                        class="customer-container-cancel-button {{ $selectedOrder->status === 'preparing' 
-                            || $selectedOrder->status === 'Order Cancelled. The refund will be done within 5-7 working days.' ||  $selectedOrder->status === 'Refund process in 5-7 days.'? 'customer-container-disabled-button' : '' }}">Cancel Order</button>
-                    </form>
-                </td>
-            </tr>
-            @foreach($selectedOrder->menus as $menu)
-            <tr>
-                <td colspan="10">
-                    <div class="customer-container-food-menu-container">
-                        <p>Food Menu Name: {{ $menu->name }}</p>
-                        <div class="customer-container-food-menu-container-food-items">
-                            @foreach($menu->foods as $food)
-                            <p>Food: {{ $food->name }}</p>
-                                @endforeach
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-            @else
-            <tr>
-                <td colspan="10">No order details found</td>
-            </tr>
-            @endif
-        </tbody>
-    </table>
+                <p class="customer-title">Order Status</p>
+                <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$selectedOrder->status}}</span></p>
+            </div>
+            <div class="row-actions">
+            </div>
+
+            <div class="row-actions">
+                <form method="post" action="{{ route('customer-cancel-order', ['orderID' => $selectedOrder->orderID]) }}">
+                    @csrf
+                    <!-- the data status is to store the status of the order then used in js validation-->
+                    <!--the ? is used to detect the status is cancel or preparing, if yes then it will called customer container disabled button class, else it will call the customer container cancel button class-->
+                    <button type="submit" data-status="{{ $selectedOrder->status }}" class="customer-container-cancel-button {{ $selectedOrder->status === 'Preparing' 
+                            || $selectedOrder->status === 'Order Cancelled. The refund will be done within 5-7 working days.'? 'customer-container-disabled-button' : '' }}">Cancel Order</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
 </div>
 @endsection

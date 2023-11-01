@@ -25,19 +25,22 @@ class PaymentController extends Controller
         }
     }
 
-    public function showPaymentPage(UserAccountController $userAccountController)
+    public function showPaymentPage()
     {
-        $totalPrice = DB::table('orders')->sum('total');
-        $orders = DB::table('orders')->get();
+        // Retrieve the user's cart from the session
+        $cart = session('cart', []);
 
-        // Checks whether is customer session or not
-        $this->userAccountController = $userAccountController;
-
-        if ($this->userAccountController->verifyCustomer()) {
-            return view('payment', ['totalPrice' => $totalPrice, 'orders' => $orders, 'notifications' => Notification::all()]);
-        } else {
-            return view('login.access-denied');
+        // Check if $cart is null and initialize it as an empty array
+        if ($cart === null) {
+            $cart = [];
         }
+
+        // Retrieve notifications (if needed)
+        $notifications = Notification::all();
+
+        // Pass both the cart and notifications to the payment page
+        return view('payment', ['cart' => $cart, 'notifications' => $notifications]);
+
     }
 
     public function store(Request $request){

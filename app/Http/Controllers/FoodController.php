@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Food;
+use App\Models\FoodInventory;
+use App\Models\Inventory;
 
 class FoodController extends Controller
 {
@@ -13,7 +15,6 @@ class FoodController extends Controller
     // Retrieve function 
     public function index(AdminController $adminController)
     {
-
         $food = Food::all();
 
         // Checks whether is valid login or not
@@ -28,11 +29,13 @@ class FoodController extends Controller
 
     public function addFoodForm(AdminController $adminController)
     {
+        $inventory = Inventory::all();
+
         // Checks whether is valid login or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) {
-            return view('menu.add-food-form');
+            return view('menu.add-food-form', ['listItems' => $inventory]);
         } else {
             return view('login.access-denied');
         }
@@ -51,7 +54,6 @@ class FoodController extends Controller
         } else {
             return view('login.access-denied');
         }
-        
     }
 
     // Insert function 
@@ -69,6 +71,33 @@ class FoodController extends Controller
         $food->price = $request->price;
         $food->save();
 
+        $array = $request->amount;
+        $foodInventoryController = new FoodInventoryController();
+
+        $ingredientID = [];
+        $amounts = [];
+
+        foreach($array as $item){
+            
+        }
+
+        foreach($array as $amount) {
+            $foodInventoryController->registerNewFoodInventory($request, $food->foodID, $request->input('inventoryID')[$key], $value);
+        }
+
         return redirect('/add-food');
     }
+
+    public function editFood(AdminController $adminController, Request $request) {
+        // Checks whether is valid login or not
+        $this->adminController = $adminController;
+        $food = Food::all();
+
+        // Redirect to another page with the food ID
+        if ($this->adminController->verifyAdmin()) {
+            return view('menu.edit-food', ['foodID' => $request->foodID], ['listItems' => $food]);
+        } else {
+            return view('login.access-denied');
+        }
+    } 
 }
