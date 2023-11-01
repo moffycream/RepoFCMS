@@ -63,15 +63,50 @@
 .businessAnalytics-total-order-amount 
 {
     margin-top: 20px;
-    text-align: center;
+    margin-bottom: 100px;
+    margin-left: 1150px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.businessAnalytics-monthly-sales
+{
+    margin-top: 20px;
+    margin-left: 175px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.businessAnalytics-total-revenue 
+{
+    margin-top: 20px;
+    margin-left: 175px;
     font-size: 24px;
     font-weight: bold;
 }
 
 /* Style the data tables */
+.businessAnalytics-main-content 
+{
+    margin-bottom: 100px; 
+}
+
+.businessAnalytics-chart-container 
+{
+    margin-top: 30px; 
+}
+
+.businessAnalytics-dateChart-container 
+{
+    margin-top: 50px; 
+}
+
 .businessAnalytics-data-table 
 {
-    margin-top: 20px;
+    margin-top: 100px; 
+    width: 80%; 
+    margin-left: 175px; 
+    margin-bottom: 100px;
 }
 
 .businessAnalytics-data-table table 
@@ -80,7 +115,8 @@
     border-collapse: collapse;
 }
 
-.businessAnalytics-data-table table th, .businessAnalytics-data-table table td 
+.businessAnalytics-data-table table th,
+.businessAnalytics-data-table table td 
 {
     border: 1px solid #ccc;
     padding: 8px;

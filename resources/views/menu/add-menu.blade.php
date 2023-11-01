@@ -61,7 +61,7 @@
 
         <!-- The block for user to redirect to add menu form -->
         <div class="col-add-menu">
-            <a href="{{url('add-menu-form')}}">+</a>
+            <a class="add-menu-button" href="{{url('add-menu-form')}}">+</a>
         </div>
         @if ($count % 3 !== 0)
         <!-- If there are less than 3 items in the last row, close the row -->

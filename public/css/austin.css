@@ -65,7 +65,7 @@
     overflow-wrap: break-word;
 }
 
-.add-menu-container .row-add-menu .col-add-menu a {
+.add-menu-button{
     margin: auto;
     font-size: 100px;
     font-weight: 900;
@@ -73,6 +73,13 @@
 
 .add-menu-container .row-add-menu .col-add-menu a:link {
     text-decoration: none;
+}
+
+.edit-menu-button {
+    font-size: 30px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
 }
 
 /* Add menu & food form*/
@@ -226,7 +233,7 @@
 #admin-dashboard-container-expand p {
     color: #ffffff69;
     font-size: 22px;
-    margin: 40px 30px 20px;
+    margin: 30px 30px 15px;
 }
 
 #admin-dashboard-container-expand .logo {
@@ -255,7 +262,7 @@
 
 #admin-dashboard-container-expand .admin-dashboard-line {
     width: 240px;
-    margin: 40px 30px 0;
+    margin: 20px 30px 0;
     border-color: rgba(255, 255, 255, 0.164);
 }
 
@@ -316,5 +323,12 @@
 }
 
 .hidden {
+    display: none;
+}
+
+/* Inventory management */
+.inventory-edit-value,
+.save-button,
+.cancel-button{
     display: none;
 }

@@ -21,6 +21,10 @@
         <p>Menu</p>
         <a href="{{url('add-menu')}}"><img class="admin-dashboard-icon" src="{{ asset('images/add-menu.png') }}" alt="icon"><span>Add menu</span></a>
         <a href="{{url('add-food')}}"><img class="admin-dashboard-icon" src="{{ asset('images/add-food.png') }}" alt="icon"><span>Add food</span></a>
+        <hr class="admin-dashboard-line">
+
+        <p>Inventory</p>
+        <a href="{{url('inventory-management')}}"><img class="admin-dashboard-icon" src="{{ asset('images/inventory.png') }}" alt="icon"><span>Inventory management</span></a>
 
         <a href="{{url('logout')}}"><img class="admin-dashboard-icon" src="{{ asset('images/logout.png') }}" alt="icon"><span>Logout</span></a>
     </div>
@@ -47,6 +51,10 @@
         <p>Menu</p>
         <a href="{{url('add-menu')}}"><img class="admin-dashboard-icon" src="{{ asset('images/add-menu.png') }}" alt="icon"></a>
         <a href="{{url('add-food')}}"><img class="admin-dashboard-icon" src="{{ asset('images/add-food.png') }}" alt="icon"></a>
+        <hr class="admin-dashboard-line">
+
+        <p>Inventory</p>
+        <a href="{{url('inventory-management')}}"><img class="admin-dashboard-icon" src="{{ asset('images/inventory.png') }}" alt="icon"></a>
 
         <a href="{{url('logout')}}"><img class="admin-dashboard-icon" src="{{ asset('images/logout.png') }}" alt="icon"></a>
     </div>

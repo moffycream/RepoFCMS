@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Order;
@@ -30,14 +31,19 @@ class AnalyticsController extends Controller
         // Prepare data for the first graph
         $chartData = $this->prepareChartData($orders, $menus);
 
-        
+        // New method to prepare data for the date-sorted line chart
+        $dateChartData = $this->prepareDateChartData($orders);
+
+        // Call the showBusinessAnalytics method to get the monthly data
+        $monthlyData = $this->showBusinessAnalytics($orders);
 
         // Checks whether is admin session or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) 
         {
-            return view('business-analytics', compact('orders', 'totalOrderAmount', 'chartData', 'profitData', 'revenueData'));
+            return view('business-analytics', compact('orders', 'totalOrderAmount', 'chartData', 'dateChartData', 'profitData', 'revenueData', 'monthlyData'));
+
         } 
         else 
         {
@@ -45,11 +51,10 @@ class AnalyticsController extends Controller
         }
     }
 
-
     private function calculateProfit()
     {
         $totalRevenue = $this->calculateRevenue();
-        $profit = $totalRevenue - 100;
+        $profit = $totalRevenue - 3000;
 
         return $profit;
     }
@@ -86,9 +91,67 @@ class AnalyticsController extends Controller
         return $chartData;
     }
 
+    private function prepareDateChartData($orders)
+    {
+        $dateChartData = 
+        [
+            'labels' => [],
+            'data' => [],
+        ];
+
+        // Retrieve orders sorted by date
+        $sortedOrders = Order::orderBy('date')->get();
+
+        foreach ($sortedOrders as $orders) 
+        {
+            // Use Carbon to format the date for display on the chart
+            $formattedDate = Carbon::parse($orders->date)->toDateString();
+            $dateChartData['labels'][] = $formattedDate;
+            $dateChartData['data'][] = $orders->total; 
+        }
+
+        return $dateChartData;
+    }
+
     private function getTotalOrderAmountForMenuItem($menuItem, $orders)
     {
         // Calculate the total order amount for a specific menu item
         return $orders->where('menu_name', $menuItem->name)->sum('total');
+    }
+
+    private function showBusinessAnalytics($orders)
+    {
+        $monthlyData = 
+        [
+            'labels' => [],
+            'sales' => [],
+            'orders' => [],
+        ];
+
+        $monthlySales = [];
+        $monthlyOrderCounts = [];
+
+        foreach ($orders as $order) 
+        {
+            $date = $order->date;
+            $month = date('F', strtotime($date));
+
+            if (!isset($monthlySales[$month])) 
+            {
+                $monthlySales[$month] = $order->total;
+                $monthlyOrderCounts[$month] = 1;
+            } 
+            else 
+            {
+                $monthlySales[$month] += $order->total;
+                $monthlyOrderCounts[$month]++;
+            }
+        }
+
+        $monthlyData['labels'] = array_keys($monthlySales);
+        $monthlyData['sales'] = array_values($monthlySales);
+        $monthlyData['orders'] = array_values($monthlyOrderCounts);
+
+        return $monthlyData;
     }
 }
