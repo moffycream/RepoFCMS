@@ -2,8 +2,8 @@
 @section('title', 'Orders')
 @section('content')
 <h1 class="title">Order Listing</h1>
-<div class="customer-container">
-    <table class="customer-container-table">
+<div class="container-customer">
+    <table class="container-customer-table">
         <thead>
             <tr>
                 <th>Order Date And Time</th>
@@ -16,19 +16,19 @@
         <tbody>
             @forelse($orders as $order)
             <tr>
-                <td>{{ $order->getformattedDateTime() }}</td>
+                <td>{{ $order->getformattedDateTime()}}</td>
                 @php
                 $classStatus="";
                 if($order->status == "Order Cancelled. The refund will be done within 5-7 working days.")
                 {
                     $classStatus = "cancelled";
                 }
-                elseif ($order->status=="pending")
+                elseif ($order->status=="Pending")
                 {
                     $classStatus="pending";
                 }
 
-                elseif($order->status=="preparing")
+                elseif($order->status=="Preparing")
                 {
                     $classStatus = "preparing";
                 }

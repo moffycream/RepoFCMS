@@ -688,13 +688,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const status = button.getAttribute('data-status');
 
         // Check the status and disable the button if it's "preparing" or "Order Cancelled"
-        if (status === 'preparing' || status === 'Order Cancelled. The refund will be done within 5-7 working days.'|| status==='Refund process in 5-7 days.') {
+        if (status === 'Preparing' || status === 'Order Cancelled. The refund will be done within 5-7 working days.') {
             button.disabled = true;
         }
 
         // Add click event listeners
         button.addEventListener('click', function (event) {
-            if (status !== 'preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.'||status==='Refund process in 5-7 days.') {
+            if (status !== 'Preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.'||status==='Refund process in 5-7 days.') {
                 // Ask for confirmation
                 const confirmation = confirm("Are you sure you want to cancel this order?");
                 if (!confirmation) {
