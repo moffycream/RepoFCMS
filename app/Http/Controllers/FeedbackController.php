@@ -5,6 +5,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
+use App\Http\Controllers\AdminController;
 
 class FeedbackController extends Controller
 {
@@ -19,6 +20,44 @@ class FeedbackController extends Controller
 
         if ($this->userAccountController->verifyCustomer()) {
             return view('customer/feedback', ['notifications' => Notification::all()]);
+        } else {
+            return view('login.access-denied');
+        }
+    }
+
+    // view feedback page as admin
+    public function adminViewFeedback(AdminController $userAccountController)
+    {
+        // Checks whether is admin session or not
+        $this->userAccountController = $userAccountController;
+
+        if ($this->userAccountController->verifyAdmin()) {
+            // retrive all feedbacks from database when viewing as admin
+            return view('admin/admin-view-feedback', ['feedbacks' => Feedback::all()],['notifications' => Notification::all()]);
+        } else {
+            return view('login.access-denied');
+        }
+    }
+
+    // filter feedbacks as admin
+    public function adminFilterFeedback(Request $request, AdminController $userAccountController)
+    {
+        // Checks whether is admin session or not
+        $this->userAccountController = $userAccountController;
+
+        if ($this->userAccountController->verifyAdmin()) {
+            // retrive all feedbacks from database when viewing as admin
+            if ($request->filter == "feedbackID") 
+            {
+                return view('admin/admin-view-feedback', ['feedbacks' => Feedback::orderBy('feedbackID', $request->order)->get()],['notifications' => Notification::all()]);
+            }
+            else if ($request->filter == "rating") {
+                return view('admin/admin-view-feedback', ['feedbacks' => Feedback::orderBy('rating', $request->order)->get()], ['notifications' => Notification::all()]);
+
+            }
+            else {
+                return view('admin/admin-view-feedback', ['feedbacks' => Feedback::where('typeOfFeedback', $request->filter)->orderBy('feedbackID', $request->order)->get()],['notifications' => Notification::all()]);
+            }
         } else {
             return view('login.access-denied');
         }

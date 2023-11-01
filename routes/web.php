@@ -113,6 +113,10 @@ Route::get('/feedback', [FeedbackController::class, 'index']);
 Route::post('/feedback', [FeedbackController::class, 'submitFeedback'])->name('user.feedback');
 Route::get('/feedback-success', [FeedbackController::class, 'feedbackSuccess']);
 
+// admin view feedback
+Route::get('/admin-view-feedback', [FeedbackController::class, 'adminViewFeedback']);
+Route::post('/admin-view-feedback', [FeedbackController::class, 'adminFilterFeedback'])->name('admin.filter.feedback');
+
 // Membership Controller 
 Route::get('/membership', [MembershipController::class, 'index']);
 
