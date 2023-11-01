@@ -19,6 +19,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\FoodMenuController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTrackingController;
+use App\Http\Controllers\ReviewController;
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -113,5 +114,8 @@ Route::get('/membership', [MembershipController::class, 'index']);
 // Order tracking 
 Route::get('/order-tracking', [OrderTrackingController::class, 'index']);
 
-
+// Reviews
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+Route::get('/reviews/review-form', [ReviewController::class, 'reviewForm']);
+Route::post('/review/review-form/submit', [ReviewController::class, 'submitReviewForm'])->name('review.submit');
 
