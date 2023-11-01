@@ -19,6 +19,8 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\FoodMenuController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTrackingController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ReviewController;
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -106,6 +108,10 @@ Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('foo
 Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
 Route::get('/cart', [FoodMenuController::class, 'showCart'])->name('food-menu.cart');
 
+// Feedback
+Route::get('/feedback', [FeedbackController::class, 'index']);
+Route::post('/feedback', [FeedbackController::class, 'submitFeedback'])->name('user.feedback');
+Route::get('/feedback-success', [FeedbackController::class, 'feedbackSuccess']);
 
 // Membership Controller 
 Route::get('/membership', [MembershipController::class, 'index']);
@@ -113,5 +119,8 @@ Route::get('/membership', [MembershipController::class, 'index']);
 // Order tracking 
 Route::get('/order-tracking', [OrderTrackingController::class, 'index']);
 
-
+// Reviews
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+Route::get('/reviews/review-form', [ReviewController::class, 'reviewForm']);
+Route::post('/review/review-form/submit', [ReviewController::class, 'submitReviewForm'])->name('review.submit');
 

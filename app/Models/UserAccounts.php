@@ -20,4 +20,9 @@ class UserAccounts extends Model
     {
         return $this->hasMany(Notification::class, 'userID');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'userID');
+    }
 }

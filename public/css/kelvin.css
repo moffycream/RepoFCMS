@@ -378,3 +378,147 @@ details[open] summary::before {
 .container-op-view-order .col-op-view-order .row-actions a:hover{
     opacity: 80%;
 }
+
+/* Review Page (Customer Side) */
+.container-reviews{
+    min-height: 100vh;
+    width: 100%;
+    background-color: #e8dcd4;
+    padding: 1%;
+}
+
+.container-reviews .panel{
+    width: 80%;
+    margin: 50px auto;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-reviews .panel .row-first{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container-reviews .panel .row-first h1{
+    font-size: 28px;
+}
+
+.container-reviews .panel .row-first a{
+    background-color: #473447;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.container-reviews .panel .row-user-review{ 
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+.container-reviews .panel .row-user-review .row-container:first-child .user-profile{
+    display: flex;
+    align-items: center;
+}
+
+.container-reviews .panel .row-user-review .row-container:first-child .profile-pic{
+    /* make the user profile become circle */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.container-reviews .panel .row-user-review .row-container:first-child .profile-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-reviews .panel .row-user-review .row-container:first-child .col-user-profile h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+
+}
+
+.container-reviews .panel .row-user-review .row-container:first-child .col-user-profile h3 > span{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    opacity: 50%;
+}
+
+.container-reviews .panel .row-user-review .row-container:first-child .col-user-profile .container-stars{
+    display: flex;
+    align-items: center;
+}
+
+.container-reviews .panel .row-user-review .row-container:first-child .col-user-profile .container-stars .fas{
+    color: #ffc400;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.container-reviews .panel .row-user-review .row-container:first-child{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-reviews .panel .row-user-review .row-container{
+    padding: 20px;
+}
+
+.container-reviews .panel .row-user-review .row-container .review-content h2{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.container-reviews .panel .row-user-review .row-container .review-content p{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Review form */
+.container-review-form{
+    width: 100%;
+    height: 100%;
+}
+
+.container-reviews .review-form-panel
+{
+    width: 50%;
+    margin: 50px auto;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #000000;
+    position: fixed;
+
+    /* Make the panel above the existing content and make like a pop out menu */
+    z-index: 1;
+    background-color: #ffffff;
+
+    /* Make the panel in the center of the page */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container-reviews .review-form-panel form{
+    display: flex;
+    flex-direction: column;
+}
