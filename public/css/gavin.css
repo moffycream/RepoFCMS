@@ -13,7 +13,7 @@
     height: 500px;
     box-shadow: #32325d40 0px 13px 27px -5px, #0000004d 0px 8px 16px -8px;
     text-align: center;
-    padding:20px 0 20px;
+    padding: 20px 0 20px;
     border-radius: 10px;
     margin-top: 50px;
 }
@@ -61,7 +61,7 @@
 /* register page */
 .container-register-page {
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #e8dcd4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,19 +240,18 @@
     text-align: center;
 }
 
-.admin-register-centre-column #accountType{
+.admin-register-centre-column #accountType {
     padding: 10px 20px;
     text-align: left;
 }
 
 .admin-register-centre-column select,
-.admin-register-centre-column button
-{
+.admin-register-centre-column button {
     margin-bottom: 10px;
 }
 
 .admin-register-left-column h2,
-.admin-register-right-column h2{
+.admin-register-right-column h2 {
     margin-bottom: 10px;
 }
 
@@ -262,15 +261,15 @@
     font-size: 14px;
     margin-bottom: 20px;
 }
-.container-admin-register-page .admin-register-left-column> div,
-.container-admin-register-page .admin-register-right-column> div 
-{
+
+.container-admin-register-page .admin-register-left-column>div,
+.container-admin-register-page .admin-register-right-column>div {
     display: flex;
     flex-direction: column;
 }
 
 .container-admin-register-page form input,
-.container-admin-register-page form textarea{
+.container-admin-register-page form textarea {
     padding: 15px 20px;
     border: 1px solid #00000077;
     border-radius: 5px;
@@ -278,7 +277,7 @@
 }
 
 .container-admin-register-page #streetAddress {
-    resize: none; 
+    resize: none;
     height: 50px;
 }
 
@@ -359,4 +358,129 @@
     height: 100vh;
     text-align: center;
     padding-top: 50px;
+}
+
+/* Feedback page */
+.container-feedback-page {
+    background-color: var(--color-2);
+    height: 100vh;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.box-feedback-page {
+    border: 1px solid #00000077;
+    border-radius: 10px;
+    padding: 50px;
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+    display: inline-block;
+    margin: 20px;
+}
+
+.container-feedback-page p {
+    padding: 3px 0;
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.container-feedback-page h2 {
+    font-size: 18px;
+    padding-bottom: 3px;
+}
+
+.container-feedback-page h3 {
+    font-size: 15px;
+    font-weight:500;
+    padding-top: 10px;
+}
+
+.container-feedback-page form input,
+.container-feedback-page form textarea,
+.container-feedback-page form select {
+    padding: 5px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.container-feedback-page form ::placeholder {
+    font-size: 13px;
+}
+
+.container-feedback-page form button {
+    background-color: var(--color-1);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: 0.5s;
+    margin-top: 10px;
+}
+
+.container-feedback-page form button:hover {
+    background-color: #ffffff;
+    color: var(--color-1);
+    border-color: #ffffff;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.feedback-box-columns {
+    padding-top: 10px;
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+}
+
+.feedback-left-column {
+    padding: 0 10px;
+    margin-right: 125px;
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-box input[type="text"],
+.feedback-box input[type="email"] {
+    width: 90%;
+    margin: 8px auto;
+}
+
+.feedback-right-column {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-box textarea {
+    width: 95%;
+    margin: 5px auto;
+    resize: none;
+    height: 100px;
+}
+
+.star {
+    cursor: pointer;
+    -webkit-text-stroke: 0.5px black;
+    text-shadow: 1px 1px 1px #000000;
+    padding: 0 4px;
+}
+
+.rating-slider {
+    display: none;
+}
+
+/* feedback successful page */
+.container-feedback-successful {
+    background-color: var(--color-2);
+    height: 100vh;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.container-feedback-successful p {
+    padding-bottom: 10px;
+}
+
+.container-feedback-successful .button {
+    margin-top: 20px;
 }

@@ -31,8 +31,8 @@
                 </div>
             </div>
 
-            
-            
+
+
             <p>Have an account already? <a href="{{url('login')}}" class="login-here">Login here</a></p><br>
 
             <button class="register-submit-button" type="submit">Sign up</button>

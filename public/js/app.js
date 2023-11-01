@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------------- Guilbert Lam's JS--------------------------
 //  payment pages - display various payment
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
 
     const PaymentForm = document.getElementById('PaymentForm');
     const PaymentChoice = document.getElementById('PaymentMethod');
@@ -531,40 +531,40 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 
-    function ValidatePaymentForm(){
+    function ValidatePaymentForm() {
         const errors = [];
 
-        if(PaymentChoice.value === "OnlineBanking"){
+        if (PaymentChoice.value === "OnlineBanking") {
             const username = document.getElementById('payment_username').value;
             const password = document.getElementById('payment_password').value;
             const recipientAccountNumber = document.getElementById('payment_recipient_account_number').value;
             const amount = document.getElementById('payment_amount').value;
 
             //  validation for name
-            if(username.length < 5 || username.length > 25){
+            if (username.length < 5 || username.length > 25) {
                 errors.push('Username must be within 5 to 25 characters long.\n');
             }
 
             //  validation for password
-            if(password.length < 5 || password.length > 25){
+            if (password.length < 5 || password.length > 25) {
                 errors.push('Password must be within 5 to 15 characters long.\n');
             }
 
             //  validation for Receipient Account Numbers
-            if(recipientAccountNumber.length < 8 || recipientAccountNumber.length > 16){
+            if (recipientAccountNumber.length < 8 || recipientAccountNumber.length > 16) {
                 errors.push('Receipient Account Numbers must be within 8 to 16 characters long.\n');
             }
 
-            if(!Numpattern.test(recipientAccountNumber)){
+            if (!Numpattern.test(recipientAccountNumber)) {
                 errors.push('Receipient Account Numbers must only contain numbers only.\n');
             }
 
             //  validation for Amount
-            if(!Numpattern.test(amount)){
+            if (!Numpattern.test(amount)) {
                 errors.push('Amount must contain numbers only.\n');
             }
 
-        }else if(PaymentChoice.value === "CreditCard" || PaymentChoice.value === "DebitCard"){
+        } else if (PaymentChoice.value === "CreditCard" || PaymentChoice.value === "DebitCard") {
             const cardNumber = document.getElementById('payment_cardNumber').value;
             const cvv = document.getElementById('payment_cvv').value;
             const cardHolder = document.getElementById('payment_cardholder').value;
@@ -572,105 +572,105 @@ document.addEventListener('DOMContentLoaded', function(){
             const amount = document.getElementById('payment_amount').value;
 
             //  validation for Card Number
-            if(!Numpattern.test(cardNumber)){
+            if (!Numpattern.test(cardNumber)) {
                 errors.push('Card Number must contain numbers only.\n');
             }
-            if(cardNumber.length != 16){
+            if (cardNumber.length != 16) {
                 errors.push('Card Number must be 16 numbers.\n');
             }
 
             //  validation for CVV
-            if(!Numpattern.test(cvv)){
+            if (!Numpattern.test(cvv)) {
                 errors.push('CVV number must contain numbers only.\n');
             }
-            if(cvv.length < 3 || cvv.length > 4){
+            if (cvv.length < 3 || cvv.length > 4) {
                 errors.push('CVV number must only contain 3-4 digits.\n');
             }
 
             //  validation for Card Holder Name
-            if(!pattern.test(cardHolder)){
+            if (!pattern.test(cardHolder)) {
                 errors.push('Your Card Holder Name must only contain alpha character only.\n');
             }
-            if(cardHolder.length < 5 || cardHolder.length > 25){
+            if (cardHolder.length < 5 || cardHolder.length > 25) {
                 errors.push('Card Holder name must be within 5 to 25 characters long.\n');
             }
-            
+
             //  validation for billing address
-            if(billingAddress.length < 10 || billingAddress.length > 255){
+            if (billingAddress.length < 10 || billingAddress.length > 255) {
                 errors.push('Billing Address must be within 10 to 255 characters long.\n');
             }
 
             //  validation for Amount
-            if(!Numpattern.test(amount)){
+            if (!Numpattern.test(amount)) {
                 errors.push('Amount must contain numbers only.\n');
             }
 
-        }else if(PaymentChoice.value === "Ewallet"){
+        } else if (PaymentChoice.value === "Ewallet") {
             const recipientName = document.getElementById('payment_receipient_name').value;
             const amount = document.getElementById('payment_amount').value;
 
             //  validation for Receipient Name
-            if(!pattern.test(recipientName)){
+            if (!pattern.test(recipientName)) {
                 errors.push('Receipient Name must only contain alpha character only.\n');
             }
-            if(recipientName.length < 5 || recipientName.length > 25){
+            if (recipientName.length < 5 || recipientName.length > 25) {
                 errors.push('Receipient name must be within 5 to 25 characters long.\n');
             }
 
             //  validation for Amount
-            if(!Numpattern.test(amount)){
+            if (!Numpattern.test(amount)) {
                 errors.push('Amount must contain numbers only.\n');
             }
         }
 
         //  display error msg
-        if(errors.length > 0){
+        if (errors.length > 0) {
             event.preventDefault(); // Prevent form submission
             alert(errors.join('')); // Display all error messages
         }
     }
 
-    if(PaymentForm){
+    if (PaymentForm) {
         PaymentForm.onsubmit = ValidatePaymentForm;
     }
 });
 
 //  purchase pages - display various payment
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
     const PurchaseForm = document.getElementById('PurchaseForm');
     var pattern = /^[a-zA-Z ]+$/
 
-    function ValidatePurchaseForm(){
+    function ValidatePurchaseForm() {
         const errors = [];
         const realname = document.getElementById('purchase_realname').value;
         const address = document.getElementById('purchase_address').value;
         const contact = document.getElementById('purchase_contact').value;
 
         //  validation for name
-        if(!pattern.test(realname)){
+        if (!pattern.test(realname)) {
             errors.push('Your name must only contain alpha character only.\n');
         }
 
         // validation for address
-        if(address.length < 15){
+        if (address.length < 15) {
             errors.push('Address must be at least 10 characters long.\n');
-        }else if(address.length > 100){
+        } else if (address.length > 100) {
             errors.push('Address must be within 255 characters long.\n');
         }
 
         //  validation for contact
-        if(contact.length > 11 || contact.length < 10){
+        if (contact.length > 11 || contact.length < 10) {
             errors.push('Your contact number must within 10-11 digit only.\n');
         };
 
         //  display error msg
-        if(errors.length > 0){
+        if (errors.length > 0) {
             event.preventDefault(); // Prevent form submission
             alert(errors.join('')); // Display all error messages
         }
     }
 
-    if(PurchaseForm){
+    if (PurchaseForm) {
         PurchaseForm.onsubmit = ValidatePurchaseForm;
     }
 
@@ -688,13 +688,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const status = button.getAttribute('data-status');
 
         // Check the status and disable the button if it's "preparing" or "Order Cancelled"
-        if (status === 'preparing' || status === 'Order Cancelled. The refund will be done within 5-7 working days.'|| status==='Refund process in 5-7 days.') {
+        if (status === 'Preparing' || status === 'Order Cancelled. The refund will be done within 5-7 working days.') {
             button.disabled = true;
         }
 
         // Add click event listeners
         button.addEventListener('click', function (event) {
-            if (status !== 'preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.'||status==='Refund process in 5-7 days.') {
+            if (status !== 'Preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.'||status==='Refund process in 5-7 days.') {
                 // Ask for confirmation
                 const confirmation = confirm("Are you sure you want to cancel this order?");
                 if (!confirmation) {
@@ -703,4 +703,56 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+});
+
+
+
+// Gavin's JS
+document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.getElementById('rating');
+    const stars = document.querySelectorAll('.star');
+    const defaultRating = parseInt(slider.value);
+
+    // Set the initial star colors based on the default rating
+    stars.forEach(function (star, index) {
+        if (index < defaultRating) {
+            star.style.color = 'gold';
+        } else {
+            star.style.color = ''; // Reset star color to the default (black)
+        }
+    });
+
+    // Add an event listener to the stars to handle clicks
+    stars.forEach(function (star, index) {
+        star.addEventListener('click', function () {
+            const starValue = parseInt(star.getAttribute('data-star'));
+            slider.value = starValue; // Update the slider value
+            updateStarColors(starValue); // Update star colors
+        });
+    });
+
+    slider.addEventListener('input', function () {
+        const sliderValue = parseInt(slider.value);
+
+        // Loop through each star and update its color
+        stars.forEach(function (star, index) {
+            if (index < sliderValue) {
+                star.style.color = 'gold';
+            } else {
+                star.style.color = ''; // Reset star color to the default (black)
+            }
+            updateStarColors(sliderValue)
+        });
+    });
+
+    // when pressing the stars, the slider will change
+    function updateStarColors(selectedRating) {
+        stars.forEach(function (star, index) {
+            if (index < selectedRating) {
+                star.style.color = 'gold';
+            } else {
+                star.style.color = ''; // Reset star color to the default (black)
+            }
+        });
+    }
 });
