@@ -20,6 +20,8 @@ use App\Http\Controllers\FoodMenuController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTrackingController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ReviewController;
 
 
 // use App\Http\Controllers\test;  <-- test
