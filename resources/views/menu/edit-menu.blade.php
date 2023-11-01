@@ -32,11 +32,6 @@
                     <p>RM {{$food->price}}</p>
                 </div>
             </div>
-            <form method="GET" action="{{ route('food.editFood')}}" enctype="text/plain">
-                @csrf    
-                <input type="hidden" name="foodID" value="{{$food->foodID}}">
-                <button type="submit" class="edit-menu-button">Edit</button>
-            </form>
         </div>
 
         @php
@@ -52,7 +47,7 @@
 
         <!-- The block for user to redirect to add food form -->
         <div class="col-add-menu">
-            <a class="add-menu-button" href="{{url('add-food-form')}}">+</a>
+            <a href="{{url('add-food-form')}}">+</a>
         </div>
         @if ($count % 3 !== 0)
         <!-- If there are less than 3 items in the last row, close the row -->

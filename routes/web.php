@@ -19,6 +19,8 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\FoodMenuController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTrackingController;
+use App\Http\Controllers\InventoryController;
+
 
 // use App\Http\Controllers\test;  <-- test
 
@@ -73,6 +75,17 @@ Route::get('/add-menu', [MenuController::class, 'index']);
 Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
+
+// Menu - edit food and menu
+Route::match(['get', 'post'],'/edit-food', [FoodController::class, 'editFood'])->name('food.editFood');
+
+// Inventory
+Route::get('/inventory-management', [InventoryController::class, 'index']);
+Route::post('/inventory-management', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
+Route::post('/inventory-management}', [InventoryController::class, 'editInventory'])->name('inventory.edit');
+Route::get('/inventory-management/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
+
+
 
 // Order - operation side
 Route::get('/op-orders', [OrderController::class, 'index']);

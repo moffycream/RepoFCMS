@@ -7,8 +7,23 @@
 <div class="add-menu-form-container">
     <form class="add-menu-form" id="add-food-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
         @csrf
+
+        @foreach ($listItems as $food)
+        @php
+            if ($food->foodID == $foodID)
+            {   
+                echo "<img src='{$food->imagePath}'>";
+                echo "<br>";
+                echo $food->name;
+                echo "<br>";
+                echo $food->description;
+                echo "<br>";
+                echo $food->price;
+            }
+        @endphp
+        @endforeach
         <div>
-                <p class="add-menu-form-title">Edit Food Form</p>
+            <p class="add-menu-form-title">Add Food Form</p>
         </div>
         <div>
             <label for="menu-image">Image</label>
@@ -22,22 +37,6 @@
         </div>
         <div>
             <input type="text" id="food-price" name="price" maxlength="8" placeholder="Food price">
-        </div>
-        <div>
-            <table border="1">
-                <tr>
-                    <th>Ingredient ID</th>
-                    <th>Ingredient name</th>
-                    <th>Ingredient amount</th>
-                </tr>
-                @foreach($listItems as $item)
-                <tr>
-                    <td>{{$item->inventoryID}}</td>
-                    <td>{{$item->inventoryName}}</td>
-                    <td><input id="{{$item->inventoryID}}" name="amount[]" type="text" value="{{$item->inventoryID}} "></td>
-                </tr>
-                @endforeach
-            </table>
         </div>
 
         <button class="admin-register-submit-button" type="submit">Submit</button>
