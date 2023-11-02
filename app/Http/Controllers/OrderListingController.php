@@ -18,7 +18,16 @@ class OrderListingController extends Controller
         $userAccountController = app(UserAccountController::class);
         $order_list = Order::all();
 
-        $userID = UserAccounts::where('username', session('username'))->first()->userID;
+        $userAccount = UserAccounts::where('username', session('username'))->first();
+        if ($userAccount)
+        {
+            $userID = $userAccount->userID;
+        }
+        else
+        {
+            $userID = null;
+        }
+        
         $order_list = [];
         if ($userID != null)
         {
