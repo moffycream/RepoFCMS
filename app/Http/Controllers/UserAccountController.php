@@ -33,6 +33,7 @@ class UserAccountController extends Controller
             $account->city = "FCMS";
             $account->postcode = "FCMS";
             $account->accountType = "DefaultAdmin";
+            $account->imagePath ="profile-images/profile.png";
 
             $account->password = Hash::make($account->password);
             $account->save();
@@ -126,6 +127,7 @@ class UserAccountController extends Controller
             } else {
                 $accounts->postcode = $request->postcode;
             }
+            $accounts->imagePath = "profile-images/profile.png";
         }
 
         if ($errorMsg == "") {

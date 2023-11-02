@@ -23,6 +23,7 @@ return new class extends Migration
             $table->char('city');
             $table->char('postcode');
             $table->char('accountType');
+            $table->char('imagePath');
             $table->timestamps();
         });
     }

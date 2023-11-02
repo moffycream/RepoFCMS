@@ -31,12 +31,46 @@ class ProfileController extends Controller
         $notificationController = app(NotificationController::class);
         $user = UserAccounts::find($request->userID);
         if ($user) {
-            $user->username = $request->name;
-            $user->save();
-
+            if ($request->has('username')) {
+                $user->username = $request->username;
+                $user->save();
+            }
+            if ($request->has('phone')) {
+                $user->phone = $request->phone;
+                $user->save();
+            }
+            if ($request->has('first')) {
+                $user->firstName = $request->first;
+                $user->save();
+            }
+            if ($request->has('last')) {
+                $user->lastName = $request->last;
+                $user->save();
+            }
+            if ($request->has('email')) {
+                $user->email = $request->email;
+                $user->save();
+            }
+            if ($request->has('streetAddress')) {
+                $user->streetAddress = $request->streetAddress;
+                $user->save();
+            }
+            if ($request->has('city')) {
+                $user->city = $request->city;
+                $user->save();
+            }
+            if ($request->has('postcode')) {
+                $user->postcode = $request->postcode;
+                $user->save();
+            }
+            if ($request->hasFile('image')) {
+            
+                $fileName = time() . $request->file('image')->getClientOriginalName();
+                $path = $request->file('image')->storeAs('', $fileName, 'addProfile');
+                $user->imagePath = 'profile-images/' . $path;
+                $user->save();
+            }
             return view('customer.profile', ['user' => $user,  'notifications' => $notificationController->getNotification()]);
-        } 
-        
-        
+        }
     }
 }
