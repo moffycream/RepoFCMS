@@ -34,7 +34,7 @@ class UserAccountController extends Controller
             $account->city = "FCMS";
             $account->postcode = "FCMS";
             $account->accountType = "DefaultAdmin";
-            $account->imagePath ="profile-images/profile.png";
+            $account->imagePath = "profile-images/profile.png";
 
             $account->password = Hash::make($account->password);
             $account->save();
@@ -98,25 +98,27 @@ class UserAccountController extends Controller
             } else {
                 $passwordErrorMsg = "Password must be more than 5 characters";
             }
-            $phonePattern = '/^\d{10}$/';
-            if (!preg_match($phonePattern, $request->phone)) {
-                $errorMsg .= "Invalid phone number<br>";
-            } else {
+            // validate phone
+            if ($validator->validatePhone($request)) {
                 $accounts->phone = $request->phone;
+            } else {
+                $phoneErrorMsg = "Invalid phone number";
             }
             $accounts->firstName = $request->firstName;
             $accounts->lastName = $request->lastName;
-            if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-                $errorMsg .= "Invalid email format<br>";
-            } else {
+            // validate email
+            if ($validator->validateEmail($request)) {
                 $accounts->email = $request->email;
+            } else {
+                $emailErrorMsg = "Invalid email format";
             }
             $accounts->streetAddress = $request->streetAddress;
+
             $accounts->city = $request->city;
-            if (!is_numeric($request->postcode)) {
-                $errorMsg .= "Invalid postcode<br>";
-            } else {
+            if ($validator->validatePostcode($request)) {
                 $accounts->postcode = $request->postcode;
+            } else {
+                $postcodeErrorMsg = "Invalid postcode";
             }
         }
 
