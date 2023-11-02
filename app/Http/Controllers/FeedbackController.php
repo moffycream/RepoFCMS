@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\UserAccountController;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ValidationController;
 
 class FeedbackController extends Controller
 {
@@ -33,7 +35,7 @@ class FeedbackController extends Controller
 
         if ($this->userAccountController->verifyAdmin()) {
             // retrive all feedbacks from database when viewing as admin
-            return view('admin/admin-view-feedback', ['feedbacks' => Feedback::all()],['notifications' => Notification::all()]);
+            return view('admin/admin-view-feedback', ['feedbacks' => Feedback::all()], ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }
@@ -47,16 +49,12 @@ class FeedbackController extends Controller
 
         if ($this->userAccountController->verifyAdmin()) {
             // retrive all feedbacks from database when viewing as admin
-            if ($request->filter == "feedbackID") 
-            {
-                return view('admin/admin-view-feedback', ['feedbacks' => Feedback::orderBy('feedbackID', $request->order)->get()],['notifications' => Notification::all()]);
-            }
-            else if ($request->filter == "rating") {
+            if ($request->filter == "feedbackID") {
+                return view('admin/admin-view-feedback', ['feedbacks' => Feedback::orderBy('feedbackID', $request->order)->get()], ['notifications' => Notification::all()]);
+            } else if ($request->filter == "rating") {
                 return view('admin/admin-view-feedback', ['feedbacks' => Feedback::orderBy('rating', $request->order)->get()], ['notifications' => Notification::all()]);
-
-            }
-            else {
-                return view('admin/admin-view-feedback', ['feedbacks' => Feedback::where('typeOfFeedback', $request->filter)->orderBy('feedbackID', $request->order)->get()],['notifications' => Notification::all()]);
+            } else {
+                return view('admin/admin-view-feedback', ['feedbacks' => Feedback::where('typeOfFeedback', $request->filter)->orderBy('feedbackID', $request->order)->get()], ['notifications' => Notification::all()]);
             }
         } else {
             return view('login.access-denied');
@@ -69,51 +67,48 @@ class FeedbackController extends Controller
         $phoneErrorMsg = "";
         $typeOfFeedbackErrorMsg = "";
         $newFeedback = new Feedback();
+        $validator = app(ValidationController::class);
+
         $newFeedback->firstName = $request->firstname;
         $newFeedback->lastName = $request->lastname;
 
         // validate email
-        if (filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
+        if ($validator->validateEmail($request)) {
             $newFeedback->email = $request->email;
             $emailErrorMsg = "";
-        }
-        else {
+        } else {
             $emailErrorMsg = "Invalid email address";
         }
-        
+
         // validate phone
-        $phonePattern = '/^\d{10}$/';
-        if (preg_match($phonePattern, $request->phone)) {
+        if ($validator->validatePhone($request)) {
             $newFeedback->phone = $request->phone;
             $phoneErrorMsg = "";
-        }
-        else {
+        } else {
             $phoneErrorMsg = "Invalid phone number<br>(max 10 numbers)";
         }
 
         $newFeedback->rating = $request->rating;
 
         // validate type of feedback
-        if ($request->typeoffeedback == "none") {
-            $typeOfFeedbackErrorMsg = "Please choose a type of feedback";
-        }
-        else {
+        if ($validator->validateTypeOfFeedback($request)) {
             $newFeedback->typeOfFeedback = $request->typeoffeedback;
             $typeOfFeedbackErrorMsg = "";
+        } else {
+
+            $typeOfFeedbackErrorMsg = "Please choose a type of feedback";
         }
         $newFeedback->comments = $request->comments;
 
-        if ($emailErrorMsg == "" && $phoneErrorMsg == "" && $typeOfFeedbackErrorMsg == "")
-        {
+        if ($emailErrorMsg == "" && $phoneErrorMsg == "" && $typeOfFeedbackErrorMsg == "") {
             // save the feedback if no error
             $newFeedback->save();
 
             // reset the form
             $request->replace([]);
-            
+
             return view('customer/feedback-successful', ['notifications' => Notification::all()]);
-        }
-        else {
+        } else {
             return view('customer/feedback', ['notifications' => Notification::all(), 'emailErrorMsg' => $emailErrorMsg, 'phoneErrorMsg' => $phoneErrorMsg, 'typeOfFeedbackErrorMsg' => $typeOfFeedbackErrorMsg]);
         }
     }

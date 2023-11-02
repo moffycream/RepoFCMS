@@ -5,7 +5,7 @@
     <div class="box-feedback-page">
         <h1>Help us Improve</h1>
         <p>We always appreciate feedback</p>
-        <form method="post" action="{{route('user.feedback')}}">
+        <form id="feedback-form" method="post" action="{{route('user.feedback')}}">
             @csrf
             <div class="feedback-box">
                 <div class="feedback-box-columns">
@@ -41,11 +41,29 @@
                         </div>
 
                         <select name="typeoffeedback" id="typeoffeedback">
+                            @php
+                            $selectedGeneral = "";
+                            $selectedCompliment = "";
+                            $selectedComplaint = "";
+                            $selectedSuggestion = "";
+
+                            if (isset($_POST['typeoffeedback'])) {
+                            if ($_POST['typeoffeedback'] == "General") {
+                            $selectedGeneral = "selected";
+                            } elseif ($_POST['typeoffeedback'] == "Compliment") {
+                            $selectedCompliment = "selected";
+                            } elseif ($_POST['typeoffeedback'] == "Complaint") {
+                            $selectedComplaint = "selected";
+                            } elseif ($_POST['typeoffeedback'] == "Suggestion") {
+                            $selectedSuggestion = "selected";
+                            }
+                            }
+                            @endphp
                             <option value="none" disable selected>Type of feedback</option>
-                            <option value="General" {{ (isset($_POST['typeoffeedback']) && $_POST['typeoffeedback'] == 'General') ? 'selected' : '' }}>General</option>
-                            <option value="Compliment" {{ (isset($_POST['typeoffeedback']) && $_POST['typeoffeedback'] == 'Compliment') ? 'selected' : '' }}>Compliment</option>
-                            <option value="Complaint" {{ (isset($_POST['typeoffeedback']) && $_POST['typeoffeedback'] == 'Complaint') ? 'selected' : '' }}>Complaint</option>
-                            <option value="Suggestion" {{ (isset($_POST['typeoffeedback']) && $_POST['typeoffeedback'] == 'Suggestion') ? 'selected' : '' }}>Suggestion</option>
+                            <option value="General" {{$selectedGeneral}}>General</option>
+                            <option value="Compliment" {{$selectedCompliment}}>Compliment</option>
+                            <option value="Complaint" {{$selectedComplaint}}>Complaint</option>
+                            <option value="Suggestion" {{$selectedSuggestion}}>Suggestion</option>
                         </select>
                         <!-- print out error message for type of feedback -->
                         @if (isset($typeOfFeedbackErrorMsg))

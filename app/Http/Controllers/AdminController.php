@@ -80,49 +80,75 @@ class AdminController extends Controller
 
     public function adminRegisterNewAccount(Request $request)
     {
-        $errorMsg = ""; // error message
+        $validator = app(ValidationController::class);
         $accounts = new UserAccounts();
-        $accounts->username = $request->username;
-        if ($request->password == $request->confirmpassword) {
-            if (strlen($request->password) < 5) {
-                $errorMsg .= "Password must be more than 5 characters<br>";
-            } else {
+
+        // create individual error message for each error
+        $sameUsernameErrorMsg = "";
+        $passwordErrorMsg = "";
+        $confirmPasswordErrorMsg = "";
+        $emailErrorMsg = "";
+        $phoneErrorMsg = "";
+        $postcodeErrorMsg = "";
+
+        // checks if any existing account has same username or not
+        if (!($validator->validateSameUsername($request))) {
+            $sameUsernameErrorMsg = "Username already exists";
+        }
+        // don't have any same username (means pass validations for username)
+        else {
+            $sameUsernameErrorMsg = "";
+            $accounts->username = $request->username;
+        }
+        // validate password
+        if (($validator->validateConfirmPassword($request))) {
+            if (($validator->validatePassword($request))) {
                 $accounts->password = Hash::make($request->password);
+            } else {
+                $passwordErrorMsg = "Password must be more than 5 characters";
             }
         } else {
-            $errorMsg .= "Password and confirm password don't match<br>";
+            $confirmPasswordErrorMsg = "Password and confirm password don't match";
         }
-        $phonePattern = '/^\d{10}$/';
-        if (!preg_match($phonePattern, $request->phone)) {
-            $errorMsg .= "Invalid phone number<br>";
-        } else {
+
+        // validate phone
+        if ($validator->validatePhone($request)) {
             $accounts->phone = $request->phone;
+        } else {
+            $phoneErrorMsg = "Invalid phone number";
         }
+
         $accounts->firstName = $request->firstName;
         $accounts->lastName = $request->lastName;
-        if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-            $errorMsg .= "Invalid email format<br>";
-        } else {
+
+        // validate email
+        if ($validator->validateEmail($request)) {
             $accounts->email = $request->email;
+        } else {
+            $emailErrorMsg = "Invalid email format";
         }
         $accounts->streetAddress = $request->streetAddress;
         $accounts->city = $request->city;
-        if (!is_numeric($request->postcode)) {
-            $errorMsg .= "Invalid postcode<br>";
-        } else {
-            $accounts->postcode = $request->postcode;
-        }
-        if ($request->accountType == "Customer" || $request->accountType == "Admin" || $request->accountType == "OperationTeam") {
-            $accounts->accountType = $request->accountType;
-        } else {
-            $errorMsg .= "Invalid account type<br>";
-        }
 
-        if ($errorMsg == "") {
+
+        if ($validator->validatePostcode($request)) {
+            $accounts->postcode = $request->postcode;
+        } else {
+            $postcodeErrorMsg = "Invalid postcode";
+        }
+       
+        $accounts->accountType = $request->accountType;
+     
+
+        if ($sameUsernameErrorMsg == "" && $passwordErrorMsg == "" && $confirmPasswordErrorMsg == "" && $emailErrorMsg == "" && $phoneErrorMsg == "" && $postcodeErrorMsg == "") {
+            // save the account to database if no error
             $accounts->save();
+
+            // reset the form
+            $request->replace([]);
             return redirect('/admin-register-success');
         } else {
-            return view('admin.admin-register')->with('errorMsg', $errorMsg);
+            return view('admin.admin-register')->with('sameUsernameErrorMsg', $sameUsernameErrorMsg)->with('passwordErrorMsg', $passwordErrorMsg)->with('confirmPasswordErrorMsg', $confirmPasswordErrorMsg)->with('emailErrorMsg', $emailErrorMsg)->with('phoneErrorMsg', $phoneErrorMsg)->with('postcodeErrorMsg', $postcodeErrorMsg);
         }
     }
 }
