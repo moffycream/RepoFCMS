@@ -131,25 +131,36 @@
     font-size: 30px;
 }
 
-.profile-table button[type="submit"] {
-  
+.profile-table a {
     background-color: white; 
     color: #fff; 
     border: none; 
-    padding: 10px 20px; 
+    padding: 5px;
     cursor: pointer;
     border-radius: 5px; 
+    width: auto;
     transition: background-color 0.3s;
 }
 
-.profile-table button[type="submit"]:hover {
+.profile-table a:hover {
     
     background-color: #55086137;
 }
 
-.profile-table .profile-edit-text button {
+.profile-table .profile-edit-text a {
     font-size: 18px;
     color: black;
+}
+
+.profile-table .profile-edit-text
+{
+    width: 100px;
+}
+
+.profile-Attribute,
+.save-button
+{
+    display: none;
 }
 
 /*order listing details*/
