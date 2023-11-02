@@ -20,6 +20,8 @@ use App\Http\Controllers\FoodMenuController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderTrackingController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\ReviewController;
 
 
 // use App\Http\Controllers\test;  <-- test
@@ -46,6 +48,7 @@ Route::put('/mark-notification-as-read/{notificationID}', [NotificationControlle
 Route::get('/profile',[ProfileController::class, 'index']);
 Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
 Route::post('/customer-order-listings/{orderID}', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
+Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
 
 // Login and register
 Route::get('/login', [UserAccountController::class, 'index']);
@@ -123,6 +126,10 @@ Route::get('/cart', [FoodMenuController::class, 'showCart'])->name('food-menu.ca
 Route::get('/feedback', [FeedbackController::class, 'index']);
 Route::post('/feedback', [FeedbackController::class, 'submitFeedback'])->name('user.feedback');
 Route::get('/feedback-success', [FeedbackController::class, 'feedbackSuccess']);
+
+// admin view feedback
+Route::get('/admin-view-feedback', [FeedbackController::class, 'adminViewFeedback']);
+Route::post('/admin-view-feedback', [FeedbackController::class, 'adminFilterFeedback'])->name('admin.filter.feedback');
 
 // Membership Controller 
 Route::get('/membership', [MembershipController::class, 'index']);

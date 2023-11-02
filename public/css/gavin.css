@@ -217,7 +217,7 @@
 /* Admin Register page */
 .container-admin-register-page {
     height: 120vh;
-    background-color: #ffffff;
+    background-color: var(--color-2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -483,4 +483,61 @@
 
 .container-feedback-successful .button {
     margin-top: 20px;
+}
+
+/* Admin view feedback page */
+.container-admin-view-feedback {
+    background-color: var(--color-2);
+    text-align: center;
+    height: 100vh;
+    padding-top: 30px;
+}
+
+.container-admin-view-feedback p {
+    padding: 5px 0;
+}
+
+.container-admin-view-feedback i {
+    color: gold;
+}
+
+.container-admin-view-feedback select {
+    padding: 5px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    display: flex;
+    margin: 5px auto;
+    background-color: rgb(242, 242, 242);
+}
+
+.container-admin-view-feedback form button {
+    background-color: var(--color-1);
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 5px;
+    transition: 0.5s;
+    margin-top: 10px;
+}
+
+.container-admin-view-feedback form button:hover {
+    background-color: #ffffff;
+    color: var(--color-1);
+    border-color: #ffffff;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.container-admin-view-feedback table {
+    margin: 20px auto;
+    width: 90%;
+    border: 3px solid var(--color-1);
+    border-collapse: collapse;
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+}
+
+.container-admin-view-feedback table th,
+.container-admin-view-feedback table td {
+    border: 1px solid var(--color-1);
+    padding: 10px;
 }

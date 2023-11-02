@@ -756,3 +756,22 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// for admin view enquiry
+document.addEventListener('DOMContentLoaded', function () {
+    const filterSelect = document.getElementById('filter');
+    const orderSelect = document.querySelector('.order-select');
+
+    // Initial visibility based on the selected value
+    toggleOrderSelectVisibility();
+
+    filterSelect.addEventListener('change', toggleOrderSelectVisibility);
+
+    function toggleOrderSelectVisibility() {
+        if (filterSelect.value === 'General' || filterSelect.value === 'Compliment' || filterSelect.value === 'Complaint' || filterSelect.value === 'Suggestion') {
+            orderSelect.style.display = 'none'; // Hide the Order select
+        } else {
+            orderSelect.style.display = 'block'; // Show the Order select
+        }
+    }
+});

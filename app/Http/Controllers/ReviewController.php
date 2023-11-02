@@ -10,9 +10,10 @@ class ReviewController extends Controller
 {
     public function index()
     {
+        $notificationController = app(NotificationController::class);
         // Get all the reviews
         $reviews = Review::all();
-        return view('reviews', ['reviews' => $reviews]);
+        return view('reviews', ['reviews' => $reviews,'notifications' => $notificationController->getNotification()]);
     }
 
     public function reviewForm()
@@ -21,7 +22,7 @@ class ReviewController extends Controller
     }
 
     // Save the review to the database
-    public function submitReviewForm(Request $request)
+    public function submitReviewForm()
     {
         // Custom error message
         $message = [
@@ -44,11 +45,11 @@ class ReviewController extends Controller
 
         // Get user id
         if (session()->has('username')) {
-            $userID = UserAccounts::where('username', session('username'))->first()->userID;
-            if ($userID != null) {
+            $userAccount = UserAccounts::where('username', session('username'))->first();
+            if ($userAccount != null) {
                 // Create a new review instance
                 $review = new Review();
-                $review->userID = $userID;
+                $review->userID = $userAccount->userID;
                 $review->reviewTitle = $validatedData['reviewTitle'];
                 $review->reviewContent = $validatedData['reviewContent'];
                 $review->reviewRating = $validatedData['reviewRating'];

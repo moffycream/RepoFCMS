@@ -7,6 +7,7 @@ use App\Models\UserAccounts;
 use App\Models\Notification;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\ValidationController;
 
 class UserAccountController extends Controller
 {
@@ -71,6 +72,7 @@ class UserAccountController extends Controller
     // register new account + validations
     public function registerNewAccount(Request $request)
     {
+        $validator = app(ValidationController::class);
         $errorMsg = ""; // error message
         $accounts = new UserAccounts();
 
@@ -121,10 +123,19 @@ class UserAccountController extends Controller
             }
             $accounts->streetAddress = $request->streetAddress;
             $accounts->city = $request->city;
-            if (!is_numeric($request->postcode)) {
-                $errorMsg .= "Invalid postcode<br>";
-            } else {
+            
+            // if (!is_numeric($request->postcode)) {
+            //     $errorMsg .= "Invalid postcode<br>";
+            // } else {
+            //     
+            // }
+            if($validator ->validatePostcode($request))
+            {
                 $accounts->postcode = $request->postcode;
+            }
+            else 
+            {
+                // error msg
             }
         }
 
