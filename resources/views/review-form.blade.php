@@ -6,10 +6,10 @@
         <p>Category *</p>
         <select id="category" name="reviewCategory">
             <option value="" disabled selected>Select a category</option>
-            <option value="food" {{ old('reviewCategory') == 'food' ? 'selected' : '' }}>Food</option>
-            <option value="service" {{ old('reviewCategory') == 'service' ? 'selected' : '' }}>Service</option>
-            <option value="delivery" {{ old('reviewCategory') == 'delivery' ? 'selected' : '' }}>Delivery</option>
-            <option value="others" {{ old('reviewCategory') == 'others' ? 'selected' : '' }}>Others</option>
+            <option value="food">Food</option>
+            <option value="service">Service</option>
+            <option value="delivery">Delivery</option>
+            <option value="others">Others</option>
         </select>
         <!-- Give warning if not select -->
         @error('reviewCategory')
@@ -18,10 +18,9 @@
 
         <p>Your overall rating *</p>
         <div class="container-stars">
-            @for ($i = 1; $i <= 5; $i++)
-            <input type="radio" id="{{ $i }}" name="reviewRating" value="{{ $i }}" {{ old('reviewRating') == $i ? 'checked' : '' }}>
-            <label for="{{ $i }}"><i class="fas fa-star"></i></label>
-            @endfor
+            @for ($i = 1; $i <= 5; $i++) <input type="radio" id="{{ $i }}" name="reviewRating" value="{{ $i }}" {{ old('reviewRating') == $i ? 'checked' : '' }}>
+                <label for="{{ $i }}"><i class="fas fa-star"></i></label>
+                @endfor
         </div>
         <!-- Give warning if not select -->
         @error('reviewRating')

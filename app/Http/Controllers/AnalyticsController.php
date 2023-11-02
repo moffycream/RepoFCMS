@@ -123,7 +123,7 @@ class AnalyticsController extends Controller
     {
         $monthlyData = 
         [
-            'labels' => [],
+            'labels' => ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             'sales' => [],
             'orders' => [],
         ];

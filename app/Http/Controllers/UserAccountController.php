@@ -7,6 +7,7 @@ use App\Models\UserAccounts;
 use App\Models\Notification;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\ValidationController;
 
 class UserAccountController extends Controller
 {
@@ -15,7 +16,7 @@ class UserAccountController extends Controller
     {
         // create default admin 
         // checks whether the database have DefaultAdmin created already
-        return view('login.login',['notifications' => Notification::all()]);
+        return view('login.login', ['notifications' => Notification::all()]);
     }
 
     public function setDefaultAdmin()
@@ -45,14 +46,12 @@ class UserAccountController extends Controller
         session_start();
 
         if (session('accountType') != "Customer") {
-            Session(['accountType' => 'Guest']);           
+            Session(['accountType' => 'Guest']);
             return false;
-        }
-        else{
+        } else {
             return true;
         }
-
-    }  
+    }
 
     public function register()
     {
@@ -69,43 +68,35 @@ class UserAccountController extends Controller
         return view('login.access-denied');
     }
 
-    // register new account + validations
+    // register new account (as users)
     public function registerNewAccount(Request $request)
     {
-        $errorMsg = ""; // error message
+        $validator = app(ValidationController::class);
         $accounts = new UserAccounts();
 
-        $exist =  UserAccounts::where(UserAccounts::raw("BINARY username"), $request->username)->first();
+        // create individual error message for each error
+        $sameUsernameErrorMsg = "";
+        $passwordErrorMsg = "";
+        $confirmPasswordErrorMsg = "";
+        $emailErrorMsg = "";
+        $phoneErrorMsg = "";
+        $postcodeErrorMsg = "";
 
         // checks if any existing account has same username or not
-        if ($exist !== null)
-        {
-            
-            // checks if the exisitng username is same as requested username (in terms of casing)
-            // if (strcmp($exist->username, $request->username) == 0) 
-            // {
-            // if (strcmp($exist->username, $request->username) == 0) 
-            // {
-                $errorMsg .= "Username already exists<br>";
-            //}
-            // not the same casing (accepted)
-            // else 
-            // {
-             //   $accounts->username = $request->username;
-            //}
+        if (!($validator->validateSameUsername($request))) {
+            $sameUsernameErrorMsg = "Username already exists";
         }
-        // don't have any same username
-        else 
-        {
+        // don't have any same username (means pass validations for username)
+        else {
+            $sameUsernameErrorMsg = "";
             $accounts->username = $request->username;
-            if ($request->password == $request->confirmpassword) {
-                if (strlen($request->password) < 5) {
-                    $errorMsg .= "Password must be more than 5 characters<br>";
-                } else {
-                    $accounts->password = Hash::make($request->password);
-                }
+        }
+        // validate password
+        if (($validator->validateConfirmPassword($request))) {
+            if (($validator->validatePassword($request))) {
+                $accounts->password = Hash::make($request->password);
             } else {
-                $errorMsg .= "Password and confirm password don't match<br>";
+                $passwordErrorMsg = "Password must be more than 5 characters";
             }
             $phonePattern = '/^\d{10}$/';
             if (!preg_match($phonePattern, $request->phone)) {
@@ -127,15 +118,19 @@ class UserAccountController extends Controller
             } else {
                 $accounts->postcode = $request->postcode;
             }
-            $accounts->imagePath = "profile-images/profile.png";
         }
 
-        if ($errorMsg == "") {
+
+        if ($sameUsernameErrorMsg == "" && $passwordErrorMsg == "" && $confirmPasswordErrorMsg == "" && $emailErrorMsg == "" && $phoneErrorMsg == "" && $postcodeErrorMsg == "") {
             $accounts->accountType = "Customer";
+            // save the account to database if no error
             $accounts->save();
+
+            // reset the form
+            $request->replace([]);
             return redirect('/register/register-success');
         } else {
-            return view('login.register')->with('errorMsg', $errorMsg);
+            return view('login.register')->with('sameUsernameErrorMsg', $sameUsernameErrorMsg)->with('passwordErrorMsg', $passwordErrorMsg)->with('confirmPasswordErrorMsg', $confirmPasswordErrorMsg)->with('emailErrorMsg', $emailErrorMsg)->with('phoneErrorMsg', $phoneErrorMsg)->with('postcodeErrorMsg', $postcodeErrorMsg);
         }
     }
 

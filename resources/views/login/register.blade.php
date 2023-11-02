@@ -11,9 +11,21 @@
                     <p>Start an account, to start your journey</p>
                     <div>
                         <input type="text" id="username" name="username" placeholder="Username" value="{{isset($_POST['username']) ? $_POST['username'] : ''}}" required>
+                        @if (isset($sameUsernameErrorMsg))
+                        <p class="register-error-msg">{!! $sameUsernameErrorMsg !!}</p>
+                        @endif
                         <input type="password" id="password" name="password" placeholder="Password" required>
+                        @if (isset($passwordErrorMsg))
+                        <p class="register-error-msg">{!! $passwordErrorMsg !!}</p>
+                        @endif
                         <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" required>
+                        @if (isset($confirmPasswordErrorMsg))
+                        <p class="register-error-msg">{!! $confirmPasswordErrorMsg !!}</p>
+                        @endif
                         <input type="text" id="email" name="email" placeholder="Email" value="{{isset($_POST['email']) ? $_POST['email'] : ''}}" required>
+                        @if (isset($emailErrorMsg))
+                        <p class="register-error-msg">{!! $emailErrorMsg !!}</p>
+                        @endif
                     </div>
                 </div>
 
@@ -24,9 +36,15 @@
                         <input type="text" id="firstName" name="firstName" placeholder="First Name" value="{{isset($_POST['firstName']) ? $_POST['firstName'] : ''}}" required>
                         <input type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{isset($_POST['lastName']) ? $_POST['lastName'] : ''}}" required>
                         <input type="text" id="phone" name="phone" placeholder="Phone number" value="{{isset($_POST['phone']) ? $_POST['phone'] : ''}}" required>
-                        <textarea id="streetAddress" name="streetAddress" placeholder="Street Address" value="{{isset($_POST['streetAddress']) ? $_POST['streetAddress'] : ''}}" required></textarea>
+                        @if (isset($phoneErrorMsg))
+                        <p class="register-error-msg">{!! $phoneErrorMsg !!}</p>
+                        @endif
+                        <textarea id="streetAddress" name="streetAddress" placeholder="Street Address" required>{{isset($_POST['streetAddress']) ? $_POST['streetAddress'] : ''}}</textarea>
                         <input type="text" id="city" name="city" placeholder="City" value="{{isset($_POST['city']) ? $_POST['city'] : ''}}" required>
                         <input type="text" id="postcode" name="postcode" placeholder="Postcode" value="{{isset($_POST['postcode']) ? $_POST['postcode'] : ''}}" required>
+                        @if (isset($postcodeErrorMsg))
+                        <p class="register-error-msg">{!! $postcodeErrorMsg !!}</p>
+                        @endif
                     </div>
                 </div>
             </div>
