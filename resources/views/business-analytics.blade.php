@@ -104,8 +104,9 @@
     // Get the data from the PHP variable
     var data = @json($monthlyData);
 
-    // Get the canvas element
     var ctx = document.getElementById('monthlyChart').getContext('2d');
+
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     // Create the chart
     var monthlyData = new Chart(ctx, 
@@ -113,12 +114,12 @@
         type: 'bar',
         data: 
         {
-            labels: data.labels,
+            labels: months, 
             datasets: 
             [
                 {
                     label: 'Sales',
-                    data: data.sales,
+                    data: mapData(data.sales, data.labels, months),
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
                     borderWidth: 1,
@@ -126,7 +127,7 @@
                 },
                 {
                     label: 'Orders',
-                    data: data.orders,
+                    data: mapData(data.orders, data.labels, months),
                     type: 'line', // Set the chart type for this dataset to 'line'
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 2,
@@ -162,7 +163,22 @@
             }
         }
     });
+
+    function mapData(data, originalLabels, months) 
+    {
+        var mappedData = new Array(months.length).fill(0);
+        originalLabels.forEach(function(label, index) 
+        {
+            var monthIndex = months.indexOf(label);
+            if (monthIndex !== -1) 
+            {
+                mappedData[monthIndex] = data[index];
+            }
+        });
+        return mappedData;
+    }
 </script>
+
 
 <div class="businessAnalytics-dateChart-container">
     <canvas id="dateChartData" width="400" height="200"></canvas>
