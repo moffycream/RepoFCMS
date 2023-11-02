@@ -29,7 +29,7 @@
                     </td>
                     <td class="profile-edit-text">
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
-                        <button type="submit" class="save-button">Save</button>
+                        <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
                     </td>
                 </tr>
 

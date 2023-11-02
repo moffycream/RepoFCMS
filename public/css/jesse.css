@@ -131,7 +131,8 @@
     font-size: 30px;
 }
 
-.profile-table a {
+.profile-table a,
+.save-button {
     background-color: white; 
     color: #fff; 
     border: none; 
@@ -142,17 +143,19 @@
     transition: background-color 0.3s;
 }
 
-.profile-table a:hover {
+.profile-table a:hover,
+.save-button:hover {
     
     background-color: #55086137;
 }
 
-.profile-table .profile-edit-text a {
+.profile-table .profile-edit-text a,
+.save-button {
     font-size: 18px;
     color: black;
 }
 
-.profile-table .profile-edit-text
+.profile-table .profile-edit-text,.save-button
 {
     width: 100px;
 }

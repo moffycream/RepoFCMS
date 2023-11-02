@@ -28,15 +28,15 @@ class ProfileController extends Controller
 
     public function editProfile(Request $request)
     {
+        $notificationController = app(NotificationController::class);
         $user = UserAccounts::find($request->userID);
         if ($user) {
             $user->username = $request->name;
             $user->save();
 
-            return view('/profile')->with('success', 'Profile updated successfully.');
-        } else {
-            return redirect('/profile')->with('error', 'User not found.');
-        }
+            return view('customer.profile', ['user' => $user,  'notifications' => $notificationController->getNotification()]);
+        } 
+        
         
     }
 }
