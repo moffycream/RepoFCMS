@@ -44,6 +44,13 @@
     background-color: #1e7e34;
 }
 
+.businessAnalytics-title
+{
+    text-align: center;
+    margin-top: 40px;
+    font-size: 36px;
+}
+
 .businessAnalytics-chart-container 
 {
     width: 80%;
@@ -64,7 +71,7 @@
 {
     margin-top: 20px;
     margin-bottom: 100px;
-    margin-left: 1150px;
+    margin-left: 1130px;
     font-size: 24px;
     font-weight: bold;
 }
@@ -137,4 +144,43 @@
 .businessAnalytics-data-table table tbody tr:nth-child(even) 
 {
     background-color: #fff;
+}
+
+.businessAnalytics-information-boxes 
+{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.businessAnalytics-info-box 
+{
+    background-color: #473447;
+    color: #ffffff; /* Set the text color to white for the entire box */
+    padding: 10px;
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    width: 15%;
+    margin: 10px 10px 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.businessAnalytics-info-box h2 
+{
+    color:white;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.businessAnalytics-info-box p 
+{
+    color:white;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.businessAnalytics-info-box strong
+{
+    color:white;
 }

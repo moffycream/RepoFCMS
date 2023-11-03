@@ -12,18 +12,18 @@ class AnalyticsController extends Controller
 {
     // used for verification
     protected $adminController;
+
+    protected $orders;
     protected $date;
     public function index(AdminController $adminController)
     {
-        // Retrieve and process your business data here
-        $profitData = $this->calculateProfit(); // Logic to calculate profit data
-        $revenueData = $this->calculateRevenue(); // Logic to calculate revenue data
-
         // Retrieve all orders
         $orders = Order::all();
         $sortedOrders = Order::orderBy('date')->get();
         $menus = Menu::all();
         $accounts = UserAccounts::all();
+
+        $this->orders = Order::all();
 
         // Calculate the total order amount
         $totalOrderAmount = $this->calculateTotalOrderAmount($menus, $orders);
@@ -31,40 +31,36 @@ class AnalyticsController extends Controller
         // Prepare data for the first graph
         $chartData = $this->prepareChartData($orders, $menus);
 
-        // New method to prepare data for the date-sorted line chart
-        $dateChartData = $this->prepareDateChartData($orders);
-
         // Call the showBusinessAnalytics method to get the monthly data
         $monthlyData = $this->showBusinessAnalytics($orders);
+
+        $purchaseFrequency = $this->calculatePurchaseFrequency($orders);
+        $currentMonthSales = $this->calculateCurrentMonthSales($orders);
+        $lastMonthSales = $this->calculateLastMonthSales($orders);
+        $salesIncrease = $this->calculateSalesIncrease($currentMonthSales, $lastMonthSales);
+        $availableProducts = $this->calculateAvailableProducts($menus);
 
         // Checks whether is admin session or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) 
         {
-            return view('business-analytics', compact('orders', 'totalOrderAmount', 'chartData', 'dateChartData', 'profitData', 'revenueData', 'monthlyData'));
-
+            return view('business-analytics', compact(
+                'orders',
+                'totalOrderAmount',
+                'chartData',
+                'monthlyData',
+                'purchaseFrequency',
+                'currentMonthSales',
+                'lastMonthSales',
+                'salesIncrease',
+                'availableProducts'
+            ));
         } 
         else 
         {
             return view('login.access-denied');
         }
-    }
-
-    private function calculateProfit()
-    {
-        $totalRevenue = $this->calculateRevenue();
-        $profit = $totalRevenue - 3000;
-
-        return $profit;
-    }
-
-    private function calculateRevenue()
-    {
-        $orders = Order::all();
-        $totalRevenue = $orders->sum('total');
-
-        return $totalRevenue;
     }
 
     private function calculateTotalOrderAmount($menuItem, $orders)
@@ -89,28 +85,6 @@ class AnalyticsController extends Controller
         }
 
         return $chartData;
-    }
-
-    private function prepareDateChartData($orders)
-    {
-        $dateChartData = 
-        [
-            'labels' => [],
-            'data' => [],
-        ];
-
-        // Retrieve orders sorted by date
-        $sortedOrders = Order::orderBy('date')->get();
-
-        foreach ($sortedOrders as $orders) 
-        {
-            // Use Carbon to format the date for display on the chart
-            $formattedDate = Carbon::parse($orders->date)->toDateString();
-            $dateChartData['labels'][] = $formattedDate;
-            $dateChartData['data'][] = $orders->total; 
-        }
-
-        return $dateChartData;
     }
 
     private function getTotalOrderAmountForMenuItem($menuItem, $orders)
@@ -153,5 +127,73 @@ class AnalyticsController extends Controller
         $monthlyData['orders'] = array_values($monthlyOrderCounts);
 
         return $monthlyData;
+    }
+
+    private function calculatePurchaseFrequency($orders)
+    {
+        $orderDates = $orders->pluck('date');
+        $dateDifferences = [];
+
+        for ($i = 0; $i < count($orderDates) - 1; $i++) 
+        {
+            $date1 = Carbon::parse($orderDates[$i]);
+            $date2 = Carbon::parse($orderDates[$i + 1]);
+            $dateDifferences[] = $date2->diffInDays($date1);
+        }
+
+        if (count($dateDifferences) === 0) 
+        {
+            return 0;
+        }
+
+        $averageFrequency = array_sum($dateDifferences) / count($dateDifferences);
+
+        return round($averageFrequency, 2);
+    }
+
+    private function calculateCurrentMonthSales($orders)
+    {
+        $currentMonth = Carbon::now()->month;
+        
+        $currentMonthSales = 0;
+
+        foreach ($orders as $order) {
+            $orderDate = Carbon::parse($order->date);
+            if ($orderDate->month == $currentMonth) {
+                $currentMonthSales += $order->total;
+            }
+        }
+
+        return $currentMonthSales;
+    }
+
+    private function calculateLastMonthSales($orders)
+    {
+        $lastMonth = Carbon::now()->subMonth()->month;
+
+        $lastMonthSales = $orders->filter(function ($order) use ($lastMonth) {
+            $orderDate = Carbon::parse($order->date);
+            return $orderDate->month === $lastMonth;
+        })->sum('total');
+
+        return $lastMonthSales;
+    }
+
+    private function calculateSalesIncrease($currentMonthSales, $lastMonthSales)
+    {
+        if ($lastMonthSales === 0) {
+            return 0; 
+        }
+
+        $increase = (($currentMonthSales - $lastMonthSales) / $lastMonthSales) * 100;
+
+        return round($increase, 2);
+    }
+
+    private function calculateAvailableProducts($menus)
+    {
+        $availableProducts = $menus->where('status', 'available')->count();
+
+        return $availableProducts;
     }
 }
