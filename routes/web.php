@@ -140,6 +140,7 @@ Route::get('/order-tracking', [OrderTrackingController::class, 'index']);
 
 // Reviews
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+Route::post('/reviews', [ReviewController::class, 'submitComment'])->name('review.submit.comment');
 Route::get('/reviews/review-form', [ReviewController::class, 'reviewForm']);
 Route::post('/review/review-form/submit', [ReviewController::class, 'submitReviewForm'])->name('review.submit');
 
