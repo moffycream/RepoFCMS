@@ -51,6 +51,7 @@ Route::post('/customer-order-listings/{orderID}', [OrderListingController::class
 Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
 
 // Login and register
+Route::get('/login', [UserAccountController::class, 'setDefaultAdmin']);
 Route::get('/login', [UserAccountController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index'])->name('user.login');
 Route::get('/logout', [LoginController::class, 'endSession']);

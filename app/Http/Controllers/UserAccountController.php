@@ -93,39 +93,49 @@ class UserAccountController extends Controller
         }
         // validate password
         if (($validator->validateConfirmPassword($request))) {
+            $confirmPasswordErrorMsg = "";
             if (($validator->validatePassword($request))) {
                 $accounts->password = Hash::make($request->password);
+                $passwordErrorMsg = "";
             } else {
                 $passwordErrorMsg = "Password must be more than 5 characters";
             }
-            // validate phone
-            if ($validator->validatePhone($request)) {
-                $accounts->phone = $request->phone;
-            } else {
-                $phoneErrorMsg = "Invalid phone number";
-            }
-            $accounts->firstName = $request->firstName;
-            $accounts->lastName = $request->lastName;
-            // validate email
-            if ($validator->validateEmail($request)) {
-                $accounts->email = $request->email;
-            } else {
-                $emailErrorMsg = "Invalid email format";
-            }
-            $accounts->streetAddress = $request->streetAddress;
-            // vaidate postcode
-            $accounts->city = $request->city;
-            if ($validator->validatePostcode($request)) {
-                $accounts->postcode = $request->postcode;
-            } else {
-                $postcodeErrorMsg =  "Invalid postcode";
-            }
-            $accounts->imagePath = "profile-images/profile.png";
+        } else {
+            $confirmPasswordErrorMsg = "Password does not match";
         }
+        // validate phone
+        if ($validator->validatePhone($request)) {
+            $accounts->phone = $request->phone;
+        } else {
+            $phoneErrorMsg = "Invalid phone number";
+        }
+
+        $accounts->firstName = $request->firstName;
+        $accounts->lastName = $request->lastName;
+
+        // validate email
+        if ($validator->validateEmail($request)) {
+            $accounts->email = $request->email;
+        } else {
+            $emailErrorMsg = "Invalid email format";
+        }
+        $accounts->streetAddress = $request->streetAddress;
+        // vaidate postcode
+
+        $accounts->city = $request->city;
+        if ($validator->validatePostcode($request)) {
+            $accounts->postcode = $request->postcode;
+        } else {
+            $postcodeErrorMsg =  "Invalid postcode";
+        }
+        $accounts->imagePath = "profile-images/profile.png";
 
 
         if ($sameUsernameErrorMsg == "" && $passwordErrorMsg == "" && $confirmPasswordErrorMsg == "" && $emailErrorMsg == "" && $phoneErrorMsg == "" && $postcodeErrorMsg == "") {
             $accounts->accountType = "Customer";
+            // set profile image to default image
+            $accounts->imagePath = "profile-images/profile.png";
+
             // save the account to database if no error
             $accounts->save();
 
