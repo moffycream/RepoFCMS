@@ -39,6 +39,9 @@
                     <td>
                         <span class="profile-attribute">{{ $user->username }}</span>
                         <input type="text" class="profile-Attribute" name="username" value="{{ $user->username }}">
+                        @if(isset($usernameErrorMsg))
+                        <p class="register-error-msg">{!! $usernameErrorMsg !!}</p>
+                        @endif
                     </td>
                     <td class="profile-edit-text">
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
@@ -51,6 +54,9 @@
                     <td>
                         <span class="profile-attribute"> {{$user->phone}}</span>
                         <input type="text" class="profile-Attribute" name="phone" value="{{ $user->phone }}">
+                        @if(isset($phoneErrormsg))
+                        <p class="register-error-msg">{!! $phoneErrormsg !!}</p>
+                        @endif
                     </td>
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
@@ -87,6 +93,10 @@
                     <td>
                         <span class="profile-attribute"> {{$user->email}}</span>
                         <input type="text" class="profile-Attribute" name="email" value="{{ $user->email }}">
+                        
+                        @if(isset($emailErrormsg))
+                        <p class="register-error-msg">{!! $emailErrormsg !!}</p>
+                        @endif
                     </td>
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
@@ -123,6 +133,9 @@
                     <td>
                         <span class="profile-attribute"> {{$user->postcode}}</span>
                         <input type="text" class="profile-Attribute" name="postcode" value="{{ $user->postcode }}">
+                        @if(isset($postcodeErrormsg))
+                        <p class="register-error-msg">{!! $postcodeErrormsg !!}</p>
+                        @endif
                     </td>
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
@@ -134,7 +147,7 @@
 </div>
 </div>
 
-<script>
+<!-- <script>
     document.querySelectorAll('.edit-button').forEach(function(button) {
         button.addEventListener('click', function() {
             const row = this.closest('tr');
@@ -164,7 +177,7 @@
 
         });
     });
-</script>
+</script> -->
 @endsection
 
 

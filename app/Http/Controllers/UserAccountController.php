@@ -113,13 +113,14 @@ class UserAccountController extends Controller
                 $emailErrorMsg = "Invalid email format";
             }
             $accounts->streetAddress = $request->streetAddress;
-
+            // vaidate postcode
             $accounts->city = $request->city;
             if ($validator->validatePostcode($request)) {
                 $accounts->postcode = $request->postcode;
             } else {
-                $postcodeErrorMsg = "Invalid postcode";
+                $postcodeErrorMsg =  "Invalid postcode";
             }
+            $accounts->imagePath = "profile-images/profile.png";
         }
 
 

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ValidationController extends Controller
 {
-    // double check this later
+    
     public function validatePostcode(Request $request)
     {
         if (is_numeric($request->postcode)) {
