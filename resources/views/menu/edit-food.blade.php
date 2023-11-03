@@ -38,6 +38,7 @@
         <div>
             <input type="text" id="food-price" name="price" maxlength="8" placeholder="Food price">
         </div>
+        
 
         <button class="admin-register-submit-button" type="submit">Submit</button>
     </form>

@@ -31,9 +31,27 @@
                     <p class="col-add-menu-info-title">Price</p>
                     <p>RM {{$food->price}}</p>
                 </div>
+                <div class="col-add-menu-info-col">
+                    <p class="col-add-menu-info-title">Required ingredients</p>
+                    @php
+                    $food_count = count($food->food_inventory);
+                    @endphp
+
+                    @for ($i = 0; $i < $food_count; $i++) 
+                    @php 
+                        $ingredient = $food->food_inventory[$i];
+                        $name = $ingredient->inventory;
+                    @endphp
+                    @if($ingredient->amount > 0)
+                        {{ $name->inventoryName }}
+                        {{ $ingredient->amount }}
+                    @endif
+                    @endfor
+
+                </div>
             </div>
             <form method="GET" action="{{ route('food.editFood')}}" enctype="text/plain">
-                @csrf    
+                @csrf
                 <input type="hidden" name="foodID" value="{{$food->foodID}}">
                 <button type="submit" class="edit-menu-button">Edit</button>
             </form>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('inventoryName');
             $table->unsignedBigInteger('amount');
             $table->timestamps();
+            $table->foreign('inventoryID')->references('inventoryID')->on('inventory');
         });
     }
 

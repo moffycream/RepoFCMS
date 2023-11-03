@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('inventoryID');
             $table->unsignedBigInteger('amount');
             $table->timestamps();
+            $table->foreign('foodID')->references('foodID')->on('foods');
         });
     }
 
