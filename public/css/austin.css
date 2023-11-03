@@ -60,9 +60,20 @@
     font-weight: bold;
 }
 
-.add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-col p {
+.col-add-menu-info-col p {
     font-size: 20px;
     overflow-wrap: break-word;
+}
+
+.col-add-menu-action-col a{
+    background-color: white;
+    color: #000000;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 20px;
 }
 
 .add-menu-button{
@@ -306,7 +317,51 @@
 
 /* Inventory management */
 .inventory-edit-value,
-.save-button,
-.cancel-button{
+.inventory-save-button,
+.inventory-cancel-button{
     display: none;
+}
+
+.inventory-edit-button,
+.inventory-save-button,
+.inventory-cancel-button,
+.inventory-delete-button,
+.inventory-add-button{
+    background-color: white;
+    color: #000000;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 20px;
+}
+
+.inventory-delete-button-no{
+    background-color: #999999;
+    color: #000000;
+    border: none;
+    padding: 5px;
+    cursor: not-allowed;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.inventory-table,
+.inventory-table-title,
+.inventory-table-col{
+    border: #000000 2px solid;
+    border-collapse: collapse;
+    padding: 10px;
+    margin: auto;
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+    font-size: 20px;
+}
+
+.inventory-table input{
+    font-size: 20px;
+}
+
+.inventory-table a{
+    text-decoration: none;
 }

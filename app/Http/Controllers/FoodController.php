@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\Food;
@@ -45,12 +46,13 @@ class FoodController extends Controller
     {
 
         $food = Food::all();
+        $inventory = Inventory::all();
 
         // Checks whether is valid login or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) {
-            return view('menu.add-menu-form', ['listItems' => $food]);
+            return view('menu.add-menu-form', ['listItems' => $food, 'inventory' => $inventory]);
         } else {
             return view('login.access-denied');
         }
@@ -77,14 +79,15 @@ class FoodController extends Controller
 
         $foodInventoryController = new FoodInventoryController();
 
-        foreach($inventoryData as $inventoryID => $amount) {
+        foreach ($inventoryData as $inventoryID => $amount) {
             $foodInventoryController->registerNewFoodInventory($request, $food->foodID, $inventoryID, $amount);
         }
 
         return redirect('/add-food');
     }
 
-    public function editFood(AdminController $adminController, Request $request) {
+    public function editFood(AdminController $adminController, Request $request)
+    {
         // Checks whether is valid login or not
         $this->adminController = $adminController;
         $food = Food::all();
@@ -95,5 +98,13 @@ class FoodController extends Controller
         } else {
             return view('login.access-denied');
         }
-    } 
+    }
+
+    //  Delete Food
+    public function deleteFood($foodID)
+    {
+        Food::find($foodID)->delete();
+
+        return redirect('/add-food');
+    }
 }

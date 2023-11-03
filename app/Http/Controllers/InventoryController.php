@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Inventory;
+use App\Models\FoodInventory;
 
 class InventoryController extends Controller
 {
@@ -13,12 +14,13 @@ class InventoryController extends Controller
     public function index(AdminController $adminController)
     {
         $inventory = Inventory::all();
+        $foodInventory = FoodInventory::all();
 
         // Checks whether is valid login or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) {
-            return view('menu.inventory-management', ['listItems' => $inventory]);
+            return view('menu.inventory-management', ['listItems' => $inventory, 'foodInventory' => $foodInventory]);
         } else {
             return view('login.access-denied');
         }

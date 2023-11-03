@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\MenuFood;
+use App\Models\Inventory;
 use App\http\Controllers\AdminController;
 use App\Http\Controllers\NotificationController;
 
@@ -16,13 +17,14 @@ class MenuController extends Controller
     {
         $notificationController = app(NotificationController::class);
         $menu = Menu::all();
+        $inventory = Inventory::all();
 
         // Checks whether is valid login or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) 
         {
-            return view('menu.add-menu', ['listItems' => $menu, 'notifications' => $notificationController->getNotification()]);
+            return view('menu.add-menu', ['listItems' => $menu, 'inventories' => $inventory]);
         }
         else
         {

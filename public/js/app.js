@@ -1,4 +1,3 @@
-
 // Define an array of container IDs
 var containerIds = ['container-notification', 'container-header-login'];
 
@@ -44,15 +43,20 @@ function toggleHeaderLogin() {
 
 document.addEventListener("DOMContentLoaded", function () {
     //Austin Chung's JS
-    //add menu form
+    //add menu form price
     var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
     var addMenuFormPrice = document.getElementById("add-menu-form-price");
     var paragraphElement = document.createElement("span");
     var addMenuFormPriceSubmission = document.getElementById("add-menu-form-price-submission");
     var hiddenInputsContainer = document.getElementById("hidden-inputs-container");
 
+    //add menu form required ingredient
+    var addMenuFormRequiredIngredient = document.querySelectorAll(".add-menu-required-ingredient");
+    var addMenuFormRequiredIngredientID = document.querySelectorAll(".add-menu-required-ingredient-ID");
+
     for (var i = 0; i < addMenuCheckboxes.length; i++) {
         addMenuCheckboxes[i].addEventListener("change", function () {
+            //update price
             var totalPrice = 0;
             var selectedFoodIDs = [];
 
@@ -77,6 +81,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 hiddenInput.name = "selectedFoodIDs[]";
                 hiddenInput.value = foodID;
                 hiddenInputsContainer.appendChild(hiddenInput);
+            });
+
+            //update required ingredient
+            var requiredIngredients = [];
+            var requiredEachIngredients = {};
+
+            //initialize requiredEachIngredients
+            addMenuFormRequiredIngredientID.forEach(function (requiredIngredientID) {
+                requiredEachIngredients[requiredIngredientID.value] = 0;
+            });
+
+            for (var j = 0; j < addMenuCheckboxes.length; j++) {
+                if (addMenuCheckboxes[j].checked) {
+                    //split string into array by using |
+                    requiredIngredients = addMenuCheckboxes[j].value.split("|");
+                    //remove first and last element
+                    //first element is price
+                    //last element is empty string
+                    requiredIngredients.shift();
+                    requiredIngredients.pop();
+
+                    requiredIngredients.forEach(function (ingredient) {
+                        //split string into array by using -
+                        var ingredientArray = ingredient.split("-");
+
+                        if (ingredientArray[0] in requiredEachIngredients) {
+                            requiredEachIngredients[ingredientArray[0]] += parseInt(ingredientArray[1]);
+                        }
+                    });
+                }
+            }
+
+            console.log(requiredEachIngredients);
+
+            addMenuFormRequiredIngredientID.forEach(function (requiredIngredientID) {
+                const row = requiredIngredientID.closest('tr');
+                for(const ingredientID in requiredEachIngredients) {
+                    if(requiredIngredientID.value ==  ingredientID){
+                        const ingredientAmount = row.querySelector(".add-menu-required-ingredient");
+                        ingredientAmount.innerHTML = requiredEachIngredients[ingredientID];
+                    }
+                }
             });
         });
     }
@@ -694,7 +740,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Add click event listeners
         button.addEventListener('click', function (event) {
-            if (status !== 'Preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.'||status==='Refund process in 5-7 days.') {
+            if (status !== 'Preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.' || status === 'Refund process in 5-7 days.') {
                 // Ask for confirmation
                 const confirmation = confirm("Are you sure you want to cancel this order?");
                 if (!confirmation) {
@@ -705,34 +751,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-document.querySelectorAll('.edit-button').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const row = this.closest('tr');
-        const profileImage = row.querySelector('.image');
-        const profileName = row.querySelectorAll('.profile-attribute');
-        const profileAttribute = row.querySelectorAll('.profile-Attribute');
-        const saveButton = row.querySelector('.save-button');
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.edit-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const row = this.closest('tr');
+            const profileImage = row.querySelector('.image');
+            const profileName = row.querySelectorAll('.profile-attribute');
+            const profileAttribute = row.querySelectorAll('.profile-Attribute');
+            const saveButton = row.querySelector('.save-button');
 
-        profileName.forEach(element => {
-            element.style.display = 'none';
+            profileName.forEach(element => {
+                element.style.display = 'none';
+            });
+
+            profileAttribute.forEach(element => {
+                element.style.display = 'block';
+            });
+
+            button.style.display = 'none';
+            saveButton.style.display = 'block';
+            profileImage.style.display = 'block';
         });
+    });
 
-        profileAttribute.forEach(element => {
-            element.style.display = 'block';
+    document.querySelectorAll('.profile-form').forEach(function (form) {
+        form.addEventListener('submit', function () {
+            const row = this.closest('tr');
         });
-
-        button.style.display = 'none';
-        saveButton.style.display = 'block';
-        profileImage.style.display = 'block';
     });
-});
-
-document.querySelectorAll('.profile-form').forEach(function(form) {
-    form.addEventListener('submit', function() {
-        const row = this.closest('tr');
-    });
-});
 });
 
 // Gavin's JS

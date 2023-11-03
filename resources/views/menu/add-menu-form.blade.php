@@ -18,21 +18,48 @@
             <span id="food-dropdown-anchor">Select Foods</span>
             <ul>
                 @foreach($listItems as $food)
+                @php
+                $value = '';
+                @endphp
+                @foreach($food->food_inventory as $food_inventory)
+                    @php
+                    $value .= $food_inventory->inventoryID . '-' . $food_inventory->amount . '|';
+                    @endphp
+                @endforeach
                 <li>
-                    <input type="checkbox" id="{{$food->foodID}}{{$food->name}}" class="add-menu-checkbox" name="{{$food->foodID}}" value="{{$food->price}}">
-                    <label for="{{$food->foodID}}{{$food->name}}">{{$food->name}}</label>
+                    <input type="checkbox" id="{{$food->foodID}}" class="add-menu-checkbox" name="{{$food->foodID}}" value="{{$food->price}}|{{$value}}">
+                    <label for="{{$food->foodID}}">{{$food->name}}</label>
                 </li>
                 @endforeach
             </ul>
         </div>
         <div>
-            <p>Total price: <span id="add-menu-form-price">0</span></p>
+            <p>Total price: RM <span id="add-menu-form-price">0</span></p>
         </div>
 
         <!-- This hidden field will store the total price for form submission -->
         <input type="hidden" name="totalPrice" id="add-menu-form-price-submission" value="0">
         <div id="hidden-inputs-container"></div>
 
+        <div>
+            <table>
+                <tr>
+                    <th>Ingredient ID</th>
+                    <th>Ingredient name</th>
+                    <th>Amount</th>
+                </tr>
+                @foreach($inventory as $inventory)
+                <tr>
+                <td>
+                    {{$inventory->inventoryID}}
+                    <input type="hidden" class="add-menu-required-ingredient-ID" value="{{$inventory->inventoryID}}">
+                </td>
+                <td>{{$inventory->inventoryName}}</td>
+                <td><span class="add-menu-required-ingredient">0</span></td>
+                </tr>
+                @endforeach
+            </table>
+        </div>
 
         <button class="admin-register-submit-button" type="submit">Submit</button>
     </form>
