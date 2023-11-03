@@ -2,7 +2,35 @@
 @section('title', 'Business Analytics')
 @section('content')
 
+<div class="businessAnalytics-title">
+    <h1>Business Analytics</h1>
+</div>
+
 <div class="businessAnalytics-main-content">
+
+<div class="businessAnalytics-information-boxes">
+    <div class="businessAnalytics-info-box">
+        <h2>Purchase Frequency</h2>
+        <p>Average purchase frequency in days: <strong>{{ $purchaseFrequency }} days</strong></p>
+    </div>
+
+    <div class="businessAnalytics-info-box">
+        <h2>Sales Comparison</h2>
+        <p>Sales in current month: <strong>{{ $currentMonthSales }}</strong></p>
+        <p>Sales in the last month: <strong>{{ $lastMonthSales }}</strong></p>
+        <p>Sales increase: <strong>{{ $salesIncrease }}%</strong></p>
+    </div>
+
+    <div class="businessAnalytics-info-box">
+        <h2>Available Products</h2>
+        <p>Total available products: <strong>{{ $availableProducts }}</strong></p>
+    </div>
+
+    <div class="businessAnalytics-info-box">
+        <h2></h2>
+        <p></p>
+    </div>
+</div>
 
 <div class="businessAnalytics-data-table">
     <h2>Revenue Data Table</h2>
@@ -177,53 +205,6 @@
         });
         return mappedData;
     }
-</script>
-
-
-<div class="businessAnalytics-dateChart-container">
-    <canvas id="dateChartData" width="400" height="200"></canvas>
-</div>
-
-<script>
-    var dateCtx = document.getElementById('dateChartData').getContext('2d');
-
-    // Chart data for the new line chart
-    var dateChartData = 
-    {
-        labels: <?php echo json_encode($dateChartData['labels']); ?>,
-        datasets: 
-        [{
-            label: 'Date Data',
-            data: <?php echo json_encode($dateChartData['data']); ?>,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-            fill: false
-        }]
-    };
-
-    var dateChartData = new Chart(dateCtx, 
-    {
-        type: 'line',
-        data: dateChartData,
-        options: 
-        {
-            scales: 
-            {
-                x: 
-                {
-                    type: 'time',
-                    time: 
-                    {
-                        unit: 'day'
-                    }
-                },
-                y: 
-                {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
 </script>
 </div>
 @endsection
