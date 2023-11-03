@@ -713,7 +713,8 @@ document.querySelectorAll('.edit-button').forEach(function(button) {
         const profileName = row.querySelectorAll('.profile-attribute');
         const profileAttribute = row.querySelectorAll('.profile-Attribute');
         const saveButton = row.querySelector('.save-button');
-
+        const cancelButton = row.querySelector('.cancel-button');
+        cancelButton.style.display = 'block';
         profileName.forEach(element => {
             element.style.display = 'none';
         });
@@ -721,9 +722,10 @@ document.querySelectorAll('.edit-button').forEach(function(button) {
         profileAttribute.forEach(element => {
             element.style.display = 'block';
         });
-
+        
         button.style.display = 'none';
         saveButton.style.display = 'block';
+        
         profileImage.style.display = 'block';
     });
 });

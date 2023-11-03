@@ -80,6 +80,7 @@ class ValidationController extends Controller
         }
     }
 
+
     public function validateLogin(Request $request)
     {
         session_start();
@@ -99,4 +100,5 @@ class ValidationController extends Controller
             return false;
         }
     }
+
 }

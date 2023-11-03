@@ -45,7 +45,7 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::put('/mark-notification-as-read/{notificationID}', [NotificationController::class, 'markAsRead'])->name('mark-notification-as-read');
 
 // Customer profile
-Route::get('/profile',[ProfileController::class, 'index']);
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
 Route::post('/customer-order-listings/{orderID}', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
 Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');

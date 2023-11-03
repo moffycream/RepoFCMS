@@ -35,6 +35,7 @@ class ProfileController extends Controller
         $phoneErrormsg = "";
         $emailErrormsg = "";
         $postcodeErrormsg = "";
+        $imageErrormsg = "";
 
 
         $notificationController = app(NotificationController::class);
@@ -49,14 +50,17 @@ class ProfileController extends Controller
                     } else {
                         $usernameErrorMsg = "";
                         $user->username = $request->username;
+                        session(["username" => $request->username]);
                     }
                 } else {
                     // Username is the same, no further validation needed
                     $usernameErrorMsg = "";
                     $user->username = $request->username;
+                    // reset the session username
+                    session(["username" => $request->username]);
                 }
             }
-            
+
             if ($request->has('phone')) {
                 if ($validator->validatePhone($request)) {
                     $user->phone = $request->phone;
@@ -92,13 +96,26 @@ class ProfileController extends Controller
             }
 
             if ($request->hasFile('image')) {
-
-                $fileName = time() . $request->file('image')->getClientOriginalName();
-                $path = $request->file('image')->storeAs('', $fileName, 'addProfile');
-                $user->imagePath = 'profile-images/' . $path;
+                if ($request->file('image')->isValid()) {
+                    // Check if the file size is greater than 0
+                    if ($request->file('image')->getSize() > 0) {
+                        $fileName = time() . $request->file('image')->getClientOriginalName();
+                        $path = $request->file('image')->storeAs('', $fileName, 'addProfile');
+                        $user->imagePath = 'profile-images/' . $path;
+                    } else {
+                        $imageErrormsg = "Image file is empty";
+                    }
+                } else {
+                    $imageErrormsg = "Image file is invalid";
+                }
             }
 
-            if ($usernameErrorMsg== "" && $phoneErrormsg == "" && $emailErrormsg == "" && $postcodeErrormsg == "") {
+
+            if ($request->has('cancel')) {
+                return redirect()->route('profile')->with(['user' => $user, 'notifications' => $notificationController->getNotification()]);
+            }
+
+            if ($usernameErrorMsg == "" && $phoneErrormsg == "" && $emailErrormsg == "" && $postcodeErrormsg == "" && $imageErrormsg == "") {
                 $user->save();
                 return view('customer.profile', ['user' => $user,  'notifications' => $notificationController->getNotification()]);
             } else {
@@ -106,7 +123,8 @@ class ProfileController extends Controller
                     ->with('usernameErrorMsg', $usernameErrorMsg)
                     ->with('phoneErrormsg', $phoneErrormsg)
                     ->with('emailErrormsg', $emailErrormsg)
-                    ->with('postcodeErrormsg', $postcodeErrormsg);
+                    ->with('postcodeErrormsg', $postcodeErrormsg)
+                    ->with('imageErrormsg', $imageErrormsg);
             }
         }
     }
