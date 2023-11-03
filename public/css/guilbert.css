@@ -191,3 +191,60 @@
     padding: 5px;
     margin-bottom: 10px;
 }
+
+
+
+/*---------------MEMBERSHIP PAGE-------------*/
+
+.membership-container {
+    padding: 20px;
+    text-align: center;
+    background-color: #e8dcd4;
+}
+
+.membership-container h1{
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.membership-container h2{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.tier-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.membership-container section{
+    width: 30%;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+#tier1 {
+    background-color: #7B4169;
+}
+
+#tier2 {
+    background-color: #A15589;
+}
+
+#tier3 {
+    background-color: #B979A5;
+}
+
+/* Styling for benefits list */
+.benefit-list {
+    list-style: disc;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+.benefit-item {
+    margin: 5px 0;
+}
