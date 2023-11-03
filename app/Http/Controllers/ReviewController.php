@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\UserAccounts;
+use App\Models\Comment;
 
 class ReviewController extends Controller
 {
@@ -62,4 +63,34 @@ class ReviewController extends Controller
         return redirect('/reviews')->with('success','Review submitted successfully!');
     }
 
+    // Make a comment
+    public function submitComment(Request $request)
+    {
+        // Custom error message
+        $message = [
+            'commentContent.required' => 'Please write your comment.',
+        ];
+        $validatedData = request()->validate([
+            'commentContent' => 'required|max:255',
+        ], $message);
+
+        // Get user id
+        if (session()->has('username')) {
+            $userAccount = UserAccounts::where('username', session('username'))->first();
+            if ($userAccount != null) {
+                // Create a new comment instance
+                $comment = new Comment();
+                $comment->reviewID = $request->reviewID;
+                if ($request->replyToCommentID != null) {
+                    $comment->replyToCommentID = $request->replyToCommentID;
+                }
+                $comment->userID = $userAccount->userID;
+                $comment->commentContent = $validatedData['commentContent'];
+                $comment->save();
+            }
+        }
+
+        // Return back to reviews page
+        return redirect('/reviews')->with('success','Comment submitted successfully!');
+    }
 }

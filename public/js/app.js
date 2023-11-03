@@ -759,20 +759,21 @@ document.addEventListener('DOMContentLoaded', function () {
             const profileName = row.querySelectorAll('.profile-attribute');
             const profileAttribute = row.querySelectorAll('.profile-Attribute');
             const saveButton = row.querySelector('.save-button');
-
+        const cancelButton = row.querySelector('.cancel-button');
+        cancelButton.style.display = 'block';
             profileName.forEach(element => {
                 element.style.display = 'none';
             });
 
-            profileAttribute.forEach(element => {
-                element.style.display = 'block';
-            });
-
-            button.style.display = 'none';
-            saveButton.style.display = 'block';
-            profileImage.style.display = 'block';
+        profileAttribute.forEach(element => {
+            element.style.display = 'block';
         });
+
+        button.style.display = 'none';
+        saveButton.style.display = 'block';
+        profileImage.style.display = 'block';
     });
+});
 
     document.querySelectorAll('.profile-form').forEach(function (form) {
         form.addEventListener('submit', function () {
@@ -848,4 +849,48 @@ document.addEventListener('DOMContentLoaded', function () {
             orderSelect.style.display = 'block'; // Show the Order select
         }
     }
+});
+
+// Review page
+document.addEventListener('DOMContentLoaded', function() {
+    // Set the initial state of comments and the reply input
+    const comments = document.querySelectorAll('.comment');
+    comments.forEach(function (comment) {
+        if (comment.style.display !== 'none' && window.getComputedStyle(comment).display !== 'none') {
+            comment.style.display = 'none';
+        }
+    });
+});
+
+// Toggle comment button to show and hide all the comments
+function toggleComments() {
+    const comments = document.querySelectorAll('.comment');
+    comments.forEach(function (comment) {
+        if (comment.style.display === 'none' || comment.style.display === '') {
+            comment.style.display = 'block';
+        } else {
+            comment.style.display = 'none';
+        }
+    });
+}
+
+// Toggle reply button to show input field for reply for a specific reply form
+function toggleReply(replyFormId) {
+    const replyForm = document.getElementById(replyFormId);
+    // Toggle the display of the reply form
+    if (replyForm.style.display === 'none' || replyForm.style.display === '') {
+        replyForm.style.display = 'block';
+    } else {
+        replyForm.style.display = 'none';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const comments = document.querySelectorAll('.comment');
+
+    comments.forEach(comment => {
+        const nestingLevel = parseInt(comment.getAttribute('data-nesting-level'));
+        const marginLeft = nestingLevel * 50; // 50px per nesting level
+        comment.style.marginLeft = `${marginLeft}px`;
+    });
 });

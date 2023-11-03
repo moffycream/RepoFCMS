@@ -23,6 +23,11 @@ class Review extends Model
         return $this->belongsTo(UserAccounts::class, 'userID');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'reviewID');
+    }
+
     // Get time difference between now and the time the review was created
     public function getTimeDifference()
     {
@@ -35,5 +40,12 @@ class Review extends Model
         
         $timeDifference = $this->created_at->diffForHumans();
         return $timeDifference;
+    }
+
+    // Get the total number of comments for a review
+    public function getTotalComments()
+    {
+        $totalComments = $this->comments->count();
+        return $totalComments;
     }
 }

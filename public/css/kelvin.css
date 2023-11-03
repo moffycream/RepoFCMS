@@ -383,8 +383,38 @@ details[open] summary::before {
 .container-reviews{
     min-height: 100vh;
     width: 100%;
-    background-color: #e8dcd4;
     padding: 1%;
+}
+
+/* No reviews */
+.container-reviews .panel .no-reviews{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.container-reviews .panel .no-reviews h2{
+    margin-bottom: 20px;
+}
+
+.container-reviews .panel .no-reviews p{
+    margin-bottom: 50px;
+}
+
+.container-reviews .panel .no-reviews a{
+    background-color: #473447;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.container-reviews .panel .no-reviews a:hover{
+    opacity: 80%;
 }
 
 .container-reviews .panel{
@@ -394,6 +424,8 @@ details[open] summary::before {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #e8dcd4;
+    border-radius: 20px;
 }
 
 .container-reviews .panel .row-first{
@@ -411,18 +443,24 @@ details[open] summary::before {
     background-color: #473447;
     color: #ffffff;
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 10px 20px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
     text-decoration: none;
+}
+
+.container-reviews .panel .row-first a:hover{
+    opacity: 80%;
 }
 
 .container-reviews .panel .row-user-review{ 
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     background-color: #ffffff;
+    border-radius: 10px;
+    padding-bottom: 20px;
 }
 
 .container-reviews .panel .row-user-review .row-container:first-child .user-profile{
@@ -480,6 +518,11 @@ details[open] summary::before {
     padding: 20px;
 }
 
+.container-reviews .panel .row-user-review > .row-container:first-child,
+.container-reviews .panel .row-user-review .no-pad{
+    padding-bottom: 0;
+}
+
 .container-reviews .panel .row-user-review .row-container .review-content h2{
     font-size: 24px;
     font-weight: bold;
@@ -487,6 +530,143 @@ details[open] summary::before {
 }
 
 .container-reviews .panel .row-user-review .row-container .review-content p{
+    font-size: 18px;
+}
+
+.container-reviews .panel .row-user-review .row-container .review-action,
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .comment-action{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.container-reviews .panel .row-user-review .row-container .reply form,
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .reply form{
+    display: flex;
+}
+
+.container-reviews .panel .row-user-review .row-container .reply form input,
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .reply form input{
+    border-radius: 5px;
+    border: 2px solid #0000001a;
+    padding: 10px 20px;
+    font-size: 18px;
+    width: 100%;
+}
+
+.container-reviews .panel .row-user-review .row-container .reply form button,
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .reply form button{
+    background-color: #473447;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    width: 150px;
+    cursor: pointer;
+}
+
+.container-reviews .panel .row-user-review .row-container .reply form button:hover,
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .reply form button:hover{
+    opacity: 80%;
+}
+
+.container-reviews .panel .row-user-review .row-container .review-action button i,
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .comment-action button i{
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.container-reviews .panel .row-user-review .row-container .review-action button span:last-child,
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .comment-action button span:last-child{
+    margin-left: 5px;
+}
+
+.container-reviews .panel .row-user-review .row-container .review-action button,
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .comment-action button{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 50%;
+    display: flex;
+    margin-right: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Comment */
+.container-reviews .panel .row-user-review .comment,
+.container-reviews .panel .row-user-review .reply{
+    display: none;
+}
+
+
+.container-reviews .panel .row-user-review .row-container-comment{
+    margin-left: 50px;    
+    padding: 0 20px;
+}
+
+/* Adjust left margin based on data-depth */
+.container-reviews .panel .row-user-review .row-container-comment {
+    margin-left: calc(20px * var(--data-depth));
+}
+
+
+.container-reviews .panel .row-user-review .row-container-comment .comment-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Add a highlight on the left of the comment container */
+.container-reviews .panel .row-user-review .row-container-comment .comment-container::before{
+    content: '';
+    width: 5px;
+    height: 100%;
+    background-color: #473447;
+    position: absolute;
+    left: -20px;
+    top: 0;
+    border-radius: 10px;
+}
+
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .user-profile{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .user-profile .profile-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .user-profile .profile-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .user-profile .col-user-profile h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .user-profile .col-user-profile h3 > span{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    opacity: 50%;
+}
+
+.container-reviews .panel .row-user-review .row-container-comment .comment-container .row-comment .comment-content{
     font-size: 18px;
     margin-bottom: 20px;
 }
@@ -497,28 +677,126 @@ details[open] summary::before {
     height: 100%;
 }
 
-.container-reviews .review-form-panel
-{
+.container-review-form .panel{
     width: 50%;
     margin: 50px auto;
     padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid #000000;
-    position: fixed;
-
-    /* Make the panel above the existing content and make like a pop out menu */
-    z-index: 1;
-    background-color: #ffffff;
-
-    /* Make the panel in the center of the page */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background-color: #e8dcd4;
+    border-radius: 10px;
+    text-align: center;
 }
 
-.container-reviews .review-form-panel form{
+.container-review-form .panel h1{
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.container-review-form .panel form{
     display: flex;
     flex-direction: column;
+}
+
+.container-review-form .panel form p{
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.container-review-form .panel form select
+{
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #0000001a;
+    padding: 0px 20px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    width: 30%;
+}
+
+.container-review-form .panel form input[type="text"]{
+    border-radius: 5px;
+    border: 2px solid #0000001a;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-bottom: 20px;
+
+}
+
+.container-review-form .panel form .container-stars{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container-review-form .panel form .container-stars .fas{
+    color: #ffffff;
+    font-size: 32px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.container-review-form  .container-stars {
+    align-self: flex-start;
+    direction: rtl; /* Set the direction to right-to-left */
+}
+
+.container-stars input[type="radio"]:checked ~ label .fas {
+    color: #ffc400;
+}
+
+.container-review-form .panel form .container-stars input{
+    display: none;
+}
+
+.container-review-form .panel form textarea{
+    min-height: 150px;
+    border-radius: 5px;
+    border: 2px solid #0000001a;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    resize: none;
+}
+
+.container-review-form .panel form div:last-child{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.container-review-form .panel form div button{
+    background-color: #473447;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    margin-left: 20px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.container-review-form .panel form div a{
+    background-color: #fd6085;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    margin-left: 20px;
+    width: 130px;
+    cursor: pointer;
+
+}
+
+.container-review-form .panel form div button:hover{
+    opacity: 80%;
 }

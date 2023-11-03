@@ -10,19 +10,25 @@
                 <tr>
                     <th></th>
                     <td>
+                  
                         <!-- Profile Picture -->
                         <div class="profile-img">
                             <img src="{{ asset($user->imagePath) }}" alt="profileimage">
                         </div>
+                       
                     </td>
                     <td></td>
                 </tr>
                 <tr>
                     <th></th>
                     <td class="edit-profile-td">
+                    @if(isset($imageErrormsg))
+                        <p class="profile-error-msg">{!! $imageErrormsg !!}</p>
+                        @endif
                         <a class="edit-button"><i class="far fa-edit"></i> Edit Profile Picture</a>
                         <input type="file" accept=".png, .jpeg, .jpg" name="image" class="image">
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
                     </td>
                     <td></td>
                 </tr>
@@ -40,13 +46,15 @@
                         <span class="profile-attribute">{{ $user->username }}</span>
                         <input type="text" class="profile-Attribute" name="username" value="{{ $user->username }}">
                         @if(isset($usernameErrorMsg))
-                        <p class="register-error-msg">{!! $usernameErrorMsg !!}</p>
+                        <p class="profile-error-msg">{!! $usernameErrorMsg !!}</p>
                         @endif
                     </td>
                     <td class="profile-edit-text">
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
                     </td>
+                   
                 </tr>
 
                 <tr>
@@ -55,12 +63,13 @@
                         <span class="profile-attribute"> {{$user->phone}}</span>
                         <input type="text" class="profile-Attribute" name="phone" value="{{ $user->phone }}">
                         @if(isset($phoneErrormsg))
-                        <p class="register-error-msg">{!! $phoneErrormsg !!}</p>
+                        <p class="profile-error-msg">{!! $phoneErrormsg !!}</p>
                         @endif
                     </td>
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
                     </td>
                 </tr>
 
@@ -73,6 +82,7 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
                     </td>
                 </tr>
 
@@ -85,6 +95,7 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
                     </td>
                 </tr>
 
@@ -93,14 +104,15 @@
                     <td>
                         <span class="profile-attribute"> {{$user->email}}</span>
                         <input type="text" class="profile-Attribute" name="email" value="{{ $user->email }}">
-                        
+
                         @if(isset($emailErrormsg))
-                        <p class="register-error-msg">{!! $emailErrormsg !!}</p>
+                        <p class="profile-error-msg">{!! $emailErrormsg !!}</p>
                         @endif
                     </td>
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
                     </td>
                 </tr>
 
@@ -113,6 +125,7 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
                     </td>
                 </tr>
 
@@ -125,6 +138,7 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
                     </td>
                 </tr>
 
@@ -134,50 +148,19 @@
                         <span class="profile-attribute"> {{$user->postcode}}</span>
                         <input type="text" class="profile-Attribute" name="postcode" value="{{ $user->postcode }}">
                         @if(isset($postcodeErrormsg))
-                        <p class="register-error-msg">{!! $postcodeErrormsg !!}</p>
+                        <p class="profile-error-msg">{!! $postcodeErrormsg !!}</p>
                         @endif
                     </td>
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
+                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
                     </td>
                 </tr>
         </div>
     </table>
 </div>
 </div>
-
-<!-- <script>
-    document.querySelectorAll('.edit-button').forEach(function(button) {
-        button.addEventListener('click', function() {
-            const row = this.closest('tr');
-            const profileImage = row.querySelector('.image');
-            const profileName = row.querySelectorAll('.profile-attribute');
-            const profileAttribute = row.querySelectorAll('.profile-Attribute');
-            const saveButton = row.querySelector('.save-button');
-
-            profileName.forEach(element => {
-                element.style.display = 'none';
-            });
-
-            profileAttribute.forEach(element => {
-                element.style.display = 'block';
-            });
-
-            
-            button.style.display = 'none';
-            saveButton.style.display = 'block';
-            profileImage.style.display = 'block';
-        });
-    });
-
-    document.querySelectorAll('.profile-form').forEach(function(form) {
-        form.addEventListener('submit', function() {
-            const row = this.closest('tr');
-
-        });
-    });
-</script> -->
 @endsection
 
 
