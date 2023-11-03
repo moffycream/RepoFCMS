@@ -227,7 +227,7 @@
 
 /* logout */
 #admin-dashboard-container-expand a:last-child {
-    margin: auto 0 25px;
+    margin: auto 0 2vh;
 }
 
 #admin-dashboard-container-expand p {
@@ -238,14 +238,14 @@
 
 #admin-dashboard-container-expand .admin-dashboard-icon {
     margin-left: 30px;
-    height: 3vh;
+    height: 4vh;
     object-fit: contain;
     margin: 10px 0;
 }
 
 #admin-dashboard-container-expand .admin-dashboard-line {
     width: 240px;
-    margin: 10px 30px 0;
+    margin: 1vh 30px 0;
     border-color: rgba(255, 255, 255, 0.164);
 }
 
@@ -255,7 +255,7 @@
     cursor: pointer;
     align-self: flex-end;
     margin-right: 40px;
-    margin-top: 20px;
+    margin-top: 2vh;
 }
 
 /* Minimized dashboard */
@@ -269,14 +269,14 @@
 #admin-dashboard-container-minimize .admin-dashboard-icon {
     height: 4vh;
     object-fit: contain;
-    margin: 10px 0;
+    margin: 1vh 0;
 }
 
 /* Expand icon (>>)*/
 #admin-dashboard-expand-icon {
     width: 20px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 2vh;
 }
 
 #admin-dashboard-container-minimize a {
@@ -286,13 +286,13 @@
 #admin-dashboard-container-minimize p {
     color: #ffffff69;
     font-size: 15px;
-    margin: 30px 0 15px;
+    margin: 3vh 0 1.5vh;
 }
 
 #admin-dashboard-container-minimize .admin-dashboard-line {
     width: 3vw;
     border-color: rgba(255, 255, 255, 0.164);
-    margin-top: 5px;
+    margin-top: 0.5vh;
 }
 
 /* logout */
