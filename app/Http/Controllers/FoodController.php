@@ -71,18 +71,14 @@ class FoodController extends Controller
         $food->price = $request->price;
         $food->save();
 
-        $array = $request->amount;
+        $inventoryIDs = $request->inventoryID;
+        $amounts = $request->amount;
+        $inventoryData = array_combine($inventoryIDs, $amounts);
+
         $foodInventoryController = new FoodInventoryController();
 
-        $ingredientID = [];
-        $amounts = [];
-
-        foreach($array as $item){
-            
-        }
-
-        foreach($array as $amount) {
-            $foodInventoryController->registerNewFoodInventory($request, $food->foodID, $request->input('inventoryID')[$key], $value);
+        foreach($inventoryData as $inventoryID => $amount) {
+            $foodInventoryController->registerNewFoodInventory($request, $food->foodID, $inventoryID, $amount);
         }
 
         return redirect('/add-food');

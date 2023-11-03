@@ -34,7 +34,10 @@
                 <tr>
                     <td>{{$item->inventoryID}}</td>
                     <td>{{$item->inventoryName}}</td>
-                    <td><input id="{{$item->inventoryID}}" name="amount[]" type="text" value="{{$item->inventoryID}} "></td>
+                    <td>
+                        <input type="hidden" name="inventoryID[]" value="{{$item->inventoryID}}">
+                        <input id="{{$item->inventoryID}}" name="amount[]" type="text" value="0">
+                    </td>
                 </tr>
                 @endforeach
             </table>

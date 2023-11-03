@@ -15,4 +15,8 @@ class FoodInventory extends Model
     {
         return $this->belongsToMany(Food::class, 'food_inventory', 'foodID', 'inventoryID');
     }
+
+    public function inventory() {
+        return $this->belongsTo(Inventory::class, 'inventoryID', 'inventoryID');
+    }
 }

@@ -171,6 +171,10 @@
     transition: 0.2s;
 }
 
+.register-error-msg {
+    color: red;
+}
+
 /* Login page */
 .login-submit-button {
     font-size: 20px;
@@ -297,6 +301,7 @@
     padding: 10px;
     border-radius: 5px;
     transition: 0.5s;
+    margin-top: 10px;
 }
 
 .admin-register-submit-button:hover {
@@ -321,6 +326,10 @@
     padding: 20px;
     border-radius: 20px;
     background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+}
+
+.admin-register-error-msg {
+    color: red
 }
 
 /* Register successful page */
@@ -467,6 +476,10 @@
 
 .rating-slider {
     display: none;
+}
+
+.feedback-error-msg {
+    color: red;
 }
 
 /* feedback successful page */

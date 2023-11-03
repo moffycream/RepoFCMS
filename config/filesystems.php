@@ -68,6 +68,13 @@ return [
             'root' => public_path('menu-images'),
             'visibility' => 'public',
         ],
+
+        'addProfile' => [
+            'driver' => 'local',
+            'root' => public_path('profile-images'),
+            'visibility' => 'public',
+        ],
+
     ],
 
     /*

@@ -16,7 +16,7 @@ class UserAccountController extends Controller
     {
         // create default admin 
         // checks whether the database have DefaultAdmin created already
-        return view('login.login',['notifications' => Notification::all()]);
+        return view('login.login', ['notifications' => Notification::all()]);
     }
 
     public function setDefaultAdmin()
@@ -34,7 +34,7 @@ class UserAccountController extends Controller
             $account->city = "FCMS";
             $account->postcode = "FCMS";
             $account->accountType = "DefaultAdmin";
-
+            $account->imagePath = "profile-images/profile.png";
             $account->password = Hash::make($account->password);
             $account->save();
         }
@@ -45,14 +45,12 @@ class UserAccountController extends Controller
         session_start();
 
         if (session('accountType') != "Customer") {
-            Session(['accountType' => 'Guest']);           
+            Session(['accountType' => 'Guest']);
             return false;
-        }
-        else{
+        } else {
             return true;
         }
-
-    }  
+    }
 
     public function register()
     {
@@ -69,82 +67,82 @@ class UserAccountController extends Controller
         return view('login.access-denied');
     }
 
-    // register new account + validations
+    // register new account (as users)
     public function registerNewAccount(Request $request)
     {
         $validator = app(ValidationController::class);
-        $errorMsg = ""; // error message
         $accounts = new UserAccounts();
 
-        $exist =  UserAccounts::where(UserAccounts::raw("BINARY username"), $request->username)->first();
+        // create individual error message for each error
+        $sameUsernameErrorMsg = "";
+        $passwordErrorMsg = "";
+        $confirmPasswordErrorMsg = "";
+        $emailErrorMsg = "";
+        $phoneErrorMsg = "";
+        $postcodeErrorMsg = "";
 
         // checks if any existing account has same username or not
-        if ($exist !== null)
-        {
-            
-            // checks if the exisitng username is same as requested username (in terms of casing)
-            // if (strcmp($exist->username, $request->username) == 0) 
-            // {
-            // if (strcmp($exist->username, $request->username) == 0) 
-            // {
-                $errorMsg .= "Username already exists<br>";
-            //}
-            // not the same casing (accepted)
-            // else 
-            // {
-             //   $accounts->username = $request->username;
-            //}
+        if (!($validator->validateSameUsername($request))) {
+            $sameUsernameErrorMsg = "Username already exists";
         }
-        // don't have any same username
-        else 
-        {
+        // don't have any same username (means pass validations for username)
+        else {
+            $sameUsernameErrorMsg = "";
             $accounts->username = $request->username;
-            if ($request->password == $request->confirmpassword) {
-                if (strlen($request->password) < 5) {
-                    $errorMsg .= "Password must be more than 5 characters<br>";
-                } else {
-                    $accounts->password = Hash::make($request->password);
-                }
+        }
+        // validate password
+        if (($validator->validateConfirmPassword($request))) {
+            $confirmPasswordErrorMsg = "";
+            if (($validator->validatePassword($request))) {
+                $accounts->password = Hash::make($request->password);
+                $passwordErrorMsg = "";
             } else {
-                $errorMsg .= "Password and confirm password don't match<br>";
+                $passwordErrorMsg = "Password must be more than 5 characters";
             }
-            $phonePattern = '/^\d{10}$/';
-            if (!preg_match($phonePattern, $request->phone)) {
-                $errorMsg .= "Invalid phone number<br>";
-            } else {
-                $accounts->phone = $request->phone;
-            }
-            $accounts->firstName = $request->firstName;
-            $accounts->lastName = $request->lastName;
-            if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-                $errorMsg .= "Invalid email format<br>";
-            } else {
-                $accounts->email = $request->email;
-            }
-            $accounts->streetAddress = $request->streetAddress;
-            $accounts->city = $request->city;
-            
-            // if (!is_numeric($request->postcode)) {
-            //     $errorMsg .= "Invalid postcode<br>";
-            // } else {
-            //     
-            // }
-            if($validator ->validatePostcode($request))
-            {
-                $accounts->postcode = $request->postcode;
-            }
-            else 
-            {
-                // error msg
-            }
+        } else {
+            $confirmPasswordErrorMsg = "Password does not match";
+        }
+        // validate phone
+        if ($validator->validatePhone($request)) {
+            $accounts->phone = $request->phone;
+        } else {
+            $phoneErrorMsg = "Invalid phone number";
         }
 
-        if ($errorMsg == "") {
+        $accounts->firstName = $request->firstName;
+        $accounts->lastName = $request->lastName;
+
+        // validate email
+        if ($validator->validateEmail($request)) {
+            $accounts->email = $request->email;
+        } else {
+            $emailErrorMsg = "Invalid email format";
+        }
+        $accounts->streetAddress = $request->streetAddress;
+        // vaidate postcode
+
+        $accounts->city = $request->city;
+        if ($validator->validatePostcode($request)) {
+            $accounts->postcode = $request->postcode;
+        } else {
+            $postcodeErrorMsg =  "Invalid postcode";
+        }
+        $accounts->imagePath = "profile-images/profile.png";
+
+
+        if ($sameUsernameErrorMsg == "" && $passwordErrorMsg == "" && $confirmPasswordErrorMsg == "" && $emailErrorMsg == "" && $phoneErrorMsg == "" && $postcodeErrorMsg == "") {
             $accounts->accountType = "Customer";
+            // set profile image to default image
+            $accounts->imagePath = "profile-images/profile.png";
+
+            // save the account to database if no error
             $accounts->save();
+
+            // reset the form
+            $request->replace([]);
             return redirect('/register/register-success');
         } else {
-            return view('login.register')->with('errorMsg', $errorMsg);
+            return view('login.register')->with('sameUsernameErrorMsg', $sameUsernameErrorMsg)->with('passwordErrorMsg', $passwordErrorMsg)->with('confirmPasswordErrorMsg', $confirmPasswordErrorMsg)->with('emailErrorMsg', $emailErrorMsg)->with('phoneErrorMsg', $phoneErrorMsg)->with('postcodeErrorMsg', $postcodeErrorMsg);
         }
     }
 

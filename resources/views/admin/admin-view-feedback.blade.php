@@ -8,16 +8,51 @@
     <form method="post" action="{{route('admin.filter.feedback')}}">
         @csrf
         <select name="filter" id="filter">
-            <option value="feedbackID" {{ (isset($_POST['filter']) && $_POST['filter'] == 'feedbackID') ? 'selected' : '' }}>Feedback ID</option>
-            <option value="rating" {{ (isset($_POST['filter']) && $_POST['filter'] == 'rating') ? 'selected' : '' }}>Rating</option>
-            <option value="General" {{ (isset($_POST['filter']) && $_POST['filter'] == 'General') ? 'selected' : '' }}>General</option>
-            <option value="Compliment" {{ (isset($_POST['filter']) && $_POST['filter'] == 'Compliment') ? 'selected' : '' }}>Compliment</option>
-            <option value="Complaint" {{ (isset($_POST['filter']) && $_POST['filter'] == 'Complaint') ? 'selected' : '' }}>Complaint</option>
-            <option value="Suggestion" {{ (isset($_POST['filter']) && $_POST['filter'] == 'Suggestion') ? 'selected' : '' }}>Suggestion</option>
+            @php
+            $selectedFeedbackID = "";
+            $selectedRating = "";
+            $selectedGeneral = "";
+            $selectedCompliment = "";
+            $selectedComplaint = "";
+            $selectedSuggestion = "";
+            $selectedAsc = "";
+            $selectedDesc = "";
+
+            if (isset($_POST['filter'])) {
+            if ($_POST['filter'] == "feedbackID") {
+            $selectedFeedbackID = "selected";
+            } elseif ($_POST['filter'] == "rating") {
+            $selectedRating = "selected";
+            } elseif ($_POST['filter'] == "General") {
+            $selectedGeneral = "selected";
+            } elseif ($_POST['filter'] == "Compliment") {
+            $selectedCompliment = "selected";
+            } elseif ($_POST['filter'] == "Complaint") {
+            $selectedComplaint = "selected";
+            } elseif ($_POST['filter'] == "Suggestion") {
+            $selectedSuggestion = "selected";
+            }
+            }
+
+            if (isset($_POST['order'])) {
+            if ($_POST['order'] == "asc") {
+            $selectedAsc = "selected";
+            } elseif ($_POST['order'] == "desc") {
+            $selectedDesc = "selected";
+            }
+            }
+
+            @endphp
+            <option value="feedbackID" {{$selectedFeedbackID}}>Feedback ID</option>
+            <option value="rating" {{$selectedRating}}>Rating</option>
+            <option value="General" {{$selectedGeneral}}>General</option>
+            <option value="Compliment" {{$selectedCompliment}}>Compliment</option>
+            <option value="Complaint" {{$selectedComplaint}}>Complaint</option>
+            <option value="Suggestion" {{$selectedSuggestion}}>Suggestion</option>
         </select>
         <select name="order" id="order" class="order-select">
-            <option value="asc" {{ (isset($_POST['order']) && $_POST['order'] == 'asc') ? 'selected' : '' }}>Ascending</option>
-            <option value="desc" {{ (isset($_POST['order']) && $_POST['order'] == 'desc') ? 'selected' : '' }}>Descending</option>
+            <option value="asc" {{$selectedAsc}}>Ascending</option>
+            <option value="desc" {{$selectedDesc}}>Descending</option>
         </select>
         <button type="submit">Filter</button>
     </form>
@@ -121,6 +156,12 @@
         </tbody>
         @endif
         @else
+        @if($feedbacks->isEmpty())
+        <tr>
+            <td colspan="3">No feedback available</td>
+        </tr>
+
+        @else
         <thead>
             <tr>
                 <th scope="col">Feedback ID</th>
@@ -133,11 +174,6 @@
             </tr>
         </thead>
         <tbody>
-            @if($feedbacks->isEmpty())
-            <tr>
-                <td colspan="3">No feedback available</td>
-            </tr>
-            @else
             @foreach($feedbacks as $feedback)
             <tr>
                 <td>{{$feedback->feedbackID}}</td>
@@ -152,9 +188,9 @@
                 <td>{{$feedback->typeOfFeedback}}</td>
                 <td>{{$feedback->comments}}</td>
             </tr>
-            @endforeach
-            @endif
         </tbody>
+        @endforeach
+        @endif
         @endif
 </div>
 

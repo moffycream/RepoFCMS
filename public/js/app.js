@@ -705,7 +705,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('.edit-button').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const row = this.closest('tr');
+        const profileImage = row.querySelector('.image');
+        const profileName = row.querySelectorAll('.profile-attribute');
+        const profileAttribute = row.querySelectorAll('.profile-Attribute');
+        const saveButton = row.querySelector('.save-button');
+        const cancelButton = row.querySelector('.cancel-button');
+        cancelButton.style.display = 'block';
+        profileName.forEach(element => {
+            element.style.display = 'none';
+        });
 
+        profileAttribute.forEach(element => {
+            element.style.display = 'block';
+        });
+        
+        button.style.display = 'none';
+        saveButton.style.display = 'block';
+        
+        profileImage.style.display = 'block';
+    });
+});
+
+document.querySelectorAll('.profile-form').forEach(function(form) {
+    form.addEventListener('submit', function() {
+        const row = this.closest('tr');
+    });
+});
+});
 
 // Gavin's JS
 document.addEventListener("DOMContentLoaded", function () {

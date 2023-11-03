@@ -9,6 +9,7 @@ class Food extends Model
 {
     protected $table = 'foods'; // associated the table in the database
 
+
     protected $primaryKey = 'foodID'; 
 
 
@@ -17,8 +18,12 @@ class Food extends Model
         return $this->belongsToMany(Menu::class, 'menu_food', 'menuID', 'foodID');
     }
 
-    public function inventories()
+    public function inventory()
     {
         return $this->belongsToMany(Inventory::class, 'food_inventory', 'foodID', 'inventoryID');
+    }
+
+    public function food_inventory() {
+        return $this->hasMany(FoodInventory::class, 'foodID', 'foodID');
     }
 }
