@@ -60,7 +60,7 @@ class PurchaseController extends Controller
             }
         }
 
-        return view('payment', ['totalPrice' => $totalPrice,'notifications' => $notificationController->getNotification()]);
+        return view('payment', ['totalPrice' => $overallTotalPrice,'notifications' => $notificationController->getNotification()]);
 
     }
 }
