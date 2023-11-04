@@ -36,7 +36,6 @@
                     <a class="inventory-edit-button" href="#"><i class="far fa-edit"></i> Edit</a>
                     <button class="inventory-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
                     <a class="inventory-cancel-button" href="#"><i class="fas fa-ban"></i> Cancel</a>
-                    <!-- <a class="inventory-delete-button" href="' . route('inventory.delete', ['id' => $item->inventoryID]) . '" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a> -->
                     @php
                     $canDelete = true;
                     @endphp
@@ -68,6 +67,7 @@
         <tr class="inventory-table-row">
             <form method="POST" action="{{ route('inventory.register') }}">
                 @csrf
+                @method('PUT')
                 <td class="inventory-table-col">Add new ingredient</td>
                 <td class="inventory-table-col"><input type="text" name="name"></td>
                 <td class="inventory-table-col"><input type="text" name="amount"></td>
@@ -78,69 +78,7 @@
 </div>
 
 <script>
-    document.querySelectorAll('.inventory-edit-button').forEach(function(button) {
-        button.addEventListener('click', function() {
-            const row = this.closest('tr');
-            const inventoryValue = row.querySelectorAll('.inventory-value');
-            const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
-            const saveButton = row.querySelector('.inventory-save-button');
-            const cancelButton = row.querySelector('.inventory-cancel-button');
-            const deleteButton = row.querySelector('.inventory-delete-button');
-
-            // Hide the item value and "Edit" button
-            inventoryValue.forEach(element => {
-                element.style.display = 'none';
-            });
-
-            inventoryEditValue.forEach(element => {
-                element.style.display = 'inline';
-            });
-
-            button.style.display = 'none';
-            saveButton.style.display = 'inline';
-            cancelButton.style.display = 'inline';
-            deleteButton.style.display = 'none';
-        });
-    });
-
-    document.querySelectorAll('.inventory-cancel-button').forEach(function(button) {
-        button.addEventListener('click', function() {
-            const row = this.closest('tr');
-            const inventoryValue = row.querySelectorAll('.inventory-value');
-            const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
-            const saveButton = row.querySelector('.inventory-save-button');
-            const editButton = row.querySelector('.inventory-edit-button');
-            const deleteButton = row.querySelector('.inventory-delete-button');
-
-            // Hide the item value and "Edit" button
-            inventoryValue.forEach(element => {
-                element.style.display = 'inline';
-            });
-
-            inventoryEditValue.forEach(element => {
-                element.style.display = 'none';
-            });
-
-            button.style.display = 'none';
-            saveButton.style.display = 'none';
-            editButton.style.display = 'inline';
-            deleteButton.style.display = 'inline';
-        });
-    });
-
-    document.querySelectorAll('.inventory-delete-button').forEach(function(form) {
-        button.addEventListener('click', function() {
-            const row = this.closest('tr');
-
-        });
-    });
-
-    document.querySelectorAll('.inventory-form').forEach(function(form) {
-        form.addEventListener('submit', function() {
-            const row = this.closest('tr');
-
-        });
-    });
+   
 </script>
 
 @endsection

@@ -9,34 +9,33 @@
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('reviews')}}">Reviews</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li>
                 @elseif(Session::get('accountType') == "Customer")
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="{{url('display-food-menu')}}">Menu</a></li>
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('feedback')}}">Feedback</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li>
+                <li><a href="{{url('reviews')}}">Reviews</a></li>
                 @endif
             </ul>
         </nav>
         <div>
-            @if (Session::get('accountType') == "Customer" || (Session::get('accountType') == "OperationTeam"))
+            @if ((Session::get('accountType') == "Customer" || (Session::get('accountType') == "OperationTeam")))
             <div class="notification">
                 <i class="fas fa-bell" onclick="toggleNotification()"></i>
-                @if($notifications != null && $notifications->count() > 0)
+                @if(isset($notifications))
                 <span class="indicator">{{$notifications->count()}}</span>
                 @endif
                 <div class="container-notification" id="container-notification">
                     <div class="arrow"></div>
                     <div class="col-notification">
-                        @if($notifications == null)
+                        @if(!isset($notifications))
                         <h2>No new notifications</h2>
                         @else
                         <h2>Notifications</h2>
                         @endif
                     </div>
-                    @if($notifications != null)
+                    @if(isset($notifications))
                     @foreach($notifications as $notification)
                     @if($notification->isRead == false)
                     <div class="row-notification">
@@ -57,7 +56,13 @@
             </div>
             @endif
             <div class="login">
-                <i class="fas fa-user-circle" onclick="toggleHeaderLogin()"></i></i>
+                <div class="container-login-profile" onclick="toggleHeaderLogin()">
+                    @if (isset($profilePicture))
+                    <img src="{{ $profilePicture }}" alt="profile">
+                    @else
+                    <img src="{{ asset('profile-images/profile.png') }}" alt="profile">
+                    @endif
+                </div>
                 <div class="container-header-login" id="container-header-login">
                     @if (Session::get('accountType') == "Customer" || Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin" || Session::get('accountType') == "OperationTeam" )
                     <div class="row-header-login">

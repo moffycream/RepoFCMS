@@ -14,46 +14,104 @@
         <!-- Block of display food image and details -->
         <div class="col-add-menu">
             <!-- Display food image -->
-            <img src="{{$food->imagePath}}" alt="Image" class="food-logo">
-            <div class="col-add-menu-info-row">
-                <!-- Display food name -->
-                <div class="col-add-menu-info-col">
-                    <p class="col-add-menu-info-title">Name</p>
-                    <p>{{$food->name}}</p>
-                </div>
-                <!-- Display food description -->
-                <div class="col-add-menu-info-col">
-                    <p class="col-add-menu-info-title">Description</p>
-                    <p>{{$food->description}}</p>
-                </div>
-                <!-- Display food price -->
-                <div class="col-add-menu-info-col">
-                    <p class="col-add-menu-info-title">Price</p>
-                    <p>RM {{$food->price}}</p>
-                </div>
-                <div class="col-add-menu-info-col">
-                    <p class="col-add-menu-info-title">Required ingredients</p>
-                    @php
-                    $food_count = count($food->food_inventory);
-                    @endphp
-
-                    @for ($i = 0; $i < $food_count; $i++) 
-                    @php 
-                        $ingredient = $food->food_inventory[$i];
-                        $name = $ingredient->inventory;
-                    @endphp
-                    @if($ingredient->amount > 0)
-                        {{ $name->inventoryName }}
-                        {{ $ingredient->amount }}
-                    @endif
-                    @endfor
-
-                </div>
-            </div>
-            <form method="GET" action="{{ route('food.editFood')}}" enctype="text/plain">
+            <form class="add-food-edit-form" method="POST" action="{{ route('food.edit')}}" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <input type="hidden" name="foodID" value="{{$food->foodID}}">
-                <button type="submit" class="edit-menu-button">Edit</button>
+
+                <img src="{{$food->imagePath}}" alt="Image" class="food-logo">
+
+                <div>
+                    <input type="file" class="add-menu-edit-value" accept=".png, .jpeg, .jpg" id="food-image" name="image">
+                    <p class="add-menu-edit-button" href="#"><i class="far fa-edit"></i> Edit</p>
+                    <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
+                    <p class="add-menu-cancel-button" href="#"><i class="fas fa-ban"></i> Cancel</p>
+                </div>
+
+                <div class="col-add-menu-info-row">
+                    <!-- Display food name -->
+                    <div class="col-add-menu-info-col">
+                        <section class="col-add-menu-info-col1">
+                            <p class="col-add-menu-info-title">Name</p>
+                            <p class="add-menu-value">{{$food->name}}</p>
+                            <input type="text" class="add-menu-edit-value" name="name" value="{{$food->name}}">
+                        </section>
+                        <section class="col-add-menu-info-col2">
+                            <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
+                            <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
+                            <p class="add-menu-cancel-button"><i class="fas fa-ban"></i> Cancel</p>
+                        </section>
+                    </div>
+                    <!-- Display food description -->
+                    <div class="col-add-menu-info-col">
+                        <section class="col-add-menu-info-col1">
+                            <p class="col-add-menu-info-title">Description</p>
+                            <p class="add-menu-value">{{$food->description}}</p>
+                            <input type="text" class="add-menu-edit-value" name="description" value="{{$food->description}}">
+                        </section class="col-add-menu-info-col2">
+                        <section class="col-add-menu-info-col2">
+                            <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
+                            <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
+                            <p class="add-menu-cancel-button"><i class="fas fa-ban"></i> Cancel</p>
+                        </section>
+                    </div>
+                    <!-- Display food price -->
+                    <div class="col-add-menu-info-col">
+                        <section class="col-add-menu-info-col1">
+                            <p class="col-add-menu-info-title">Price</p>
+                            <p class="add-menu-value">RM {{$food->price}}</p>
+                            <input type="text" class="add-menu-edit-value" name="price" value="{{$food->price}}">
+                        </section>
+                        <section class="col-add-menu-info-col2">
+                            <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
+                            <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
+                            <p class="add-menu-cancel-button"><i class="fas fa-ban"></i> Cancel</p>
+                        </section>
+                    </div>
+                    <div class="col-add-menu-info-col">
+                        <section class="col-add-menu-info-col1">
+                            <p class="col-add-menu-info-title">Required ingredients</p>
+                            @php
+                            $food_count = count($food->food_inventory);
+                            @endphp
+
+                            <table class="add-menu-table">
+                                <tr class="add-menu-table-row">
+                                    <th class="add-menu-table-title">Ingredient ID</th>
+                                    <th class="add-menu-table-title">Ingredient name</th>
+                                    <th class="add-menu-table-title">Amount</th>
+                                </tr>
+                                @for ($i = 0; $i < $food_count; $i++) @php $ingredient=$food->food_inventory[$i];
+                                    $name = $ingredient->inventory;
+                                    @endphp
+                                    @if($ingredient->amount > 0)
+
+                                    <tr class="add-menu-table-row">
+                                        @csrf
+                                        <!-- Inventory ID -->
+                                        <td class="add-menu-table-col">
+                                            <span>{{$ingredient->inventoryID}}</span>
+                                        </td>
+                                        <!-- Inventory name -->
+                                        <td class="add-menu-table-col">
+                                            <span>{{$name->inventoryName}}</span>
+                                        </td>
+                                        <!-- Inventory amount -->
+                                        <td class="add-menu-table-col">
+                                            <span>{{$ingredient->amount}}</span>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                    @endfor
+                            </table>
+                        </section>
+                        <section class="col-add-menu-info-col2">
+                            <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
+                            <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
+                            <p class="add-menu-cancel-button"><i class="fas fa-ban"></i> Cancel</p>
+                        </section>
+                    </div>
+                </div>
             </form>
         </div>
 
