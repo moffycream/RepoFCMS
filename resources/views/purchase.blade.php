@@ -23,11 +23,13 @@
                         $overallTotalPrice = 0; // Initialize order total price with 0
                     @endphp
 
+
                     @foreach ($cart as $item)
                         
                         @php
                             $itemTotalPrice = $item['quantity'] * $item['price']; // Calculate total price per item
                             $overallTotalPrice += $itemTotalPrice; // Add item total to overall total
+                            
                         @endphp
 
                     <tr>
@@ -39,6 +41,12 @@
                         <td>RM {{ $itemTotalPrice }}</td>
                     </tr>
                     @endforeach
+
+                    @php
+                        // Store cart data and overall total price in the session
+                        session(['overallTotalPrice' => $overallTotalPrice]);
+                    @endphp
+                    
                 </tr>
             </tbody>
 
@@ -50,8 +58,7 @@
                 <td>
                     <strong>RM {{ $overallTotalPrice }}</strong>
                     {{-- Hidden input field to store the value of the overallTotalPrice --}}
-                    <input type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
-
+                    <input id="purchase_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
                 </td>
             <tr>
         </table>
@@ -95,6 +102,7 @@
 
                 <td>
                     <select id="DeliveryMethod" name="DeliveryMethod">
+                        <option value="none" disabled selected>Delivery method</option>
                         <option value="Delivery">Delivery</option>
                         <option value="Self_Pickup">Self Pick Up</option>
                     </select>

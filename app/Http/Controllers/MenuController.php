@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\MenuFood;
 use App\Models\Inventory;
+use App\Models\Food;
 use App\http\Controllers\AdminController;
-use App\Http\Controllers\NotificationController;
 
 class MenuController extends Controller
 {
@@ -15,19 +15,16 @@ class MenuController extends Controller
     // Retrieve data 
     public function index(AdminController $adminController)
     {
-        $notificationController = app(NotificationController::class);
         $menu = Menu::all();
         $inventory = Inventory::all();
+        $food = Food::all();
 
         // Checks whether is valid login or not
         $this->adminController = $adminController;
 
-        if ($this->adminController->verifyAdmin()) 
-        {
-            return view('menu.add-menu', ['listItems' => $menu, 'inventories' => $inventory]);
-        }
-        else
-        {
+        if ($this->adminController->verifyAdmin()) {
+            return view('menu.add-menu', ['listItems' => $menu, 'inventories' => $inventory, 'foods' => $food]);
+        } else {
             return view('login.access-denied');
         }
     }
@@ -55,6 +52,47 @@ class MenuController extends Controller
             // Call the registerNewMenuFood method for each food item
             $menuFoodController->registerNewMenuFood($request, $menu->menuID, $foodID);
         }
+
+        return redirect('/add-menu');
+    }
+
+    // Edit menu
+    public function editMenu(Request $request)
+    {
+        $menu = Menu::find($request->menuID);
+
+        if ($request->hasFile('image')) {
+            $fileName = time() . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('', $fileName, 'addMenu');
+            $menu->imagePath = 'menu-images/' . $path;
+        }
+
+        $menu->name = $request->name;
+
+        // Delete all menu food
+        $menuFood = MenuFood::where('menuID', $request->menuID)->get();
+        foreach ($menuFood as $food) {
+            $food->delete();
+        }
+
+        //  Recreate all menu food
+        $array = $request->foodID;
+        $menuFoodController = new MenuFoodController();
+
+        $newTotalPrice = 0;
+
+        foreach ($array as $foodID) {
+           // Call the registerNewMenuFood method for each food item
+           $menuFoodController->registerNewMenuFood($request, $menu->menuID, $foodID);
+
+           // Update total price
+           $newFood = Food::find($foodID);
+           $newTotalPrice += $newFood->price;
+        }
+
+        $menu->totalPrice = $newTotalPrice;
+        $menu->save();
+
 
         return redirect('/add-menu');
     }

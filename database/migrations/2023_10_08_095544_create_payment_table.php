@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('payment_info', function (Blueprint $table) {
             $table->id('transactionID'); // Primary Key
-            $table->unsignedBigInteger('orderID'); // Foreign Key for the orders table
-            $table->unsignedBigInteger('userID'); // Foreign Key for the user_accounts table
+            $table->unsignedBigInteger('userID');
             $table->decimal('totalPrice', 10, 2);   
             $table->string('paymentMethod');
             $table->string('Username'); // Online banking
@@ -23,8 +22,8 @@ return new class extends Migration
             $table->string('cvv');
             $table->string('cardholder_name');
             $table->text('billing_address');
-            $table->string('type_of_Ewallet');
-            $table->string('recipient_name'); // E-wallet 
+            $table->string('ewallet_type');//ewallet
+            $table->string('ewallet_username');
             $table->timestamp('dateOfPayment')->default(now());
             $table->timestamp('dateOfPurchase')->default(now());
             $table->timestamps();

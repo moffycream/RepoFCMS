@@ -47,6 +47,7 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::put('/mark-notification-as-read/{notificationID}', [NotificationController::class, 'markAsRead'])->name('mark-notification-as-read');
 
 // Customer profile
+Route::get('/customer-order-history', [OrderHistoryController::class, 'index'])->name('customer-order-history');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
 
@@ -90,11 +91,11 @@ Route::get('/menu', [MenuController::class, 'index']);
 // Food - management side
 Route::get('/add-food', [FoodController::class, 'index']);
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
-Route::put('/add-food', [FoodController::class, 'editFood'])->name('food.edit');
 Route::get('/add-food/{id}', [FoodController::class, 'deleteFood'])->name('food.delete');
 Route::get('/add-food-form', [FoodController::class, 'addFoodForm']);
 
-// Food - edit food and menu
+// Food - edit food
+Route::put('/add-food', [FoodController::class, 'editFood'])->name('food.edit');
 
 // Menu - management site
 Route::get('/add-menu', [MenuController::class, 'index']);
@@ -102,7 +103,8 @@ Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
 
-
+// Menu - edit menu
+Route::put('/add-menu', [MenuController::class, 'editMenu'])->name('menu.edit');
 
 // Inventory
 Route::get('/inventory-management', [InventoryController::class, 'index']);
@@ -124,11 +126,9 @@ Route::get('/op-view-order/cancel/{orderID}', [OrderController::class, 'cancelOr
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
 // Payment
-Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment.show');
-Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
-Route::get('/payment-success', [PaymentController::class, 'success'])->name('payment-success');
-Route::post('/store-payment', [PaymentController::class, 'store'])->name('store-payment');
-Route::get('food-menu', [FoodMenuController::class, 'index'])->name('food-menu');
+Route::get('payment', [PaymentController::class, 'index'])->name('payment');
+Route::post('payment/store', [PaymentController::class, 'storePaymentData'])->name('payment.store');
+
 
 
 // Purchase
@@ -164,4 +164,3 @@ Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
 Route::post('/reviews', [ReviewController::class, 'submitComment'])->name('review.submit.comment');
 Route::get('/reviews/review-form', [ReviewController::class, 'reviewForm']);
 Route::post('/review/review-form/submit', [ReviewController::class, 'submitReviewForm'])->name('review.submit');
-

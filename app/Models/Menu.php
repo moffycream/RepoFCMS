@@ -20,4 +20,8 @@ class Menu extends Model
     {
         return $this->belongsToMany(Food::class, 'menu_food', 'menuID', 'foodID');
     }
+
+    public function menu_foods()
+    {
+        return $this->hasMany(MenuFood::class, 'menuID', 'menuID');}
 }

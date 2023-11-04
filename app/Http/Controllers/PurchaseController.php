@@ -6,7 +6,6 @@ use App\Http\Controllers\UserAccountController;
 use App\Models\Payment;
 use App\Models\Order;
 use App\Models\Notification;
-use App\Http\Controllers\NotificationController;
 use App\Models\UserAccounts;
 
 use Carbon\Carbon;

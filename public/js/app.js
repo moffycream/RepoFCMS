@@ -286,25 +286,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Dropdown checkbox
 
-    var dropdownCheckbox = document.getElementById("food-dropdown-list");
-    var dropdownAnchor = document.getElementById("food-dropdown-anchor")
+    var dropdownCheckbox = document.querySelectorAll(".food-dropdown-list");
+    var dropdownAnchor = document.querySelectorAll(".food-dropdown-anchor")
 
     if (dropdownCheckbox) {
-        dropdownAnchor.addEventListener("click", function () {
-            if (dropdownCheckbox.classList.contains('visible'))
-                dropdownCheckbox.classList.remove('visible');
-            else
-                dropdownCheckbox.classList.add('visible');
+        dropdownAnchor.forEach(function (anchor) {
+            anchor.addEventListener("click", function () {
+                dropdownCheckbox.forEach(function (checkbox) {
+                    if (checkbox.classList.contains('visible'))
+                        checkbox.classList.remove('visible');
+                    else
+                        checkbox.classList.add('visible');
+                });
+            });
         });
     }
-    
+
     //inventory edit, save, cancel and delete button
     var inventoryEditButton = this.querySelectorAll('.inventory-edit-button');
     var inventoryCancelButton = this.querySelectorAll('.inventory-cancel-button');
 
-    if(inventoryEditButton && inventoryCancelButton){
-        document.querySelectorAll('.inventory-edit-button').forEach(function(button) {
-            button.addEventListener('click', function() {
+    if (inventoryEditButton && inventoryCancelButton) {
+        document.querySelectorAll('.inventory-edit-button').forEach(function (button) {
+            button.addEventListener('click', function () {
                 const row = this.closest('tr');
                 const inventoryValue = row.querySelectorAll('.inventory-value');
                 const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
@@ -312,16 +316,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 const cancelButton = row.querySelector('.inventory-cancel-button');
                 const deleteButton = row.querySelector('.inventory-delete-button');
                 const deleteButtonNo = row.querySelector('.inventory-delete-button-no');
-    
+
                 // Hide the item value and "Edit" button
                 inventoryValue.forEach(element => {
                     element.style.display = 'none';
                 });
-    
+
                 inventoryEditValue.forEach(element => {
                     element.style.display = 'inline';
                 });
-    
+
                 button.style.display = 'none';
                 saveButton.style.display = 'inline';
                 cancelButton.style.display = 'inline';
@@ -333,9 +337,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         });
-    
-        document.querySelectorAll('.inventory-cancel-button').forEach(function(button) {
-            button.addEventListener('click', function() {
+
+        document.querySelectorAll('.inventory-cancel-button').forEach(function (button) {
+            button.addEventListener('click', function () {
                 const row = this.closest('tr');
                 const inventoryValue = row.querySelectorAll('.inventory-value');
                 const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
@@ -343,23 +347,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 const editButton = row.querySelector('.inventory-edit-button');
                 const deleteButton = row.querySelector('.inventory-delete-button');
                 const deleteButtonNo = row.querySelector('.inventory-delete-button-no');
-    
+
                 // Hide the item value and "Edit" button
                 inventoryValue.forEach(element => {
                     element.style.display = 'inline';
                 });
-    
+
                 inventoryEditValue.forEach(element => {
                     element.style.display = 'none';
                 });
-    
+
                 button.style.display = 'none';
                 saveButton.style.display = 'none';
                 editButton.style.display = 'inline';
-                if (deleteButton){
+                if (deleteButton) {
                     deleteButton.style.display = 'inline';
                 }
-                if (deleteButtonNo){
+                if (deleteButtonNo) {
                     deleteButtonNo.style.display = 'inline';
                 }
             });
@@ -370,47 +374,47 @@ document.addEventListener("DOMContentLoaded", function () {
     var addFoodEditButton = this.querySelectorAll('.add-food-edit-button');
     var addFoodCancelButton = this.querySelectorAll('.add-food-cancel-button');
 
-    if(addFoodEditButton && addFoodCancelButton){
-        document.querySelectorAll('.add-menu-edit-button').forEach(function(button) {
-            button.addEventListener('click', function() {
+    if (addFoodEditButton && addFoodCancelButton) {
+        document.querySelectorAll('.add-menu-edit-button').forEach(function (button) {
+            button.addEventListener('click', function () {
                 const row = this.closest('div');
                 const addMenuValue = row.querySelectorAll('.add-menu-value');
                 const addMenuEditValue = row.querySelectorAll('.add-menu-edit-value');
                 const saveButton = row.querySelector('.add-menu-save-button');
                 const cancelButton = row.querySelector('.add-menu-cancel-button');
-    
+
                 // Hide the item value and "Edit" button
                 addMenuValue.forEach(element => {
                     element.style.display = 'none';
                 });
-    
+
                 addMenuEditValue.forEach(element => {
                     element.style.display = 'block';
                 });
-    
+
                 button.style.display = 'none';
                 saveButton.style.display = 'block';
                 cancelButton.style.display = 'block';
             });
         });
 
-        document.querySelectorAll('.add-menu-cancel-button').forEach(function(button) {
-            button.addEventListener('click', function() {
+        document.querySelectorAll('.add-menu-cancel-button').forEach(function (button) {
+            button.addEventListener('click', function () {
                 const row = this.closest('div');
                 const addMenuValue = row.querySelectorAll('.add-menu-value');
                 const addMenuEditValue = row.querySelectorAll('.add-menu-edit-value');
                 const saveButton = row.querySelector('.add-menu-save-button');
                 const editButton = row.querySelector('.add-menu-edit-button');
-    
+
                 // Hide the item value and "Edit" button
                 addMenuValue.forEach(element => {
                     element.style.display = 'block';
                 });
-    
+
                 addMenuEditValue.forEach(element => {
                     element.style.display = 'none';
                 });
-    
+
                 button.style.display = 'none';
                 saveButton.style.display = 'none';
                 editButton.style.display = 'block';
@@ -444,39 +448,59 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 htmlToInsert = `
                 <h1>Online Banking</h1>
+
+                <br><br>
+
+                <td>
+                <label for="selected_bank">Select your bank:</label>
+
+                </td>
+
+                <td>
+                    <select id="selected_bank" name="selected_bank">
+                        <option value="none" disabled selected>Select Your Bank</option>
+                        <option value="RHB Bank">RHB Bank</option>
+                        <option value="MayBank">MayBank</option>
+                        <option value="CIMB Bank">CIMB Bank</option>
+                        <option value="BSN Bank">BSN Bank</option>
+                        <option value="AM Bank">AM Bank</option>
+                    </select>
+                </td>
+
+                <br><br>
     
                 <td>
-                    <label for="username:">Username: </label>   
+                    <label for="bank_username:">Username: </label>   
                 </td>
     
                 <td>
-                    <input type="text" id="payment_username" name="payment_username" placeholder="Username" required>
+                    <input type="text" id="bank_username" name="bank_username" placeholder="Username" required>
                 </td>
                 
                 <br><br>
-    
+
                 <td>
-                    <label for="password:">Password: </label>   
+                    <label for="account_number:">Account Number: </label>   
                 </td>
-    
+
                 <td>
-                    <input type="password" id="payment_password" name="payment_password" placeholder="Password" required>
+                    <input type="text" id="account_number" name="account_number" placeholder="Account Number" required>
                 </td>
-                
+
                 <br><br>
     
                 <td>
-                    <label for="recipient_account_number">Receipient Account Number: </label>
+                    <label for="bank_password:">Password: </label>   
                 </td>
     
                 <td>
-                    <input type="text" id="payment_recipient_account_number" name="payment_recipient_account_number" placeholder="Receipient Account Number" required>
+                    <input type="password" id="bank_password" name="bank_password" placeholder="Password" required>
                 </td>
-    
+
                 <br><br>
     
                 <td>
-                    <label for="amount">Amount: </label>
+                    <label for="payment_amount">Amount: </label>
                 </td>
     
                 <td>
@@ -542,7 +566,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <br><br>
     
                 <td>
-                    <label for="amount">Amount: </label>
+                    <label for="payment_amount">Amount: </label>
                 </td>
     
                 <td>
@@ -552,7 +576,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <br><br>
     
                 <td>
-                    <label for="description">Description: </label>
+                    <label for="payment_description">Description: </label>
                 </td>
     
                 <td>
@@ -635,6 +659,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <select id="eWallet_type" name="eWallet_type">
+                        <option value="none" disabled selected>E-Wallet Type</option>
                         <option value="Touch_and_Go">Touch and Go</option>
                         <option value="Boost">Boost</option>
                         <option value="Sarawak_Pay">Sarawak Pay</option>
@@ -643,19 +668,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 </td>
     
                 <br><br>
-    
+
                 <td>
-                    <label for="receipient_name">Receipient Name: </label>
+                    <label for="ewallet_username:">Username: </label>   
                 </td>
-    
+
                 <td>
-                    <input type="text" id="payment_receipient_name" name="payment_receipient_name" placeholder="Receipient Name" required>
+                    <input type="text" id="ewallet_username" name="ewallet_username" placeholder="Username" required>
                 </td>
-    
+                
                 <br><br>
     
                 <td>
-                    <label for="amount">Amount: </label>
+                    <label for="payment_amount">Amount: </label>
                 </td>
     
                 <td>
@@ -672,6 +697,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
                 </td>
                 `;
+
             }
 
             // reset 
@@ -683,27 +709,51 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update the content of the forms
             if (SelectedPaymentChoice === 'OnlineBanking') {
                 OnlineBankingForm.innerHTML = htmlToInsert;
+                // Clear the QRcontainer
+                const QRcontainer = document.getElementById('qr_code_container');
+                QRcontainer.innerHTML = '';
             }
             else if (SelectedPaymentChoice === 'CreditCard') {
                 CreditCardForm.innerHTML = htmlToInsert;
+                // Clear the QRcontainer
+                const QRcontainer = document.getElementById('qr_code_container');
+                QRcontainer.innerHTML = '';
             }
             else if (SelectedPaymentChoice === 'DebitCard') {
                 DebitCardForm.innerHTML = htmlToInsert;
+                // Clear the QRcontainer
+                const QRcontainer = document.getElementById('qr_code_container');
+                QRcontainer.innerHTML = '';
             }
             else if (SelectedPaymentChoice === 'Ewallet') {
                 EwalletForm.innerHTML = htmlToInsert;
+
+                const QRcontainer = document.getElementById('qr_code_container');
+                const QRinsert = `
+                    <img src="${assetUrl}" alt="QR code" width="200">
+                `;
+                
+                QRcontainer.innerHTML = QRinsert;
             }
         });
     }
 
     function ValidatePaymentForm() {
         const errors = [];
+        var pattern = /^[a-zA-Z ]+$/
+        var Numpattern = /^[0-9]+$/;
 
         if (PaymentChoice.value === "OnlineBanking") {
-            const username = document.getElementById('payment_username').value;
-            const password = document.getElementById('payment_password').value;
-            const recipientAccountNumber = document.getElementById('payment_recipient_account_number').value;
+            const selectedBank = document.getElementById('selected_bank');
+            const username = document.getElementById('bank_username').value;
+            const password = document.getElementById('bank_password').value;
+            const accountNumber = document.getElementById('account_number').value;
             const amount = document.getElementById('payment_amount').value;
+
+            //  validate selected bank mehtod
+            if (selectedBank.value === "none") {
+                errors.push("Please select a bank to do online banking.\n");
+            };
 
             //  validation for name
             if (username.length < 5 || username.length > 25) {
@@ -715,13 +765,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 errors.push('Password must be within 5 to 15 characters long.\n');
             }
 
-            //  validation for Receipient Account Numbers
-            if (recipientAccountNumber.length < 8 || recipientAccountNumber.length > 16) {
-                errors.push('Receipient Account Numbers must be within 8 to 16 characters long.\n');
+            //  validation for Account Numbers
+            if (accountNumber.length < 8 || accountNumber.length > 16) {
+                errors.push('Account Numbers must be within 8 to 16 characters long.\n');
             }
 
-            if (!Numpattern.test(recipientAccountNumber)) {
-                errors.push('Receipient Account Numbers must only contain numbers only.\n');
+            if (!Numpattern.test(accountNumber)) {
+                errors.push('Account Numbers must only contain numbers only.\n');
             }
 
             //  validation for Amount
@@ -771,21 +821,27 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
         } else if (PaymentChoice.value === "Ewallet") {
-            const recipientName = document.getElementById('payment_receipient_name').value;
+            const userName = document.getElementById('ewallet_username').value;
+            const ewalletType = document.getElementById('eWallet_type');
             const amount = document.getElementById('payment_amount').value;
 
-            //  validation for Receipient Name
-            if (!pattern.test(recipientName)) {
-                errors.push('Receipient Name must only contain alpha character only.\n');
-            }
-            if (recipientName.length < 5 || recipientName.length > 25) {
-                errors.push('Receipient name must be within 5 to 25 characters long.\n');
+            //  validate selected bank mehtod
+            if (ewalletType.value === "none") {
+                errors.push("Please select a E-Wallet to do payment.\n");
+            };
+
+            //  validation for e wallet username
+            if (userName.length < 5 || userName.length > 25) {
+                errors.push('Username must be within 5 to 25 characters long.\n');
             }
 
             //  validation for Amount
             if (!Numpattern.test(amount)) {
                 errors.push('Amount must contain numbers only.\n');
             }
+
+        } else if (PaymentChoice.value === "none"){
+            errors.push("Please select a payment method.");
         }
 
         //  display error msg
@@ -810,6 +866,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const realname = document.getElementById('purchase_realname').value;
         const address = document.getElementById('purchase_address').value;
         const contact = document.getElementById('purchase_contact').value;
+        const deliveryMethod = document.getElementById("DeliveryMethod");
+        const orderNotes = document.getElementById("purchase_orderNotes");
+        const overallTotalPrice = parseFloat(document.getElementById("purchase_overall_total_price").value);
 
         //  validation for name
         if (!pattern.test(realname)) {
@@ -827,6 +886,20 @@ document.addEventListener('DOMContentLoaded', function () {
         if (contact.length > 11 || contact.length < 10) {
             errors.push('Your contact number must within 10-11 digit only.\n');
         };
+
+        //  validate delivery mehtod
+        if (deliveryMethod.value === "none") {
+            errors.push("Please select a valid delivery method.");
+        };
+    
+        //  validate delivery mehtod
+        if (orderNotes.value === "") {
+            errors.push("Please put some order notes for this order.");
+        };
+
+        if(overallTotalPrice === 0){
+            errors.push("You have no orders right now.");
+        }
 
         //  display error msg
         if (errors.length > 0) {
