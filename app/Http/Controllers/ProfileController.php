@@ -22,7 +22,7 @@ class ProfileController extends Controller
             // Redirect to login if the user doesn't exist in the database
             return redirect('/register')->with('error', 'User not found.');
         }
-        return view('customer.profile', ['user' => $user]);
+        return view('customer.customer-dashboard', ['user' => $user]);
     }
 
 
