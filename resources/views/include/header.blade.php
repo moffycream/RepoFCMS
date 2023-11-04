@@ -56,7 +56,10 @@
             </div>
             @endif
             <div class="login">
-                <i class="fas fa-user-circle" onclick="toggleHeaderLogin()"></i></i>
+                <div class="container-login-profile" onclick="toggleHeaderLogin()">
+                    <!-- Get user  -->
+                    <img src="{{ $userProfile }}" alt="profile">
+                </div>
                 <div class="container-header-login" id="container-header-login">
                     @if (Session::get('accountType') == "Customer" || Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin" || Session::get('accountType') == "OperationTeam" )
                     <div class="row-header-login">
