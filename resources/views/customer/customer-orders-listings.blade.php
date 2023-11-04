@@ -50,14 +50,14 @@
                 </div>
 
                 <div>
-                        <p class="customer-title">Order Notes</p>
-                        <p class="customer-notes"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
-                    </div>
+                    <p class="customer-title">Order Notes</p>
+                    <p class="customer-notes"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
+                </div>
                 <div>
 
-                        <p class="customer-title">Order Data And Time</p>
-                        <p class="customer-time"><span><i class="fas fa-clock"></i>{{$selectedOrder->getformattedDateTime()}}</span></p>
-                    </div>
+                    <p class="customer-title">Order Data And Time</p>
+                    <p class="customer-time"><span><i class="fas fa-clock"></i>{{$selectedOrder->getformattedDateTime()}}</span></p>
+                </div>
                 <div>
                     <p class="customer-title">Delivery method</p>
                     <p class="customer-delivery"><span><i class="fas fa-truck"></i>{{$selectedOrder->delivery}}</span></p>
@@ -83,6 +83,14 @@
                 {
                 $classStatus ="preparing";
                 }
+                else if($selectedOrder->status=="Delivery on the way")
+                {
+                $classStatus = "deliveryontheway";
+                }
+                else if($$selectedOrder->status=="Ready for pickup")
+                {
+                $classStatus = "readyforpickup";
+                }
                 @endphp
                 <p class="customer-title">Order Status</p>
                 <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$selectedOrder->status}}</span></p>
@@ -91,15 +99,22 @@
             </div>
 
             <div class="row-actions">
+
+                @if(($selectedOrder->status === 'Ready for pick up')||($selectedOrder->status=== 'Delivery on the way'))
+                <form method="post" action="{{ route('customer-complete-order', ['orderID' => $selectedOrder->orderID]) }}">
+                    @csrf
+                    <button type="submit" class="customer-container-complete-button">Complete the order</button>
+                </form>
                 <form method="post" action="{{ route('customer-cancel-order', ['orderID' => $selectedOrder->orderID]) }}">
                     @csrf
                     <!-- the data status is to store the status of the order then used in js validation-->
                     <!--the ? is used to detect the status is cancel or preparing, if yes then it will called customer container disabled button class, else it will call the customer container cancel button class-->
+                    @else
                     <button type="submit" data-status="{{ $selectedOrder->status }}" class="customer-container-cancel-button {{ $selectedOrder->status === 'Preparing' 
-                            || $selectedOrder->status === 'Order Cancelled. The refund will be done within 5-7 working days.'? 'customer-container-disabled-button' : '' }}">Cancel Order</button>
+                                || $selectedOrder->status === 'Order Cancelled. The refund will be done within 5-7 working days.'? 'customer-container-disabled-button' : '' }}">Cancel Order</button>
+                    @endif
                 </form>
             </div>
-
         </div>
     </div>
 </div>

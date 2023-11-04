@@ -22,6 +22,7 @@ use App\Http\Controllers\OrderTrackingController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\OrderHistoryController;
 
 
 // use App\Http\Controllers\test;  <-- test
@@ -45,10 +46,18 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::put('/mark-notification-as-read/{notificationID}', [NotificationController::class, 'markAsRead'])->name('mark-notification-as-read');
 
 // Customer profile
+Route::get('/customer-order-history', [OrderHistoryController::class, 'index'])->name('customer-order-history');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
-Route::post('/customer-order-listings/{orderID}', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
+
+Route::post('/customer-order-listings/{orderID}/complete', [OrderListingController::class, 'completeOrder'])->name('customer-complete-order');
+
+Route::post('/customer-order-listings/{orderID}/cancel', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
+
+Route::post('/customer-order-history/{orderID}/delete', [OrderHistoryController::class, 'deleteOrderHistory'])->name('customer-delete-order-history');
+
 Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
+
 
 // Login and register
 Route::get('/login', [UserAccountController::class, 'setDefaultAdmin']);

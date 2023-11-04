@@ -53,8 +53,6 @@ class PurchaseController extends Controller
                 $order->save();
             }
         }
-
         return view('payment', ['totalPrice' => $totalPrice,'notifications' => $notificationController->getNotification()]);
-
     }
 }
