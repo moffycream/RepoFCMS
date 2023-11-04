@@ -22,6 +22,7 @@ use App\Http\Controllers\OrderTrackingController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\MailController;
 
 
 // use App\Http\Controllers\test;  <-- test
@@ -54,6 +55,8 @@ Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profi
 Route::get('/login', [UserAccountController::class, 'setDefaultAdmin']);
 Route::get('/login', [UserAccountController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index'])->name('user.login');
+Route::get('/two-factor-authentication',[MailController::class, 'index']);
+Route::post('/two-factor-authentication', [LoginController::class, 'verify2FA'])->name('user.verify2FA');
 Route::get('/logout', [LoginController::class, 'endSession']);
 Route::get('/forgot-password', [LoginController::class, 'forgotPassword']);
 Route::post('/forgot-password', [LoginController::class, 'resetPassword'])->name('user.resetpassword');

@@ -117,8 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             addMenuFormRequiredIngredientID.forEach(function (requiredIngredientID) {
                 const row = requiredIngredientID.closest('tr');
-                for(const ingredientID in requiredEachIngredients) {
-                    if(requiredIngredientID.value ==  ingredientID){
+                for (const ingredientID in requiredEachIngredients) {
+                    if (requiredIngredientID.value == ingredientID) {
                         const ingredientAmount = row.querySelector(".add-menu-required-ingredient");
                         ingredientAmount.innerHTML = requiredEachIngredients[ingredientID];
                     }
@@ -759,21 +759,21 @@ document.addEventListener('DOMContentLoaded', function () {
             const profileName = row.querySelectorAll('.profile-attribute');
             const profileAttribute = row.querySelectorAll('.profile-Attribute');
             const saveButton = row.querySelector('.save-button');
-        const cancelButton = row.querySelector('.cancel-button');
-        cancelButton.style.display = 'block';
+            const cancelButton = row.querySelector('.cancel-button');
+            cancelButton.style.display = 'block';
             profileName.forEach(element => {
                 element.style.display = 'none';
             });
 
-        profileAttribute.forEach(element => {
-            element.style.display = 'block';
-        });
+            profileAttribute.forEach(element => {
+                element.style.display = 'block';
+            });
 
-        button.style.display = 'none';
-        saveButton.style.display = 'block';
-        profileImage.style.display = 'block';
+            button.style.display = 'none';
+            saveButton.style.display = 'block';
+            profileImage.style.display = 'block';
+        });
     });
-});
 
     document.querySelectorAll('.profile-form').forEach(function (form) {
         form.addEventListener('submit', function () {
@@ -785,50 +785,51 @@ document.addEventListener('DOMContentLoaded', function () {
 // Gavin's JS
 document.addEventListener("DOMContentLoaded", function () {
     const slider = document.getElementById('rating');
-    const stars = document.querySelectorAll('.star');
-    const defaultRating = parseInt(slider.value);
+    if (slider) {
+        const stars = document.querySelectorAll('.star');
+        const defaultRating = parseInt(slider.value);
 
-    // Set the initial star colors based on the default rating
-    stars.forEach(function (star, index) {
-        if (index < defaultRating) {
-            star.style.color = 'gold';
-        } else {
-            star.style.color = ''; // Reset star color to the default (black)
+        // Set the initial star colors based on the default rating
+        stars.forEach(function (star, index) {
+            if (index < defaultRating) {
+                star.style.color = 'gold';
+            } else {
+                star.style.color = ''; // Reset star color to the default (black)
+            }
+        });
+        // Add an event listener to the stars to handle clicks
+        stars.forEach(function (star, index) {
+            star.addEventListener('click', function () {
+                const starValue = parseInt(star.getAttribute('data-star'));
+                slider.value = starValue; // Update the slider value
+                updateStarColors(starValue); // Update star colors
+            });
+        });
+
+        slider.addEventListener('input', function () {
+            const sliderValue = parseInt(slider.value);
+
+            // Loop through each star and update its color
+            stars.forEach(function (star, index) {
+                if (index < sliderValue) {
+                    star.style.color = 'gold';
+                } else {
+                    star.style.color = ''; // Reset star color to the default (black)
+                }
+                updateStarColors(sliderValue)
+            });
+        });
+
+        // when pressing the stars, the slider will change
+        function updateStarColors(selectedRating) {
+            stars.forEach(function (star, index) {
+                if (index < selectedRating) {
+                    star.style.color = 'gold';
+                } else {
+                    star.style.color = ''; // Reset star color to the default (black)
+                }
+            });
         }
-    });
-
-    // Add an event listener to the stars to handle clicks
-    stars.forEach(function (star, index) {
-        star.addEventListener('click', function () {
-            const starValue = parseInt(star.getAttribute('data-star'));
-            slider.value = starValue; // Update the slider value
-            updateStarColors(starValue); // Update star colors
-        });
-    });
-
-    slider.addEventListener('input', function () {
-        const sliderValue = parseInt(slider.value);
-
-        // Loop through each star and update its color
-        stars.forEach(function (star, index) {
-            if (index < sliderValue) {
-                star.style.color = 'gold';
-            } else {
-                star.style.color = ''; // Reset star color to the default (black)
-            }
-            updateStarColors(sliderValue)
-        });
-    });
-
-    // when pressing the stars, the slider will change
-    function updateStarColors(selectedRating) {
-        stars.forEach(function (star, index) {
-            if (index < selectedRating) {
-                star.style.color = 'gold';
-            } else {
-                star.style.color = ''; // Reset star color to the default (black)
-            }
-        });
     }
 });
 
@@ -838,21 +839,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const orderSelect = document.querySelector('.order-select');
 
     // Initial visibility based on the selected value
-    toggleOrderSelectVisibility();
 
-    filterSelect.addEventListener('change', toggleOrderSelectVisibility);
+    if (filterSelect) {
+        toggleOrderSelectVisibility();
+        filterSelect.addEventListener('change', toggleOrderSelectVisibility);
+    }
+
 
     function toggleOrderSelectVisibility() {
-        if (filterSelect.value === 'General' || filterSelect.value === 'Compliment' || filterSelect.value === 'Complaint' || filterSelect.value === 'Suggestion') {
-            orderSelect.style.display = 'none'; // Hide the Order select
-        } else {
-            orderSelect.style.display = 'block'; // Show the Order select
+        if (filterSelect && filterSelect.value) {
+            if (filterSelect.value === 'General' || filterSelect.value === 'Compliment' || filterSelect.value === 'Complaint' || filterSelect.value === 'Suggestion') {
+                orderSelect.style.display = 'none'; // Hide the Order select
+            } else {
+                orderSelect.style.display = 'block'; // Show the Order select
+            }
         }
     }
 });
 
 // Review page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Set the initial state of comments and the reply input
     const comments = document.querySelectorAll('.comment');
     comments.forEach(function (comment) {
@@ -885,7 +891,7 @@ function toggleReply(replyFormId) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const comments = document.querySelectorAll('.comment');
 
     comments.forEach(comment => {
