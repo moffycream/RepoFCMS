@@ -9,14 +9,13 @@
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('reviews')}}">Reviews</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li>
                 @elseif(Session::get('accountType') == "Customer")
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="{{url('display-food-menu')}}">Menu</a></li>
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('feedback')}}">Feedback</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li>
+                <li><a href="{{url('reviews')}}">Reviews</a></li>
                 @endif
             </ul>
         </nav>
@@ -24,18 +23,19 @@
             @if ((Session::get('accountType') == "Customer" || (Session::get('accountType') == "OperationTeam")))
             <div class="notification">
                 <i class="fas fa-bell" onclick="toggleNotification()"></i>
-                @if($notifications->count() > 0)
+                @if($notifications != null && $notifications->count() > 0)
                 <span class="indicator">{{$notifications->count()}}</span>
                 @endif
                 <div class="container-notification" id="container-notification">
                     <div class="arrow"></div>
                     <div class="col-notification">
-                        @if($notifications->count() == 0)
+                        @if($notifications == null)
                         <h2>No new notifications</h2>
                         @else
                         <h2>Notifications</h2>
                         @endif
                     </div>
+                    @if($notifications != null)
                     @foreach($notifications as $notification)
                     @if($notification->isRead == false)
                     <div class="row-notification">
@@ -51,6 +51,7 @@
                     </div>
                     @endif
                     @endforeach
+                    @endif
                 </div>
             </div>
             @endif

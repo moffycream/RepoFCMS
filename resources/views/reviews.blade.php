@@ -9,11 +9,13 @@ $replyID = 0;
 <!-- When url is reviews/review-form, show the review form -->
 <div class="container-reviews">
     <div class="panel">
-        @forelse($reviews as $review)
         <div class="row-first">
+            @if ($reviews->count() > 0)
             <h1>Reviews</h1>
             <a href="{{url('reviews/review-form')}}">Write a review</a>
+            @endif
         </div>
+        @forelse($reviews as $review)
         @php
         $username = $review->user->username;
         $time = $review->getTimeDifference();
@@ -21,7 +23,8 @@ $replyID = 0;
         $rating = $review->reviewRating;
         $title = $review->reviewTitle;
         $content = $review->reviewContent;
-        $replyID++
+        $replyID++;
+        $loggedIn = session()->has('username');
         @endphp
         <div class="row-user-review">
             <!-- A container for user profile -->
@@ -55,7 +58,11 @@ $replyID = 0;
                         @csrf
                         <input type="hidden" name="reviewID" value="{{$review->reviewID}}">
                         <input type="text" name="commentContent" placeholder="Write a comment" value="">
+                        @if ($loggedIn)
                         <button type="submit">Send</button>
+                        @else
+                        <a href="{{url('login')}}" class="login">Login</a>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -67,7 +74,7 @@ $replyID = 0;
             $content = $comment->commentContent;
 
             $nestingLevel = $comment->getNestingLevel();
-            $replyID++
+            $replyID++;
             @endphp
             <div class="row-container-comment comment" data-nesting-level="{{$nestingLevel}}">
                 <div class="comment-container">
@@ -95,7 +102,11 @@ $replyID = 0;
                                 <input type="hidden" name="reviewID" value="{{$comment->reviewID}}">
                                 <input type="hidden" name="replyToCommentID" value="{{$comment->commentID}}">
                                 <input type="text" name="commentContent" placeholder="Write a comment" value="">
-                                <button type="submit">Submit</button>
+                                @if ($loggedIn)
+                                <button type="submit">Send</button>
+                                @else
+                               <a href="{{url('login')}}" class="login">Login</a>
+                                @endif
                             </form>
                         </div>
                     </div>
