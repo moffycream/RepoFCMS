@@ -74,26 +74,27 @@ Route::get('/admin-register-success', [AdminController::class, 'adminRegisterSuc
 // Menu - client side
 Route::get('/menu', [MenuController::class, 'index']);
 
-// Menu - management side
+// Food - management side
 Route::get('/add-food', [FoodController::class, 'index']);
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
+Route::put('/add-food', [FoodController::class, 'editFood'])->name('food.edit');
 Route::get('/add-food/{id}', [FoodController::class, 'deleteFood'])->name('food.delete');
 Route::get('/add-food-form', [FoodController::class, 'addFoodForm']);
 
+// Food - edit food and menu
 
-
+// Menu - management site
 Route::get('/add-menu', [MenuController::class, 'index']);
 Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
 
-// Menu - edit food and menu
-Route::match(['get', 'post'],'/edit-food', [FoodController::class, 'editFood'])->name('food.editFood');
+
 
 // Inventory
 Route::get('/inventory-management', [InventoryController::class, 'index']);
-Route::post('/inventory-management', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
-Route::post('/inventory-management}', [InventoryController::class, 'editInventory'])->name('inventory.edit');
+Route::put('/inventory-management', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
+Route::post('/inventory-management', [InventoryController::class, 'editInventory'])->name('inventory.edit');
 Route::get('/inventory-management/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
 
 

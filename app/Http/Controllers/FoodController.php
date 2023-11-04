@@ -86,21 +86,26 @@ class FoodController extends Controller
         return redirect('/add-food');
     }
 
-    public function editFood(AdminController $adminController, Request $request)
+    // Edit Food
+    public function editFood(Request $request)
     {
-        // Checks whether is valid login or not
-        $this->adminController = $adminController;
-        $food = Food::all();
+        $food = Food::find($request->foodID);
 
-        // Redirect to another page with the food ID
-        if ($this->adminController->verifyAdmin()) {
-            return view('menu.edit-food', ['foodID' => $request->foodID], ['listItems' => $food]);
-        } else {
-            return view('login.access-denied');
+        if ($request->hasFile('image')) {
+            $fileName = time() . $request->file('image')->getClientOriginalName();
+            $path = $request->file('image')->storeAs('', $fileName, 'addFood');
+            $food->imagePath = 'food-images/' . $path;
         }
+
+        $food->name = $request->name;
+        $food->description = $request->description;
+        $food->price = $request->price;
+        $food->save();
+
+        return redirect('/add-food');
     }
 
-    //  Delete Food
+    // Delete Food
     public function deleteFood($foodID)
     {
         Food::find($foodID)->delete();

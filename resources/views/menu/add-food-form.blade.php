@@ -24,7 +24,7 @@
             <input type="text" id="food-price" name="price" maxlength="8" placeholder="Food price">
         </div>
         <div>
-            <table border="1">
+            <table>
                 <tr>
                     <th>Ingredient ID</th>
                     <th>Ingredient name</th>

@@ -297,7 +297,126 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownCheckbox.classList.add('visible');
         });
     }
+    
+    //inventory edit, save, cancel and delete button
+    var inventoryEditButton = this.querySelectorAll('.inventory-edit-button');
+    var inventoryCancelButton = this.querySelectorAll('.inventory-cancel-button');
 
+    if(inventoryEditButton && inventoryCancelButton){
+        document.querySelectorAll('.inventory-edit-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const inventoryValue = row.querySelectorAll('.inventory-value');
+                const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
+                const saveButton = row.querySelector('.inventory-save-button');
+                const cancelButton = row.querySelector('.inventory-cancel-button');
+                const deleteButton = row.querySelector('.inventory-delete-button');
+                const deleteButtonNo = row.querySelector('.inventory-delete-button-no');
+    
+                // Hide the item value and "Edit" button
+                inventoryValue.forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                inventoryEditValue.forEach(element => {
+                    element.style.display = 'inline';
+                });
+    
+                button.style.display = 'none';
+                saveButton.style.display = 'inline';
+                cancelButton.style.display = 'inline';
+                if (deleteButton) {
+                    deleteButton.style.display = 'none';
+                }
+                if (deleteButtonNo) {
+                    deleteButtonNo.style.display = 'none';
+                }
+            });
+        });
+    
+        document.querySelectorAll('.inventory-cancel-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const inventoryValue = row.querySelectorAll('.inventory-value');
+                const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
+                const saveButton = row.querySelector('.inventory-save-button');
+                const editButton = row.querySelector('.inventory-edit-button');
+                const deleteButton = row.querySelector('.inventory-delete-button');
+                const deleteButtonNo = row.querySelector('.inventory-delete-button-no');
+    
+                // Hide the item value and "Edit" button
+                inventoryValue.forEach(element => {
+                    element.style.display = 'inline';
+                });
+    
+                inventoryEditValue.forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                button.style.display = 'none';
+                saveButton.style.display = 'none';
+                editButton.style.display = 'inline';
+                if (deleteButton){
+                    deleteButton.style.display = 'inline';
+                }
+                if (deleteButtonNo){
+                    deleteButtonNo.style.display = 'inline';
+                }
+            });
+        });
+    }
+
+    //add food edit, save and cancel
+    var addFoodEditButton = this.querySelectorAll('.add-food-edit-button');
+    var addFoodCancelButton = this.querySelectorAll('.add-food-cancel-button');
+
+    if(addFoodEditButton && addFoodCancelButton){
+        document.querySelectorAll('.add-menu-edit-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('div');
+                const addMenuValue = row.querySelectorAll('.add-menu-value');
+                const addMenuEditValue = row.querySelectorAll('.add-menu-edit-value');
+                const saveButton = row.querySelector('.add-menu-save-button');
+                const cancelButton = row.querySelector('.add-menu-cancel-button');
+    
+                // Hide the item value and "Edit" button
+                addMenuValue.forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                addMenuEditValue.forEach(element => {
+                    element.style.display = 'block';
+                });
+    
+                button.style.display = 'none';
+                saveButton.style.display = 'block';
+                cancelButton.style.display = 'block';
+            });
+        });
+
+        document.querySelectorAll('.add-menu-cancel-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('div');
+                const addMenuValue = row.querySelectorAll('.add-menu-value');
+                const addMenuEditValue = row.querySelectorAll('.add-menu-edit-value');
+                const saveButton = row.querySelector('.add-menu-save-button');
+                const editButton = row.querySelector('.add-menu-edit-button');
+    
+                // Hide the item value and "Edit" button
+                addMenuValue.forEach(element => {
+                    element.style.display = 'block';
+                });
+    
+                addMenuEditValue.forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                button.style.display = 'none';
+                saveButton.style.display = 'none';
+                editButton.style.display = 'block';
+            });
+        });
+    }
 });
 
 // -------------------------- Guilbert Lam's JS--------------------------
