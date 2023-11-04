@@ -6,7 +6,7 @@
 
     <h1>Orders:</h1>
 
-    <form id="PaymentForm" method="post" action="{{ route('store-payment') }}"><!-- name at route -->
+    <form id="PaymentForm" method="post" action="{{ route('payment.store') }}"><!-- name at route -->
         @csrf
 
         @php
@@ -14,6 +14,8 @@
         @endphp
 
         <p>Total Price: RM {{ $overallTotalPrice }}</p>
+        {{-- Hidden input field to store the value of the overallTotalPrice --}}
+        <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
 
         <table id="payment_form_table">
 

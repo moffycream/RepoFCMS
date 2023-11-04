@@ -9,9 +9,9 @@ use Carbon\Carbon;
 class Order extends Model
 {
     // associated the table in the database
-    protected $table = 'orders'; 
+    protected $table = 'orders';
 
-    protected $primaryKey = 'orderID'; 
+    protected $primaryKey = 'orderID';
 
     protected $casts = [
         'created-at' => 'datetime:d F Y g:i A'
@@ -46,8 +46,17 @@ class Order extends Model
     }
 
     public function getformattedDateTime()
-{
-    return Carbon::parse($this->attributes['created_at'])->format('Y-m-d h:i A');
-}
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d h:i A');
+    }
 
+    public function getFormattedDateTimeComplete()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->format('Y-m-d h:i A');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'orderID');
+    }
 }

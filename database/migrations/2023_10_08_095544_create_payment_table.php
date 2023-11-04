@@ -22,14 +22,19 @@ return new class extends Migration
             $table->string('cvv');
             $table->string('cardholder_name');
             $table->text('billing_address');
-            $table->string('type_of_Ewallet');
-            $table->string('recipient_name'); // E-wallet 
+            $table->string('ewallet_type');//ewallet
+            $table->string('ewallet_username');
             $table->timestamp('dateOfPayment')->default(now());
             $table->timestamp('dateOfPurchase')->default(now());
             $table->timestamps();
+            
+            // Define foreign key constraints
+            $table->foreign('orderID')->references('orderID')->on('orders')->onDelete('cascade');
             $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
+            
         });
     }
+    
 
     /**
      * Reverse the migrations.

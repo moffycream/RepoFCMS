@@ -64,8 +64,6 @@
                 </div>
 
             </div>
-
-
             <div class="row-status">
                 @php
                 $classStatus="";
@@ -99,17 +97,16 @@
             </div>
 
             <div class="row-actions">
-
                 @if(($selectedOrder->status === 'Ready for pick up')||($selectedOrder->status=== 'Delivery on the way'))
                 <form method="post" action="{{ route('customer-complete-order', ['orderID' => $selectedOrder->orderID]) }}">
                     @csrf
                     <button type="submit" class="customer-container-complete-button">Complete the order</button>
                 </form>
+                @else
                 <form method="post" action="{{ route('customer-cancel-order', ['orderID' => $selectedOrder->orderID]) }}">
                     @csrf
                     <!-- the data status is to store the status of the order then used in js validation-->
                     <!--the ? is used to detect the status is cancel or preparing, if yes then it will called customer container disabled button class, else it will call the customer container cancel button class-->
-                    @else
                     <button type="submit" data-status="{{ $selectedOrder->status }}" class="customer-container-cancel-button {{ $selectedOrder->status === 'Preparing' 
                                 || $selectedOrder->status === 'Order Cancelled. The refund will be done within 5-7 working days.'? 'customer-container-disabled-button' : '' }}">Cancel Order</button>
                     @endif

@@ -22,6 +22,8 @@ use App\Http\Controllers\OrderTrackingController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\OrderHistoryController;
+use App\Http\Controllers\MailController;
 
 
 // use App\Http\Controllers\test;  <-- test
@@ -47,15 +49,17 @@ Route::put('/mark-notification-as-read/{notificationID}', [NotificationControlle
 // Customer profile
 Route::get('/customer-order-history', [OrderHistoryController::class, 'index'])->name('customer-order-history');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
+
+// Customer order listing
 Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
-
 Route::post('/customer-order-listings/{orderID}/complete', [OrderListingController::class, 'completeOrder'])->name('customer-complete-order');
-
 Route::post('/customer-order-listings/{orderID}/cancel', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
 
+// customer order history
+Route::post('/customer-order-history/{orderID}', [OrderHistoryController::class, 'viewOrderHistoryDetails'])->name('customer-order-history-details');
+Route::get('/customer-order-history', [OrderHistoryController::class, 'index'])->name('customer-order-history');
 Route::post('/customer-order-history/{orderID}/delete', [OrderHistoryController::class, 'deleteOrderHistory'])->name('customer-delete-order-history');
-
-Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
 
 
 // Login and register
@@ -121,11 +125,9 @@ Route::get('/op-view-order/cancel/{orderID}', [OrderController::class, 'cancelOr
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
 // Payment
-Route::get('/payment', [PaymentController::class, 'showPaymentPage'])->name('payment.show');
-Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('processPayment');
-Route::get('/payment-success', [PaymentController::class, 'success'])->name('payment-success');
-Route::post('/store-payment', [PaymentController::class, 'store'])->name('store-payment');
-Route::get('food-menu', [FoodMenuController::class, 'index'])->name('food-menu');
+Route::get('payment', [PaymentController::class, 'index'])->name('payment');
+Route::post('payment/store', [PaymentController::class, 'storePaymentData'])->name('payment.store');
+
 
 
 // Purchase
@@ -161,4 +163,3 @@ Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
 Route::post('/reviews', [ReviewController::class, 'submitComment'])->name('review.submit.comment');
 Route::get('/reviews/review-form', [ReviewController::class, 'reviewForm']);
 Route::post('/review/review-form/submit', [ReviewController::class, 'submitReviewForm'])->name('review.submit');
-

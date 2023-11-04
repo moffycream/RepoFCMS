@@ -59,7 +59,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="5">No orders</td>
+                <td colspan="5">No orders right! Go grab your first order</td>
             </tr>
             @endforelse
         </tbody>

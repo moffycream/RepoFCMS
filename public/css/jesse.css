@@ -65,6 +65,16 @@
     font-weight: bold;
 }
 
+.container-customer .container-customer-table span.status-completed,
+.container-customer-view-order span.status-completed
+{
+    border-radius: 20px;
+    background-color: #04e01337;
+    padding: 5px 15px;
+    color: #00ba0c;
+    font-weight: bold;
+}
+
 
 .container-customer-table th {
     background-color: #e8dcd4;

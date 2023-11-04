@@ -7,6 +7,7 @@ use App\Models\UserAccounts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\NotificationController;
+use Illuminate\Support\Facades\Log;
 
 
 class OrderHistoryController extends Controller
@@ -39,6 +40,38 @@ class OrderHistoryController extends Controller
         }
     }
 
+    public function viewOrderHistoryDetails($orderID)
+    {
+        $userAccountController = app(UserAccountController::class);
+        $selectedOrder = Order::find($orderID);
+
+        if ($selectedOrder) {
+            // Load payment information associated with the selected order
+            $paymentInfo = $selectedOrder->payment;
+
+            if ($userAccountController->verifyCustomer()) {
+                // Debug statement to check if paymentInfo exists
+                if ($paymentInfo) {
+                    // Payment information exists, you can add debug statements or log it
+                    // Example: Log paymentInfo to Laravel log
+                    Log::info('Payment Information: ' . json_encode($paymentInfo));
+                } else {
+                    // Payment information doesn't exist
+                    Log::info('No payment information found for Order #' . $selectedOrder->orderID);
+                }
+
+                return view('customer.customer-order-history-details', [
+                    'selectedOrder' => $selectedOrder,
+                    'paymentInfo' => $paymentInfo,
+                ]);
+            } else {
+                return view('login.access-denied');
+            }
+        }
+    }
+
+
+
     public function deleteOrderHistory($orderID)
     {
         // Find the order by order ID
@@ -47,8 +80,7 @@ class OrderHistoryController extends Controller
             // Delete the order
             $order->delete();
             return redirect()->route('customer-order-history', ['orderID' => $orderID])->with('success', 'Order deleted successfully');
-        } 
+        }
     }
-    
-    
+
 }

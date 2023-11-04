@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ValidationController extends Controller
 {
-    
+
     public function validatePostcode(Request $request)
     {
         if (is_numeric($request->postcode)) {
@@ -100,7 +100,20 @@ class ValidationController extends Controller
     {
         if (preg_match($pattern, $textInput)) {
             return true;
-        } else {
+        } else { 
+            return false; 
+        }
+    }
+    public function validateCaptcha(Request $request)
+    {
+        if ($request->validate([
+            'g-recaptcha-response' => 'required|captcha'
+        ]))
+        {
+            return true;
+        }
+        else
+        {
             return false;
         }
     }
