@@ -19,10 +19,13 @@
 
             <tbody>
                 <tr>
+                    @php
+                        $overallTotalPrice = 0; // Initialize order total price with 0
+                    @endphp
+
                     @foreach ($cart as $item)
                         
                         @php
-                            $overallTotalPrice = 0; // Initialize overall total price
                             $itemTotalPrice = $item['quantity'] * $item['price']; // Calculate total price per item
                             $overallTotalPrice += $itemTotalPrice; // Add item total to overall total
                         @endphp
@@ -36,6 +39,16 @@
                     @endforeach
                 </tr>
             </tbody>
+
+            <tr>
+                <td>
+                    Order Total Price
+                </td>
+                
+                <td>
+                    <strong>RM {{ $overallTotalPrice }}</strong>
+                </td>
+            <tr>
         </table>
 
         <table id="purchase_form_table">
