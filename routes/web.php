@@ -62,9 +62,6 @@ Route::get('/customer-order-history', [OrderHistoryController::class, 'index'])-
 Route::post('/customer-order-history/{orderID}/delete', [OrderHistoryController::class, 'deleteOrderHistory'])->name('customer-delete-order-history');
 
 
-
-
-
 // Login and register
 Route::get('/login', [UserAccountController::class, 'setDefaultAdmin']);
 Route::get('/login', [UserAccountController::class, 'index']);
