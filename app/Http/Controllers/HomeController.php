@@ -19,7 +19,7 @@ class HomeController extends Controller
 
 
         if ($userAccountController->verifyCustomer()) {
-            return view('welcome',['notifications' => $notificationController->getNotification()]);
+            return view('welcome');
         } else {
             return view('welcome');
         }

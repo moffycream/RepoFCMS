@@ -21,17 +21,21 @@ class NotificationController extends Controller
 
     public function getNotification()
     {
-        // Check if 'userID' exists in the session
         if (session()->has('username')) {
             $userAccount = UserAccounts::where('username', session('username'))->first();
             if ($userAccount != null) {
-                // Check if the record was found
                 $userNotifications = $userAccount->notifications;
-                $unreadNotificationCount = $userNotifications->where('isRead', false);
-                return $unreadNotificationCount;
+                $unreadNotifications = $userNotifications->where('isRead', false);
+                if ($unreadNotifications->count() > 0) {
+                    return $unreadNotifications;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
-        return collect(); // Return an empty collection if there are no notifications
+        return null;
     }
 
     public function createNotification($content, $userID)
