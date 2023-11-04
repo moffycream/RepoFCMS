@@ -195,22 +195,27 @@
 
 
 /* Inventory management */
-.add-menu-table,
+
+.add-food-table-value,
+.add-food-table-edit{
+    border-collapse: collapse;
+}
+
 .add-menu-table-title,
 .add-menu-table-col{
     border: #000000 2px solid;
     padding: 5px;
     font-size: 20px;
     border-collapse: collapse;
-
+    width: 20vw;
 }
 
-.add-menu-table input{
-    font-size: 20px;
+.add-food-table-edit input {
+    width: 100%;
 }
 
 /* Add menu dropdown checkbox*/
-.food-dropdown-check-list #food-dropdown-anchor {
+.food-dropdown-check-list .food-dropdown-anchor {
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -220,7 +225,7 @@
 }
 
 /* Create arrow */
-.food-dropdown-check-list #food-dropdown-anchor:after {
+.food-dropdown-check-list .food-dropdown-anchor:after {
     position: absolute;
     content: "";
     border-left: 3px solid black;

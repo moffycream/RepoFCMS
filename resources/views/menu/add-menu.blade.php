@@ -12,73 +12,128 @@
         <!-- Get each menu from database -->
         @foreach($listItems as $menu)
         <div class="col-add-menu">
-            <!-- Display menu image -->
-            <img src="{{$menu->imagePath}}" alt="Image" class="food-logo">
-            <div class="col-add-menu-info-row">
-                <!-- Display menu name -->
-                <div class="col-add-menu-info-col">
-                    <p class="col-add-menu-info-title">Name</p>
-                    <p>{{$menu->name}}</p>
+            <form class="add-food-edit-form" method="POST" action="{{ route('menu.edit')}}" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
+                <input type="hidden" name="menuID" value="{{$menu->menuID}}">
+
+                <!-- Display menu image -->
+                <img src="{{$menu->imagePath}}" alt="Image" class="food-logo">
+
+                <div>
+                    <input type="file" class="add-menu-edit-value" accept=".png, .jpeg, .jpg" id="food-image" name="image">
+                    <p class="add-menu-edit-button" href="#"><i class="far fa-edit"></i> Edit</p>
+                    <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
+                    <p class="add-menu-cancel-button" href="#"><i class="fas fa-ban"></i> Cancel</p>
                 </div>
-                <!-- Display each food in menu -->
-                <div class="col-add-menu-info-col">
-                    <p class="col-add-menu-info-title">Foods</p>
-                    <p>
+
+                <div class="col-add-menu-info-row">
+                    <!-- Display menu name -->
+                    <div class="col-add-menu-info-col">
+                        <section class="col-add-menu-info-col1">
+                            <p class="col-add-menu-info-title">Name</p>
+                            <p class="add-menu-value">{{$menu->name}}</p>
+                            <input type="text" class="add-menu-edit-value" name="name" value="{{$menu->name}}">
+                        </section>
+                        <section class="col-add-menu-info-col2">
+                            <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
+                            <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
+                            <p class="add-menu-cancel-button"><i class="fas fa-ban"></i> Cancel</p>
+                        </section>
+                    </div>
+                    <!-- Display each food in menu -->
+                    <div class="col-add-menu-info-col">
+                        <section class="col-add-menu-info-col1">
+                            <p class="col-add-menu-info-title">Foods</p>
+                            <p class="add-menu-value">
+                                @php
+                                $foodNameArray = [];
+                                @endphp
+
+                                @foreach($menu->foods as $food)
+                                @php
+                                array_push($foodNameArray, "{$food->name}");
+                                @endphp
+                                @endforeach
+
+                                @php
+                                $foodNameArray = join(', ', $foodNameArray);
+                                echo $foodNameArray;
+                                @endphp
+                            </p>
+                            <div  class="food-dropdown-list food-dropdown-check-list add-menu-edit-value">
+                                <span class="food-dropdown-anchor">Select Foods</span>
+                                <ul>
+                                    @foreach($foods as $food)
+                                    @php
+                                    $hasMatch = false;
+                                    @endphp
+                                    <li>
+                                        @foreach($menu->menu_foods as $menu_food)
+                                            @if($food->foodID == $menu_food->foodID)
+                                            <input type="checkbox" id="{{$food->foodID}}" class="add-menu-checkbox" name="foodID[]" value="{{$food->foodID}}" checked>
+                                                @php
+                                                $hasMatch = true;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+
+                                        @if(!$hasMatch)
+                                        <input type="checkbox" id="{{$food->foodID}}" class="add-menu-checkbox" name="foodID[]" value="{{$food->foodID}}">
+                                        @endif
+                                        <label for="{{$food->foodID}}">{{$food->name}}</label>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="col-add-menu-info-col2">
+                            <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
+                            <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
+                            <p class="add-menu-cancel-button"><i class="fas fa-ban"></i> Cancel</p>
+                        </section>
+
+                    </div>
+                    <!-- Display total required ingredient -->
+                    <div>
+                        <p class="col-add-menu-info-title">Required ingredients</p>
+
                         @php
-                        $foodNameArray = [];
+                        $inventoryCounts = [];
                         @endphp
 
                         @foreach($menu->foods as $food)
+                        @foreach($food->food_inventory as $inventory)
                         @php
-                        array_push($foodNameArray, "{$food->name}");
+                        $inventoryID = $inventory->inventoryID;
+                        $inventoryCount = $inventory->amount;
+
+                        if (array_key_exists($inventoryID, $inventoryCounts)) {
+                        $inventoryCounts[$inventoryID] += $inventoryCount;
+                        } else {
+                        $inventoryCounts[$inventoryID] = $inventoryCount;
+                        }
                         @endphp
                         @endforeach
+                        @endforeach
 
+                        @foreach($inventoryCounts as $inventoryID => $inventoryCount)
+                        @if ($inventoryCount > 0)
                         @php
-                        $foodNameArray = join(', ', $foodNameArray);
-                        echo $foodNameArray;
+                        $ingredient = $inventories->where('inventoryID', $inventoryID)->first();
                         @endphp
-                    </p>
+
+                        <p>Ingredient Name: {{ $ingredient->inventoryName }} Required number: {{ $inventoryCount }}</p>
+                        @endif
+                        @endforeach
+                    </div>
+                    <!-- Display menu price -->
+                    <div class="col-add-menu-info-col">
+                        <p class="col-add-menu-info-title">Price</p>
+                        <p>RM {{$menu->totalPrice}}</p>
+                    </div>
                 </div>
-                <!-- Display total required ingredient -->
-                <div>
-                    <p class="col-add-menu-info-title">Required ingredients</p>
-
-                    @php
-                    $inventoryCounts = [];
-                    @endphp
-
-                    @foreach($menu->foods as $food)
-                    @foreach($food->food_inventory as $inventory)
-                    @php
-                    $inventoryID = $inventory->inventoryID;
-                    $inventoryCount = $inventory->amount;
-
-                    if (array_key_exists($inventoryID, $inventoryCounts)) {
-                    $inventoryCounts[$inventoryID] += $inventoryCount;
-                    } else {
-                    $inventoryCounts[$inventoryID] = $inventoryCount;
-                    }
-                    @endphp
-                    @endforeach
-                    @endforeach
-
-                    @foreach($inventoryCounts as $inventoryID => $inventoryCount)
-                    @if ($inventoryCount > 0)
-                    @php
-                    $ingredient = $inventories->where('inventoryID', $inventoryID)->first();
-                    @endphp
-
-                    <p>Ingredient Name: {{ $ingredient->inventoryName }} Required number: {{ $inventoryCount }}</p>
-                    @endif
-                    @endforeach
-                </div>
-                <!-- Display menu price -->
-                <div class="col-add-menu-info-col">
-                    <p class="col-add-menu-info-title">Price</p>
-                    <p>RM {{$menu->totalPrice}}</p>
-                </div>
-            </div>
+            </form>
         </div>
 
         @php

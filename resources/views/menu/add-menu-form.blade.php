@@ -14,8 +14,8 @@
         <div>
             <input type="text" id="menu-name" name="name" maxlength="20" placeholder="Menu name"><br>
         </div>
-        <div id="food-dropdown-list" class="food-dropdown-check-list">
-            <span id="food-dropdown-anchor">Select Foods</span>
+        <div class="food-dropdown-list food-dropdown-check-list">
+            <span class="food-dropdown-anchor">Select Foods</span>
             <ul>
                 @foreach($listItems as $food)
                 @php
