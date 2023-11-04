@@ -49,12 +49,9 @@ class PurchaseController extends Controller
                 $order->status = 'Pending'; // Manually set thestatus to "pending"
                 $order->total = '5000'; // Manually set the status to"pending"
                 $order->menu_name = 'menu 1'; // Manually set thestatus to "pending"
-                $totalPrice = 100; // Replace with your actual calculation.
+
                 $order->save();
             }
         }
-
-        return view('payment', ['totalPrice' => $totalPrice,'notifications' => $notificationController->getNotification()]);
-
     }
 }
