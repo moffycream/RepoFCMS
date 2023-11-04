@@ -136,9 +136,13 @@ class ProfileController extends Controller
       {
           $profilePicture = "";
           if (Session::get('username')) {
-              $profilePicture = UserAccounts::where('username', Session::get('username'))->first()->imagePath;
+              $profilePicture = UserAccounts::where('username', Session::get('username'))->first();
                 if ($profilePicture == null) {
                     $profilePicture = "profile-images/profile.png";
+                }
+                else
+                {
+                    $profilePicture = $profilePicture->imagePath;
                 }
             }
           else {
