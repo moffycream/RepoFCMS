@@ -6,6 +6,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Models\Payment;
 use App\Models\Order;
 use App\Models\Notification;
+use App\Http\Controllers\NotificationController;
 use App\Models\UserAccounts;
 
 use Carbon\Carbon;
@@ -31,7 +32,7 @@ class PurchaseController extends Controller
     }
 
     public function ProcessPurchase(Request $request){
-
+    $notificationController = app(NotificationController::class);
         if (session()->has('username')) {
             $userID = UserAccounts::where('username', session('username'))->first()->userID;
             if ($userID != null)
@@ -43,6 +44,7 @@ class PurchaseController extends Controller
                 $order->name = $request->input('purchase_realname');
                 $order->address = $request->input('purchase_address');
                 $order->contact = $request->input('purchase_contact');
+                $order->delivery =$request->input('DeliveryMethod');
 
                 $order->status = 'Pending'; // Manually set thestatus to "pending"
                 $order->total = '5000'; // Manually set the status to"pending"
@@ -52,7 +54,7 @@ class PurchaseController extends Controller
             }
         }
 
-        return view('payment', ['totalPrice' => $totalPrice]);
+        return view('payment', ['totalPrice' => $totalPrice,'notifications' => $notificationController->getNotification()]);
 
     }
 }
