@@ -9,11 +9,13 @@ $replyID = 0;
 <!-- When url is reviews/review-form, show the review form -->
 <div class="container-reviews">
     <div class="panel">
-        @forelse($reviews as $review)
         <div class="row-first">
+            @if ($reviews->count() > 0)
             <h1>Reviews</h1>
             <a href="{{url('reviews/review-form')}}">Write a review</a>
+            @endif
         </div>
+        @forelse($reviews as $review)
         @php
         $username = $review->user->username;
         $time = $review->getTimeDifference();

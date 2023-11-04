@@ -14,7 +14,7 @@ class ReviewController extends Controller
         $notificationController = app(NotificationController::class);
         // Get all the reviews
         $reviews = Review::all();
-        return view('reviews', ['reviews' => $reviews,'notifications' => $notificationController->getNotification()]);
+        return view('reviews', ['reviews' => $reviews, 'notifications' => $notificationController->getNotification()]);
     }
 
     public function reviewForm()
@@ -56,11 +56,10 @@ class ReviewController extends Controller
                 $review->reviewRating = $validatedData['reviewRating'];
                 $review->reviewCategory = $validatedData['reviewCategory'];
                 $review->save();
+                // Return back to reviews page
+                return redirect('/reviews')->with('success', 'Review submitted successfully!');
             }
         }
-
-        // Return back to reviews page
-        return redirect('/reviews')->with('success','Review submitted successfully!');
     }
 
     // Make a comment
@@ -87,10 +86,9 @@ class ReviewController extends Controller
                 $comment->userID = $userAccount->userID;
                 $comment->commentContent = $validatedData['commentContent'];
                 $comment->save();
+                // Return back to reviews page
+                return redirect('/reviews')->with('success', 'Comment submitted successfully!');
             }
         }
-
-        // Return back to reviews page
-        return redirect('/reviews')->with('success','Comment submitted successfully!');
     }
 }
