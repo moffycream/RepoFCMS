@@ -21,7 +21,7 @@ class LoginController extends Controller
             $user = UserAccounts::where('username', $request->username)->first();
 
             // if user is either first time login or has is not authenticated
-            if ($user->firstTimeLogin == 1 || $user->isAuthenticated == 0 || $user->twoFactorAuth == 1) {
+            if($user->twoFactorAuth == 1 || $user->isAuthenticated == 0 || $user->firstTimeLogin == 1) {
                 $loginController->start2FA();
 
                 Session::put('username', $user->username); // Store 'username' in a session variable
@@ -153,6 +153,19 @@ class LoginController extends Controller
 
     public function endSession()
     {
+        // get the user's username from session
+        $username = Session::get('username');
+
+        // get the user's account from database
+        $user = UserAccounts::where('username', $username)->first();
+
+        // if user got toggle on this feature, set the user's authentication to false (so next time login, will prompt for 2FA)
+        if ($user->twoFactorAuth == 1)
+        {
+            $user->isAuthenticated = 0;
+            $user->save();
+        }
+
         Session::forget('username');
         Session::forget('accountType');
         session()->flush();
