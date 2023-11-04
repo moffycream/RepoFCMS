@@ -1,4 +1,3 @@
-
 // Define an array of container IDs
 var containerIds = ['container-notification', 'container-header-login'];
 
@@ -44,15 +43,20 @@ function toggleHeaderLogin() {
 
 document.addEventListener("DOMContentLoaded", function () {
     //Austin Chung's JS
-    //add menu form
+    //add menu form price
     var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
     var addMenuFormPrice = document.getElementById("add-menu-form-price");
     var paragraphElement = document.createElement("span");
     var addMenuFormPriceSubmission = document.getElementById("add-menu-form-price-submission");
     var hiddenInputsContainer = document.getElementById("hidden-inputs-container");
 
+    //add menu form required ingredient
+    var addMenuFormRequiredIngredient = document.querySelectorAll(".add-menu-required-ingredient");
+    var addMenuFormRequiredIngredientID = document.querySelectorAll(".add-menu-required-ingredient-ID");
+
     for (var i = 0; i < addMenuCheckboxes.length; i++) {
         addMenuCheckboxes[i].addEventListener("change", function () {
+            //update price
             var totalPrice = 0;
             var selectedFoodIDs = [];
 
@@ -77,6 +81,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 hiddenInput.name = "selectedFoodIDs[]";
                 hiddenInput.value = foodID;
                 hiddenInputsContainer.appendChild(hiddenInput);
+            });
+
+            //update required ingredient
+            var requiredIngredients = [];
+            var requiredEachIngredients = {};
+
+            //initialize requiredEachIngredients
+            addMenuFormRequiredIngredientID.forEach(function (requiredIngredientID) {
+                requiredEachIngredients[requiredIngredientID.value] = 0;
+            });
+
+            for (var j = 0; j < addMenuCheckboxes.length; j++) {
+                if (addMenuCheckboxes[j].checked) {
+                    //split string into array by using |
+                    requiredIngredients = addMenuCheckboxes[j].value.split("|");
+                    //remove first and last element
+                    //first element is price
+                    //last element is empty string
+                    requiredIngredients.shift();
+                    requiredIngredients.pop();
+
+                    requiredIngredients.forEach(function (ingredient) {
+                        //split string into array by using -
+                        var ingredientArray = ingredient.split("-");
+
+                        if (ingredientArray[0] in requiredEachIngredients) {
+                            requiredEachIngredients[ingredientArray[0]] += parseInt(ingredientArray[1]);
+                        }
+                    });
+                }
+            }
+
+            console.log(requiredEachIngredients);
+
+            addMenuFormRequiredIngredientID.forEach(function (requiredIngredientID) {
+                const row = requiredIngredientID.closest('tr');
+                for (const ingredientID in requiredEachIngredients) {
+                    if (requiredIngredientID.value == ingredientID) {
+                        const ingredientAmount = row.querySelector(".add-menu-required-ingredient");
+                        ingredientAmount.innerHTML = requiredEachIngredients[ingredientID];
+                    }
+                }
             });
         });
     }
@@ -251,7 +297,126 @@ document.addEventListener("DOMContentLoaded", function () {
                 dropdownCheckbox.classList.add('visible');
         });
     }
+    
+    //inventory edit, save, cancel and delete button
+    var inventoryEditButton = this.querySelectorAll('.inventory-edit-button');
+    var inventoryCancelButton = this.querySelectorAll('.inventory-cancel-button');
 
+    if(inventoryEditButton && inventoryCancelButton){
+        document.querySelectorAll('.inventory-edit-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const inventoryValue = row.querySelectorAll('.inventory-value');
+                const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
+                const saveButton = row.querySelector('.inventory-save-button');
+                const cancelButton = row.querySelector('.inventory-cancel-button');
+                const deleteButton = row.querySelector('.inventory-delete-button');
+                const deleteButtonNo = row.querySelector('.inventory-delete-button-no');
+    
+                // Hide the item value and "Edit" button
+                inventoryValue.forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                inventoryEditValue.forEach(element => {
+                    element.style.display = 'inline';
+                });
+    
+                button.style.display = 'none';
+                saveButton.style.display = 'inline';
+                cancelButton.style.display = 'inline';
+                if (deleteButton) {
+                    deleteButton.style.display = 'none';
+                }
+                if (deleteButtonNo) {
+                    deleteButtonNo.style.display = 'none';
+                }
+            });
+        });
+    
+        document.querySelectorAll('.inventory-cancel-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('tr');
+                const inventoryValue = row.querySelectorAll('.inventory-value');
+                const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
+                const saveButton = row.querySelector('.inventory-save-button');
+                const editButton = row.querySelector('.inventory-edit-button');
+                const deleteButton = row.querySelector('.inventory-delete-button');
+                const deleteButtonNo = row.querySelector('.inventory-delete-button-no');
+    
+                // Hide the item value and "Edit" button
+                inventoryValue.forEach(element => {
+                    element.style.display = 'inline';
+                });
+    
+                inventoryEditValue.forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                button.style.display = 'none';
+                saveButton.style.display = 'none';
+                editButton.style.display = 'inline';
+                if (deleteButton){
+                    deleteButton.style.display = 'inline';
+                }
+                if (deleteButtonNo){
+                    deleteButtonNo.style.display = 'inline';
+                }
+            });
+        });
+    }
+
+    //add food edit, save and cancel
+    var addFoodEditButton = this.querySelectorAll('.add-food-edit-button');
+    var addFoodCancelButton = this.querySelectorAll('.add-food-cancel-button');
+
+    if(addFoodEditButton && addFoodCancelButton){
+        document.querySelectorAll('.add-menu-edit-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('div');
+                const addMenuValue = row.querySelectorAll('.add-menu-value');
+                const addMenuEditValue = row.querySelectorAll('.add-menu-edit-value');
+                const saveButton = row.querySelector('.add-menu-save-button');
+                const cancelButton = row.querySelector('.add-menu-cancel-button');
+    
+                // Hide the item value and "Edit" button
+                addMenuValue.forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                addMenuEditValue.forEach(element => {
+                    element.style.display = 'block';
+                });
+    
+                button.style.display = 'none';
+                saveButton.style.display = 'block';
+                cancelButton.style.display = 'block';
+            });
+        });
+
+        document.querySelectorAll('.add-menu-cancel-button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                const row = this.closest('div');
+                const addMenuValue = row.querySelectorAll('.add-menu-value');
+                const addMenuEditValue = row.querySelectorAll('.add-menu-edit-value');
+                const saveButton = row.querySelector('.add-menu-save-button');
+                const editButton = row.querySelector('.add-menu-edit-button');
+    
+                // Hide the item value and "Edit" button
+                addMenuValue.forEach(element => {
+                    element.style.display = 'block';
+                });
+    
+                addMenuEditValue.forEach(element => {
+                    element.style.display = 'none';
+                });
+    
+                button.style.display = 'none';
+                saveButton.style.display = 'none';
+                editButton.style.display = 'block';
+            });
+        });
+    }
 });
 
 // -------------------------- Guilbert Lam's JS--------------------------
@@ -694,7 +859,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Add click event listeners
         button.addEventListener('click', function (event) {
-            if (status !== 'Preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.'||status==='Refund process in 5-7 days.') {
+            if (status !== 'Preparing' && status !== 'Order Cancelled. The refund will be done within 5-7 working days.' || status === 'Refund process in 5-7 days.') {
                 // Ask for confirmation
                 const confirmation = confirm("Are you sure you want to cancel this order?");
                 if (!confirmation) {
@@ -705,85 +870,85 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-document.querySelectorAll('.edit-button').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const row = this.closest('tr');
-        const profileImage = row.querySelector('.image');
-        const profileName = row.querySelectorAll('.profile-attribute');
-        const profileAttribute = row.querySelectorAll('.profile-Attribute');
-        const saveButton = row.querySelector('.save-button');
-        const cancelButton = row.querySelector('.cancel-button');
-        cancelButton.style.display = 'block';
-        profileName.forEach(element => {
-            element.style.display = 'none';
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.edit-button').forEach(function (button) {
+        button.addEventListener('click', function () {
+            const row = this.closest('tr');
+            const profileImage = row.querySelector('.image');
+            const profileName = row.querySelectorAll('.profile-attribute');
+            const profileAttribute = row.querySelectorAll('.profile-Attribute');
+            const saveButton = row.querySelector('.save-button');
+            const cancelButton = row.querySelector('.cancel-button');
+            cancelButton.style.display = 'block';
+            profileName.forEach(element => {
+                element.style.display = 'none';
+            });
 
-        profileAttribute.forEach(element => {
-            element.style.display = 'block';
-        });
-        
-        button.style.display = 'none';
-        saveButton.style.display = 'block';
-        
-        profileImage.style.display = 'block';
-    });
-});
+            profileAttribute.forEach(element => {
+                element.style.display = 'block';
+            });
 
-document.querySelectorAll('.profile-form').forEach(function(form) {
-    form.addEventListener('submit', function() {
-        const row = this.closest('tr');
+            button.style.display = 'none';
+            saveButton.style.display = 'block';
+            profileImage.style.display = 'block';
+        });
     });
-});
+
+    document.querySelectorAll('.profile-form').forEach(function (form) {
+        form.addEventListener('submit', function () {
+            const row = this.closest('tr');
+        });
+    });
 });
 
 // Gavin's JS
 document.addEventListener("DOMContentLoaded", function () {
     const slider = document.getElementById('rating');
-    const stars = document.querySelectorAll('.star');
-    const defaultRating = parseInt(slider.value);
+    if (slider) {
+        const stars = document.querySelectorAll('.star');
+        const defaultRating = parseInt(slider.value);
 
-    // Set the initial star colors based on the default rating
-    stars.forEach(function (star, index) {
-        if (index < defaultRating) {
-            star.style.color = 'gold';
-        } else {
-            star.style.color = ''; // Reset star color to the default (black)
+        // Set the initial star colors based on the default rating
+        stars.forEach(function (star, index) {
+            if (index < defaultRating) {
+                star.style.color = 'gold';
+            } else {
+                star.style.color = ''; // Reset star color to the default (black)
+            }
+        });
+        // Add an event listener to the stars to handle clicks
+        stars.forEach(function (star, index) {
+            star.addEventListener('click', function () {
+                const starValue = parseInt(star.getAttribute('data-star'));
+                slider.value = starValue; // Update the slider value
+                updateStarColors(starValue); // Update star colors
+            });
+        });
+
+        slider.addEventListener('input', function () {
+            const sliderValue = parseInt(slider.value);
+
+            // Loop through each star and update its color
+            stars.forEach(function (star, index) {
+                if (index < sliderValue) {
+                    star.style.color = 'gold';
+                } else {
+                    star.style.color = ''; // Reset star color to the default (black)
+                }
+                updateStarColors(sliderValue)
+            });
+        });
+
+        // when pressing the stars, the slider will change
+        function updateStarColors(selectedRating) {
+            stars.forEach(function (star, index) {
+                if (index < selectedRating) {
+                    star.style.color = 'gold';
+                } else {
+                    star.style.color = ''; // Reset star color to the default (black)
+                }
+            });
         }
-    });
-
-    // Add an event listener to the stars to handle clicks
-    stars.forEach(function (star, index) {
-        star.addEventListener('click', function () {
-            const starValue = parseInt(star.getAttribute('data-star'));
-            slider.value = starValue; // Update the slider value
-            updateStarColors(starValue); // Update star colors
-        });
-    });
-
-    slider.addEventListener('input', function () {
-        const sliderValue = parseInt(slider.value);
-
-        // Loop through each star and update its color
-        stars.forEach(function (star, index) {
-            if (index < sliderValue) {
-                star.style.color = 'gold';
-            } else {
-                star.style.color = ''; // Reset star color to the default (black)
-            }
-            updateStarColors(sliderValue)
-        });
-    });
-
-    // when pressing the stars, the slider will change
-    function updateStarColors(selectedRating) {
-        stars.forEach(function (star, index) {
-            if (index < selectedRating) {
-                star.style.color = 'gold';
-            } else {
-                star.style.color = ''; // Reset star color to the default (black)
-            }
-        });
     }
 });
 
@@ -793,15 +958,64 @@ document.addEventListener('DOMContentLoaded', function () {
     const orderSelect = document.querySelector('.order-select');
 
     // Initial visibility based on the selected value
-    toggleOrderSelectVisibility();
 
-    filterSelect.addEventListener('change', toggleOrderSelectVisibility);
+    if (filterSelect) {
+        toggleOrderSelectVisibility();
+        filterSelect.addEventListener('change', toggleOrderSelectVisibility);
+    }
+
 
     function toggleOrderSelectVisibility() {
-        if (filterSelect.value === 'General' || filterSelect.value === 'Compliment' || filterSelect.value === 'Complaint' || filterSelect.value === 'Suggestion') {
-            orderSelect.style.display = 'none'; // Hide the Order select
-        } else {
-            orderSelect.style.display = 'block'; // Show the Order select
+        if (filterSelect && filterSelect.value) {
+            if (filterSelect.value === 'General' || filterSelect.value === 'Compliment' || filterSelect.value === 'Complaint' || filterSelect.value === 'Suggestion') {
+                orderSelect.style.display = 'none'; // Hide the Order select
+            } else {
+                orderSelect.style.display = 'block'; // Show the Order select
+            }
         }
     }
+});
+
+// Review page
+document.addEventListener('DOMContentLoaded', function () {
+    // Set the initial state of comments and the reply input
+    const comments = document.querySelectorAll('.comment');
+    comments.forEach(function (comment) {
+        if (comment.style.display !== 'none' && window.getComputedStyle(comment).display !== 'none') {
+            comment.style.display = 'none';
+        }
+    });
+});
+
+// Toggle comment button to show and hide all the comments
+function toggleComments() {
+    const comments = document.querySelectorAll('.comment');
+    comments.forEach(function (comment) {
+        if (comment.style.display === 'none' || comment.style.display === '') {
+            comment.style.display = 'block';
+        } else {
+            comment.style.display = 'none';
+        }
+    });
+}
+
+// Toggle reply button to show input field for reply for a specific reply form
+function toggleReply(replyFormId) {
+    const replyForm = document.getElementById(replyFormId);
+    // Toggle the display of the reply form
+    if (replyForm.style.display === 'none' || replyForm.style.display === '') {
+        replyForm.style.display = 'block';
+    } else {
+        replyForm.style.display = 'none';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const comments = document.querySelectorAll('.comment');
+
+    comments.forEach(comment => {
+        const nestingLevel = parseInt(comment.getAttribute('data-nesting-level'));
+        const marginLeft = nestingLevel * 50; // 50px per nesting level
+        comment.style.marginLeft = `${marginLeft}px`;
+    });
 });

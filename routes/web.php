@@ -45,15 +45,25 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::put('/mark-notification-as-read/{notificationID}', [NotificationController::class, 'markAsRead'])->name('mark-notification-as-read');
 
 // Customer profile
+Route::get('/customer-order-history', [OrderHistoryController::class, 'index'])->name('customer-order-history');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
-Route::post('/customer-order-listings/{orderID}', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
+
+Route::post('/customer-order-listings/{orderID}/complete', [OrderListingController::class, 'completeOrder'])->name('customer-complete-order');
+
+Route::post('/customer-order-listings/{orderID}/cancel', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
+
+Route::post('/customer-order-history/{orderID}/delete', [OrderHistoryController::class, 'deleteOrderHistory'])->name('customer-delete-order-history');
+
 Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
+
 
 // Login and register
 Route::get('/login', [UserAccountController::class, 'setDefaultAdmin']);
 Route::get('/login', [UserAccountController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index'])->name('user.login');
+Route::get('/two-factor-authentication',[MailController::class, 'index']);
+Route::post('/two-factor-authentication', [LoginController::class, 'verify2FA'])->name('user.verify2FA');
 Route::get('/logout', [LoginController::class, 'endSession']);
 Route::get('/forgot-password', [LoginController::class, 'forgotPassword']);
 Route::post('/forgot-password', [LoginController::class, 'resetPassword'])->name('user.resetpassword');
@@ -71,22 +81,27 @@ Route::get('/admin-register-success', [AdminController::class, 'adminRegisterSuc
 // Menu - client side
 Route::get('/menu', [MenuController::class, 'index']);
 
-// Menu - management side
+// Food - management side
 Route::get('/add-food', [FoodController::class, 'index']);
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
+Route::put('/add-food', [FoodController::class, 'editFood'])->name('food.edit');
+Route::get('/add-food/{id}', [FoodController::class, 'deleteFood'])->name('food.delete');
 Route::get('/add-food-form', [FoodController::class, 'addFoodForm']);
+
+// Food - edit food and menu
+
+// Menu - management site
 Route::get('/add-menu', [MenuController::class, 'index']);
 Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
 
-// Menu - edit food and menu
-Route::match(['get', 'post'],'/edit-food', [FoodController::class, 'editFood'])->name('food.editFood');
+
 
 // Inventory
 Route::get('/inventory-management', [InventoryController::class, 'index']);
-Route::post('/inventory-management', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
-Route::post('/inventory-management}', [InventoryController::class, 'editInventory'])->name('inventory.edit');
+Route::put('/inventory-management', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
+Route::post('/inventory-management', [InventoryController::class, 'editInventory'])->name('inventory.edit');
 Route::get('/inventory-management/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
 
 
@@ -140,6 +155,7 @@ Route::get('/order-tracking', [OrderTrackingController::class, 'index']);
 
 // Reviews
 Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
+Route::post('/reviews', [ReviewController::class, 'submitComment'])->name('review.submit.comment');
 Route::get('/reviews/review-form', [ReviewController::class, 'reviewForm']);
 Route::post('/review/review-form/submit', [ReviewController::class, 'submitReviewForm'])->name('review.submit');
 

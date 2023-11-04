@@ -16,6 +16,7 @@
         <tbody>
             @forelse($orders as $order)
             <tr>
+                @if($order->status != "Completed")
                 <td>{{ $order->getformattedDateTime()}}</td>
                 @php
                 $classStatus="";
@@ -32,6 +33,18 @@
                 {
                     $classStatus = "preparing";
                 }
+                else if($order->status=="Ready for pickup")
+                {
+                    $classStatus = "readyforpickup";
+                }
+                else if($order->status=="Delivery on the way")
+                {
+                    $classStatus = "deliveryontheway";
+                }
+                else if($order->status=="Ready for pickup")
+                {
+                    $classStatus = "readyforpickup";
+                }
                 @endphp
                 <td><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$order->status}}</span></td>
                 <td>RM{{ $order->total }}</td>
@@ -42,7 +55,7 @@
                         <button type="submit">View</button>
                     </form>
                 </td>
-                
+                @endif
             </tr>
             @empty
             <tr>

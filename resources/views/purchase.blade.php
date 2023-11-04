@@ -19,10 +19,13 @@
 
             <tbody>
                 <tr>
+                    @php
+                        $overallTotalPrice = 0; // Initialize order total price with 0
+                    @endphp
+
                     @foreach ($cart as $item)
                         
                         @php
-                            $overallTotalPrice = 0; // Initialize overall total price
                             $itemTotalPrice = $item['quantity'] * $item['price']; // Calculate total price per item
                             $overallTotalPrice += $itemTotalPrice; // Add item total to overall total
                         @endphp
@@ -30,12 +33,27 @@
                     <tr>
                         <td>{{ $item['menu']->menuID }}</td>
                         <td>{{ $item['menu']->name }}</td>
+                        {{-- Hidden input field to store the value of the menu name --}}
+                        <input type="hidden" name="menu_names[]" value="{{ $item['menu']->name }}">
                         <td>{{ $item['quantity'] }}</td>
                         <td>RM {{ $itemTotalPrice }}</td>
                     </tr>
                     @endforeach
                 </tr>
             </tbody>
+
+            <tr>
+                <td>
+                    Order Total Price
+                </td>
+                
+                <td>
+                    <strong>RM {{ $overallTotalPrice }}</strong>
+                    {{-- Hidden input field to store the value of the overallTotalPrice --}}
+                    <input type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
+
+                </td>
+            <tr>
         </table>
 
         <table id="purchase_form_table">

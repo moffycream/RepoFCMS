@@ -17,7 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('inventoryID');
             $table->unsignedBigInteger('amount');
             $table->timestamps();
-            $table->foreign('foodID')->references('foodID')->on('foods');
+            $table->foreign('foodID')->references('foodID')->on('foods')->onDelete('cascade');
+            $table->foreign('inventoryID')->references('inventoryID')->on('inventory')->onDelete('cascade');
         });
     }
 

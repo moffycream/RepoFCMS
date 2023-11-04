@@ -40,6 +40,39 @@
                         @endphp
                     </p>
                 </div>
+                <!-- Display total required ingredient -->
+                <div>
+                    <p class="col-add-menu-info-title">Required ingredients</p>
+
+                    @php
+                    $inventoryCounts = [];
+                    @endphp
+
+                    @foreach($menu->foods as $food)
+                    @foreach($food->food_inventory as $inventory)
+                    @php
+                    $inventoryID = $inventory->inventoryID;
+                    $inventoryCount = $inventory->amount;
+
+                    if (array_key_exists($inventoryID, $inventoryCounts)) {
+                    $inventoryCounts[$inventoryID] += $inventoryCount;
+                    } else {
+                    $inventoryCounts[$inventoryID] = $inventoryCount;
+                    }
+                    @endphp
+                    @endforeach
+                    @endforeach
+
+                    @foreach($inventoryCounts as $inventoryID => $inventoryCount)
+                    @if ($inventoryCount > 0)
+                    @php
+                    $ingredient = $inventories->where('inventoryID', $inventoryID)->first();
+                    @endphp
+
+                    <p>Ingredient Name: {{ $ingredient->inventoryName }} Required number: {{ $inventoryCount }}</p>
+                    @endif
+                    @endforeach
+                </div>
                 <!-- Display menu price -->
                 <div class="col-add-menu-info-col">
                     <p class="col-add-menu-info-title">Price</p>

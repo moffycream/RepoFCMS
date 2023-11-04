@@ -24,6 +24,9 @@ return new class extends Migration
             $table->char('postcode');
             $table->char('accountType');
             $table->char('imagePath');
+            $table->boolean('twoFactorAuth');
+            $table->boolean('isAuthenticated');
+            $table->boolean('firstTimeLogin');
             $table->timestamps();
         });
     }
