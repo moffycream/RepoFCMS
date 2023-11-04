@@ -100,5 +100,4 @@ class ValidationController extends Controller
             return false;
         }
     }
-
 }

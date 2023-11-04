@@ -11,15 +11,21 @@ class ReviewController extends Controller
 {
     public function index()
     {
-        $notificationController = app(NotificationController::class);
-        // Get all the reviews
-        $reviews = Review::all();
-        return view('reviews', ['reviews' => $reviews, 'notifications' => $notificationController->getNotification()]);
+         // Get all the reviews
+         $reviews = Review::all();
+        return view('reviews', ['reviews' => $reviews]);
     }
+
 
     public function reviewForm()
     {
-        return view('review-form');
+        if (session()->has('username')) {
+            return view('review-form');
+        }
+        else{
+            // Return errors
+            return redirect('/login');
+        }
     }
 
     // Save the review to the database
@@ -60,6 +66,7 @@ class ReviewController extends Controller
                 return redirect('/reviews')->with('success', 'Review submitted successfully!');
             }
         }
+        return redirect('/reviews')->withErrors($validatedData);
     }
 
     // Make a comment

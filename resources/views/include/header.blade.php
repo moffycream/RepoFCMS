@@ -9,14 +9,13 @@
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('reviews')}}">Reviews</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li>
                 @elseif(Session::get('accountType') == "Customer")
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="{{url('display-food-menu')}}">Menu</a></li>
                 <li><a href="{{url('customer-orders')}}">Orders</a></li>
                 <li><a href="{{url('about')}}">About</a></li>
                 <li><a href="{{url('feedback')}}">Feedback</a></li>
-                <li><a href="{{url('profile')}}">Profile</a></li>
+                <li><a href="{{url('reviews')}}">Reviews</a></li>
                 @endif
             </ul>
         </nav>
