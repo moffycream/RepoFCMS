@@ -17,12 +17,13 @@ class FoodController extends Controller
     public function index(AdminController $adminController)
     {
         $food = Food::all();
+        $inventories = Inventory::all();
 
         // Checks whether is valid login or not
         $this->adminController = $adminController;
 
         if ($this->adminController->verifyAdmin()) {
-            return view('menu.add-food', ['listItems' => $food]);
+            return view('menu.add-food', ['listItems' => $food, 'inventories' => $inventories]);
         } else {
             return view('login.access-denied');
         }
@@ -101,6 +102,21 @@ class FoodController extends Controller
         $food->description = $request->description;
         $food->price = $request->price;
         $food->save();
+
+        $foodInventory = FoodInventory::where('foodID', '=', $request->foodID)->get();
+
+        $foodInventoryCount = count($foodInventory);
+        for($i = 0; $i < $foodInventoryCount; $i++) {
+            $foodInventory[$i]->amount = $request->amount[$i];
+            $foodInventory[$i]->save();
+        }
+
+        //Add new food inventory record
+        $foodInventoryController = new FoodInventoryController();
+
+        for ($i = $foodInventoryCount; $i < count($request->amount); $i++){
+            $foodInventoryController->registerNewFoodInventory($request, $food->foodID, $request->inventoryID[$i], $request->amount[$i]);
+        }
 
         return redirect('/add-food');
     }

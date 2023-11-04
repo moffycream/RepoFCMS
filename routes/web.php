@@ -74,11 +74,11 @@ Route::get('/menu', [MenuController::class, 'index']);
 // Food - management side
 Route::get('/add-food', [FoodController::class, 'index']);
 Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food.register');
-Route::put('/add-food', [FoodController::class, 'editFood'])->name('food.edit');
 Route::get('/add-food/{id}', [FoodController::class, 'deleteFood'])->name('food.delete');
 Route::get('/add-food-form', [FoodController::class, 'addFoodForm']);
 
-// Food - edit food and menu
+// Food - edit food
+Route::put('/add-food', [FoodController::class, 'editFood'])->name('food.edit');
 
 // Menu - management site
 Route::get('/add-menu', [MenuController::class, 'index']);
@@ -86,7 +86,8 @@ Route::get('/add-menu-form', [FoodController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 Route::get('/add-menu/{menuID}', [MenuController::class, 'viewMenuFood']);
 
-
+// Menu - edit menu
+Route::put('/add-menu', [MenuController::class, 'editMenu'])->name('menu.edit');
 
 // Inventory
 Route::get('/inventory-management', [InventoryController::class, 'index']);

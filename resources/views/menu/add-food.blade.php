@@ -13,12 +13,12 @@
         @foreach($listItems as $food)
         <!-- Block of display food image and details -->
         <div class="col-add-menu">
-            <!-- Display food image -->
             <form class="add-food-edit-form" method="POST" action="{{ route('food.edit')}}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <input type="hidden" name="foodID" value="{{$food->foodID}}">
-
+                
+                <!-- Display food image -->
                 <img src="{{$food->imagePath}}" alt="Image" class="food-logo">
 
                 <div>
@@ -75,7 +75,7 @@
                             $food_count = count($food->food_inventory);
                             @endphp
 
-                            <table class="add-menu-table">
+                            <table class="add-food-table-value add-menu-value">
                                 <tr class="add-menu-table-row">
                                     <th class="add-menu-table-title">Ingredient ID</th>
                                     <th class="add-menu-table-title">Ingredient name</th>
@@ -103,6 +103,44 @@
                                     </tr>
                                     @endif
                                     @endfor
+                            </table>
+
+                            <table class="add-food-table-edit add-menu-edit-value">
+                                <tr class="add-menu-table-row">
+                                    <th class="add-menu-table-title">Ingredient ID</th>
+                                    <th class="add-menu-table-title">Ingredient name</th>
+                                    <th class="add-menu-table-title">Ingredient amount</th>
+                                </tr>
+                                    @foreach ($inventories as $inventory)
+                                    <tr class="add-menu-table-row">
+                                        <!-- Inventory ID -->
+                                        <td class="add-menu-table-col">
+                                            <span>{{$inventory->inventoryID}}</span>
+                                        </td>
+                                        <!-- Inventory name -->
+                                        <td class="add-menu-table-col">
+                                            <span>{{$inventory->inventoryName}}</span>
+                                        </td>
+                                        <!-- Inventory amount -->
+                                        <td class="add-menu-table-col">
+                                            @php
+                                            $hasMatch = false;
+                                            @endphp
+                                            @foreach ($food->food_inventory as $food_inventory)
+                                                @if ($food_inventory->inventoryID == $inventory->inventoryID)
+                                                <input name="amount[]" type="text" value="{{$food_inventory->amount}}">
+                                                @php
+                                                $hasMatch = true;
+                                                @endphp
+                                                @endif
+                                            @endforeach
+                                            @if (!$hasMatch)
+                                                <input name="amount[]" type="text" value="0">
+                                                @endif
+                                            <input type="hidden" name="inventoryID[]" value="{{$inventory->inventoryID}}">
+                                        </td>
+                                    </tr>
+                                    @endforeach
                             </table>
                         </section>
                         <section class="col-add-menu-info-col2">

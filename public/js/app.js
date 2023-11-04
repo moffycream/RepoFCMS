@@ -117,8 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             addMenuFormRequiredIngredientID.forEach(function (requiredIngredientID) {
                 const row = requiredIngredientID.closest('tr');
-                for(const ingredientID in requiredEachIngredients) {
-                    if(requiredIngredientID.value ==  ingredientID){
+                for (const ingredientID in requiredEachIngredients) {
+                    if (requiredIngredientID.value == ingredientID) {
                         const ingredientAmount = row.querySelector(".add-menu-required-ingredient");
                         ingredientAmount.innerHTML = requiredEachIngredients[ingredientID];
                     }
@@ -286,25 +286,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Dropdown checkbox
 
-    var dropdownCheckbox = document.getElementById("food-dropdown-list");
-    var dropdownAnchor = document.getElementById("food-dropdown-anchor")
+    var dropdownCheckbox = document.querySelectorAll(".food-dropdown-list");
+    var dropdownAnchor = document.querySelectorAll(".food-dropdown-anchor")
 
     if (dropdownCheckbox) {
-        dropdownAnchor.addEventListener("click", function () {
-            if (dropdownCheckbox.classList.contains('visible'))
-                dropdownCheckbox.classList.remove('visible');
-            else
-                dropdownCheckbox.classList.add('visible');
+        dropdownAnchor.forEach(function (anchor) {
+            anchor.addEventListener("click", function () {
+                dropdownCheckbox.forEach(function (checkbox) {
+                    if (checkbox.classList.contains('visible'))
+                        checkbox.classList.remove('visible');
+                    else
+                        checkbox.classList.add('visible');
+                });
+            });
         });
     }
-    
+
     //inventory edit, save, cancel and delete button
     var inventoryEditButton = this.querySelectorAll('.inventory-edit-button');
     var inventoryCancelButton = this.querySelectorAll('.inventory-cancel-button');
 
-    if(inventoryEditButton && inventoryCancelButton){
-        document.querySelectorAll('.inventory-edit-button').forEach(function(button) {
-            button.addEventListener('click', function() {
+    if (inventoryEditButton && inventoryCancelButton) {
+        document.querySelectorAll('.inventory-edit-button').forEach(function (button) {
+            button.addEventListener('click', function () {
                 const row = this.closest('tr');
                 const inventoryValue = row.querySelectorAll('.inventory-value');
                 const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
@@ -312,16 +316,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 const cancelButton = row.querySelector('.inventory-cancel-button');
                 const deleteButton = row.querySelector('.inventory-delete-button');
                 const deleteButtonNo = row.querySelector('.inventory-delete-button-no');
-    
+
                 // Hide the item value and "Edit" button
                 inventoryValue.forEach(element => {
                     element.style.display = 'none';
                 });
-    
+
                 inventoryEditValue.forEach(element => {
                     element.style.display = 'inline';
                 });
-    
+
                 button.style.display = 'none';
                 saveButton.style.display = 'inline';
                 cancelButton.style.display = 'inline';
@@ -333,9 +337,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         });
-    
-        document.querySelectorAll('.inventory-cancel-button').forEach(function(button) {
-            button.addEventListener('click', function() {
+
+        document.querySelectorAll('.inventory-cancel-button').forEach(function (button) {
+            button.addEventListener('click', function () {
                 const row = this.closest('tr');
                 const inventoryValue = row.querySelectorAll('.inventory-value');
                 const inventoryEditValue = row.querySelectorAll('.inventory-edit-value');
@@ -343,23 +347,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 const editButton = row.querySelector('.inventory-edit-button');
                 const deleteButton = row.querySelector('.inventory-delete-button');
                 const deleteButtonNo = row.querySelector('.inventory-delete-button-no');
-    
+
                 // Hide the item value and "Edit" button
                 inventoryValue.forEach(element => {
                     element.style.display = 'inline';
                 });
-    
+
                 inventoryEditValue.forEach(element => {
                     element.style.display = 'none';
                 });
-    
+
                 button.style.display = 'none';
                 saveButton.style.display = 'none';
                 editButton.style.display = 'inline';
-                if (deleteButton){
+                if (deleteButton) {
                     deleteButton.style.display = 'inline';
                 }
-                if (deleteButtonNo){
+                if (deleteButtonNo) {
                     deleteButtonNo.style.display = 'inline';
                 }
             });
@@ -370,47 +374,47 @@ document.addEventListener("DOMContentLoaded", function () {
     var addFoodEditButton = this.querySelectorAll('.add-food-edit-button');
     var addFoodCancelButton = this.querySelectorAll('.add-food-cancel-button');
 
-    if(addFoodEditButton && addFoodCancelButton){
-        document.querySelectorAll('.add-menu-edit-button').forEach(function(button) {
-            button.addEventListener('click', function() {
+    if (addFoodEditButton && addFoodCancelButton) {
+        document.querySelectorAll('.add-menu-edit-button').forEach(function (button) {
+            button.addEventListener('click', function () {
                 const row = this.closest('div');
                 const addMenuValue = row.querySelectorAll('.add-menu-value');
                 const addMenuEditValue = row.querySelectorAll('.add-menu-edit-value');
                 const saveButton = row.querySelector('.add-menu-save-button');
                 const cancelButton = row.querySelector('.add-menu-cancel-button');
-    
+
                 // Hide the item value and "Edit" button
                 addMenuValue.forEach(element => {
                     element.style.display = 'none';
                 });
-    
+
                 addMenuEditValue.forEach(element => {
                     element.style.display = 'block';
                 });
-    
+
                 button.style.display = 'none';
                 saveButton.style.display = 'block';
                 cancelButton.style.display = 'block';
             });
         });
 
-        document.querySelectorAll('.add-menu-cancel-button').forEach(function(button) {
-            button.addEventListener('click', function() {
+        document.querySelectorAll('.add-menu-cancel-button').forEach(function (button) {
+            button.addEventListener('click', function () {
                 const row = this.closest('div');
                 const addMenuValue = row.querySelectorAll('.add-menu-value');
                 const addMenuEditValue = row.querySelectorAll('.add-menu-edit-value');
                 const saveButton = row.querySelector('.add-menu-save-button');
                 const editButton = row.querySelector('.add-menu-edit-button');
-    
+
                 // Hide the item value and "Edit" button
                 addMenuValue.forEach(element => {
                     element.style.display = 'block';
                 });
-    
+
                 addMenuEditValue.forEach(element => {
                     element.style.display = 'none';
                 });
-    
+
                 button.style.display = 'none';
                 saveButton.style.display = 'none';
                 editButton.style.display = 'block';
@@ -878,21 +882,21 @@ document.addEventListener('DOMContentLoaded', function () {
             const profileName = row.querySelectorAll('.profile-attribute');
             const profileAttribute = row.querySelectorAll('.profile-Attribute');
             const saveButton = row.querySelector('.save-button');
-        const cancelButton = row.querySelector('.cancel-button');
-        cancelButton.style.display = 'block';
+            const cancelButton = row.querySelector('.cancel-button');
+            cancelButton.style.display = 'block';
             profileName.forEach(element => {
                 element.style.display = 'none';
             });
 
-        profileAttribute.forEach(element => {
-            element.style.display = 'block';
-        });
+            profileAttribute.forEach(element => {
+                element.style.display = 'block';
+            });
 
-        button.style.display = 'none';
-        saveButton.style.display = 'block';
-        profileImage.style.display = 'block';
+            button.style.display = 'none';
+            saveButton.style.display = 'block';
+            profileImage.style.display = 'block';
+        });
     });
-});
 
     document.querySelectorAll('.profile-form').forEach(function (form) {
         form.addEventListener('submit', function () {
@@ -971,7 +975,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Review page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Set the initial state of comments and the reply input
     const comments = document.querySelectorAll('.comment');
     comments.forEach(function (comment) {
@@ -1004,7 +1008,7 @@ function toggleReply(replyFormId) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const comments = document.querySelectorAll('.comment');
 
     comments.forEach(comment => {
