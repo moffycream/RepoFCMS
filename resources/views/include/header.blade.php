@@ -23,7 +23,7 @@
             @if ((Session::get('accountType') == "Customer" || (Session::get('accountType') == "OperationTeam")))
             <div class="notification">
                 <i class="fas fa-bell" onclick="toggleNotification()"></i>
-                @if($notifications != null && $notifications->count() > 0)
+                @if($notifications != null)
                 <span class="indicator">{{$notifications->count()}}</span>
                 @endif
                 <div class="container-notification" id="container-notification">

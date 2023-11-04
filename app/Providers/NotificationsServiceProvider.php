@@ -25,7 +25,14 @@ class NotificationsServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             if (session()->has('username')) {
                 $notifications = app(NotificationController::class)->getNotification();
-                $view->with('notifications', $notifications);
+                if ($notifications != null)
+                {
+                    $view->with('notifications', $notifications);
+                }
+                else
+                {
+                    $view->with('notifications', null);
+                }
             }
         });
     }
