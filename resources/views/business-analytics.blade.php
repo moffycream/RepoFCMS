@@ -92,7 +92,7 @@
             {
                 label: 'Revenue',
                 data: <?php echo json_encode($chartData['data']); ?>, 
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Customize the chart colors
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', 
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             }
@@ -142,7 +142,7 @@
 
 <script>
     var data = @json($monthlyData);
-    var originalData = JSON.parse(JSON.stringify(data)); // Copy of the original data
+    var originalData = JSON.parse(JSON.stringify(data));
     var ctx = document.getElementById('monthlyChart').getContext('2d');
     var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -204,7 +204,7 @@
         }
     });
 
-    // Define a function to toggle the visibility of datasets
+    // Toggle the visibility of datasets
     function toggleDatasetVisibility(chart, datasetIndex) 
     {
         chart.getDatasetMeta(datasetIndex).hidden = !chart.getDatasetMeta(datasetIndex).hidden;
@@ -213,7 +213,7 @@
         document.getElementById('sortButton').disabled = document.getElementById('dataSelector').value === 'both';
     }
 
-    // Event listener for the data selector dropdown
+    // Data selector dropdown
     document.getElementById('dataSelector').addEventListener('change', function () 
     {
         var selectedValue = this.value;
@@ -244,7 +244,7 @@
     });
 
 
-    // Event listener for the sort button
+    // Sort button
     var ascending = true; // Initially sort in ascending order
 
     document.getElementById('sortButton').addEventListener('click', function () 
@@ -310,13 +310,9 @@
         };
     }
 
-
-
-
-    // Function to sort data in ascending or descending order
+    // Sort data in ascending or descending order
     function sortData(data, ascending) 
     {
-        // Clone the data to avoid modifying the original
         var sortedData = data.slice();
 
         sortedData.sort(function (a, b) 
@@ -334,7 +330,7 @@
     }
 
 
-    // Function to map data to months
+    // Map data to months
     function mapData(data, originalLabels, months) 
     {
         var mappedData = new Array(months.length).fill(0);
