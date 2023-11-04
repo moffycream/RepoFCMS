@@ -81,7 +81,7 @@ class ValidationController extends Controller
     }
 
 
-    public function validateLogin(Request $request)
+    public function validateLoginCredentials(Request $request)
     {
         session_start();
         $username = $request->username;
@@ -90,11 +90,6 @@ class ValidationController extends Controller
         $user = UserAccounts::where('username', $username)->first();
 
         if ($user && Hash::check($password, $user->password)) {
-            Session::put('username', $user->username); // Store the username in the session
-            Session::put('accountType', $user->accountType); // Store 'accountType' in a session variable
-
-            // reset login request (or else error message might maintain)
-            $request->replace([]);
             return true;
         } else {
             return false;

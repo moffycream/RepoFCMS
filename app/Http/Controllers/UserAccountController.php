@@ -29,13 +29,16 @@ class UserAccountController extends Controller
             $account->phone = "0191231234";
             $account->firstName = "FCMS";
             $account->lastName = "FCMS";
-            $account->email = "FCMS@gmail.com";
+            $account->email = "fcms20001@gmail.com";
             $account->streetAddress = "FCMS";
             $account->city = "FCMS";
             $account->postcode = "FCMS";
             $account->accountType = "DefaultAdmin";
             $account->imagePath = "profile-images/profile.png";
             $account->password = Hash::make($account->password);
+            $account->twoFactorAuth = 0;
+            $account->isAuthenticated = 0;
+            $account->firstTimeLogin = 0;
             $account->save();
         }
     }
@@ -134,6 +137,9 @@ class UserAccountController extends Controller
             $accounts->accountType = "Customer";
             // set profile image to default image
             $accounts->imagePath = "profile-images/profile.png";
+            $accounts->twoFactorAuth = 0;
+            $accounts->isAuthenticated = 0;
+            $accounts->firstTimeLogin = 1;
 
             // save the account to database if no error
             $accounts->save();
@@ -158,6 +164,7 @@ class UserAccountController extends Controller
 
         echo "Update Successful!";
     }
+
 
     // Delete function 
     public function delete()

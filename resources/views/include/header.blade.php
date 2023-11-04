@@ -20,7 +20,7 @@
             </ul>
         </nav>
         <div>
-            @if (Session::get('accountType') == "Customer" || (Session::get('accountType') == "OperationTeam"))
+            @if ((Session::get('accountType') == "Customer" || (Session::get('accountType') == "OperationTeam")))
             <div class="notification">
                 <i class="fas fa-bell" onclick="toggleNotification()"></i>
                 @if($notifications != null && $notifications->count() > 0)

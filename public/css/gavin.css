@@ -399,7 +399,7 @@
 
 .container-feedback-page h3 {
     font-size: 15px;
-    font-weight:500;
+    font-weight: 500;
     padding-top: 10px;
 }
 
@@ -553,4 +553,47 @@
 .container-admin-view-feedback table td {
     border: 1px solid var(--color-1);
     padding: 10px;
+}
+
+/* two factor authentication page */
+.container-two-factor-authentication {
+    background-color: var(--color-2);
+    height: 100vh;
+    text-align: center;
+    padding-top: 75px;
+}
+
+.container-two-factor-authentication p {
+    padding-bottom: 5px;
+}
+
+.two-factor-authentication-note {
+    opacity: 0.7;
+    font-size: 13px;
+}
+
+.two-factor-authentication-verify{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--color-1);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.two-factor-authentication-verify:hover {
+    background-color: #ffffff;
+    color: var(--color-1);
+    border-color: #ffffff;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+.container-two-factor-authentication input {
+    padding: 10px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
 }
