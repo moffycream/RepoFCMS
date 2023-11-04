@@ -16,12 +16,12 @@ class LoginController extends Controller
         $validator = app(ValidationController::class);
         $notificationController = app(NotificationController::class);
         // if validate passes, then redirect to webpage based on account type
-        if ($validator->validateLoginCredentials($request)) {
+        if ($validator->validateLoginCredentials($request) && $validator->validateCaptcha($request)) {
 
             $user = UserAccounts::where('username', $request->username)->first();
 
             // if user is either first time login or has is not authenticated
-            if($user->twoFactorAuth == 1 || $user->isAuthenticated == 0 || $user->firstTimeLogin == 1) {
+            if ($user->twoFactorAuth == 1 || $user->isAuthenticated == 0 || $user->firstTimeLogin == 1) {
                 $loginController->start2FA();
 
                 Session::put('username', $user->username); // Store 'username' in a session variable
@@ -43,8 +43,8 @@ class LoginController extends Controller
             }
         } else {
 
-            Session::flash('error', 'Failed login. Please check your username and password.');
-            return view('login.login')->with(['notifications' => $notificationController->getNotification()]);
+            Session::flash('error', 'Failed login. Please check your username and password, and verify you are human');
+            return view('login.login');
         }
     }
 
@@ -130,8 +130,8 @@ class LoginController extends Controller
                 Session::forget('2FAEndTime');
 
                 // login
-                Session::put('accountType',$user->accountType); // Store 'accountType' in a session variable
-                
+                Session::put('accountType', $user->accountType); // Store 'accountType' in a session variable
+
                 if (Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin") {
                     return redirect('/admin-dashboard');
                 } else if (Session::get('accountType') == "OperationTeam") {
@@ -160,8 +160,7 @@ class LoginController extends Controller
         $user = UserAccounts::where('username', $username)->first();
 
         // if user got toggle on this feature, set the user's authentication to false (so next time login, will prompt for 2FA)
-        if ($user->twoFactorAuth == 1)
-        {
+        if ($user->twoFactorAuth == 1) {
             $user->isAuthenticated = 0;
             $user->save();
         }

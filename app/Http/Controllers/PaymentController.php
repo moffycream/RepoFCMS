@@ -7,6 +7,7 @@ use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserAccountController;
 use App\Models\Notification;
+use App\Models\UserAccounts;
 
 // validations
 class PaymentController extends Controller
@@ -25,30 +26,91 @@ class PaymentController extends Controller
         }
     }
 
-    public function showPaymentPage()
-    {
-        // Retrieve the user's cart from the session
-        $cart = session('cart', []);
+    public function storePaymentData(Request $request){
+        if (session()->has('username')) {
+            $userID = UserAccounts::where('username', session('username'))->first()->userID;
+            // Check if its null 
+            if ($userID != null)
+            {   
+                // Retrieve the overallTotalPrice from the form input
+                $overallTotalPrice = $request->input('overallTotalPrice');
+                //  New order instance
+                $payment = new Payment();
 
-        // Check if $cart is null and initialize it as an empty array
-        if ($cart === null) {
-            $cart = [];
+                // Populate the Payment model with the form data\
+                $payment->userID = $userID;
+                $payment->total_price = $overallTotalPrice;
+                $payment->payment_method = $request->input('PaymentMethod');
+
+                // Set the 'bank' field based on the selected payment method
+                if ($request->input('PaymentMethod') === 'OnlineBanking') {
+                    $payment->bank = $request->input('selected_bank');
+                    $payment->bank_username = $request->input('bank_username');
+                    $payment->account_number = $request->input('account_number');
+                    $payment->password = $request->input('bank_password');
+                    $payment->amount_paid = $request->input('payment_amount');
+                    $payment->description = $request->input('payment_description');
+                    
+                    // set to none
+                    $payment->card_number = "none";
+                    $payment->cvv = "none";
+                    $payment->cardholder_name = "none";
+                    $payment->billing_address = "none";
+                    $payment->ewallet_type = "none";
+                    $payment->ewallet_username = "none"; 
+                    
+
+                } elseif ($request->input('PaymentMethod') === 'CreditCard') {
+                    $payment->card_number = $request->input('payment_cardNumber');
+                    $payment->cvv = $request->input('payment_cvv');
+                    $payment->cardholder_name = $request->input('payment_cardholder');
+                    $payment->billing_address = $request->input('payment_billingAddress');
+                    $payment->amount_paid = $request->input('payment_amount');
+                    $payment->description = $request->input('payment_description');
+
+                    // set to none
+                    $payment->bank = "none";
+                    $payment->bank_username = "none";
+                    $payment->account_number = "none";
+                    $payment->password = "none";
+                    $payment->ewallet_type = "none";
+                    $payment->ewallet_username = "none"; 
+
+                } elseif ($request->input('PaymentMethod') === 'DebitCard'){
+                    $payment->card_number = $request->input('payment_cardNumber');
+                    $payment->cvv = $request->input('payment_cvv');
+                    $payment->cardholder_name = $request->input('payment_cardholder');
+                    $payment->billing_address = $request->input('payment_billingAddress');
+                    $payment->amount_paid = $request->input('payment_amount');
+                    $payment->description = $request->input('payment_description');
+
+                    // set to none
+                    $payment->bank = "none";
+                    $payment->bank_username = "none";
+                    $payment->account_number = "none";
+                    $payment->password = "none";
+                    $payment->ewallet_type = "none";
+                    $payment->ewallet_username = "none"; 
+
+                } elseif($request->input('PaymentMethod') === 'Ewallet'){
+                    $payment->ewallet_type = $request->input('eWallet_type');
+                    $payment->ewallet_username = $request->input('ewallet_username');
+                    $payment->amount_paid = $request->input('payment_amount');
+                    $payment->description = $request->input('payment_description');
+
+                    //  set to none
+                    $payment->bank = "none";
+                    $payment->bank_username = "none";
+                    $payment->account_number = "none";
+                    $payment->password = "none";
+                    $payment->card_number = "none";
+                    $payment->cvv = "none";
+                    $payment->cardholder_name = "none";
+                    $payment->billing_address = "none";
+                }
+                // Save the dta to the database
+                $payment->save();
+            }
         }
-
-        // Retrieve notifications (if needed)
-        $notifications = Notification::all();
-
-        // Pass both the cart and notifications to the payment page
-        return view('payment', ['cart' => $cart, 'notifications' => $notifications]);
-
-    }
-
-    public function store(Request $request){
-        return redirect()->route('food-menu')->with('success', 'Payment successful');
-    }
-
-    public function success()
-    {
-        return view('payment-success');
     }
 }
