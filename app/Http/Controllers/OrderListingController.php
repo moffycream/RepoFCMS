@@ -47,9 +47,6 @@ class OrderListingController extends Controller
     {
         $userAccountController = app(UserAccountController::class);
         $selectedOrder = Order::find($orderID);
-
-        // Checks whether is customer session or not
-
         if ($userAccountController->verifyCustomer()) {
             return view('customer.customer-orders-listings', ['selectedOrder' => $selectedOrder]);
         } else {
@@ -61,7 +58,6 @@ class OrderListingController extends Controller
     {
         $notificationController = app(NotificationController::class);
         $notificationController->notifyOperationTeam('Order ' . $orderID . ' has been cancelled.');
-        dd('here');
         $order = Order::find($orderID);
         $selectedOrder = $order;
         $selectedOrder->status = 'Order Cancelled. The refund will be done within 5-7 working days.';
@@ -77,6 +73,7 @@ class OrderListingController extends Controller
         $selectedOrder = $order;
         $selectedOrder->status = 'Completed';
         $selectedOrder->save();
+        $selectedOrder->updated_at = now();
         return redirect('/customer-orders')->with(['orders' => $order]);
     }
 }

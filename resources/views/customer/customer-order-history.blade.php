@@ -20,17 +20,14 @@
                 @if($order->status == "Completed")
                 <td>{{ $order->orderID }}</td>
                 <td>{{ $order->getformattedDateTime()}}</td>
-                @php
-                $classStatus="";
-                if($order->status == "Completed")
-                {
-                $classStatus = "completed";
-                }
-                @endphp
-                <td><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$order->status}}</span></td>
+                <td><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($order->status))}}">{{$order->status}}</span></td>
                 <td>RM{{ $order->total }}</td>
                 <td>{{$order->delivery}}</td>
                 <td>
+                    <form method="post" action="{{ route('customer-order-history-details', ['orderID' => $order->orderID]) }}" class="view-details-button">
+                        @csrf
+                        <button type="submit">View</button>
+                    </form>
                     <form method="post" action="{{ route('customer-delete-order-history', ['orderID' => $order->orderID]) }}" class="view-details-button">
                         @csrf
                         <button type="submit">Delete</button>

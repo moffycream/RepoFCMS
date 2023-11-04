@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('payment_info', function (Blueprint $table) {
             $table->id('transactionID'); // Primary Key
-            $table->unsignedBigInteger('userID');
+            $table->unsignedBigInteger('orderID'); // Foreign Key for the orders table
+            $table->unsignedBigInteger('userID'); // Foreign Key for the user_accounts table
             $table->decimal('totalPrice', 10, 2);   
             $table->string('paymentMethod');
             $table->string('Username'); // Online banking
@@ -27,9 +28,14 @@ return new class extends Migration
             $table->timestamp('dateOfPayment')->default(now());
             $table->timestamp('dateOfPurchase')->default(now());
             $table->timestamps();
+            
+            // Define foreign key constraints
+            $table->foreign('orderID')->references('orderID')->on('orders')->onDelete('cascade');
             $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
+            
         });
     }
+    
 
     /**
      * Reverse the migrations.
