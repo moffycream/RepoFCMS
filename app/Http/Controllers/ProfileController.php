@@ -127,5 +127,21 @@ class ProfileController extends Controller
                     ->with('imageErrormsg', $imageErrormsg);
             }
         }
+
+      
     }
+
+      // Get user profile picture
+      public function getProfilePicture()
+      {
+          $profilePicture = "";
+          if (Session::get('username')) {
+              $profilePicture = UserAccounts::where('username', Session::get('username'))->first()->imagePath;
+            }
+          else {
+              $profilePicture = "profile-images/default-profile.png";
+            
+          }
+          return $profilePicture;
+      }
 }
