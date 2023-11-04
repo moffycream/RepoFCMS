@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\UserAccounts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ValidationController;
 
 class ProfileController extends Controller
 {
     public function index()
     {
-        $notificationController = app(NotificationController::class);
+        
         $username = Session::get('username');
         if (!$username) {
             // Redirect the user to the login page if not logged in
@@ -23,7 +22,7 @@ class ProfileController extends Controller
             // Redirect to login if the user doesn't exist in the database
             return redirect('/register')->with('error', 'User not found.');
         }
-        return view('customer.profile', ['user' => $user,  'notifications' => $notificationController->getNotification()]);
+        return view('customer.profile', ['user' => $user]);
     }
 
 
@@ -112,14 +111,14 @@ class ProfileController extends Controller
 
 
             if ($request->has('cancel')) {
-                return redirect()->route('profile')->with(['user' => $user, 'notifications' => $notificationController->getNotification()]);
+                return redirect()->route('profile')->with(['user' => $user]);
             }
 
             if ($usernameErrorMsg == "" && $phoneErrormsg == "" && $emailErrormsg == "" && $postcodeErrormsg == "" && $imageErrormsg == "") {
                 $user->save();
-                return view('customer.profile', ['user' => $user,  'notifications' => $notificationController->getNotification()]);
+                return view('customer.profile', ['user' => $user]);
             } else {
-                return view('customer.profile', ['user' => $user, 'notifications' => $notificationController->getNotification()])
+                return view('customer.profile', ['user' => $user])
                     ->with('usernameErrorMsg', $usernameErrorMsg)
                     ->with('phoneErrormsg', $phoneErrormsg)
                     ->with('emailErrormsg', $emailErrormsg)

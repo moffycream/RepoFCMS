@@ -84,7 +84,7 @@ class OrderController extends Controller
     {
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
-        $selectedOrder->status = "Cancelled";
+        $selectedOrder->status = "Order Cancelled. The refund will be done within 5-7 working days.";
         $selectedOrder->save();
 
         $notificationController = app(NotificationController::class);

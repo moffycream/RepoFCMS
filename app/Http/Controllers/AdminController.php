@@ -138,8 +138,8 @@ class AdminController extends Controller
         }
        
         $accounts->accountType = $request->accountType;
-     
-
+        $accounts->imagePath = "profile-images/profile.png";
+    
         if ($sameUsernameErrorMsg == "" && $passwordErrorMsg == "" && $confirmPasswordErrorMsg == "" && $emailErrorMsg == "" && $phoneErrorMsg == "" && $postcodeErrorMsg == "") {
             // save the account to database if no error
             $accounts->imagePath = "profile-images/profile.png";
