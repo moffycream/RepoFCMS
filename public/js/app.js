@@ -466,11 +466,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <br><br>
     
                 <td>
-                    <label for="username:">Username: </label>   
+                    <label for="bank_username:">Username: </label>   
                 </td>
     
                 <td>
-                    <input type="text" id="payment_username" name="payment_username" placeholder="Username" required>
+                    <input type="text" id="bank_username" name="bank_username" placeholder="Username" required>
                 </td>
                 
                 <br><br>
@@ -486,17 +486,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 <br><br>
     
                 <td>
-                    <label for="password:">Password: </label>   
+                    <label for="bank_password:">Password: </label>   
                 </td>
     
                 <td>
-                    <input type="password" id="payment_password" name="payment_password" placeholder="Password" required>
+                    <input type="password" id="bank_password" name="bank_password" placeholder="Password" required>
                 </td>
 
                 <br><br>
     
                 <td>
-                    <label for="amount">Amount: </label>
+                    <label for="payment_amount">Amount: </label>
                 </td>
     
                 <td>
@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <br><br>
     
                 <td>
-                    <label for="amount">Amount: </label>
+                    <label for="payment_amount">Amount: </label>
                 </td>
     
                 <td>
@@ -572,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <br><br>
     
                 <td>
-                    <label for="description">Description: </label>
+                    <label for="payment_description">Description: </label>
                 </td>
     
                 <td>
@@ -676,7 +676,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <br><br>
     
                 <td>
-                    <label for="amount">Amount: </label>
+                    <label for="payment_amount">Amount: </label>
                 </td>
     
                 <td>
@@ -741,8 +741,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (PaymentChoice.value === "OnlineBanking") {
             const selectedBank = document.getElementById('selected_bank');
-            const username = document.getElementById('payment_username').value;
-            const password = document.getElementById('payment_password').value;
+            const username = document.getElementById('bank_username').value;
+            const password = document.getElementById('bank_password').value;
             const accountNumber = document.getElementById('account_number').value;
             const amount = document.getElementById('payment_amount').value;
 
