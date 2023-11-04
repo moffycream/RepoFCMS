@@ -95,4 +95,13 @@ class ValidationController extends Controller
             return false;
         }
     }
+
+    public function validateText($textInput, $pattern)
+    {
+        if (preg_match($pattern, $textInput)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

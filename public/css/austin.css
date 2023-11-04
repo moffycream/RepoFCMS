@@ -193,6 +193,29 @@
     width: 30vw;
 }
 
+.add-food-ingredient-table,
+.add-food-ingredient-table th,
+.add-food-ingredient-table tr,
+.add-food-ingredient-table td{
+    border: #000000 2px solid;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.add-food-ingredient-table{
+    max-width: 20vw;
+}
+
+.add-food-ingredient-table input{
+    max-width: 8vw;
+}
+
+.add-menu-form-input-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Inventory management */
 

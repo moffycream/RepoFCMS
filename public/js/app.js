@@ -147,119 +147,50 @@ document.addEventListener("DOMContentLoaded", function () {
         return isMenuCheckEmpty;
     }
 
-    function validationMenuForm() {
+    // function validationMenuForm() {
 
-        // Reset bool
-        isMenuImageEmpty = true;
-        isMenuNameEmpty = true;
-        isMenuCheckEmpty = true;
-        menuAlert = "";
+    //     // Reset bool
+    //     isMenuImageEmpty = true;
+    //     isMenuNameEmpty = true;
+    //     isMenuCheckEmpty = true;
+    //     menuAlert = "";
 
-        if (!menuImage.files.length) {
-            isMenuImageEmpty = true;
-        } else {
-            isMenuImageEmpty = false;
-        }
-        if (menuName.value === "") {
-            isMenuNameEmpty = true;
-        } else {
-            isMenuNameEmpty = false;
-        }
+    //     if (!menuImage.files.length) {
+    //         isMenuImageEmpty = true;
+    //     } else {
+    //         isMenuImageEmpty = false;
+    //     }
+    //     if (menuName.value === "") {
+    //         isMenuNameEmpty = true;
+    //     } else {
+    //         isMenuNameEmpty = false;
+    //     }
 
-        isMenuCheckEmpty = validateCheckboxes(); // Call the checkbox validation function
+    //     isMenuCheckEmpty = validateCheckboxes(); // Call the checkbox validation function
 
-        if (isMenuImageEmpty) {
-            menuAlert += "Image cannot be empty";
-        }
-        if (isMenuNameEmpty) {
-            menuAlert += "\nName cannot be empty";
-        }
-        if (isMenuCheckEmpty) {
-            menuAlert += "\nAt least 1 food must be checked";
-        }
+    //     if (isMenuImageEmpty) {
+    //         menuAlert += "Image cannot be empty";
+    //     }
+    //     if (isMenuNameEmpty) {
+    //         menuAlert += "\nName cannot be empty";
+    //     }
+    //     if (isMenuCheckEmpty) {
+    //         menuAlert += "\nAt least 1 food must be checked";
+    //     }
 
-        if (isMenuImageEmpty || isMenuNameEmpty || isMenuCheckEmpty) {
-            alert(menuAlert);
-            return false;
-        } else {
-            return true;
-        }
-    }
+    //     if (isMenuImageEmpty || isMenuNameEmpty || isMenuCheckEmpty) {
+    //         alert(menuAlert);
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
 
-    if (addMenuForm) {
-        addMenuForm.onsubmit = validationMenuForm;
-    }
+    // if (addMenuForm) {
+    //     addMenuForm.onsubmit = validationMenuForm;
+    // }
 
-    //add food form
-    var addFoodForm = document.getElementById("add-food-form");
-    var foodImage = document.getElementById("food-image");
-    var foodName = document.getElementById("food-name");
-    var foodDescription = document.getElementById("food-description");
-    var foodPrice = document.getElementById("food-price");
-
-    function validateFoodForm() {
-        var isFoodImageEmpty = true;
-        var isFoodNameEmpty = true;
-        var isFoodDescriptionEmpty = true;
-        var isFoodPriceEmpty = true;
-        var isFoodPatternCorrect = false;
-        var pricePattern = /^[0-9. ]+$/;
-        var foodAlert = "";
-
-        if (!foodImage.files.length) {
-            isFoodImageEmpty = true;
-        } else {
-            isFoodImageEmpty = false;
-        }
-        if (foodName.value === "") {
-            isFoodNameEmpty = true;
-        } else {
-            isFoodNameEmpty = false;
-        }
-        if (foodDescription.value === "") {
-            isFoodDescriptionEmpty = true;
-        } else {
-            isFoodDescriptionEmpty = false;
-        }
-        if (foodPrice.value === "") {
-            isFoodPriceEmpty = true;
-        } else {
-            isFoodPriceEmpty = false;
-        }
-        if (pricePattern.test(foodPrice.value)) {
-            isFoodPatternCorrect = true;
-        } else {
-            isFoodPatternCorrect = false;
-        }
-
-        if (isFoodImageEmpty) {
-            foodAlert += "Image cannot be empty\n";
-        }
-        if (isFoodNameEmpty) {
-            foodAlert += "Name cannot be empty\n";
-        }
-        if (isFoodDescriptionEmpty) {
-            foodAlert += "Description cannot be empty\n";
-        }
-        if (isFoodPriceEmpty) {
-            foodAlert += "Price cannot be empty\n";
-        }
-        if (!isFoodPatternCorrect) {
-            foodAlert += "Price only accept number\n";
-        }
-
-        if (isFoodImageEmpty || isFoodNameEmpty || isFoodDescriptionEmpty || isFoodPriceEmpty) {
-            alert(foodAlert);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    if (addFoodForm) {
-        addFoodForm.onsubmit = validateFoodForm;
-    }
-
+    
 
     var adminExpandedDashboard = this.getElementById("admin-dashboard-container-expand");
     var adminMinimizedDashboard = this.getElementById("admin-dashboard-container-minimize");
