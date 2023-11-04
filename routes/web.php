@@ -45,15 +45,25 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::put('/mark-notification-as-read/{notificationID}', [NotificationController::class, 'markAsRead'])->name('mark-notification-as-read');
 
 // Customer profile
+Route::get('/customer-order-history', [OrderHistoryController::class, 'index'])->name('customer-order-history');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('/customer-orders-listings/{orderID}', [OrderListingController::class, 'viewOrderDetails'])->name('customer-orders-listings');
-Route::post('/customer-order-listings/{orderID}', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
+
+Route::post('/customer-order-listings/{orderID}/complete', [OrderListingController::class, 'completeOrder'])->name('customer-complete-order');
+
+Route::post('/customer-order-listings/{orderID}/cancel', [OrderListingController::class, 'cancelOrder'])->name('customer-cancel-order');
+
+Route::post('/customer-order-history/{orderID}/delete', [OrderHistoryController::class, 'deleteOrderHistory'])->name('customer-delete-order-history');
+
 Route::post('/profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
+
 
 // Login and register
 Route::get('/login', [UserAccountController::class, 'setDefaultAdmin']);
 Route::get('/login', [UserAccountController::class, 'index']);
 Route::post('/login', [LoginController::class, 'index'])->name('user.login');
+Route::get('/two-factor-authentication',[MailController::class, 'index']);
+Route::post('/two-factor-authentication', [LoginController::class, 'verify2FA'])->name('user.verify2FA');
 Route::get('/logout', [LoginController::class, 'endSession']);
 Route::get('/forgot-password', [LoginController::class, 'forgotPassword']);
 Route::post('/forgot-password', [LoginController::class, 'resetPassword'])->name('user.resetpassword');

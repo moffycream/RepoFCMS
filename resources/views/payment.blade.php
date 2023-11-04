@@ -8,21 +8,14 @@
 
     <form id="PaymentForm" method="post" action="{{ route('store-payment') }}"><!-- name at route -->
         @csrf
-        <table id="payment_form_table">
 
-            {{--@if(count($cart) > 0)
-                @foreach ($cart as $cartItem)
-                    <div class="cartItem">
-                        <h3>{{ $cartItem['menu']->name }}</h3>
-                        <img src="{{ $cartItem['menu']->imagePath }}" alt="{{ $cartItem['menu']->name }}" width="200">
-                        <p>{{ $cartItem['menu']->description }}</p>
-                        <p>Price: ${{ $cartItem['price'] }}</p>
-                        <p>Quantity: {{ $cartItem['quantity'] }}</p>
-                    </div>
-                @endforeach
-            @else
-                <p>Your cart is empty.</p>
-            @endif--}}
+        @php
+            $overallTotalPrice = session('overallTotalPrice', 0);
+        @endphp
+
+        <p>Total Price: RM {{ $overallTotalPrice }}</p>
+
+        <table id="payment_form_table">
 
             <tr>
                 <td><label for="PaymentMethod">Select Payment Method:</label></td>
@@ -32,6 +25,7 @@
             <tr>
                 <td>
                     <select id="PaymentMethod" name="PaymentMethod">
+                        <option value="none" disabled selected>Payment method</option>
                         <option value="OnlineBanking">Online Banking</option>
                         <option value="CreditCard">Credit Card</option>
                         <option value="DebitCard">Debit Card</option>
@@ -57,11 +51,18 @@
                     <div id="EwalletForm">
                     <!-- Content to be insert from JS -->
                     </div>
+
+                    <!-- for QR code display -->
+                    <div id="qr_code_container"></div>
+
+                    <script>
+                        const assetUrl = "{{ asset('images/payment-QR-code.png') }}";
+                    </script>
                 </td> 
             </tr>
             
             <tr>
-                <td><button type="submit">Comfirm Payment</button></td>
+                <td><button type="submit">Confirm Payment</button></td>
             </tr>
         </table>
     </form>

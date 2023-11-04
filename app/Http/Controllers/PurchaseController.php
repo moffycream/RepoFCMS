@@ -36,8 +36,14 @@ class PurchaseController extends Controller
         if (session()->has('username')) {
             $userID = UserAccounts::where('username', session('username'))->first()->userID;
             if ($userID != null)
-            {
-                 //  New order instance
+            {   
+                
+                // Retrieve the overallTotalPrice from the form input
+                $overallTotalPrice = $request->input('overallTotalPrice');
+                $menuNames = $request->input('menu_names'); // Retrieve an array of menu names
+                $concatenatedMenuNames = implode(', ', $menuNames); // link all the menu name added
+
+                //  New order instance
                 $order = new Order();
                 $order->userID = $userID;
                 $order->order_notes = $request->input('purchase_orderNotes');
@@ -47,14 +53,14 @@ class PurchaseController extends Controller
                 $order->delivery =$request->input('DeliveryMethod');
 
                 $order->status = 'Pending'; // Manually set thestatus to "pending"
-                $order->total = '5000'; // Manually set the status to"pending"
-                $order->menu_name = 'menu 1'; // Manually set thestatus to "pending"
-                $totalPrice = 100; // Replace with your actual calculation.
+                $order->total = $overallTotalPrice;
+                $order->menu_name = $concatenatedMenuNames; 
+
                 $order->save();
             }
         }
 
-        return view('payment', ['totalPrice' => $totalPrice,'notifications' => $notificationController->getNotification()]);
+        return view('payment', ['totalPrice' => $overallTotalPrice,'notifications' => $notificationController->getNotification()]);
 
     }
 }
