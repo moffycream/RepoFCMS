@@ -57,7 +57,11 @@
             @endif
             <div class="login">
                 <div class="container-login-profile" onclick="toggleHeaderLogin()">
+                    @if (isset($profilePicture))
                     <img src="{{ $profilePicture }}" alt="profile">
+                    @else
+                    <img src="{{ asset('profile-images/profile.png') }}" alt="profile">
+                    @endif
                 </div>
                 <div class="container-header-login" id="container-header-login">
                     @if (Session::get('accountType') == "Customer" || Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin" || Session::get('accountType') == "OperationTeam" )
