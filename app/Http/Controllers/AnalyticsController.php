@@ -40,6 +40,11 @@ class AnalyticsController extends Controller
         $salesIncrease = $this->calculateSalesIncrease($currentMonthSales, $lastMonthSales);
         $availableProducts = $this->calculateAvailableProducts($menus);
 
+        $currentMonthOrders = $this->calculateCurrentMonthOrders($orders);
+        $lastMonthOrders = $this->calculateLastMonthOrders($orders);
+        $orderIncrease = $this->calculateOrderIncrease($currentMonthOrders, $lastMonthOrders);
+
+
         // Checks whether is admin session or not
         $this->adminController = $adminController;
 
@@ -54,6 +59,9 @@ class AnalyticsController extends Controller
                 'currentMonthSales',
                 'lastMonthSales',
                 'salesIncrease',
+                'currentMonthOrders',
+                'lastMonthOrders',
+                'orderIncrease',
                 'availableProducts'
             ));
         } 
@@ -131,25 +139,16 @@ class AnalyticsController extends Controller
 
     private function calculatePurchaseFrequency($orders)
     {
-        $orderDates = $orders->pluck('date');
-        $dateDifferences = [];
+        $numberOfPurchases = $orders->count('orderID');
 
-        for ($i = 0; $i < count($orderDates) - 1; $i++) 
-        {
-            $date1 = Carbon::parse($orderDates[$i]);
-            $date2 = Carbon::parse($orderDates[$i + 1]);
-            $dateDifferences[] = $date2->diffInDays($date1);
-        }
+        $time = 365; //365 days in a year
 
-        if (count($dateDifferences) === 0) 
-        {
-            return 0;
-        }
-
-        $averageFrequency = array_sum($dateDifferences) / count($dateDifferences);
+        // Calculate the average frequency
+        $averageFrequency = $time / $numberOfPurchases;
 
         return round($averageFrequency, 2);
     }
+
 
     private function calculateCurrentMonthSales($orders)
     {
@@ -171,7 +170,8 @@ class AnalyticsController extends Controller
     {
         $lastMonth = Carbon::now()->subMonth()->month;
 
-        $lastMonthSales = $orders->filter(function ($order) use ($lastMonth) {
+        $lastMonthSales = $orders->filter(function ($order) use ($lastMonth) 
+        {
             $orderDate = Carbon::parse($order->date);
             return $orderDate->month === $lastMonth;
         })->sum('total');
@@ -181,7 +181,8 @@ class AnalyticsController extends Controller
 
     private function calculateSalesIncrease($currentMonthSales, $lastMonthSales)
     {
-        if ($lastMonthSales === 0) {
+        if ($lastMonthSales === 0) 
+        {
             return 0; 
         }
 
@@ -192,8 +193,51 @@ class AnalyticsController extends Controller
 
     private function calculateAvailableProducts($menus)
     {
-        $availableProducts = $menus->where('status', 'available')->count();
+        $availableProducts = $menus->count('menuID');
 
         return $availableProducts;
+    }
+
+    private function calculateOrderIncrease($currentMonthOrders, $lastMonthOrders)
+    {
+        if ($lastMonthOrders === 0) 
+        {
+            return 0;
+        }
+
+        $increase = (($currentMonthOrders - $lastMonthOrders) / $lastMonthOrders) * 100;
+
+        return round($increase, 2);
+    }
+
+    private function calculateCurrentMonthOrders($orders)
+    {
+        $currentMonth = Carbon::now()->month;
+        
+        $currentMonthOrders = 0;
+
+        foreach ($orders as $order) 
+        {
+            $orderDate = Carbon::parse($order->date);
+            if ($orderDate->month == $currentMonth) 
+            {
+                $currentMonthOrders == $order->count('orderID');
+            }
+        }
+
+        return $currentMonthOrders;
+    }
+
+    private function calculateLastMonthOrders($orders)
+    {
+        $lastMonth = Carbon::now()->subMonth()->month;
+
+        $lastMonthOrders = $orders->filter(function ($order) use ($lastMonth) 
+        {
+            $orderDate = Carbon::parse($order->date);
+            return $orderDate->month === $lastMonth;
+        })->count('orderID');
+
+        return $lastMonthOrders;
     }
 }
