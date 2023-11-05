@@ -161,8 +161,8 @@
     border: 5px solid #ccc;
     border-radius: 10px;
     text-align: center;
-    width: 15%;
-    margin: 10px 10px 10px 0;
+    width: 13%;
+    margin:10px 0 0 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 

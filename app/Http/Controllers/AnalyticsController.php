@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Menu;
@@ -12,14 +13,13 @@ class AnalyticsController extends Controller
 {
     // used for verification
     protected $adminController;
-
     protected $orders;
     protected $date;
+    
     public function index(AdminController $adminController)
     {
         // Retrieve all orders
         $orders = Order::all();
-        $sortedOrders = Order::orderBy('date')->get();
         $menus = Menu::all();
         $accounts = UserAccounts::all();
 
@@ -43,7 +43,6 @@ class AnalyticsController extends Controller
         $currentMonthOrders = $this->calculateCurrentMonthOrders($orders);
         $lastMonthOrders = $this->calculateLastMonthOrders($orders);
         $orderIncrease = $this->calculateOrderIncrease($currentMonthOrders, $lastMonthOrders);
-
 
         // Checks whether is admin session or not
         $this->adminController = $adminController;
@@ -105,7 +104,7 @@ class AnalyticsController extends Controller
     {
         $monthlyData = 
         [
-            'labels' => ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             'sales' => [],
             'orders' => [],
         ];
@@ -115,8 +114,7 @@ class AnalyticsController extends Controller
 
         foreach ($orders as $order) 
         {
-            $date = $order->date;
-            $month = date('F', strtotime($date));
+            $month = $order->created_at->format('F');
 
             if (!isset($monthlySales[$month])) 
             {
@@ -141,14 +139,13 @@ class AnalyticsController extends Controller
     {
         $numberOfPurchases = $orders->count('orderID');
 
-        $time = 365; //365 days in a year
+        $time = 365; // 365 days in a year
 
         // Calculate the average frequency
         $averageFrequency = $time / $numberOfPurchases;
 
         return round($averageFrequency, 2);
     }
-
 
     private function calculateCurrentMonthSales($orders)
     {
@@ -157,7 +154,7 @@ class AnalyticsController extends Controller
         $currentMonthSales = 0;
 
         foreach ($orders as $order) {
-            $orderDate = Carbon::parse($order->date);
+            $orderDate = Carbon::parse($order->created_at);
             if ($orderDate->month == $currentMonth) {
                 $currentMonthSales += $order->total;
             }
@@ -172,7 +169,7 @@ class AnalyticsController extends Controller
 
         $lastMonthSales = $orders->filter(function ($order) use ($lastMonth) 
         {
-            $orderDate = Carbon::parse($order->date);
+            $orderDate = Carbon::parse($order->created_at);
             return $orderDate->month === $lastMonth;
         })->sum('total');
 
@@ -218,10 +215,10 @@ class AnalyticsController extends Controller
 
         foreach ($orders as $order) 
         {
-            $orderDate = Carbon::parse($order->date);
+            $orderDate = Carbon::parse($order->created_at);
             if ($orderDate->month == $currentMonth) 
             {
-                $currentMonthOrders == $order->count('orderID');
+                $currentMonthOrders == $orders->count('orderID');
             }
         }
 
@@ -234,7 +231,7 @@ class AnalyticsController extends Controller
 
         $lastMonthOrders = $orders->filter(function ($order) use ($lastMonth) 
         {
-            $orderDate = Carbon::parse($order->date);
+            $orderDate = Carbon::parse($order->created_at);
             return $orderDate->month === $lastMonth;
         })->count('orderID');
 
