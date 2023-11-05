@@ -2,7 +2,7 @@
     <div>
         <a class="logo" href="{{url('/')}}"><img class src="{{ asset('images/logo.png') }}" alt="logo"><span class="logo-text">Food Edge</span></a>
         <nav>
-            <ul>  
+            <ul>
                 @if(Session::get('accountType') == "Guest")
                 <li><a href="{{url('/')}}">Home</a></li>
                 <li><a href="{{url('display-food-menu')}}">Menu</a></li>
@@ -20,6 +20,13 @@
             </ul>
         </nav>
         <div>
+            @if (Session::get('accountType') == "Customer")
+            <form class="search-form" method="POST" action="{{ route('search') }}">
+                @csrf
+                <button type="submit"><i class="fas fa-search"></i></button>
+                <input type="text" name="search" placeholder="Search menu">
+            </form>
+            @endif
             @if ((Session::get('accountType') == "Customer" || (Session::get('accountType') == "OperationTeam")))
             <div class="notification">
                 <i class="fas fa-bell" onclick="toggleNotification()"></i>

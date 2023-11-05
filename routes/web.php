@@ -24,6 +24,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\SearchController;
 
 
 // use App\Http\Controllers\test;  <-- test
@@ -109,11 +110,14 @@ Route::get('/add-menu/{id}', [MenuController::class, 'deleteMenu'])->name('menu.
 
 // Inventory
 Route::get('/inventory-management', [InventoryController::class, 'index']);
-Route::put('/inventory-management', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
-Route::post('/inventory-management', [InventoryController::class, 'editInventory'])->name('inventory.edit');
+Route::post('/inventory-management/register', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
+Route::post('/inventory-management/edit', [InventoryController::class, 'editInventory'])->name('inventory.edit');
 Route::get('/inventory-management/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
 
-
+// Search - customer side
+Route::get('/search-result', [SearchController::class, 'index']);
+Route::post('/search-result', [SearchController::class, 'search'])->name('search');
+Route::post('/search-result/filter', [SearchController::class, 'filter'])->name('search.filter');
 
 // Order - operation side
 Route::get('/op-orders', [OrderController::class, 'index']);

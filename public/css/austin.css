@@ -443,3 +443,72 @@
 .inventory-table a{
     text-decoration: none;
 }
+
+/*search*/
+.search-form{
+    border: solid 2px #000000;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.search-form button,
+.search-form input,
+.search-form input:focus{
+    font-size: 20px;
+    border:none;
+    outline: none;
+}
+
+.search-form button{
+    border-right: solid 2px #000000;
+    padding-right: 5px;
+}
+
+.search-form button{
+    background: none;
+}
+
+.search-header{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 25px 25px;
+
+}
+
+.search-container{
+    display: flex;
+}
+
+.search-result{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 25px 25px;
+    font-size: 20px;
+}
+
+.search-img{    
+    height: 150px;
+    width: 300px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.search-separate-line{
+    width: 100vw;
+    border: solid 0.5px rgba(0, 0, 0, 0.164);
+}
+
+.no-result{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 25px 25px;
+}
+
+.search-filter-form{
+    display: flex;
+    flex-direction: column;
+    min-width: 8vw;
+    border-right: solid 0.5px rgba(0, 0, 0, 0.164);
+    height: 100vh;
+    padding: 5vh 1vw 0;
+}
