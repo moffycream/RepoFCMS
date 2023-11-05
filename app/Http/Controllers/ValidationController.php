@@ -96,6 +96,14 @@ class ValidationController extends Controller
         }
     }
 
+    public function validateText($textInput, $pattern)
+    {
+        if (preg_match($pattern, $textInput)) {
+            return true;
+        } else { 
+            return false; 
+        }
+    }
     public function validateCaptcha(Request $request)
     {
         if ($request->validate([

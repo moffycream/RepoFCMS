@@ -61,7 +61,7 @@
                                 echo $foodNameArray;
                                 @endphp
                             </p>
-                            <div  class="food-dropdown-list food-dropdown-check-list add-menu-edit-value">
+                            <div class="food-dropdown-list food-dropdown-check-list add-menu-edit-value">
                                 <span class="food-dropdown-anchor">Select Foods</span>
                                 <ul>
                                     @foreach($foods as $food)
@@ -70,12 +70,12 @@
                                     @endphp
                                     <li>
                                         @foreach($menu->menu_foods as $menu_food)
-                                            @if($food->foodID == $menu_food->foodID)
-                                            <input type="checkbox" id="{{$food->foodID}}" class="add-menu-checkbox" name="foodID[]" value="{{$food->foodID}}" checked>
-                                                @php
-                                                $hasMatch = true;
-                                                @endphp
-                                            @endif
+                                        @if($food->foodID == $menu_food->foodID)
+                                        <input type="checkbox" id="{{$food->foodID}}" class="add-menu-checkbox" name="foodID[]" value="{{$food->foodID}}" checked>
+                                        @php
+                                        $hasMatch = true;
+                                        @endphp
+                                        @endif
                                         @endforeach
 
                                         @if(!$hasMatch)
@@ -132,6 +132,9 @@
                         <p class="col-add-menu-info-title">Price</p>
                         <p>RM {{$menu->totalPrice}}</p>
                     </div>
+                    @php
+                    echo "<a class='inventory-delete-button' href='" . route('menu.delete', ['id'=> $menu->menuID]) . "' onclick=\"return confirm('Are you sure you want to delete this record?')\"><i class='fas fa-trash-alt'></i> Delete</a>";
+                    @endphp
                 </div>
             </form>
         </div>

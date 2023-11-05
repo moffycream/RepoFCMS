@@ -7,14 +7,27 @@
         <div>
             <p class="add-menu-form-title">Add Menu Form</p>
         </div>
-        <div>
+        <div class="add-menu-form-input-div">
             <label for="menu-image">Image</label>
+            @if(isset($imageErrMsg))
+            <p>{!!$imageErrMsg!!}</p>
+            @endif
             <input type="file" accept=".png, .jpeg, .jpg" id="menu-image" name="image">
         </div>
-        <div>
-            <input type="text" id="menu-name" name="name" maxlength="20" placeholder="Menu name"><br>
+        <div class="add-menu-form-input-div">
+            @if(isset($nameErrMsg))
+            <p>{!!$nameErrMsg!!}</p>
+            @endif
+            @if(isset($name))
+            <input type="text" id="menu-name" name="name" placeholder="Menu name" value="{{$name}}">
+            @else
+            <input type="text" id="menu-name" name="name" placeholder="Menu name">
+            @endif
         </div>
         <div class="food-dropdown-list food-dropdown-check-list">
+            @if(isset($checkboxErrMsg))
+            <p>{!!$checkboxErrMsg!!}</p>
+            @endif
             <span class="food-dropdown-anchor">Select Foods</span>
             <ul>
                 @foreach($listItems as $food)
@@ -22,9 +35,9 @@
                 $value = '';
                 @endphp
                 @foreach($food->food_inventory as $food_inventory)
-                    @php
-                    $value .= $food_inventory->inventoryID . '-' . $food_inventory->amount . '|';
-                    @endphp
+                @php
+                $value .= $food_inventory->inventoryID . '-' . $food_inventory->amount . '|';
+                @endphp
                 @endforeach
                 <li>
                     <input type="checkbox" id="{{$food->foodID}}" class="add-menu-checkbox" name="{{$food->foodID}}" value="{{$food->price}}|{{$value}}">
@@ -42,7 +55,7 @@
         <div id="hidden-inputs-container"></div>
 
         <div>
-            <table>
+            <table class="add-food-ingredient-table">
                 <tr>
                     <th>Ingredient ID</th>
                     <th>Ingredient name</th>
@@ -50,12 +63,12 @@
                 </tr>
                 @foreach($inventory as $inventory)
                 <tr>
-                <td>
-                    {{$inventory->inventoryID}}
-                    <input type="hidden" class="add-menu-required-ingredient-ID" value="{{$inventory->inventoryID}}">
-                </td>
-                <td>{{$inventory->inventoryName}}</td>
-                <td><span class="add-menu-required-ingredient">0</span></td>
+                    <td>
+                        {{$inventory->inventoryID}}
+                        <input type="hidden" class="add-menu-required-ingredient-ID" value="{{$inventory->inventoryID}}">
+                    </td>
+                    <td>{{$inventory->inventoryName}}</td>
+                    <td><span class="add-menu-required-ingredient">0</span></td>
                 </tr>
                 @endforeach
             </table>

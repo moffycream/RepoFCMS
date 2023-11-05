@@ -148,6 +148,27 @@
                             <button class="add-menu-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
                             <p class="add-menu-cancel-button"><i class="fas fa-ban"></i> Cancel</p>
                         </section>
+                        @php
+                    $canDelete = true;
+                    @endphp
+
+                    @foreach($menuFoods as $menuFood)
+                    @if ($menuFood->foodID == $food->foodID) 
+                    @php
+                    $canDelete = false;
+                    @endphp
+                    @endif
+                    @endforeach
+
+                    @if($canDelete)
+                        @php
+                        echo "<a class='inventory-delete-button' href='" . route('food.delete', ['id' => $food->foodID]) . "' onclick=\"return confirm('Are you sure you want to delete this record?')\"><i class='fas fa-trash-alt'></i> Delete</a>";
+                        @endphp
+                    @else
+                        @php
+                        echo '<a class="inventory-delete-button-no"><i class="fas fa-trash-alt"></i> Delete</a>';
+                        @endphp
+                    @endif
                     </div>
                 </div>
             </form>

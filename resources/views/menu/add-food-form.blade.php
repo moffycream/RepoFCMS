@@ -8,23 +8,50 @@
     <form class="add-menu-form" id="add-food-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
         @csrf
         <div>
-                <p class="add-menu-form-title">Edit Food Form</p>
+            <p class="add-menu-form-title">Edit Food Form</p>
         </div>
-        <div>
+        <div class="add-menu-form-input-div">
             <label for="menu-image">Image</label>
+            @if(isset($imageErrMsg))
+            <p>{!!$imageErrMsg!!}</p>
+            @endif
             <input type="file" accept=".png, .jpeg, .jpg" id="food-image" name="image">
         </div>
-        <div>
-            <input type="text" id="food-name" name="name" maxlength="20" placeholder="Food name">
+        <div class="add-menu-form-input-div">
+            @if(isset($nameErrMsg))
+            <p>{!!$nameErrMsg!!}</p>
+            @endif
+            @if(isset($name))
+            <input type="text" id="food-name" name="name" placeholder="Food name" value="{{$name}}">
+            @else
+            <input type="text" id="food-name" name="name" placeholder="Food name">
+            @endif
         </div>
-        <div class="food-description-div">
-            <textarea id="food-description" name="description" maxlength="80" rows="3" placeholder="Food decription"></textarea>
+        <div class="add-menu-form-input-div">
+            @if(isset($descriptionErrMsg))
+            <p>{!!$descriptionErrMsg!!}</p>
+            @endif
+            @if(isset($description))
+            <textarea id="food-description" name="description" rows="3" placeholder="Food decription">{{$description}}</textarea>
+            @else
+            <textarea id="food-description" name="description" rows="3" placeholder="Food decription"></textarea>
+            @endif
         </div>
-        <div>
-            <input type="text" id="food-price" name="price" maxlength="8" placeholder="Food price">
+        <div class="add-menu-form-input-div">
+            @if(isset($priceErrMsg))
+            <p>{!!$priceErrMsg!!}</p>
+            @endif
+            @if(isset($price))
+            <input type="text" id="food-price" name="price" placeholder="Food price" value="{{$price}}">
+            @else
+            <input type="text" id="food-price" name="price" placeholder="Food price">
+            @endif
         </div>
-        <div>
-            <table>
+        <div class="add-menu-form-input-div">
+            @if(isset($amountErrMsg))
+            <p>{!!$amountErrMsg!!}</p>
+            @endif
+            <table class="add-food-ingredient-table">
                 <tr>
                     <th>Ingredient ID</th>
                     <th>Ingredient name</th>
