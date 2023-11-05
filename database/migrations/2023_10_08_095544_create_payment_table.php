@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('payment_info', function (Blueprint $table) {
             $table->id('transactionID'); // Primary Key
             $table->unsignedBigInteger('userID');
+            $table->unsignedBigInteger('orderID');
             $table->decimal('totalPrice', 10, 2);   
             $table->string('paymentMethod');
             $table->string('Username'); // Online banking

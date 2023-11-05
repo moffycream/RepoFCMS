@@ -70,8 +70,6 @@ class OrderHistoryController extends Controller
         }
     }
 
-
-
     public function deleteOrderHistory($orderID)
     {
         // Find the order by order ID

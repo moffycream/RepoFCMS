@@ -7,6 +7,8 @@ use App\Models\Menu;
 use App\Models\Food;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NotificationController;
+use App\Models\Order;
+
 
 class FoodMenuController extends Controller
 {
@@ -17,7 +19,7 @@ class FoodMenuController extends Controller
         // Retrieve data from the database
         $menus = Menu::all();
         $foods = Food::all();
-        
+
         // Retrieve the cart items from the session
         $cart = session('cart', []);
 
@@ -28,33 +30,27 @@ class FoodMenuController extends Controller
 
 
         return view('food-menu', compact('menus', 'foods', 'cart'), ['notifications' => $notificationController->getNotification()]);
- 
     }
 
     public function addToCart(Request $request)
     {
         $menu = Menu::find($request->menu_id);
 
-        if (!$menu) 
-        {
+        if (!$menu) {
             return redirect()->route('menu.index')->with('error', 'Menu not found.');
         }
         // Get the cart items from the session
         $cart = session('cart', []);
 
         // Check if the menu item is already in the cart
-        $existingItemKey = collect($cart)->search(function ($item) use ($menu) 
-        {
+        $existingItemKey = collect($cart)->search(function ($item) use ($menu) {
             return $item['menu']->menuID === $menu->menuID;
         });
 
-        if ($existingItemKey !== false) 
-        {
+        if ($existingItemKey !== false) {
             // If the menu item is in the cart, increment the quantity
             $cart[$existingItemKey]['quantity'] += 1;
-        } 
-        else 
-        {
+        } else {
             // If the menu item is not in the cart, add it
             $cart[] = [
                 'menu' => $menu,
@@ -89,5 +85,45 @@ class FoodMenuController extends Controller
 
         // Pass the cart and notifications to the 'purchase' view
         return view('purchase', ['cart' => $cart, 'notifications' => $notifications])->with('success', 'Checkout successful');
+    }
+
+    // use for customer order history details
+    public function orderAgain($orderID)
+    {
+        // Retrieve the selected order
+        $selectedOrder = Order::find($orderID);
+
+        if (!$selectedOrder) {
+            return redirect()->route('menu.index')->with('error', 'Order not found.');
+        }
+
+        // Initialize the cart
+        $cart = session('cart', []);
+
+        // Iterate through the items in the selected order
+        foreach ($selectedOrder->menus as $menu) {
+            // Check if the menu item is already in the cart
+            $existingItemKey = collect($cart)->search(function ($item) use ($menu) {
+                return $item['menu']->menuID === $menu->menuID;
+            });
+
+            if ($existingItemKey !== false) {
+                // If the menu item is in the cart, increment the quantity
+                $cart[$existingItemKey]['quantity'] += 1;
+            } else {
+                // If the menu item is not in the cart, add it
+                $cart[] = [
+                    'menu' => $menu,
+                    'quantity' => 1,
+                    'price' => $menu->totalPrice,
+                ];
+            }
+        }
+
+        // Store the updated cart in the session
+        session(['cart' => $cart]);
+
+        // Redirect to the menu page or any other page you prefer
+        return redirect()->route('menu.index')->with('success', 'Menu items added to cart.');
     }
 }

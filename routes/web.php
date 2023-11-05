@@ -60,6 +60,8 @@ Route::post('/customer-order-listings/{orderID}/cancel', [OrderListingController
 Route::post('/customer-order-history/{orderID}', [OrderHistoryController::class, 'viewOrderHistoryDetails'])->name('customer-order-history-details');
 Route::get('/customer-order-history', [OrderHistoryController::class, 'index'])->name('customer-order-history');
 Route::post('/customer-order-history/{orderID}/delete', [OrderHistoryController::class, 'deleteOrderHistory'])->name('customer-delete-order-history');
+// order again 
+Route::post('/order-again/{orderID}', [FoodMenuController::class, 'orderAgain'])->name('order-again');
 
 
 // Login and register

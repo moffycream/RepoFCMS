@@ -54,12 +54,12 @@
                         <p class="customer-address"><i class="fas fa-map-marker-alt"></i>{{$selectedOrder->address}}</p>
                     </div>
                     <div>
-                    <p class="customer-title">Order Notes</p>
-                    <p class="customer-notes"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
-                </div>
+                        <p class="customer-title">Order Notes</p>
+                        <p class="customer-notes"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
+                    </div>
                 </div>
                 <div class="col-row-details">
-                <div>
+                    <div>
                         <p class="customer-title">Order Data And Time</p>
                         <p class="customer-time"><span><i class="fas fa-clock"></i>{{$selectedOrder->getformattedDateTime()}}</span></p>
                     </div>
@@ -80,7 +80,7 @@
                         <p class="customer-title">Payment Method</p>
                         <p class="customer-time"><i class="fas fa-money-check-alt"></i>{{$paymentInfo->paymentMethod}}</p>
                     </div>
-                        
+
                 </div>
             </div>
             <div class="row-status">
@@ -89,9 +89,12 @@
             </div>
             </table>
             <div class="row-actions">
-                <button type="submit" class="customer-container-complete-button">Order Again</button>
+                <form method="post" action="{{ route('order-again', ['orderID' => $selectedOrder->orderID]) }}">
+                    @csrf
+                    <button type="submit" class="customer-container-complete-button">Order Again</button>
+                </form>
             </div>
-        
+
+        </div>
     </div>
-</div>
-@endsection
+    @endsection

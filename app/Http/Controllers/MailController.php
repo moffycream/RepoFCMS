@@ -26,10 +26,9 @@ class MailController extends Controller
 
         try {
             Mail::to($user->email)->send(new MailTwoFactor($data));
-            
         } catch (\Exception $e) {
+            return redirect()->route('login')->with('error', 'Email not sent.');
         }
-
         return view('login.two-factor-authentication');
     }
 }

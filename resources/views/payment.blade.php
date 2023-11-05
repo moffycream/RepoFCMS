@@ -16,7 +16,7 @@
         <p>Total Price: RM {{ $overallTotalPrice }}</p>
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
         <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
-
+        <input type="hidden" name="orderID" value="{{ $orderID }}"> 
         <table id="payment_form_table">
 
             <tr>

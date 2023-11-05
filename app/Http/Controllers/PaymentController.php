@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\UserAccountController;
 use App\Models\Notification;
 use App\Models\UserAccounts;
+use App\Models\Order;
 
 // validations
 class PaymentController extends Controller
@@ -33,23 +34,29 @@ class PaymentController extends Controller
             if ($userID != null)
             {   
                 // Retrieve the overallTotalPrice from the form input
+                // Save the payment and associate it with an order
+                
+
                 $overallTotalPrice = $request->input('overallTotalPrice');
                 //  New order instance
                 $payment = new Payment();
 
                 // Populate the Payment model with the form data\
                 $payment->userID = $userID;
-                $payment->total_price = $overallTotalPrice;
-                $payment->payment_method = $request->input('PaymentMethod');
-
+                $payment->totalPrice = $overallTotalPrice;
+                $payment->paymentMethod = $request->input('PaymentMethod');
+                $payment->Username = $request->input('bank_username');
+                $payment->orderID = $request->input('orderID'); // Set the orderID with the provided orderID
+                $payment->Receipient_Account_Number = "none";
+                
                 // Set the 'bank' field based on the selected payment method
                 if ($request->input('PaymentMethod') === 'OnlineBanking') {
-                    $payment->bank = $request->input('selected_bank');
-                    $payment->bank_username = $request->input('bank_username');
-                    $payment->account_number = $request->input('account_number');
-                    $payment->password = $request->input('bank_password');
-                    $payment->amount_paid = $request->input('payment_amount');
-                    $payment->description = $request->input('payment_description');
+                    //$payment->bank = $request->input('selected_bank');
+                    //$payment->bank_username = $request->input('bank_username');
+                    //$payment->account_number = $request->input('account_number');
+                    //$payment->password = $request->input('bank_password');
+                    //$payment->amount_paid = $request->input('payment_amount');
+                    //$payment->description = $request->input('payment_description');
                     
                     // set to none
                     $payment->card_number = "none";
