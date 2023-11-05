@@ -31,7 +31,10 @@ $replyID = 0;
             <div class="row-container">
                 <div class="user-profile">
                     <div class="col-user-profile profile-pic">
-                        <img src="https://i.imgur.com/6VBx3io.png" alt="user-profile">
+                        @php
+                        $profilePicture = $review->user->imagePath;
+                        @endphp
+                        <img src="{{ asset($profilePicture)}}" alt="user-profile">
                     </div>
                     <div class="col-user-profile">
                         <h3 class="row-user-profile">{{$username}}<span><span class="review-time">{{$time}}</span> | <span class="review-category">{{$category}}</span></span></h3>
@@ -76,11 +79,15 @@ $replyID = 0;
             $nestingLevel = $comment->getNestingLevel();
             $replyID++;
             @endphp
+        
             <div class="row-container-comment comment" data-nesting-level="{{$nestingLevel}}">
                 <div class="comment-container">
                     <div class="user-profile">
                         <div class="col-user-profile profile-pic">
-                            <img src="https://i.imgur.com/6VBx3io.png" alt="user-profile">
+                            @php
+                            $profilePicture = $comment->profilePicture();
+                            @endphp
+                            <img src="{{ asset($profilePicture)}}" alt="user-profile">
                         </div>
                         <div class="col-user-profile">
                             <h3 class="row-user-profile">{{$username}}<span><span class="review-time">{{$time}}</span></span></h3>

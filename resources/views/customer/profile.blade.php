@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customer')
 @section('title', 'Profile')
 @section('content')
 <h1 class="title">Profile</h1>

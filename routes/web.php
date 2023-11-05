@@ -169,3 +169,13 @@ Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews');
 Route::post('/reviews', [ReviewController::class, 'submitComment'])->name('review.submit.comment');
 Route::get('/reviews/review-form', [ReviewController::class, 'reviewForm']);
 Route::post('/review/review-form/submit', [ReviewController::class, 'submitReviewForm'])->name('review.submit');
+
+// Customer - review history
+Route::get('/customer-review-history', [ReviewController::class, 'customerReviewHistory'])->name('customer-review-history');
+Route::post('/customer-review-history', [ReviewController::class, 'profileSubmitComment'])->name('profile.review.submit.comment');
+Route::get('/customer-review-history/review/{reviewID}', [ReviewController::class, 'reviewEdit'])->name('review.edit');
+Route::get('/customer-review-history/comment/{commentID}', [ReviewController::class, 'commentEdit'])->name('review.comment.edit');
+Route::post('/customer-review-history/review/{reviewID}/edit/save', [ReviewController::class, 'saveReviewEdit'])->name('review.edit.submit');
+Route::post('/customer-review-history/comment/{commentID}/edit/save', [ReviewController::class, 'saveCommentEdit'])->name('review.comment.edit.submit');
+Route::get('/customer-review-history/review/{reviewID}/delete', [ReviewController::class, 'reviewDelete'])->name('review.delete');
+

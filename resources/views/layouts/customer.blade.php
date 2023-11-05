@@ -22,8 +22,8 @@
                 </div>
                 <div class="row navigation">
                     <ul>
-                        <li><a href="#">My Profile</a></li>
-                        <li><a href="#">Review History</a></li>
+                        <li><a href="{{url('profile')}}">My Profile</a></li>
+                        <li><a href="customer-review-history">Review History</a></li>
                     </ul>
                 </div>
             </div>
