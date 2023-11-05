@@ -834,3 +834,306 @@ details[open] summary::before {
     margin-top: 10px;
 }
 
+.container-review-history{
+    padding: 30px 40px;
+}
+
+.container-review-history h1{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.container-review-history  .row-user-review{ 
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+.container-review-history  .row-user-review .row-container:first-child .user-profile{
+    display: flex;
+    align-items: center;
+}
+
+.container-review-history  .row-user-review .row-container:first-child .profile-pic{
+    /* make the user profile become circle */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.container-review-history  .row-user-review .row-container:first-child .profile-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-review-history  .row-user-review .row-container:first-child .col-user-profile h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+
+}
+
+.container-review-history  .row-user-review .row-container:first-child .col-user-profile h3 > span{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    opacity: 50%;
+}
+
+.container-review-history .row-user-review .row-container:first-child .col-user-profile .container-stars{
+    display: flex;
+    align-items: center;
+}
+
+.container-review-history  .row-user-review .row-container:first-child .col-user-profile .container-stars .fas{
+    color: #ffc400;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.container-review-history .row-user-review .row-container:first-child{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-review-history  .row-user-review .row-container{
+    padding: 20px;
+}
+
+.container-review-history .row-user-review > .row-container:first-child,
+.container-review-history .row-user-review .no-pad{
+    padding-bottom: 0;
+}
+
+.container-review-history .row-user-review .row-container .review-content h2{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.container-review-history  .row-user-review .row-container .review-content p{
+    font-size: 18px;
+}
+
+.container-review-history .row-user-review .row-container .review-action,
+.container-review-history .row-user-review .row-container-comment .comment-container .row-comment .comment-action{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.container-review-history  .row-user-review .row-container .reply form,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .reply form{
+    display: flex;
+}
+
+.container-review-history .row-user-review .row-container .reply form input,
+.container-review-history .row-user-review .row-container-comment .comment-container .row-comment .reply form input{
+    border-radius: 5px;
+    border: 2px solid #0000001a;
+    padding: 10px 20px;
+    font-size: 18px;
+    width: 100%;
+}
+
+.container-review-history .row-user-review .row-container .reply form button,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .reply form button{
+    background-color: #473447;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    text-decoration: none;
+    width: 150px;
+    cursor: pointer;
+}
+
+.container-review-history  .row-user-review .row-container .reply form button:hover,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .reply form button:hover{
+    opacity: 80%;
+}
+
+.container-review-history  .row-user-review .row-container .review-action button i,
+.container-review-history  .row-user-review .row-container .review-action a i,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button i{
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.container-review-history  .row-user-review .row-container .review-action button span:last-child,
+.container-review-history  .row-user-review .row-container .review-action a span:last-child,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button span:last-child{
+    margin-left: 5px;
+}
+
+.container-review-history  .row-user-review .row-container .review-action button,
+.container-review-history  .row-user-review .row-container .review-action a,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 50%;
+    display: flex;
+    margin-right: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Comment */
+.container-review-history  .row-user-review .comment,
+.container-review-history  .row-user-review .reply{
+    display: none;
+}
+
+
+.container-review-history  .row-user-review .row-container-comment{
+    margin-left: 50px;    
+    padding: 0 20px;
+}
+
+/* Adjust left margin based on data-depth */
+.container-review-history  .row-user-review .row-container-comment {
+    margin-left: calc(20px * var(--data-depth));
+}
+
+
+.container-review-history  .row-user-review .row-container-comment .comment-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Add a highlight on the left of the comment container */
+.container-review-history .row-user-review .row-container-comment .comment-container::before{
+    content: '';
+    width: 5px;
+    height: 100%;
+    background-color: #473447;
+    position: absolute;
+    left: -20px;
+    top: 0;
+    border-radius: 10px;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .user-profile{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container-review-history l .row-user-review .row-container-comment .comment-container .user-profile .profile-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .user-profile .profile-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .user-profile .col-user-profile h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .user-profile .col-user-profile h3 > span{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    opacity: 50%;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-content{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Comment */
+.container-review-history  .row-user-review .comment,
+.container-review-history .row-user-review .reply{
+    display: none;
+}
+
+
+.container-review-history  .row-user-review .row-container-comment{
+    margin-left: 50px;    
+    padding: 0 20px;
+}
+
+/* Adjust left margin based on data-depth */
+.container-review-history  .row-user-review .row-container-comment {
+    margin-left: calc(20px * var(--data-depth));
+}
+
+
+.container-review-history  .row-user-review .row-container-comment .comment-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* Add a highlight on the left of the comment container */
+.container-review-history  .row-user-review .row-container-comment .comment-container::before{
+    content: '';
+    width: 5px;
+    height: 100%;
+    background-color: #473447;
+    position: absolute;
+    left: -20px;
+    top: 0;
+    border-radius: 10px;
+}
+
+.container-review-history .row-user-review .row-container-comment .comment-container .user-profile{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.container-review-history .row-user-review .row-container-comment .comment-container .user-profile .profile-pic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .user-profile .profile-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .user-profile .col-user-profile h3{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .user-profile .col-user-profile h3 > span{
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    opacity: 50%;
+}
+
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-content{
+    font-size: 18px;
+    margin-bottom: 20px;
+}

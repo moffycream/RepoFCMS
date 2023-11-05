@@ -25,6 +25,13 @@ class Comment extends Model
         return $this->belongsTo(UserAccounts::class, 'userID');
     }
 
+    public function profilePicture()
+    {
+        // Get the user's profile picture
+        $profilePicture = $this->user->imagePath;
+        return $profilePicture;
+    }
+
     // Get the time difference between the current time and the time the review was posted
     public function getTimeDifference()
     {

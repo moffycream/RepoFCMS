@@ -94,7 +94,6 @@ header .login .container-login-profile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    background-color: #ccc;
 }
 
 header .container-header-login{
@@ -439,7 +438,6 @@ article {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    background-color: #ccc;
 }
 
 .customer-article .col .customer-account div:last-child{

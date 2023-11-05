@@ -21,14 +21,14 @@ class LoginController extends Controller
             $user = UserAccounts::where('username', $request->username)->first();
 
             // if user is either first time login or has is not authenticated
-            if ($user->twoFactorAuth == 1 || $user->isAuthenticated == 0 || $user->firstTimeLogin == 1) {
-                $loginController->start2FA();
+            // if ($user->twoFactorAuth == 1 || $user->isAuthenticated == 0 || $user->firstTimeLogin == 1) {
+            //     $loginController->start2FA();
 
-                Session::put('username', $user->username); // Store 'username' in a session variable
-                $request->replace([]); // clear the request
+            //     Session::put('username', $user->username); // Store 'username' in a session variable
+            //     $request->replace([]); // clear the request
 
-                return redirect('/two-factor-authentication');
-            } else {
+            //     return redirect('/two-factor-authentication');
+            // } else {
                 Session::put('username', $user->username); // Store 'username' in a session variable
                 Session::put('accountType', $user->accountType); // Store 'accountType' in a session variable
                 if (Session::get('accountType') == "DefaultAdmin" || Session::get('accountType') == "Admin") {
@@ -39,7 +39,7 @@ class LoginController extends Controller
                     return redirect('op-orders');
                 } else if (Session::get('accountType') == "Customer") {
                     return redirect('/');
-                }
+                // }
             }
         } else {
 
