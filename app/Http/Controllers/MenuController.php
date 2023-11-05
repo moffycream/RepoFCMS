@@ -80,6 +80,7 @@ class MenuController extends Controller
         }
 
         //Checkboxes
+        //If no checkbox selectec (so the total price = 0)
         if ($request->totalPrice == 0) {
             $checkboxErrMsg .= "Please select at least one food item.";
         } else {
@@ -103,7 +104,7 @@ class MenuController extends Controller
 
             return redirect('/add-menu')->with(['listItems' => $menus, 'inventories' => $inventories, 'foods' => $foods]);
         } else {
-            return redirect('/add-menu-form')->with(['listItems' => $foods, 'inventory' => $inventories])
+            return view('menu.add-menu-form')->with(['listItems' => $foods, 'inventory' => $inventories])
                 ->with('imageErrMsg', $imageErrMsg)
                 ->with('nameErrMsg', $nameErrMsg)
                 ->with('checkboxErrMsg', $checkboxErrMsg)
@@ -115,41 +116,108 @@ class MenuController extends Controller
     public function editMenu(Request $request)
     {
         $menu = Menu::find($request->menuID);
+        $validator = app(ValidationController::class);
 
+        $nameErrMsg = "";
+        $checkboxErrMsg = "";
+
+        //Image
         if ($request->hasFile('image')) {
             $fileName = time() . $request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('', $fileName, 'addMenu');
-            $menu->imagePath = 'menu-images/' . $path;
+            $path = $request->file('image')->storeAs('', $fileName, 'addFood');
+            $menu->imagePath = 'food-images/' . $path;
         }
 
-        $menu->name = $request->name;
-
-        // Delete all menu food
-        $menuFood = MenuFood::where('menuID', $request->menuID)->get();
-        foreach ($menuFood as $food) {
-            $food->delete();
+        //Name
+        if ($request->filled('name')) {
+            if ($validator->validateText($request->name, '/^.{0,20}$/')) {
+                $menu->name = $request->name;
+            } else {
+                $nameErrMsg .= "The name must be less than 20 characters.";
+            }
+        } else {
+            $nameErrMsg .= "The name field is required.";
         }
 
-        //  Recreate all menu food
-        $array = $request->foodID;
-        $menuFoodController = new MenuFoodController();
+        //Checkboxes
+        if(!isset($request->foodID)){
+            $checkboxErrMsg .= "Please select at least one food item.";
+        }
 
-        $newTotalPrice = 0;
+        $menus = Menu::all();
+        $foods = Food::all();
+        $inventories = Inventory::all();
 
-        foreach ($array as $foodID) {
-            // Call the registerNewMenuFood method for each food item
-            $menuFoodController->registerNewMenuFood($request, $menu->menuID, $foodID);
+        if ($nameErrMsg == "" && $checkboxErrMsg == "") {
+            // Delete all menu food
+            $menuFood = MenuFood::where('menuID', $request->menuID)->get();
+            foreach ($menuFood as $food) {
+                $food->delete();
+            }
+
+            // Recreate all menu food
+            $array = $request->foodID;
+            $menuFoodController = new MenuFoodController();
 
             // Update total price
-            $newFood = Food::find($foodID);
-            $newTotalPrice += $newFood->price;
+            $newTotalPrice = 0;
+
+            foreach ($array as $foodID) {
+                // Call the registerNewMenuFood method for each food item
+                $menuFoodController->registerNewMenuFood($request, $menu->menuID, $foodID);
+
+                // Update total price
+                $newFood = Food::find($foodID);
+                $newTotalPrice += $newFood->price;
+            }
+
+            $menu->totalPrice = $newTotalPrice;
+            $menu->save();
+
+            return redirect('/add-menu')->with(['listItems' => $menus, 'inventories' => $inventories, 'foods' => $foods]);
+        } else {
+            return view('menu.add-menu')->with(['listItems' => $menus, 'inventories' => $inventories, 'foods' => $foods])
+                ->with('editNameErrMsg', $nameErrMsg)
+                ->with('editCheckboxErrMsg', $checkboxErrMsg)
+                ->with('name', $request->name);
         }
 
-        $menu->totalPrice = $newTotalPrice;
-        $menu->save();
+        // $menu = Menu::find($request->menuID);
+
+        // if ($request->hasFile('image')) {
+        //     $fileName = time() . $request->file('image')->getClientOriginalName();
+        //     $path = $request->file('image')->storeAs('', $fileName, 'addMenu');
+        //     $menu->imagePath = 'menu-images/' . $path;
+        // }
+
+        // $menu->name = $request->name;
+
+        // // Delete all menu food
+        // $menuFood = MenuFood::where('menuID', $request->menuID)->get();
+        // foreach ($menuFood as $food) {
+        //     $food->delete();
+        // }
+
+        // //  Recreate all menu food
+        // $array = $request->foodID;
+        // $menuFoodController = new MenuFoodController();
+
+        // $newTotalPrice = 0;
+
+        // foreach ($array as $foodID) {
+        //     // Call the registerNewMenuFood method for each food item
+        //     $menuFoodController->registerNewMenuFood($request, $menu->menuID, $foodID);
+
+        //     // Update total price
+        //     $newFood = Food::find($foodID);
+        //     $newTotalPrice += $newFood->price;
+        // }
+
+        // $menu->totalPrice = $newTotalPrice;
+        // $menu->save();
 
 
-        return redirect('/add-menu');
+        // return redirect('/add-menu');
     }
 
     // Delete menu

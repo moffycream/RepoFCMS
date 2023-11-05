@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Inventory;
 use App\Models\FoodInventory;
+use App\Http\Controllers\ValidationController;
 
 class InventoryController extends Controller
 {
@@ -29,19 +30,46 @@ class InventoryController extends Controller
     // Register new inventory
     public function registerNewInventory(Request $request)
     {
+        $validator = app(ValidationController::class);
+
+        $nameErrMsg = "";
+        $amountErrMsg = "";
+
         $inventory = new Inventory();
+        $inventory->inventoryID = $request->inventoryID;
 
-        //Store image path, name total price to database
-        $inventory->inventoryName = $request->name;
-        $inventory->amount = $request->amount;
-        $inventory->save();
+        // Validate name
+        if ($request->filled('name')) {
+            if ($validator->validateText($request->name, '/^.{0,20}$/')) {
+                $inventory->inventoryName = $request->name;
+            } else {
+                $nameErrMsg .= "The name must be less than 20 characters.";
+            }
+        } else {
+            $nameErrMsg = "Please enter a name";
+        }
 
-        // foreach ($array as $foodID) {
-        //     // Call the registerNewMenuFood method for each food item
-        //     $menuFoodController->registerNewMenuFood($request, $menu->menuID, $foodID);
-        // }
+        // Validate amount
+        if ($request->filled('amount')) {
+            if ($validator->validateText($request->amount, '/^[0-9]{1,10}$/')) {
+                $inventory->amount = $request->amount;
+            } else {
+                $amountErrMsg .= "The amount must be less than 10 digits.";
+            }
+        } else {
+            $amountErrMsg = "Please enter an amount";
+        }
 
-        return redirect('/inventory-management');
+        $inventories = Inventory::all();
+        $foodInventories = FoodInventory::all();
+
+        if($nameErrMsg == "" && $amountErrMsg == "") {
+            //Store image path, name total price to database
+            $inventory->save();
+            return redirect('/inventory-management')->with(['listItems' => $inventories, 'foodInventory' => $foodInventories]);
+        } else {
+            return view('menu.inventory-management', ['listItems' => $inventories, 'foodInventory' => $foodInventories, 'name' => $request->name, 'amount' => $request->amount, 'nameErrMsg' => $nameErrMsg, 'amountErrMsg' => $amountErrMsg]);
+        }
     }
 
     //  Edit inventory
@@ -49,11 +77,43 @@ class InventoryController extends Controller
     {
         $inventory = Inventory::find($request->inventoryID);
 
-        $inventory->inventoryName = $request->name;
-        $inventory->amount = $request->amount;
-        $inventory->save();
+        $validator = app(ValidationController::class);
 
-        return redirect('/inventory-management');
+        $nameErrMsg = "";
+        $amountErrMsg = "";
+
+        // Validate name
+        if ($request->filled('name')) {
+            if ($validator->validateText($request->name, '/^.{0,20}$/')) {
+                $inventory->inventoryName = $request->name;
+            } else {
+                $nameErrMsg .= "The name must be less than 20 characters.";
+            }
+        } else {
+            $nameErrMsg = "Please enter a name";
+        }
+
+        // Validate amount
+        if ($request->filled('amount')) {
+            if ($validator->validateText($request->amount, '/^[0-9]{1,10}$/')) {
+                $inventory->amount = $request->amount;
+            } else {
+                $amountErrMsg .= "The amount must be less than 10 digits.";
+            }
+        } else {
+            $amountErrMsg = "Please enter an amount";
+        }
+
+        $inventories = Inventory::all();
+        $foodInventories = FoodInventory::all();
+
+        if($nameErrMsg == "" && $amountErrMsg == "") {
+            //Store image path, name total price to database
+            $inventory->save();
+            return redirect('/inventory-management')->with(['listItems' => $inventories, 'foodInventory' => $foodInventories]);
+        } else {
+            return view('menu.inventory-management', ['listItems' => $inventories, 'foodInventory' => $foodInventories, 'editName' => $request->name, 'editAmount' => $request->amount, 'editNameErrMsg' => $nameErrMsg, 'editAmountErrMsg' => $amountErrMsg]);
+        }
     }
 
     //  Delete inventory

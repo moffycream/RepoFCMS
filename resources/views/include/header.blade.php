@@ -65,7 +65,7 @@
             <div class="login">
                 <div class="container-login-profile" onclick="toggleHeaderLogin()">
                     @if (isset($profilePicture))
-                    <img src="{{ $profilePicture }}" alt="profile">
+                    <img src="{{ asset($profilePicture) }}" alt="profile">
                     @else
                     <img src="{{ asset('profile-images/profile.png') }}" alt="profile">
                     @endif

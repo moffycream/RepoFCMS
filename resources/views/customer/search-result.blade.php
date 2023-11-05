@@ -38,179 +38,235 @@
         </div>
         <button class="feedback-submit-button" type="submit">Submit</button>
     </form>
-    <div>
+    <div class="search-results">
+        <!-- If got filter -->
         @if(isset($filter))
-        @php
-        $count = 0;
-        @endphp
-        @foreach ($listItems as $searchResult)
-        @if($filter == "price0")
-        @php
-        $count++;
-        @endphp
-        @endif
-        @if($filter == "price1")
-        @if($searchResult->totalPrice > 0 && $searchResult->totalPrice <= 100) @php $count++; @endphp @endif @endif @if($filter=="price2" ) @if($searchResult->totalPrice > 100 && $searchResult->totalPrice <= 200) @php $count++; @endphp @endif @endif @if($filter=="price3" ) @if($searchResult->totalPrice > 200 && $searchResult->totalPrice <= 300) @php $count++; @endphp @endif @endif @if($filter=="price4" ) @if($searchResult->totalPrice > 300 && $searchResult->totalPrice <= 400) @php $count++; @endphp @endif @endif @if($filter=="price5" ) @if($searchResult->totalPrice > 400 && $searchResult->totalPrice <= 500) @php $count++; @endphp @endif @endif @if($filter=="price6" ) @if($searchResult->totalPrice > 500)
-                            @php
-                            $count++;
-                            @endphp
-                            @endif
-                            @endif
+            @php
+            $count = 0;
+            @endphp
+            <!-- Calculate the number of result found -->
+            @foreach ($listItems as $searchResult)
+                @if($filter == "price0")
+                    @php
+                    $count++;
+                    @endphp
+                @endif
+                @if($filter == "price1")
+                    @if($searchResult->totalPrice > 0 && $searchResult->totalPrice <= 100) 
+                        @php 
+                        $count++;
+                        @endphp 
+                    @endif 
+                @endif 
+                @if($filter=="price2" ) 
+                    @if($searchResult->totalPrice > 100 && $searchResult->totalPrice <= 200) 
+                        @php 
+                        $count++; 
+                        @endphp 
+                    @endif 
+                @endif 
+                @if($filter=="price3" ) 
+                    @if($searchResult->totalPrice > 200 && $searchResult->totalPrice <= 300) 
+                        @php 
+                        $count++; 
+                        @endphp 
+                    @endif 
+                @endif 
+                @if($filter=="price4" ) 
+                    @if($searchResult->totalPrice > 300 && $searchResult->totalPrice <= 400) 
+                        @php 
+                        $count++; 
+                        @endphp 
+                    @endif 
+                @endif 
+                @if($filter=="price5" ) 
+                    @if($searchResult->totalPrice > 400 && $searchResult->totalPrice <= 500) 
+                        @php 
+                        $count++; 
+                        @endphp 
+                    @endif 
+                @endif 
+                @if($filter=="price6" ) 
+                    @if($searchResult->totalPrice > 500)
+                        @php
+                        $count++;
+                        @endphp
+                    @endif
+                @endif
+            @endforeach
+
+            <!-- if have result found -->
+            @if($count > 0)
+                <!-- header of search result -->
+                <div class="search-header">
+                    <h1>Search results for {{$search}}</h1>
+                    <p>Total {{$count}} menu found</p>
+                </div>
+
+                <!-- display search result -->
+                @foreach ($listItems as $searchResult)
+                    @if($filter == "price0")
+                    <hr class="search-separate-line">
+                        <div class="search-result">
+                            <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
+                            <div>
+                                <p>Menu name: {{$searchResult->name}}</p>
+                                <p>Foods:</p>
+                                @foreach($searchResult->foods as $food)
+                                <p>{{$food->name}}</p>
+                                @endforeach
+                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if($filter == "price1")
+                        @if($searchResult->totalPrice > 0 && $searchResult->totalPrice <= 100) <hr class="search-separate-line">
+                        <hr class="search-separate-line">
+                        <div class="search-result">
+                            <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
+                            <div>
+                                <p>Menu name: {{$searchResult->name}}</p>
+                                <p>Foods:</p>
+                                @foreach($searchResult->foods as $food)
+                                <p>{{$food->name}}</p>
+                                @endforeach
+                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                            </div>
+                        </div>
+                        @endif
+                    @endif
+
+                    @if($filter == "price2")
+                        @if($searchResult->totalPrice > 100 && $searchResult->totalPrice <= 200) <hr class="search-separate-line">
+                        <hr class="search-separate-line">
+                        <div class="search-result">
+                            <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
+                            <div>
+                                <p>Menu name: {{$searchResult->name}}</p>
+                                <p>Foods:</p>
+                                @foreach($searchResult->foods as $food)
+                                <p>{{$food->name}}</p>
+                                @endforeach
+                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                            </div>
+                        </div> 
+                        @endif
+                    @endif
+
+                    @if($filter == "price3")
+                        @if($searchResult->totalPrice > 200 && $searchResult->totalPrice <= 300) <hr class="search-separate-line">
+                        <hr class="search-separate-line">
+                        <div class="search-result">
+                            <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
+                            <div>
+                                <p>Menu name: {{$searchResult->name}}</p>
+                                <p>Foods:</p>
+                                @foreach($searchResult->foods as $food)
+                                <p>{{$food->name}}</p>
+                                @endforeach
+                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                            </div>
+                        </div>  
+                        @endif
+                    @endif
+
+                    @if($filter == "price4")
+                        @if($searchResult->totalPrice > 300 && $searchResult->totalPrice <= 400) <hr class="search-separate-line">
+                        <hr class="search-separate-line">
+                        <div class="search-result">
+                            <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
+                            <div>
+                                <p>Menu name: {{$searchResult->name}}</p>
+                                <p>Foods:</p>
+                                @foreach($searchResult->foods as $food)
+                                <p>{{$food->name}}</p>
+                                @endforeach
+                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                            </div>
+                        </div>  
+                        @endif
+                    @endif
+
+                    @if($filter == "price5")
+                        @if($searchResult->totalPrice > 400 && $searchResult->totalPrice <= 500) <hr class="search-separate-line">
+                        <hr class="search-separate-line">
+                        <div class="search-result">
+                            <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
+                            <div>
+                                <p>Menu name: {{$searchResult->name}}</p>
+                                <p>Foods:</p>
+                                @foreach($searchResult->foods as $food)
+                                <p>{{$food->name}}</p>
+                                @endforeach
+                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                            </div>
+                        </div>
+                        @endif
+                    @endif
+
+                    @if($filter == "price6")
+                        @if($searchResult->totalPrice > 500)
+                        <hr class="search-separate-line">
+                        <div class="search-result">
+                            <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
+                            <div>
+                                <p>Menu name: {{$searchResult->name}}</p>
+                                <p>Foods:</p>
+                                @foreach($searchResult->foods as $food)
+                                <p>{{$food->name}}</p>
+                                @endforeach
+                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                            </div>
+                        </div>
+                        @endif
+                    @endif
+                @endforeach
+            @else
+            <!-- if no result found -->
+            <div class="search-header">
+                <h1>Search results for {{$search}}</h1>
+                <p>No result found, please try another keyword</p>
+            </div>
+            @endif
+        @else
+        <!-- if no filter -->
+            <!-- calculate number of result found -->
+            @php
+                $count = 0;
+                foreach($listItems as $searchItem){
+                $count++;
+                }
+            @endphp
+
+            <!-- if have result found -->
+            @if($count > 0)
+                <div class="search-header">
+                    <h1>Search results for {{$search}}</h1>
+                    <p>Total {{$count}} menu found</p>
+                </div>
+                @foreach ($listItems as $searchResult)
+                    <hr class="search-separate-line">
+                    <div class="search-result">
+                        <img class="search-img" src="asset($searchResult->imagePath)" alt="image">
+                        <div>
+                            <p>Menu name: {{$searchResult->name}}</p>
+                            <p>Foods:</p>
+                            @foreach($searchResult->foods as $food)
+                            <p>{{$food->name}}</p>
                             @endforeach
-
-                            <div class="search-header">
-                                <h1>Search results for {{$search}}</h1>
-                                <p>Total {{$count}} menu found</p>
-                            </div>
-                            @foreach ($listItems as $searchResult)
-                            @if($filter == "price0")
-                            <div class="search-result">
-                                <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
-                                <div>
-                                    <p>Menu name: {{$searchResult->name}}</p>
-                                    <p>Foods:</p>
-                                    @foreach($searchResult->foods as $food)
-                                    <p>{{$food->name}}</p>
-                                    @endforeach
-                                    <p>Price: RM {{$searchResult->totalPrice}}</p>
-                                </div>
-                            </div>
-                            @endif
-                            @if($filter == "price1")
-                            @if($searchResult->totalPrice > 0 && $searchResult->totalPrice <= 100) <hr class="search-separate-line">
-                                <div class="search-result">
-                                <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
-                                    <div>
-                                        <p>Menu name: {{$searchResult->name}}</p>
-                                        <p>Foods:</p>
-                                        @foreach($searchResult->foods as $food)
-                                        <p>{{$food->name}}</p>
-                                        @endforeach
-                                        <p>Price: RM {{$searchResult->totalPrice}}</p>
-                                    </div>
-                                </div>
-                                @endif
-                                @endif
-                                @if($filter == "price2")
-                                @if($searchResult->totalPrice > 100 && $searchResult->totalPrice <= 200) <hr class="search-separate-line">
-                                    <div class="search-result">
-                                    <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
-                                        <div>
-                                            <p>Menu name: {{$searchResult->name}}</p>
-                                            <p>Foods:</p>
-                                            @foreach($searchResult->foods as $food)
-                                            <p>{{$food->name}}</p>
-                                            @endforeach
-                                            <p>Price: RM {{$searchResult->totalPrice}}</p>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    @endif
-                                    @if($filter == "price3")
-                                    @if($searchResult->totalPrice > 200 && $searchResult->totalPrice <= 300) <hr class="search-separate-line">
-                                        <div class="search-result">
-                                        <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
-                                            <div>
-                                                <p>Menu name: {{$searchResult->name}}</p>
-                                                <p>Foods:</p>
-                                                @foreach($searchResult->foods as $food)
-                                                <p>{{$food->name}}</p>
-                                                @endforeach
-                                                <p>Price: RM {{$searchResult->totalPrice}}</p>
-                                            </div>
-                                        </div>
-                                        @endif
-                                        @endif
-                                        @if($filter == "price4")
-                                        @if($searchResult->totalPrice > 300 && $searchResult->totalPrice <= 400) <hr class="search-separate-line">
-                                            <div class="search-result">
-                                            <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
-                                                <div>
-                                                    <p>Menu name: {{$searchResult->name}}</p>
-                                                    <p>Foods:</p>
-                                                    @foreach($searchResult->foods as $food)
-                                                    <p>{{$food->name}}</p>
-                                                    @endforeach
-                                                    <p>Price: RM {{$searchResult->totalPrice}}</p>
-                                                </div>
-                                            </div>
-                                            @endif
-                                            @endif
-                                            @if($filter == "price5")
-                                            @if($searchResult->totalPrice > 400 && $searchResult->totalPrice <= 500) <hr class="search-separate-line">
-                                                <div class="search-result">
-                                                <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
-                                                    <div>
-                                                        <p>Menu name: {{$searchResult->name}}</p>
-                                                        <p>Foods:</p>
-                                                        @foreach($searchResult->foods as $food)
-                                                        <p>{{$food->name}}</p>
-                                                        @endforeach
-                                                        <p>Price: RM {{$searchResult->totalPrice}}</p>
-                                                    </div>
-                                                </div>
-                                                @endif
-                                                @endif
-                                                @if($filter == "price6")
-                                                @if($searchResult->totalPrice > 500)
-                                                <hr class="search-separate-line">
-                                                <div class="search-result">
-                                                <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
-                                                    <div>
-                                                        <p>Menu name: {{$searchResult->name}}</p>
-                                                        <p>Foods:</p>
-                                                        @foreach($searchResult->foods as $food)
-                                                        <p>{{$food->name}}</p>
-                                                        @endforeach
-                                                        <p>Price: RM {{$searchResult->totalPrice}}</p>
-                                                    </div>
-                                                </div>
-                                                @endif
-                                                @endif
-                                                @endforeach
-                                                @else
-                                                @php
-                                                $count = 0;
-                                                foreach($listItems as $searchItem){
-                                                $count++;
-                                                }
-                                                @endphp
-
-                                                @if($count > 0)
-                                                <div class="search-header">
-                                                    <h1>Search results for {{$search}}</h1>
-                                                    <p>Total {{$count}} menu found</p>
-                                                </div>
-                                                @foreach ($listItems as $searchResult)
-                                                <hr class="search-separate-line">
-                                                <div class="search-result">
-                                                    <img class="search-img" src="{{$searchResult->imagePath}}" alt="image">
-                                                    <div>
-                                                        <p>Menu name: {{$searchResult->name}}</p>
-                                                        <p>Foods:</p>
-                                                        @foreach($searchResult->foods as $food)
-                                                        <p>{{$food->name}}</p>
-                                                        @endforeach
-                                                        <p>Price: RM {{$searchResult->totalPrice}}</p>
-                                                    </div>
-                                                </div>
-                                                @endforeach
-                                                @endif
-                                                @endif
-                                                @php
-                                                $count = 0;
-                                                foreach($listItems as $searchResult){
-                                                $count++;
-                                                }
-                                                @endphp
-                                                @if ($count == 0)
-                                                <div class="search-header">
-                                                    <h1>Search results for {{$search}}</h1>
-                                                    <p>0 menu found</p>
-                                                </div>
-                                                <p class="no-result">No result found, please try another keyword</p>
-                                                @endif
-
+                            <p>Price: RM {{$searchResult->totalPrice}}</p>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+            <!-- if no result found -->
+            <div class="search-header">
+                <h1>Search results for {{$search}}</h1>
+                <p>No result found, please try another keyword</p>
+            </div>
+            @endif
+        @endif
     </div>
 </div>
 @endsection

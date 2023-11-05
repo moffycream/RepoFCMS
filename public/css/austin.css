@@ -15,7 +15,7 @@
 .food-logo {
     object-fit: cover;
     width: 25vw;
-    height: 30vh;
+    max-height: 30vh;
     border-radius: 20px 20px 0 0;
 }
 
@@ -114,6 +114,28 @@
     width: 100%;
     border-radius: 10px;
     border: none;
+}
+
+#add-menu-error-window{
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    background-color: var(--color-1);
+    width: 30vw;
+    height: 30vh;
+}
+
+#add-menu-error-window p,
+#add-menu-error-window i{
+    color: #ffffff;
+    font-size: 30px;
+    margin: 10px 20px;
+    text-align: left;
+}
+
+#add-menu-error-window i{
+    float: right;
+    cursor: pointer;
 }
 
 /* Add menu & food form*/
@@ -424,6 +446,28 @@
     margin: auto;
 }
 
+.menu-delete-button,
+.menu-delete-button-no{
+    margin:auto 0 0;
+    background-color: rgb(255, 71, 71);
+    width: 25vw;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 25px;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.menu-delete-button-no{
+    background-color: rgb(70, 70, 70);
+    color: #ffffff;
+    text-align: center;
+}
+
+.menu-delete-button-no i{
+    color: #ffffff;
+}
+
 /* Inventory management */
 .inventory-table,
 .inventory-table-title,
@@ -442,6 +486,12 @@
 
 .inventory-table a{
     text-decoration: none;
+}
+
+.inventory-error{
+    color: red;
+    font-size: 30px;
+    text-align: center;
 }
 
 /*search*/
@@ -479,6 +529,10 @@
     display: flex;
 }
 
+.search-results{
+    border-left: solid 0.5px rgba(0, 0, 0, 0.164);
+}
+
 .search-result{
     display: flex;
     flex-wrap: wrap;
@@ -498,17 +552,10 @@
     border: solid 0.5px rgba(0, 0, 0, 0.164);
 }
 
-.no-result{
-    font-size: 30px;
-    font-weight: bold;
-    margin: 25px 25px;
-}
-
 .search-filter-form{
     display: flex;
     flex-direction: column;
     min-width: 8vw;
-    border-right: solid 0.5px rgba(0, 0, 0, 0.164);
     height: 100vh;
-    padding: 5vh 1vw 0;
+    margin: 5vh 1vw 0;
 }
