@@ -122,22 +122,25 @@
     <h1>Total Order Amount: RM {{ $totalOrderAmount }}</h1>
 </div>
 
-<!-- Add a dropdown menu for data selection -->
-<select id="dataSelector">
-    <option value="both">Both Sales and Orders</option>
-    <option value="sales">Sales</option>
-    <option value="orders">Orders</option>
-</select>
-
-<!-- Add a button for sorting -->
-<button id="sortButton" disabled>Sort Ascending</button>
-
+<!-- Display Monthly Sales vs. Orders -->
 <div class="businessAnalytics-monthly-sales">
     <h1>Monthly Sales vs. Orders</h1>
 </div>
 
-<div class="businessAnalytics-chart-container">
+<!-- Create a container for the chart and control elements -->
+<div class="businessAnalytics-chart-container" style="position: relative; width: 1475px;">
+    <!-- Chart canvas -->
     <canvas id="monthlyChart" width="400" height="200"></canvas>
+
+    <!-- Sorting button in the top right corner -->
+    <button id="sortButton" disabled style="position: absolute; top: 10px; right: 10px;">Sort Ascending</button>
+
+    <!-- Dropdown for data selection in the top right corner -->
+    <select id="dataSelector" style="position: absolute; top: 10px; right: 113px;">
+        <option value="both">Both Sales and Orders</option>
+        <option value="sales">Sales</option>
+        <option value="orders">Orders</option>
+    </select>
 </div>
 
 <script>
@@ -247,9 +250,18 @@
     // Sort button
     var ascending = true; // Initially sort in ascending order
 
+    function updateSortButtonText() 
+    {
+        const sortButton = document.getElementById('sortButton');
+        sortButton.textContent = ascending ? 'Sort Ascending' : 'Sort Descending';
+    }
+
+    updateSortButtonText();
+
     document.getElementById('sortButton').addEventListener('click', function () 
     {
-        ascending = !ascending;
+        ascending = !ascending; // Toggle between ascending and descending
+        updateSortButtonText(); // Update the button text
 
         // Sort the data and labels
         var sortedDataAndLabels = sortDataAndLabels(chartData.datasets[0].data, chartData.datasets[1].data, chartData.labels, ascending);
