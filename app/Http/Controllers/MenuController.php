@@ -103,7 +103,7 @@ class MenuController extends Controller
 
             return redirect('/add-menu')->with(['listItems' => $menus, 'inventories' => $inventories, 'foods' => $foods]);
         } else {
-            return redirect('/add-menu-form')->with(['listItems' => $foods, 'inventory' => $inventories])
+            return view('menu.add-menu-form')->with(['listItems' => $foods, 'inventory' => $inventories])
                 ->with('imageErrMsg', $imageErrMsg)
                 ->with('nameErrMsg', $nameErrMsg)
                 ->with('checkboxErrMsg', $checkboxErrMsg)

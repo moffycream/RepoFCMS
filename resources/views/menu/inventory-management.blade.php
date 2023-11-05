@@ -5,6 +5,12 @@
 
 
 <div class="add-menu-form-container">
+    @if(isset($editNameErrMsg))
+    <p class="inventory-error">{!!$editNameErrMsg!!}</p>
+    @endif
+    @if(isset($editAmountErrMsg))
+    <p class="inventory-error">{!!$editAmountErrMsg!!}</p>
+    @endif
     <table class="inventory-table">
         <tr class="inventory-table-row">
             <th class="inventory-table-title">Ingredient ID</th>
@@ -23,26 +29,35 @@
                 </td>
                 <!-- Inventory name -->
                 <td class="inventory-table-col">
+                    @if(isset($editName))
+                    <span class="inventory-value">{{$item->inventoryName}}</span>
+                    <input type="text" class="inventory-edit-value" value="{{ $editName }}" name="name">
+                    @else
                     <span class="inventory-value">{{$item->inventoryName}}</span>
                     <input type="text" class="inventory-edit-value" value="{{ $item->inventoryName }}" name="name">
+                    @endif
                 </td>
                 <!-- Inventory amount -->
                 <td class="inventory-table-col">
+                    @if(isset($editAmount))
+                    <span class="inventory-value">{{$item->amount}}</span>
+                    <input type="text" class="inventory-edit-value" value="{{ $editAmount }}" name="amount">
+                    @else
                     <span class="inventory-value">{{$item->amount}}</span>
                     <input type="text" class="inventory-edit-value" value="{{ $item->amount }}" name="amount">
+                    @endif
                 </td>
                 <!-- Action -->
                 <td class="inventory-table-col">
                     <a class="inventory-edit-button" href="#"><i class="far fa-edit"></i> Edit</a>
                     <button class="inventory-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
                     <a class="inventory-cancel-button" href="#"><i class="fas fa-ban"></i> Cancel</a>
-                    <!-- <a class="inventory-delete-button" href="' . route('inventory.delete', ['id' => $item->inventoryID]) . '" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a> -->
                     @php
                     $canDelete = true;
                     @endphp
 
                     @foreach($foodInventory as $foodItem)
-                    @if ($foodItem->inventoryID == $item->inventoryID) 
+                    @if ($foodItem->inventoryID == $item->inventoryID)
                     @if ($foodItem->amount > 0)
                     @php
                     $canDelete = false;
@@ -53,13 +68,9 @@
 
 
                     @if($canDelete)
-                        @php
-                        echo "<a class='inventory-delete-button' href='" . route('inventory.delete', ['id' => $item->inventoryID]) . "' onclick=\"return confirm('Are you sure you want to delete this record?')\"><i class='fas fa-trash-alt'></i> Delete</a>";
-                        @endphp
+                    <a class="inventory-delete-button" href="{{ route('inventory.delete', ['id' => $item->inventoryID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
                     @else
-                        @php
-                        echo '<a class="inventory-delete-button-no"><i class="fas fa-trash-alt"></i> Delete</a>';
-                        @endphp
+                    <a class="inventory-delete-button-no" href="{{ route('inventory.delete', ['id' => $item->inventoryID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
                     @endif
                 </td>
             </form>
@@ -69,8 +80,29 @@
             <form method="POST" action="{{ route('inventory.register') }}">
                 @csrf
                 <td class="inventory-table-col">Add new ingredient</td>
-                <td class="inventory-table-col"><input type="text" name="name"></td>
-                <td class="inventory-table-col"><input type="text" name="amount"></td>
+                <!-- name -->
+                <td class="inventory-table-col">
+                    @if(isset($nameErrMsg))
+                    <p>{!!$nameErrMsg!!}</p>
+                    @endif
+                    @if(isset($name))
+                    <input type="text" name="name" placeholder="Ingredient name" value="{{$name}}">
+                    @else
+                    <input type="text" name="name" placeholder="Ingredient name">
+                    @endif
+                </td>
+
+                <!-- amount -->
+                <td class="inventory-table-col">
+                    @if(isset($amountErrMsg))
+                    <p>{!!$amountErrMsg!!}</p>
+                    @endif
+                    @if(isset($amount))
+                    <input type="text" name="amount" placeholder="Ingredient amount" value="{{$amount}}">
+                    @else
+                    <input type="text" name="amount" placeholder="Ingredient amount">
+                    @endif
+                </td>
                 <td class="inventory-table-col"><button class="inventory-add-button" type="submit"><i class="fas fa-plus"></i> Add</button></td>
             </form>
         </tr>

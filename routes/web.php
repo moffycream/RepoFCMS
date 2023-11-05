@@ -94,7 +94,7 @@ Route::post('/add-food', [FoodController::class, 'registerNewFood'])->name('food
 Route::get('/add-food-form', [FoodController::class, 'addFoodForm']);
 
 // Food - edit and delete food
-Route::put('/add-food', [FoodController::class, 'editFood'])->name('food.edit');
+Route::post('/add-food/edit', [FoodController::class, 'editFood'])->name('food.edit');
 Route::get('/add-food/{id}', [FoodController::class, 'deleteFood'])->name('food.delete');
 
 
@@ -104,7 +104,7 @@ Route::get('/add-menu-form', [MenuController::class, 'addMenuFormIndex']);
 Route::post('/add-menu-form', [MenuController::class, 'registerNewMenu'])->name('menu.register');
 
 // Menu - edit and delete menu
-Route::put('/add-menu', [MenuController::class, 'editMenu'])->name('menu.edit');
+Route::post('/add-menu/edit', [MenuController::class, 'editMenu'])->name('menu.edit');
 Route::get('/add-menu/{id}', [MenuController::class, 'deleteMenu'])->name('menu.delete');
 
 

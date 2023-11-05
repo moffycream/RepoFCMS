@@ -8,14 +8,14 @@
     <form class="add-menu-form" id="add-food-form" method="POST" action="{{ route('food.register') }}" enctype="multipart/form-data">
         @csrf
         <div>
-            <p class="add-menu-form-title">Edit Food Form</p>
+            <p class="add-menu-form-title">Add Food Form</p>
         </div>
         <div class="add-menu-form-input-div">
             <label for="menu-image">Image</label>
             @if(isset($imageErrMsg))
             <p>{!!$imageErrMsg!!}</p>
             @endif
-            <input type="file" accept=".png, .jpeg, .jpg" id="food-image" name="image">
+            <input type="file" accept=".png, .jpeg, .jpg" id="food-image" name="image" value="{{$image}}">
         </div>
         <div class="add-menu-form-input-div">
             @if(isset($nameErrMsg))

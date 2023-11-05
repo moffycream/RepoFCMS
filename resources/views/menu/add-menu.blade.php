@@ -97,7 +97,6 @@
                     <!-- Display total required ingredient -->
                     <div>
                         <p class="col-add-menu-info-title">Required ingredients</p>
-
                         @php
                         $inventoryCounts = [];
                         @endphp
@@ -132,11 +131,10 @@
                         <p class="col-add-menu-info-title">Price</p>
                         <p>RM {{$menu->totalPrice}}</p>
                     </div>
-                    @php
-                    echo "<a class='inventory-delete-button' href='" . route('menu.delete', ['id'=> $menu->menuID]) . "' onclick=\"return confirm('Are you sure you want to delete this record?')\"><i class='fas fa-trash-alt'></i> Delete</a>";
-                    @endphp
                 </div>
             </form>
+            <a class="menu-delete-button" href="{{ route('menu.delete', ['id' => $menu->menuID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
+
         </div>
 
         @php

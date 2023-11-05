@@ -139,7 +139,7 @@ class FoodController extends Controller
 
             return redirect('/add-food')->with(['listItems' => $foods, 'inventories' => $inventories, 'menuFoods' => $menuFoods]);
         } else {
-            return redirect('/add-food-form')->with(['listItems' => $inventories])
+            return view('menu.add-food-form')->with(['listItems' => $inventories])
                 ->with('imageErrMsg', $imageErrMsg)
                 ->with('nameErrMsg', $nameErrMsg)
                 ->with('descriptionErrMsg', $descriptionErrMsg)

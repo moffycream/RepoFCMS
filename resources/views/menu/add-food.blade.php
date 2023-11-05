@@ -17,7 +17,7 @@
                 @method('PUT')
                 @csrf
                 <input type="hidden" name="foodID" value="{{$food->foodID}}">
-                
+
                 <!-- Display food image -->
                 <img src="{{$food->imagePath}}" alt="Image" class="food-logo">
 
@@ -111,36 +111,36 @@
                                     <th class="add-menu-table-title">Ingredient name</th>
                                     <th class="add-menu-table-title">Ingredient amount</th>
                                 </tr>
-                                    @foreach ($inventories as $inventory)
-                                    <tr class="add-menu-table-row">
-                                        <!-- Inventory ID -->
-                                        <td class="add-menu-table-col">
-                                            <span>{{$inventory->inventoryID}}</span>
-                                        </td>
-                                        <!-- Inventory name -->
-                                        <td class="add-menu-table-col">
-                                            <span>{{$inventory->inventoryName}}</span>
-                                        </td>
-                                        <!-- Inventory amount -->
-                                        <td class="add-menu-table-col">
-                                            @php
-                                            $hasMatch = false;
-                                            @endphp
-                                            @foreach ($food->food_inventory as $food_inventory)
-                                                @if ($food_inventory->inventoryID == $inventory->inventoryID)
-                                                <input name="amount[]" type="text" value="{{$food_inventory->amount}}">
-                                                @php
-                                                $hasMatch = true;
-                                                @endphp
-                                                @endif
-                                            @endforeach
-                                            @if (!$hasMatch)
-                                                <input name="amount[]" type="text" value="0">
-                                                @endif
-                                            <input type="hidden" name="inventoryID[]" value="{{$inventory->inventoryID}}">
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                @foreach ($inventories as $inventory)
+                                <tr class="add-menu-table-row">
+                                    <!-- Inventory ID -->
+                                    <td class="add-menu-table-col">
+                                        <span>{{$inventory->inventoryID}}</span>
+                                    </td>
+                                    <!-- Inventory name -->
+                                    <td class="add-menu-table-col">
+                                        <span>{{$inventory->inventoryName}}</span>
+                                    </td>
+                                    <!-- Inventory amount -->
+                                    <td class="add-menu-table-col">
+                                        @php
+                                        $hasMatch = false;
+                                        @endphp
+                                        @foreach ($food->food_inventory as $food_inventory)
+                                        @if ($food_inventory->inventoryID == $inventory->inventoryID)
+                                        <input name="amount[]" type="text" value="{{$food_inventory->amount}}">
+                                        @php
+                                        $hasMatch = true;
+                                        @endphp
+                                        @endif
+                                        @endforeach
+                                        @if (!$hasMatch)
+                                        <input name="amount[]" type="text" value="0">
+                                        @endif
+                                        <input type="hidden" name="inventoryID[]" value="{{$inventory->inventoryID}}">
+                                    </td>
+                                </tr>
+                                @endforeach
                             </table>
                         </section>
                         <section class="col-add-menu-info-col2">
@@ -149,29 +149,27 @@
                             <p class="add-menu-cancel-button"><i class="fas fa-ban"></i> Cancel</p>
                         </section>
                         @php
-                    $canDelete = true;
-                    @endphp
-
-                    @foreach($menuFoods as $menuFood)
-                    @if ($menuFood->foodID == $food->foodID) 
-                    @php
-                    $canDelete = false;
-                    @endphp
-                    @endif
-                    @endforeach
-
-                    @if($canDelete)
-                        @php
-                        echo "<a class='inventory-delete-button' href='" . route('food.delete', ['id' => $food->foodID]) . "' onclick=\"return confirm('Are you sure you want to delete this record?')\"><i class='fas fa-trash-alt'></i> Delete</a>";
+                        $canDelete = true;
                         @endphp
-                    @else
-                        @php
-                        echo '<a class="inventory-delete-button-no"><i class="fas fa-trash-alt"></i> Delete</a>';
-                        @endphp
-                    @endif
+
                     </div>
                 </div>
             </form>
+            @foreach($menuFoods as $menuFood)
+                @if ($menuFood->foodID == $food->foodID) 
+                @php
+                $canDelete = false;
+                @endphp
+                @endif
+                @endforeach
+
+                @if($canDelete)
+                <a class="menu-delete-button" href="{{ route('food.delete', ['id' => $food->foodID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
+
+                @else
+                <a class="menu-delete-button-no" href="{{ route('food.delete', ['id' => $food->foodID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
+
+                @endif
         </div>
 
         @php
