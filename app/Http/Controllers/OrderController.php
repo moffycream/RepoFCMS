@@ -72,6 +72,7 @@ class OrderController extends Controller
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "Completed";
+        $selectedOrder->updated_at = now();
         $selectedOrder->save();
 
         $notificationController = app(NotificationController::class);

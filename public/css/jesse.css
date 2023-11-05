@@ -1,4 +1,4 @@
-/* customer order listing */
+/* customer order listing  & customer order history*/ 
 
 .container-customer {
     background-color: #e8dcd4;
@@ -225,7 +225,7 @@ a.edit-button,
     font-size: 15px;
     font-style: italic;
 }
-/*order listing details*/
+/*order listing details & order history details*/
 .container-customer-view-order {
     box-sizing: border-box;
     padding: 20px;
@@ -409,16 +409,13 @@ details[open] summary::before {
     opacity: 50%;
 }
 
-.container-customer-view-order .col-customer-view-order .row-details .customer-name {
+.container-customer-view-order .col-customer-view-order .row-details .customer-bold-info {
     font-size: 24px;
     font-weight: bold;
     margin: 5px 0 20px 0;
 }
 
-.container-customer-view-order .col-customer-view-order .row-details .customer-address,
-.container-customer-view-order .col-customer-view-order .row-details .customer-notes,
-.container-customer-view-order .col-customer-view-order .row-details .customer-time,
-.container-customer-view-order .col-customer-view-order .row-details .customer-delivery {
+.container-customer-view-order .col-customer-view-order .row-details .customer-order-info {
     opacity: 50%;
     font-size: 18px;
     font-weight: bold;
@@ -433,11 +430,7 @@ details[open] summary::before {
     margin-top: 10px;
 }
 
-.container-customer-view-order .col-customer-view-order .row-details .customer-address i,
-.container-customer-view-order .col-customer-view-order .row-details .customer-contact i,
-.container-customer-view-order .col-customer-view-order .row-details .customer-delivery i,
-.container-customer-view-order .col-customer-view-order .row-details .customer-notes i,
-.container-customer-view-order .col-customer-view-order .row-details .customer-time i {
+.container-customer-view-order .col-customer-view-order .row-details .customer-order-info i{
     margin-right: 10px;
 }
 

@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\UserAccounts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserAccountController;
-use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Log;
 
 

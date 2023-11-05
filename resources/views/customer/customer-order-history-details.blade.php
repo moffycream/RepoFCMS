@@ -37,7 +37,7 @@
                 <div class="col-row-details">
                     <div>
                         <p class="customer-title">Customer Name</p>
-                        <p class="customer-name">{{$selectedOrder->name}}</p>
+                        <p class="customer-bold-info">{{$selectedOrder->name}}</p>
                     </div>
                     <div>
                         <p class="customer-title">Contact</p>
@@ -45,27 +45,27 @@
                     </div>
                     <div>
                         <p class="customer-title">Delivery method</p>
-                        <p class="customer-delivery"><span><i class="fas fa-truck"></i>{{$selectedOrder->delivery}}</span></p>
+                        <p class="customer-order-info"><span><i class="fas fa-truck"></i>{{$selectedOrder->delivery}}</span></p>
                     </div>
                 </div>
                 <div class="col-row-details">
                     <div>
                         <p class="customer-title">Address</p>
-                        <p class="customer-address"><i class="fas fa-map-marker-alt"></i>{{$selectedOrder->address}}</p>
+                        <p class="customer-order-info"><i class="fas fa-map-marker-alt"></i>{{$selectedOrder->address}}</p>
                     </div>
                     <div>
                         <p class="customer-title">Order Notes</p>
-                        <p class="customer-notes"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
+                        <p class="customer-order-info"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
                     </div>
                 </div>
                 <div class="col-row-details">
                     <div>
                         <p class="customer-title">Order Data And Time</p>
-                        <p class="customer-time"><span><i class="fas fa-clock"></i>{{$selectedOrder->getformattedDateTime()}}</span></p>
+                        <p class="customer-order-info"><span><i class="fas fa-clock"></i>{{$selectedOrder->getformattedDateTime()}}</span></p>
                     </div>
                     <div>
                         <p class="customer-title">Order Completed at</p>
-                        <p class="customer-delivery"><span><i class="fas fa-check-square"></i>{{$selectedOrder->getFormattedDateTimeComplete()}}</span></p>
+                        <p class="customer-order-info"><span><i class="fas fa-check-square"></i>{{$selectedOrder->getFormattedDateTimeComplete()}}</span></p>
                     </div>
                 </div>
             </div>
@@ -74,11 +74,11 @@
                 <div class="col-row-details">
                     <div>
                         <p class="customer-title">Transaction ID</p>
-                        <p class="customer-name">#{{$paymentInfo->transactionID}}</p>
+                        <p class="customer-bold-info">#{{$paymentInfo->transactionID}}</p>
                     </div>
                     <div>
                         <p class="customer-title">Payment Method</p>
-                        <p class="customer-time"><i class="fas fa-money-check-alt"></i>{{$paymentInfo->paymentMethod}}</p>
+                        <p class="customer-order-info"><i class="fas fa-money-check-alt"></i>{{$paymentInfo->paymentMethod}}</p>
                     </div>
 
                 </div>

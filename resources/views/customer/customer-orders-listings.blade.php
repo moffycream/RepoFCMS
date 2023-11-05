@@ -37,7 +37,7 @@
                 <div class="col-row-details">
                     <div>
                         <p class="customer-title">Customer</p>
-                        <p class="customer-name">{{$selectedOrder->name}}</p>
+                        <p class="customer-bold-info">{{$selectedOrder->name}}</p>
                     </div>
                     <div>
                         <p class="customer-title">Contact</p>
@@ -46,21 +46,21 @@
                 </div>
                 <div>
                     <p class="customer-title">Address</p>
-                    <p class="customer-address"><i class="fas fa-map-marker-alt"></i>{{$selectedOrder->address}}</p>
+                    <p class="customer-order-info"><i class="fas fa-map-marker-alt"></i>{{$selectedOrder->address}}</p>
                 </div>
 
                 <div>
                     <p class="customer-title">Order Notes</p>
-                    <p class="customer-notes"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
+                    <p class="customer-order-info"><i class="fas fa-sticky-note"></i>{{$selectedOrder->order_notes}}</span></p>
                 </div>
                 <div>
 
                     <p class="customer-title">Order Data And Time</p>
-                    <p class="customer-time"><span><i class="fas fa-clock"></i>{{$selectedOrder->getformattedDateTime()}}</span></p>
+                    <p class="customer-order-info"><span><i class="fas fa-clock"></i>{{$selectedOrder->getformattedDateTime()}}</span></p>
                 </div>
                 <div>
                     <p class="customer-title">Delivery method</p>
-                    <p class="customer-delivery"><span><i class="fas fa-truck"></i>{{$selectedOrder->delivery}}</span></p>
+                    <p class="customer-order-info"><span><i class="fas fa-truck"></i>{{$selectedOrder->delivery}}</span></p>
                 </div>
 
             </div>
