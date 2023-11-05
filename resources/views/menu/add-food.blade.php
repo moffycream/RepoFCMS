@@ -4,6 +4,24 @@
 <h1 class="add-menu-title">Add Food</h1>
 
 <div class="add-menu-container">
+    @if(isset($editNameErrMsg) || isset($editDescriptionErrMsg) || isset($editPriceErrMsg) || isset($editAmountErrMsg))
+    <div id="add-menu-error-window">
+        <i class="fas fa-times" id="close-window-button"></i>
+        @if(isset($editNameErrMsg))
+        <p>{!!$editNameErrMsg!!}</p>
+        @endif
+        @if(isset($editDescriptionErrMsg))
+        <p>{!!$editDescriptionErrMsg!!}</p>
+        @endif
+        @if(isset($editPriceErrMsg))
+        <p>{!!$editPriceErrMsg!!}</p>
+        @endif
+        @if(isset($editAmountErrMsg))
+        <p>{!!$editAmountErrMsg!!}</p>
+        @endif
+    </div>
+    @endif
+
     <div class="row-add-menu">
         @php
         $count = 0;
@@ -14,7 +32,6 @@
         <!-- Block of display food image and details -->
         <div class="col-add-menu">
             <form class="add-food-edit-form" method="POST" action="{{ route('food.edit')}}" enctype="multipart/form-data">
-                @method('PUT')
                 @csrf
                 <input type="hidden" name="foodID" value="{{$food->foodID}}">
 
@@ -156,20 +173,18 @@
                 </div>
             </form>
             @foreach($menuFoods as $menuFood)
-                @if ($menuFood->foodID == $food->foodID) 
-                @php
-                $canDelete = false;
-                @endphp
-                @endif
-                @endforeach
+            @if ($menuFood->foodID == $food->foodID)
+            @php
+            $canDelete = false;
+            @endphp
+            @endif
+            @endforeach
 
-                @if($canDelete)
-                <a class="menu-delete-button" href="{{ route('food.delete', ['id' => $food->foodID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
-
-                @else
-                <a class="menu-delete-button-no" href="{{ route('food.delete', ['id' => $food->foodID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
-
-                @endif
+            @if($canDelete)
+            <a class="menu-delete-button" href="{{ route('food.delete', ['id' => $food->foodID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
+            @else
+            <a class="menu-delete-button-no"><i class="fas fa-trash-alt"></i> Delete</a>
+            @endif
         </div>
 
         @php

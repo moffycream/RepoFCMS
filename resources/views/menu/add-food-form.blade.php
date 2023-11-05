@@ -15,7 +15,7 @@
             @if(isset($imageErrMsg))
             <p>{!!$imageErrMsg!!}</p>
             @endif
-            <input type="file" accept=".png, .jpeg, .jpg" id="food-image" name="image" value="{{$image}}">
+            <input type="file" accept=".png, .jpeg, .jpg" id="food-image" name="image">
         </div>
         <div class="add-menu-form-input-div">
             @if(isset($nameErrMsg))

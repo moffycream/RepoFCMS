@@ -5,12 +5,19 @@
 
 
 <div class="add-menu-form-container">
-    @if(isset($editNameErrMsg))
-    <p class="inventory-error">{!!$editNameErrMsg!!}</p>
+
+    @if(isset($editNameErrMsg) || isset($editAmountErrMsg))
+    <div id="add-menu-error-window">
+        <i class="fas fa-times" id="close-window-button"></i>
+        @if(isset($editNameErrMsg))
+        <p class="inventory-error">{!!$editNameErrMsg!!}</p>
+        @endif
+        @if(isset($editAmountErrMsg))
+        <p class="inventory-error">{!!$editAmountErrMsg!!}</p>
+        @endif
+    </div>
     @endif
-    @if(isset($editAmountErrMsg))
-    <p class="inventory-error">{!!$editAmountErrMsg!!}</p>
-    @endif
+
     <table class="inventory-table">
         <tr class="inventory-table-row">
             <th class="inventory-table-title">Ingredient ID</th>

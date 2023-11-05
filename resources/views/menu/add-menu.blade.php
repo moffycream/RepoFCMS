@@ -4,6 +4,18 @@
 <h1 class="add-menu-title">Add Menu</h1>
 
 <div class="add-menu-container">
+    @if(isset($editNameErrMsg) || isset($editCheckboxErrMsg))
+    <div id="add-menu-error-window">
+        <i class="fas fa-times" id="close-window-button"></i>
+        @if(isset($editNameErrMsg))
+        <p>{!!$editNameErrMsg!!}</p>
+        @endif
+        @if(isset($editCheckboxErrMsg))
+        <p>{!!$editCheckboxErrMsg!!}</p>
+        @endif
+    </div>
+    @endif
+
     <div class="row-add-menu">
         @php
         $count = 0;
@@ -13,7 +25,6 @@
         @foreach($listItems as $menu)
         <div class="col-add-menu">
             <form class="add-food-edit-form" method="POST" action="{{ route('menu.edit')}}" enctype="multipart/form-data">
-                @method('PUT')
                 @csrf
                 <input type="hidden" name="menuID" value="{{$menu->menuID}}">
 

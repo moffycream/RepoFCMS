@@ -127,69 +127,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    //add menu form
-    var addMenuForm = document.getElementById("add-menu-form");
-    var menuImage = document.getElementById("menu-image");
-    var menuName = document.getElementById("menu-name");
-    var addMenuCheckboxes = document.querySelectorAll(".add-menu-checkbox");
-    var isMenuImageEmpty = true;
-    var isMenuNameEmpty = true;
-    var isMenuCheckEmpty = true;
-    var menuAlert = "";
+    //close error window
+    var closeButton = document.getElementById("close-window-button");
+    var errorWindow = document.getElementById("add-menu-error-window");
 
-    function validateCheckboxes() {
-        for (var i = 0; i < addMenuCheckboxes.length; i++) {
-            if (addMenuCheckboxes[i].checked) {
-                isMenuCheckEmpty = false;
-                break; // Exit the loop if at least one checkbox is checked
-            }
-        }
-        return isMenuCheckEmpty;
+    if (closeButton && errorWindow) {
+        closeButton.addEventListener("click", function () {
+            errorWindow.style.display = "none";
+
+        });
     }
-
-    // function validationMenuForm() {
-
-    //     // Reset bool
-    //     isMenuImageEmpty = true;
-    //     isMenuNameEmpty = true;
-    //     isMenuCheckEmpty = true;
-    //     menuAlert = "";
-
-    //     if (!menuImage.files.length) {
-    //         isMenuImageEmpty = true;
-    //     } else {
-    //         isMenuImageEmpty = false;
-    //     }
-    //     if (menuName.value === "") {
-    //         isMenuNameEmpty = true;
-    //     } else {
-    //         isMenuNameEmpty = false;
-    //     }
-
-    //     isMenuCheckEmpty = validateCheckboxes(); // Call the checkbox validation function
-
-    //     if (isMenuImageEmpty) {
-    //         menuAlert += "Image cannot be empty";
-    //     }
-    //     if (isMenuNameEmpty) {
-    //         menuAlert += "\nName cannot be empty";
-    //     }
-    //     if (isMenuCheckEmpty) {
-    //         menuAlert += "\nAt least 1 food must be checked";
-    //     }
-
-    //     if (isMenuImageEmpty || isMenuNameEmpty || isMenuCheckEmpty) {
-    //         alert(menuAlert);
-    //         return false;
-    //     } else {
-    //         return true;
-    //     }
-    // }
-
-    // if (addMenuForm) {
-    //     addMenuForm.onsubmit = validationMenuForm;
-    // }
-
     
 
     var adminExpandedDashboard = this.getElementById("admin-dashboard-container-expand");
