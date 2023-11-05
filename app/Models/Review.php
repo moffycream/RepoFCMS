@@ -25,7 +25,8 @@ class Review extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class, 'reviewID');
+        // Get the comments for the review that are not replies
+        return $this->hasMany(Comment::class, 'reviewID')->whereNull('replyToCommentID');
     }
 
     // Get time difference between now and the time the review was created
@@ -45,7 +46,8 @@ class Review extends Model
     // Get the total number of comments for a review
     public function getTotalComments()
     {
-        $totalComments = $this->comments->count();
+        // Get the total number of comments for a review, including replies
+        $totalComments = Comment::where('reviewID', $this->reviewID)->count();
         return $totalComments;
     }
 }

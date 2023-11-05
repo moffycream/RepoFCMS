@@ -178,4 +178,5 @@ Route::get('/customer-review-history/comment/{commentID}', [ReviewController::cl
 Route::post('/customer-review-history/review/{reviewID}/edit/save', [ReviewController::class, 'saveReviewEdit'])->name('review.edit.submit');
 Route::post('/customer-review-history/comment/{commentID}/edit/save', [ReviewController::class, 'saveCommentEdit'])->name('review.comment.edit.submit');
 Route::get('/customer-review-history/review/{reviewID}/delete', [ReviewController::class, 'reviewDelete'])->name('review.delete');
+Route::get('/customer-review-history/comment/{commentID}/delete', [ReviewController::class, 'commentDelete'])->name('review.comment.delete');
 

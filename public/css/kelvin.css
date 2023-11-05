@@ -964,20 +964,23 @@ details[open] summary::before {
 
 .container-review-history  .row-user-review .row-container .review-action button i,
 .container-review-history  .row-user-review .row-container .review-action a i,
-.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button i{
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button i,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action a i{
     font-size: 24px;
     margin-right: 10px;
 }
 
 .container-review-history  .row-user-review .row-container .review-action button span:last-child,
 .container-review-history  .row-user-review .row-container .review-action a span:last-child,
-.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button span:last-child{
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button span:last-child,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action a span:last-child{
     margin-left: 5px;
 }
 
 .container-review-history  .row-user-review .row-container .review-action button,
 .container-review-history  .row-user-review .row-container .review-action a,
-.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button{
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action button,
+.container-review-history  .row-user-review .row-container-comment .comment-container .row-comment .comment-action a{
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;

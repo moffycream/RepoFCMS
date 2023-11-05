@@ -992,8 +992,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Toggle comment button to show and hide all the comments
-function toggleComments() {
-    const comments = document.querySelectorAll('.comment');
+function toggleComments(reviewID) {
+    const review = document.querySelector(`#review-${reviewID}`);
+    const comments = review.querySelectorAll('.comment');
+    comments.forEach(function (comment) {
+        if (comment.style.display === 'none' || comment.style.display === '') {
+            comment.style.display = 'block';
+        } else {
+            comment.style.display = 'none';
+        }
+    });
+}
+
+// Toggle comment's replied comments to show and hide all the comments
+function toggleRepliedComments(commentID) {
+    const comment = document.querySelector(`#comment-${commentID}`);
+    const comments = comment.querySelectorAll('.comment-reply');
     comments.forEach(function (comment) {
         if (comment.style.display === 'none' || comment.style.display === '') {
             comment.style.display = 'block';
@@ -1005,7 +1019,7 @@ function toggleComments() {
 
 // Toggle reply button to show input field for reply for a specific reply form
 function toggleReply(replyFormId) {
-    const replyForm = document.getElementById(replyFormId);
+    const replyForm = document.getElementById(`reply-${replyFormId}`);
     // Toggle the display of the reply form
     if (replyForm.style.display === 'none' || replyForm.style.display === '') {
         replyForm.style.display = 'block';

@@ -90,6 +90,7 @@ class Comment extends Model
     // Get the total number of comments for this comment
     public function getTotalComments()
     {
+        // Get the total replies for this comment
         $totalComments = Comment::where('replyToCommentID', $this->commentID)->count();
         return $totalComments;
     }
@@ -105,4 +106,11 @@ class Comment extends Model
         }
         return $nestingLevel;
     }
+
+    // Get the replies for this comment
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, 'replyToCommentID');
+    }
+
 }

@@ -12,23 +12,24 @@ class ReviewController extends Controller
 {
     public function index()
     {
-         // Get all the reviews
-         $reviews = Review::all();
+        // Get all the reviews with their comments and replies
+        $reviews = Review::with('comments.replies')->get();
+
         return view('reviews', ['reviews' => $reviews]);
     }
 
+
     public function customerReviewHistory()
     {
-        $reviews = null;
-        // Get the reviews of the user
+        // Get all the reviews with their comments and replies that belong to the user
         if (session()->has('username')) {
             $userAccount = UserAccounts::where('username', session('username'))->first();
             if ($userAccount != null) {
-                // Get the user's reviews
-                $reviews = Review::where('userID', $userAccount->userID)->get();
+                $reviews = Review::with('comments.replies')->where('userID', $userAccount->userID)->get();
             }
         }
-      return view('customer.customer-review-history', ['reviews' => $reviews]);
+
+        return view('customer.customer-review-history', ['reviews' => $reviews]);
     }
 
     public function reviewEdit($reviewID)
@@ -130,12 +131,37 @@ class ReviewController extends Controller
         return redirect('/customer-review-history');
     }
 
+    public function commentDelete($commentID)
+    {
+        // Get user id
+        if (session()->has('username')) {
+            $userAccount = UserAccounts::where('username', session('username'))->first();
+            if ($userAccount != null) {
+                // Get the comment
+                $comment = Comment::where('commentID', $commentID)->first();
+
+                // Delete the replies too
+                $replies = Comment::where('replyToCommentID', $commentID)->get();
+                foreach ($replies as $reply) {
+                    $reply->delete();
+                }
+
+                if ($comment != null) {
+                    // Delete the comment
+                    $comment->delete();
+                    // Return back to reviews page
+                    return redirect('/customer-review-history')->with('success', 'Comment deleted successfully!');
+                }
+            }
+        }
+        return redirect('/customer-review-history');
+    }
+
     public function reviewForm()
     {
         if (session()->has('username')) {
             return view('review-form');
-        }
-        else{
+        } else {
             // Return errors
             return redirect('/login');
         }
