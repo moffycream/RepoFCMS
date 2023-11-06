@@ -7,6 +7,7 @@ use App\Models\Review;
 use App\Models\UserAccounts;
 use App\Models\Comment;
 use Illuminate\Contracts\Session\Session;
+use App\Models\Notification;
 
 class ReviewController extends Controller
 {
@@ -211,6 +212,7 @@ class ReviewController extends Controller
     // Make a comment
     public function submitComment(Request $request)
     {
+
         // Custom error message
         $message = [
             'commentContent.required' => 'Please write your comment.',
@@ -232,8 +234,34 @@ class ReviewController extends Controller
                 $comment->userID = $userAccount->userID;
                 $comment->commentContent = $validatedData['commentContent'];
                 $comment->save();
+                        // Send notification
+                $this->sendNotification($request->reviewID);
                 // Return back to reviews page
                 return redirect('/reviews')->with('success', 'Comment submitted successfully!');
+            }
+        }
+    }
+
+    // Send notification
+    public function sendNotification($reviewID)
+    {
+        // Get the review
+        $review = Review::where('reviewID', $reviewID)->first();
+        if ($review != null) {
+            // Get the user who made the review
+            $userAccount = UserAccounts::where('userID', $review->userID)->first();
+            if ($userAccount != null) {
+                // Get the user who is logged in
+                if (session()->has('username')) {
+                    $loggedInUserAccount = UserAccounts::where('username', session('username'))->first();
+                    if ($loggedInUserAccount != null) {
+                        // Create a new notification instance
+                        $notification = new Notification();
+                        $notification->userID = $userAccount->userID;
+                        $notification->content = $loggedInUserAccount->username . ' commented on your review.';
+                        $notification->save();
+                    }
+                }
             }
         }
     }
@@ -261,6 +289,8 @@ class ReviewController extends Controller
                 $comment->userID = $userAccount->userID;
                 $comment->commentContent = $validatedData['commentContent'];
                 $comment->save();
+                // Send notification
+                $this->sendNotification($request->reviewID);
                 // Return back to reviews page
                 return redirect('/customer-review-history')->with('success', 'Comment submitted successfully!');
             }
