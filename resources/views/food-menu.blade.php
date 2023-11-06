@@ -2,41 +2,52 @@
 @section('title', 'Food Menu')
 @section('content')
 
-<div class="foodMenu container">
-    <h1>Food Menu</h1>
-    <h2></h2>
-    @foreach ($menus as $menu)
-        <div class="foodMenu">
-            <h3>{{ $menu->name }}</h3>
-            <img src="{{ $menu->imagePath }}" alt="{{ $menu->name }}" width="200"> <!-- Display the image -->
-            <p>{{ $menu->description }}</p>
-            <p>Price: ${{ $menu->totalPrice }}</p>
-            <form action="{{ route('food-menu.addToCart') }}" method="POST">
-                @csrf
-                <input type="hidden" name="menu_id" value="{{ $menu->menuID }}">
-                <button type="submit">Add to cart</button>
-            </form>
-        </div>
-    @endforeach
 
-    <form action="{{ route('food-menu.checkout') }}" method="POST">
-        @csrf
-        <button type="submit">Checkout</button>
-    </form>
+    <h1>Food Menu</h1>
+    <div class="foodMenu container">
+        <h2></h2>
+        <div class="foodMenu-list">
+            @foreach ($menus as $menu)
+                <div class="foodMenu-item">
+                    <h3>{{ $menu->name }}</h3>
+                    <img class="foodMenu-item-image" src="{{ $menu->imagePath }}" alt="{{ $menu->name }}">
+                    <p>Price: ${{ $menu->totalPrice }}</p>
+                    <br></br>
+                    <p>Foods in this menu:</p>
+                    <ul class='foodMenu-foods'>
+                        @foreach ($menu->foods as $food)
+                            <li>- {{ $food->name }}</li>
+                        @endforeach
+                    </ul>
+                    <br></br>
+                    <form action="{{ route('food-menu.addToCart') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="menu_id" value="{{ $menu->menuID }}">
+                        <button type="submit" class="foodMenu-add-to-cart-button">Add to cart</button>
+                    </form>
+                </div>
+            @endforeach
+        </div>
 
     <!-- Display Cart Items -->
-    <div id="cartItems">
+    <div class="foodMenu-cartItems">
         <h2>Cart Items</h2>
-        
         <ul>
             @foreach ($cart as $item)
                 <li>
-                {{ $item['menu']->menuID}}- {{ $item['menu']->name }} - Quantity: {{ $item['quantity'] }}
+                    {{ $item['menu']->name }} : {{ $item['quantity'] }}
                 </li>
             @endforeach
         </ul>
+        <br></br>
+        <form action="{{ route('food-menu.checkout') }}" method="POST">
+            @csrf
+            <button type="submit" class="foodMenu-checkout-button">Checkout</button>
+        </form>
     </div>
 </div>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
