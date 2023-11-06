@@ -30,7 +30,7 @@ class ReviewController extends Controller
             }
         }
 
-        return view('customer.customer-review-history', ['reviews' => $reviews]);
+        return view('customer.customer-review-history', ['reviews' => $reviews, 'reviewHistory' => true]);
     }
 
     public function reviewEdit($reviewID)
