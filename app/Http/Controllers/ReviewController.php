@@ -150,6 +150,10 @@ class ReviewController extends Controller
                 if ($comment != null) {
                     // Delete the comment
                     $comment->delete();
+
+                    // Send notification
+                    $this->sendNotification($comment->reviewID);
+
                     // Return back to reviews page
                     return redirect('/customer-review-history')->with('success', 'Comment deleted successfully!');
                 }
@@ -256,6 +260,10 @@ class ReviewController extends Controller
                     $loggedInUserAccount = UserAccounts::where('username', session('username'))->first();
                     if ($loggedInUserAccount != null) {
                         // Create a new notification instance
+                        // No need to send notification if the user is commenting on their own review
+                        if ($userAccount->userID == $loggedInUserAccount->userID) {
+                            return;
+                        }
                         $notification = new Notification();
                         $notification->userID = $userAccount->userID;
                         $notification->content = $loggedInUserAccount->username . ' commented on your review.';
