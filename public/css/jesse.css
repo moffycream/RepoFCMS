@@ -463,7 +463,8 @@ details[open] summary::before {
     width:500px
 }
 
-.customer-container-complete-button
+.customer-container-complete-button,
+.customer-container-reorder-button
 {
     background-color: #473447;
     color: #fff;
@@ -481,7 +482,8 @@ details[open] summary::before {
     width:500px
 }
 
-.customer-container-complete-button:hover
+.customer-container-complete-button:hover,
+.customer-container-reorder-button:hover
 {
     opacity: 80%
 }
