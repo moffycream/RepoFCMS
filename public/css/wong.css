@@ -1,7 +1,10 @@
 .foodMenu.container 
 {
-    width: 12.5%;
-    margin: 1 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    margin: 20px auto 0; /* Add margin-top to create space between the title and menu items */
     padding: 20px;
 }
 
@@ -37,11 +40,73 @@
 .foodMenu form[action*="checkout"] button 
 {
     background-color: #28a745;
+    position: absolute; /* Position relative to .foodMenu-cartItems */
+    bottom: 10px; /* Move to the bottom */
+    right: 10px; /* Move to the right */
 }
 
 .foodMenu form[action*="checkout"] button:hover 
 {
     background-color: #1e7e34;
+}
+
+.foodMenu-foods 
+{
+    list-style: none;
+    padding: 0;
+}
+
+.foodMenu-foods li 
+{
+    margin: 0;
+    padding: 0;
+}
+
+.foodMenu-list 
+{
+    display: flex; /* Create a horizontal layout for menu items */
+    flex-wrap: wrap; /* Allow menu items to wrap to the next line if needed */
+    flex: 0 0 75%;
+}
+
+.foodMenu-cartItems 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start; /* Align items to the top */
+    flex: 0 0 25%;
+    position: relative;
+}
+
+.foodMenu-cartItems > ul 
+{
+    flex: 1;
+    list-style: none;
+    margin: 0; 
+}
+
+.foodMenu-item 
+{
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+    position: relative;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.foodMenu-add-to-cart-button 
+{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    margin-top: 50px;
+}
+
+.foodMenu-item-image 
+{
+    width: 200px; 
+    height: 150px; 
 }
 
 .businessAnalytics-title

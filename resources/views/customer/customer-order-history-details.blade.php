@@ -91,7 +91,7 @@
             <div class="row-actions">
                 <form method="post" action="{{ route('order-again', ['orderID' => $selectedOrder->orderID]) }}">
                     @csrf
-                    <button type="submit" class="customer-container-complete-button">Order Again</button>
+                    <button type="submit" class="customer-container-reorder-button">Order Again</button>
                 </form>
             </div>
 

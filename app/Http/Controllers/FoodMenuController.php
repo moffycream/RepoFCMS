@@ -36,23 +36,29 @@ class FoodMenuController extends Controller
     {
         $menu = Menu::find($request->menu_id);
 
-        if (!$menu) {
+        if (!$menu) 
+        {
             return redirect()->route('menu.index')->with('error', 'Menu not found.');
         }
         // Get the cart items from the session
         $cart = session('cart', []);
 
         // Check if the menu item is already in the cart
-        $existingItemKey = collect($cart)->search(function ($item) use ($menu) {
+        $existingItemKey = collect($cart)->search(function ($item) use ($menu) 
+        {
             return $item['menu']->menuID === $menu->menuID;
         });
 
-        if ($existingItemKey !== false) {
+        if ($existingItemKey !== false) 
+        {
             // If the menu item is in the cart, increment the quantity
             $cart[$existingItemKey]['quantity'] += 1;
-        } else {
+        } 
+        else 
+        {
             // If the menu item is not in the cart, add it
-            $cart[] = [
+            $cart[] = 
+            [
                 'menu' => $menu,
                 'quantity' => 1,
                 'price' => $menu->totalPrice // Store the price
@@ -93,7 +99,8 @@ class FoodMenuController extends Controller
         // Retrieve the selected order
         $selectedOrder = Order::find($orderID);
 
-        if (!$selectedOrder) {
+        if (!$selectedOrder) 
+        {
             return redirect()->route('menu.index')->with('error', 'Order not found.');
         }
 
@@ -101,18 +108,24 @@ class FoodMenuController extends Controller
         $cart = session('cart', []);
 
         // Iterate through the items in the selected order
-        foreach ($selectedOrder->menus as $menu) {
+        foreach ($selectedOrder->menus as $menu) 
+        {
             // Check if the menu item is already in the cart
-            $existingItemKey = collect($cart)->search(function ($item) use ($menu) {
+            $existingItemKey = collect($cart)->search(function ($item) use ($menu) 
+            {
                 return $item['menu']->menuID === $menu->menuID;
             });
 
-            if ($existingItemKey !== false) {
+            if ($existingItemKey !== false) 
+            {
                 // If the menu item is in the cart, increment the quantity
                 $cart[$existingItemKey]['quantity'] += 1;
-            } else {
+            } 
+            else 
+            {
                 // If the menu item is not in the cart, add it
-                $cart[] = [
+                $cart[] = 
+                [
                     'menu' => $menu,
                     'quantity' => 1,
                     'price' => $menu->totalPrice,
