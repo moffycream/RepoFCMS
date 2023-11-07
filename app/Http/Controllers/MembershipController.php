@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\UserAccountController;
 use App\Models\Notification;
+use App\Models\UserAccounts;
+use App\Models\Payment;
 
 use Illuminate\Http\Request;
 
@@ -19,4 +21,42 @@ class MembershipController extends Controller
         } else {
             return view('login.access-denied');
         }
-    }}
+    }
+
+    public function stormembership(Request $request){
+        if (session()->has('username')) {
+            $userID = UserAccounts::where('username', session('username'))->first()->userID;
+            if ($userID != null){   
+                // Retrieve payment data for the user
+                $payments = Payment::where('userID', $userID->userID)->get();
+
+                // Calculate the total spent
+                $totalSpent = $payments->sum('total_price');
+
+                // Determine the tier based on the total spent
+                $tier = $this->calculateTier($totalSpent);
+
+            }
+        }
+    }
+
+    private function calculateTier($totalSpent){
+        //  Calculate tier level based on spending
+        if ($totalSpent >= 0 && $totalSpent < 300) {
+             //tier 0
+            return 0;
+
+        } elseif ($totalSpent >= 300 && $totalSpent < 600) {
+            //tier 1
+            return 1;
+
+        } elseif($totalSpent >= 600 && $totalSpent < 1000){
+            //tier 2
+            return 2;
+
+        } elseif($totalSpent >= 1000 && $totalSpent < 1500){
+            //tier 3
+            return 3;     
+        }
+    }
+}

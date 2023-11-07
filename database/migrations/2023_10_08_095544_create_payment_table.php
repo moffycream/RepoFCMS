@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id('transactionID'); // Primary Key
             $table->unsignedBigInteger('userID');
             $table->unsignedBigInteger('orderID');
-            $table->decimal('totalPrice', 10, 2);   
-            $table->string('paymentMethod');
-            $table->string('Username'); // Online banking
-            $table->string('Receipient_Account_Number'); // Online banking
-            $table->string('card_number');
+            $table->decimal('total_price', 10, 2);   
+            $table->string('payment_method');
+            $table->string('bank');//online banking 
+            $table->string('bank_username');
+            $table->string('account_number'); 
+            $table->string('password');
+            $table->string('amount_paid');
+            $table->string('description');
+            $table->string('card_number');//credit/debit card
             $table->string('cvv');
             $table->string('cardholder_name');
             $table->text('billing_address');

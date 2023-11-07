@@ -185,6 +185,7 @@ header .notification>i {
     font-size: 28px;
     color: #473447;
     cursor: pointer;
+    opacity: 60%;
 }
 
 header .notification>i:hover {

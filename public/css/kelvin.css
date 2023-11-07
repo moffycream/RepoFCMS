@@ -57,51 +57,60 @@
     text-align: center;
 }
 
-.container-op-orders .row-op-orders span.status-pending,
-.container-op-view-order span.status-pending{
+.container-op-orders .row-op-orders div.status-pending,
+.container-op-view-order div.status-pending,
+.container-op-orders .row-op-orders div.status-pendingforrefund,
+.container-op-view-order div.status-pendingforrefund{
     border-radius: 20px;
     background-color: #ffc40037;
     padding: 5px 15px;
     color: #f3aa00;
     font-weight: bold;
+    display: inline-block;
 }
 
-.container-op-orders .row-op-orders span.status-preparing,
-.container-op-view-order span.status-preparing{
+.container-op-orders .row-op-orders div.status-preparing,
+.container-op-view-order div.status-preparing{
     border-radius: 20px;
     background-color: #041ae037;
     padding: 5px 15px;
     color: #041ae0;
     font-weight: bold;
+    display: inline-block;
 }
 
-.container-op-orders .row-op-orders span.status-readyforpickup,
-.container-op-orders .row-op-orders span.status-deliveryontheway,
-.container-op-view-order span.status-readyforpickup,
-.container-op-view-order span.status-deliveryontheway{
+.container-op-orders .row-op-orders div.status-readyforpickup,
+.container-op-orders .row-op-orders div.status-deliveryontheway,
+.container-op-view-order div.status-readyforpickup,
+.container-op-view-order div.status-deliveryontheway{
     border-radius: 20px;
     background-color: #00c2c237;
     padding: 5px 15px;
     color: #009494;
     font-weight: bold;
+    display: inline-block;
 }
 
-.container-op-orders .row-op-orders span.status-completed,
-.container-op-view-order span.status-completed{
+.container-op-orders .row-op-orders div.status-completed,
+.container-op-view-order div.status-completed{
     border-radius: 20px;
     background-color: #04e01337;
     padding: 5px 15px;
       color: #00ba0c;
     font-weight: bold;
+    display: inline-block;
 }
 
-.container-op-orders .row-op-orders span.status-cancelled,
-.container-op-view-order span.status-cancelled {
+.container-op-orders .row-op-orders div.status-cancelled,
+.container-op-view-order div.status-cancelled,
+.container-op-orders .row-op-orders div.status-refunded,
+.container-op-view-order div.status-refunded{
     border-radius: 20px;
     background-color: #c4000037;
     padding: 5px 15px;
     color: #ff0000;
     font-weight: bold;
+    display: inline-block;
 }
 
 

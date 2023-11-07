@@ -92,4 +92,16 @@ class OrderController extends Controller
         $notificationController->createNotification('Order ' . $orderID . ' has been cancelled.', $selectedOrder->userID);
         return redirect('/op-orders')->with(['orders' => $orders]);
     }
+
+    public function refundOrder($orderID)
+    {
+        // Refund the order
+        $orders = Order::all();
+        $selectedOrder = Order::find($orderID);
+        $selectedOrder->status = "Refunded";
+        $selectedOrder->save();
+        $notificationController = app(NotificationController::class);
+        $notificationController->createNotification('Order ' . $orderID . ' has been refunded.', $selectedOrder->userID);
+        return redirect('/op-orders')->with(['orders' => $orders]);
+    }
 }
