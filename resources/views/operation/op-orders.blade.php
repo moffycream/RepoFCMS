@@ -25,10 +25,10 @@
                 <td>RM {{$order->getTotalPrice()}}</td>
                 @php
                     if($order->status == "Order Cancelled. The refund will be done within 5-7 working days.") {
-                        $order->status = "Cancelled";
+                        $order->status = "Pending for refund";
                     }
                 @endphp
-                <td ><span class="status status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($order->status))}}">{{$order->status}}</span></td>
+                <td ><div class="status status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($order->status))}}">{{$order->status}}</div></td>
                 <td>
                     <a href="{{route('op.view-order', $order->orderID)}}">View</a>
                 </td>

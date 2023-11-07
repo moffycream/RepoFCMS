@@ -61,7 +61,7 @@
                  @php
                  $status = " ";
                     if($selectedOrder->status == "Order Cancelled. The refund will be done within 5-7 working days.") {
-                        $status = "Cancelled";
+                        $status = "Pending for refund";
                     }
                     else if ($selectedOrder->status == "Pending"){
                         $status = "Pending";
@@ -84,7 +84,7 @@
       
                 @endphp
                 <p class="customer-title">Order Status</p>
-                <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($status))}}">{{$selectedOrder->status}}</span></p>
+                <p class="customer-status"><div class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($status))}}">{{$status}}</div></p>
             </div>
             @if ($selectedOrder->status=="Completed" || $selectedOrder->status=="Cancelled")
             <div class="row-actions">
@@ -94,6 +94,8 @@
             <div class="row-actions">
                 @if($selectedOrder->status == 'Preparing')
                 <a href="{{route('op.ready-for-pickup-order', $selectedOrder->orderID)}}">Ready for pickup</a>
+                @elseif($selectedOrder->status == 'Order Cancelled. The refund will be done within 5-7 working days.')
+                <a href="{{route('op.refund-order', $selectedOrder->orderID)}}">Refund</a>
                 @elseif($selectedOrder->status == 'Ready for pickup' || $selectedOrder->status == 'Delivery on the way')
                 <a href="{{route('op.complete-order', $selectedOrder->orderID)}}">Complete</a>
                 @else
