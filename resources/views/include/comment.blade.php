@@ -28,13 +28,21 @@ $replyID = $commentID;
             <div class="comment-action">
                 <button type="button" onclick="toggleRepliedComments('{{$commentID}}')"><i class="fas fa-comment-alt"></i><span>Comment</span> <span>({{$comment->getTotalComments()}})</span></button>
                 <button type="button" onclick="toggleReply('{{$replyID}}')"><i class="fas fa-reply"></i><span>Reply</span></button>
-                @if ($comment->user->username == session('username'))
+                <!-- Only the review history page can activate this -->
+
+                @if ($comment->user->username == session('username') && isset($reviewHistory)) 
                 <a href="{{route('review.comment.edit', $commentID)}}"><i class="fas fa-edit"></i><span>Edit</span></a>
                 <a href="{{route('review.comment.delete', $commentID)}}"><i class="fas fa-trash"></i><span>Delete</span></a>
                 @endif
             </div>
             <div class="reply" id="reply-{{$replyID}}">
-                <form method="post" action="{{route('profile.review.submit.comment')}}">
+                @php
+                $reviewRedirect = route('review.submit.comment');
+                if (isset($reviewHistory)) {
+                $reviewRedirect = route('profile.review.submit.comment');
+                }
+                @endphp
+                <form method="post" action="{{$reviewRedirect}}">
                     @csrf
                     <input type="hidden" name="reviewID" value="{{$comment->reviewID}}">
                     <input type="hidden" name="replyToCommentID" value="{{$comment->commentID}}">

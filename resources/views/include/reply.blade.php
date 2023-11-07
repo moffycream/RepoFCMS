@@ -27,13 +27,19 @@ $nestingLevel = $reply->getNestingLevel();
             <div class="comment-action">
                 <button type="button" onclick="toggleRepliedComments('{{$replyID}}')"><i class="fas fa-comment-alt"></i><span>Comment</span> <span>({{$reply->getTotalComments()}})</span></button>
                 <button type="button" onclick="toggleReply('{{$replyID}}')"><i class="fas fa-reply"></i><span>Reply</span></button>
-                @if ($reply->user->username == session('username'))
+                @if ($reply->user->username == session('username') && isset($reviewHistory))
                 <a href="{{route('review.comment.edit', $replyID)}}"><i class="fas fa-edit"></i><span>Edit</span></a>
                 <a href="{{route('review.comment.delete', $reviewID)}}"><i class="fas fa-trash"></i><span>Delete</span></a>
                 @endif
             </div>
             <div class="reply" id="reply-{{$replyID}}">
-                <form method="post" action="{{route('profile.review.submit.comment')}}">
+            @php
+                $reviewRedirect = route('review.submit.comment');
+                if (isset($reviewHistory)) {
+                $reviewRedirect = route('profile.review.submit.comment');
+                }
+                @endphp
+                <form method="post" action="{{$reviewRedirect}}">
                     @csrf
                     <input type="hidden" name="reviewID" value="{{$reply->reviewID}}">
                     <input type="hidden" name="replyToCommentID" value="{{$reply->commentID}}">

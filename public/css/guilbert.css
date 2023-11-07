@@ -107,8 +107,8 @@
 }
 
 #purchase_form_table button[type="submit"]:hover {
-    background-color: #322032;
-    transition: all 0.8s ease;
+    background-color: #e0ccd4;
+    transition: all 0.3s ease;
 }
 
 /* Styles for the container-payment-page */
@@ -180,8 +180,8 @@
 }
 
 #payment_form_table button[type="submit"]:hover {
-    background-color: #342934;
-    transition: all 0.8s ease;
+    background-color: #e0ccd4;
+    transition: all 0.3s ease;
 }
 
 #payment_form_table select,
@@ -191,8 +191,6 @@
     padding: 5px;
     margin-bottom: 10px;
 }
-
-
 
 /*---------------MEMBERSHIP PAGE-------------*/
 
@@ -209,7 +207,7 @@
 
 .membership-container h2{
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .tier-container{
@@ -217,25 +215,43 @@
     justify-content: space-around;
 }
 
+.tier-container h2{
+    padding: 0 0 30px 0;
+}
+
+.tier-container ul li{
+    list-style: none;
+    padding: 10px;
+    text-align: left;
+
+}
+
 .membership-container section{
     width: 30%;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 10px;
     margin: 10px;
 }
 
 #tier1 {
-    background-color: #7B4169;
+    background-color: #e8d2d9;
+    padding: 50px 0 100px 30px;
+}
+
+#tier1 p, #tier2 p, #tier3 p{
+    font-size: 20px;
+    padding-bottom: 30px;
 }
 
 #tier2 {
-    background-color: #A15589;
+    background-color: #e0ccd4;
+    padding: 50px 0 100px 0;
 }
 
 #tier3 {
-    background-color: #B979A5;
+    background-color: #c5abb6;
+    padding: 50px 0 100px 0;
 }
 
 /* Styling for benefits list */
@@ -250,3 +266,48 @@
 }
 
 /*---------------ORDER TRACKING PAGE-------------*/
+.order-tracking-container {
+    background-color: #e8dcd4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.order-tracking-container h1{
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.order-tracking-details{
+    display: flex;
+    justify-content: space-around;
+}
+
+.order-tracking-details ul li{
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+/* Style the order status section */
+#order-tracking-order-status {
+    margin-bottom: 20px;
+}
+
+/* Style the order details section */
+#order-tracking-order-details {
+    width: 50%;
+    margin-right: 30px;
+    background-color: #e0ccd4;
+    padding: 50px 0 100px 20px;
+    border-radius: 10px;
+}
+
+/* Style the company details section */
+#order-tracking-company-details {
+    width: 50%;
+    background-color: #c5abb6;
+    padding: 50px 0 100px 20px;
+    border-radius: 10px;
+}
+
+
