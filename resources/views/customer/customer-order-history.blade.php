@@ -17,7 +17,7 @@
         <tbody>
             @forelse($orders as $order)
             <tr>
-                @if($order->status == "Completed")
+                @if($order->status == "Completed" || $order->status=="Refunded")
                 <td>{{ $order->orderID }}</td>
                 <td>{{ $order->getformattedDateTime()}}</td>
                 <td><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($order->status))}}">{{$order->status}}</span></td>
@@ -28,7 +28,7 @@
                         @csrf
                         <button type="submit">View</button>
                     </form>
-                    <form method="post" action="{{ route('customer-delete-order-history', ['orderID' => $order->orderID]) }}" class="view-details-button">
+                    <form method="post" action="{{ route('customer-delete-order-history', ['orderID' => $order->orderID]) }}" class="delete-button">
                         @csrf
                         <button type="submit">Delete</button>
                     </form>

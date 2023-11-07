@@ -7,7 +7,7 @@
     padding: 10px;
     text-align: center;
     margin: 0 auto;
-    max-width: 1500px;
+   width: 170vh;
     margin-bottom: 5%;
 }
 
@@ -27,43 +27,47 @@
     text-align: left;
 }
 
-.container-customer .container-customer-table span.status-pending,
-.container-customer-view-order span.status-pending {
+.container-customer .container-customer-table div.status-pending,
+.container-customer-view-order div.status-pending {
     border-radius: 20px;
     background-color: #ffc40037;
     padding: 5px 15px;
     color: #f3aa00;
     font-weight: bold;
+    display: inline-block;
 }
 
-.container-customer .container-customer-table span.status-preparing,
-.container-customer-view-order span.status-preparing {
+.container-customer .container-customer-table div.status-preparing,
+.container-customer-view-order div.status-preparing {
     border-radius: 20px;
     background-color: #041ae037;
     padding: 5px 15px;
     color: #041ae0;
     font-weight: bold;
+    display: inline-block;
 }
 
-.container-customer .container-customer-table span.status-deliveryontheway,
-.container-customer .container-customer-table span.status-readyforpickup,
-.container-customer-view-order span.status-deliveryontheway,
-.container-customer-view-order span.status-readyforpickup 
+.container-customer .container-customer-table div.status-deliveryontheway,
+.container-customer .container-customer-table div.status-readyforpickup,
+.container-customer-view-order div.status-deliveryontheway,
+.container-customer-view-order div.status-readyforpickup 
 {
     border-radius: 20px;
     background-color: #00949437;
     padding: 5px 15px;
     color: #009494;
     font-weight: bold;
+    display: inline-block;
 }
 
-.container-customer .container-customer-table span.status-cancelled,
-.container-customer-view-order span.status-cancelled {
+.container-customer .container-customer-table div.status-cancelled,
+.container-customer-view-order div.status-cancelled {
     border-radius: 20px;
     background-color: #c4000037;
     padding: 5px 15px;
     color: #ff0000;
     font-weight: bold;
+    display: inline-block;
 }
 
 .container-customer .container-customer-table span.status-completed,
@@ -74,6 +78,18 @@
     padding: 5px 15px;
     color: #00ba0c;
     font-weight: bold;
+    display: inline-block;
+}
+
+.container-customer .container-customer-table span.status-refunded,
+.container-customer-view-order span.status-refunded
+{
+    border-radius: 20px;
+    background-color: #04e01337;
+    padding: 5px 15px;
+    color: #00ba0c;
+    font-weight: bold;
+    display: inline-block;
 }
 
 
@@ -86,7 +102,8 @@
 }
 
 
-.view-details-button button {
+.view-details-button button,
+.delete-button button {
     background-color: #473447;
     color: #fff;
     border: none;
@@ -99,7 +116,8 @@
     width: 100px;
 }
 
-.view-details-button button:hover {
+.view-details-button button:hover,
+.delete-button button:hover {
     background-color: #e0ccd4;
     color: #000000;
 }
@@ -198,6 +216,11 @@
     background-color: #55086137;
 }
 
+.profile-table input[type="text"]
+{
+    font-size:20px;
+}
+
 .profile-table .profile-edit-text a,
 .save-button,
 a.edit-button,
@@ -226,6 +249,7 @@ a.edit-button,
     font-size: 15px;
     font-style: italic;
 }
+
 /*order listing details & order history details*/
 .container-customer-view-order {
     box-sizing: border-box;

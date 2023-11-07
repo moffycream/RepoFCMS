@@ -16,7 +16,7 @@
         <tbody>
             @forelse($orders as $order)
             <tr>
-                @if($order->status != "Completed")
+                @if($order->status != "Completed" && $order->status != "Refunded")
                 <td>{{ $order->getformattedDateTime()}}</td>
                 @php
                 $classStatus="";
@@ -46,7 +46,7 @@
                     $classStatus = "readyforpickup";
                 }
                 @endphp
-                <td><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$order->status}}</span></td>
+                <td><div class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$order->status}}</div></td>
                 <td>RM{{ $order->total }}</td>
                 <td>{{$order->delivery}}</td>
                 <td>

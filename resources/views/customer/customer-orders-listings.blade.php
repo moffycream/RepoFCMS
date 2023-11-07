@@ -91,7 +91,7 @@
                 }
                 @endphp
                 <p class="customer-title">Order Status</p>
-                <p class="customer-status"><span class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$selectedOrder->status}}</span></p>
+                <p class="customer-status"><div class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$selectedOrder->status}}</div></p>
             </div>
             <div class="row-actions">
             </div>

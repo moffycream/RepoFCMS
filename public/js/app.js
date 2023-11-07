@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
     }
-    
+
 
     var adminExpandedDashboard = this.getElementById("admin-dashboard-container-expand");
     var adminMinimizedDashboard = this.getElementById("admin-dashboard-container-minimize");
@@ -610,7 +610,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const QRinsert = `
                     <img src="${assetUrl}" alt="QR code" width="200">
                 `;
-                
+
                 QRcontainer.innerHTML = QRinsert;
             }
         });
@@ -718,7 +718,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 errors.push('Amount must contain numbers only.\n');
             }
 
-        } else if (PaymentChoice.value === "none"){
+        } else if (PaymentChoice.value === "none") {
             errors.push("Please select a payment method.");
         }
 
@@ -769,13 +769,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (deliveryMethod.value === "none") {
             errors.push("Please select a valid delivery method.");
         };
-    
+
         //  validate delivery mehtod
         if (orderNotes.value === "") {
             errors.push("Please put some order notes for this order.");
         };
 
-        if(overallTotalPrice === 0){
+        if (overallTotalPrice === 0) {
             errors.push("You have no orders right now.");
         }
 
@@ -820,6 +820,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Get delete button
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(function (button) {
+        // Add click event listeners
+        button.addEventListener('click', function (event) {
+            const confirmation = confirm("Are you sure you want to delete this order?");
+            if (!confirmation) {
+                event.preventDefault(); // Prevent form submission
+            }
+
+        });
+    });
+});
+
 
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.edit-button').forEach(function (button) {
