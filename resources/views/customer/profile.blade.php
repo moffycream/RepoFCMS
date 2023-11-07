@@ -10,12 +10,10 @@
                 <tr>
                     <th></th>
                     <td>
-                  
                         <!-- Profile Picture -->
                         <div class="profile-img">
                             <img src="{{ asset($user->imagePath) }}" alt="profileimage">
-                        </div>
-                       
+                        </div>       
                     </td>
                     <td></td>
                 </tr>
@@ -25,7 +23,7 @@
                     @if(isset($imageErrormsg))
                         <p class="profile-error-msg">{!! $imageErrormsg !!}</p>
                         @endif
-                        <a class="edit-button"><i class="far fa-edit"></i> Edit Profile Picture</a>
+                        <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <input type="file" accept=".png, .jpeg, .jpg" name="image" class="image">
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
                         <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
