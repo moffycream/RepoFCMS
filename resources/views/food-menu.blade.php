@@ -11,7 +11,7 @@
                 <div class="foodMenu-item">
                     <h3>{{ $menu->name }}</h3>
                     <img class="foodMenu-item-image" src="{{ $menu->imagePath }}" alt="{{ $menu->name }}">
-                    <p>Price: ${{ $menu->totalPrice }}</p>
+                    <p>Price: RM {{ $menu->totalPrice }}</p>
                     <br></br>
                     <p>Foods in this menu:</p>
                     <ul class='foodMenu-foods'>
