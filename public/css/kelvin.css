@@ -102,7 +102,9 @@
 }
 
 .container-op-orders .row-op-orders div.status-cancelled,
-.container-op-view-order div.status-cancelled {
+.container-op-view-order div.status-cancelled,
+.container-op-orders .row-op-orders div.status-refunded,
+.container-op-view-order div.status-refunded{
     border-radius: 20px;
     background-color: #c4000037;
     padding: 5px 15px;
