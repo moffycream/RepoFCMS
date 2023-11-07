@@ -498,7 +498,8 @@
 .search-form{
     border: solid 2px #000000;
     padding: 5px;
-    margin-right: 5px;
+    margin-right: 20px;
+    border-radius: 5px;
 }
 
 .search-form button,
