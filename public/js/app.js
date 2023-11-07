@@ -755,7 +755,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // validation for address
         if (address.length < 15) {
-            errors.push('Address must be at least 10 characters long.\n');
+            errors.push('Address must be at least 15 characters long.\n');
         } else if (address.length > 100) {
             errors.push('Address must be within 255 characters long.\n');
         }
