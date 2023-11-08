@@ -183,3 +183,7 @@ Route::post('/customer-review-history/comment/{commentID}/edit/save', [ReviewCon
 Route::get('/customer-review-history/review/{reviewID}/delete', [ReviewController::class, 'reviewDelete'])->name('review.delete');
 Route::get('/customer-review-history/comment/{commentID}/delete', [ReviewController::class, 'commentDelete'])->name('review.comment.delete');
 
+// Admin - review analytics
+Route::get('/admin-view-reviews', [ReviewController::class, 'adminViewReviews']);
+Route::post('/admin-view-reviews', [ReviewController::class, 'adminSubmitComment'])->name('admin.review.submit.comment');
+Route::post('/admin-view-reviews/filter', [ReviewController::class, 'adminFilter'])->name('admin.reviews.filter');

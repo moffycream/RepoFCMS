@@ -6,7 +6,7 @@
 $replyID = 0;
 @endphp
 
-<!-- When url is reviews/review-form, show the review form -->
+
 <div class="container-reviews">
     <div class="panel">
         <div class="row-first">

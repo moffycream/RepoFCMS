@@ -33,10 +33,16 @@ $nestingLevel = $reply->getNestingLevel();
                 @endif
             </div>
             <div class="reply" id="reply-{{$replyID}}">
-            @php
+                @php
+                if (session('accountType') == 'Admin' || (session('accountType') == 'DefaultAdmin')) {
+                $reviewRedirect = route('admin.review.submit.comment');
+                }
+                else
+                {
                 $reviewRedirect = route('review.submit.comment');
                 if (isset($reviewHistory)) {
                 $reviewRedirect = route('profile.review.submit.comment');
+                }
                 }
                 @endphp
                 <form method="post" action="{{$reviewRedirect}}">
