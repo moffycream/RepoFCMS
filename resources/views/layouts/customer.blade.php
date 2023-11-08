@@ -25,15 +25,9 @@
                     $activeLink = Route::currentRouteName();
                     @endphp
                     <ul>
-<<<<<<< HEAD
-                        <li><a href="{{url('profile')}}">My Profile</a></li>
-                        <li><a href="customer-review-history">Review History</a></li>
-                        <li><a href="membership">Membership</a></li>
-=======
                         <li><a href="{{url('profile')}}" class="{{ $activeLink == 'profile' ? 'active' : '' }}">My Profile</a></li>
                         <li><a href="{{url('customer-review-history')}}" class="{{ $activeLink == 'customer-review-history' ? 'active' : '' }}">Review History</a></li>
                         <li><a href="{{url('customer-order-history')}}" class="{{ $activeLink == 'customer-order-history' ? 'active' : '' }}">Order History</a></li>
->>>>>>> e61e4b4e9dcfcb0cd2b5690f57db9eb47b44e32d
                     </ul>
                 </div>
 
