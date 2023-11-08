@@ -13,13 +13,13 @@
         <div class="add-menu-form-input-div">
             <label for="menu-image">Image</label>
             @if(isset($imageErrMsg))
-            <p>{!!$imageErrMsg!!}</p>
+            <p class="menu-form-error">{!!$imageErrMsg!!}</p>
             @endif
             <input type="file" accept=".png, .jpeg, .jpg" id="food-image" name="image">
         </div>
         <div class="add-menu-form-input-div">
             @if(isset($nameErrMsg))
-            <p>{!!$nameErrMsg!!}</p>
+            <p class="menu-form-error">{!!$nameErrMsg!!}</p>
             @endif
             @if(isset($name))
             <input type="text" id="food-name" name="name" placeholder="Food name" value="{{$name}}">
@@ -29,7 +29,7 @@
         </div>
         <div class="add-menu-form-input-div">
             @if(isset($descriptionErrMsg))
-            <p>{!!$descriptionErrMsg!!}</p>
+            <p class="menu-form-error">{!!$descriptionErrMsg!!}</p>
             @endif
             @if(isset($description))
             <textarea id="food-description" name="description" rows="3" placeholder="Food decription">{{$description}}</textarea>
@@ -39,17 +39,17 @@
         </div>
         <div class="add-menu-form-input-div">
             @if(isset($priceErrMsg))
-            <p>{!!$priceErrMsg!!}</p>
+            <p class="menu-form-error">{!!$priceErrMsg!!}</p>
             @endif
             @if(isset($price))
-            <input type="text" id="food-price" name="price" placeholder="Food price" value="{{$price}}">
+            <input type="number" id="food-price" name="price" placeholder="Food price" value="{{$price}}">
             @else
-            <input type="text" id="food-price" name="price" placeholder="Food price">
+            <input type="number" id="food-price" name="price" placeholder="Food price">
             @endif
         </div>
         <div class="add-menu-form-input-div">
             @if(isset($amountErrMsg))
-            <p>{!!$amountErrMsg!!}</p>
+            <p class="menu-form-error">{!!$amountErrMsg!!}</p>
             @endif
             <table class="add-food-ingredient-table">
                 <tr>
@@ -63,7 +63,7 @@
                     <td>{{$item->inventoryName}}</td>
                     <td>
                         <input type="hidden" name="inventoryID[]" value="{{$item->inventoryID}}">
-                        <input id="{{$item->inventoryID}}" name="amount[]" type="text" value="0">
+                        <input id="{{$item->inventoryID}}" name="amount[]" type="number" value="0">
                     </td>
                 </tr>
                 @endforeach

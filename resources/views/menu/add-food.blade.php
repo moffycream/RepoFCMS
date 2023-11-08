@@ -31,12 +31,13 @@
         @foreach($listItems as $food)
         <!-- Block of display food image and details -->
         <div class="col-add-menu">
+            <!-- Display food image -->
+            <img src="{{$food->imagePath}}" alt="Image" class="food-logo">
             <form class="add-food-edit-form" method="POST" action="{{ route('food.edit')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="foodID" value="{{$food->foodID}}">
 
-                <!-- Display food image -->
-                <img src="{{$food->imagePath}}" alt="Image" class="food-logo">
+
 
                 <div>
                     <input type="file" class="add-menu-edit-value" accept=".png, .jpeg, .jpg" id="food-image" name="image">
@@ -77,7 +78,7 @@
                         <section class="col-add-menu-info-col1">
                             <p class="col-add-menu-info-title">Price</p>
                             <p class="add-menu-value">RM {{$food->price}}</p>
-                            <input type="text" class="add-menu-edit-value" name="price" value="{{$food->price}}">
+                            <input type="number" class="add-menu-edit-value" name="price" value="{{$food->price}}">
                         </section>
                         <section class="col-add-menu-info-col2">
                             <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
@@ -145,7 +146,7 @@
                                         @endphp
                                         @foreach ($food->food_inventory as $food_inventory)
                                         @if ($food_inventory->inventoryID == $inventory->inventoryID)
-                                        <input name="amount[]" type="text" value="{{$food_inventory->amount}}">
+                                        <input name="amount[]" type="number" value="{{$food_inventory->amount}}">
                                         @php
                                         $hasMatch = true;
                                         @endphp

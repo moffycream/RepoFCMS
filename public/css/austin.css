@@ -12,10 +12,17 @@
 }
 
 /* Add menu */
+.add-food-edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .food-logo {
     object-fit: cover;
     width: 25vw;
-    max-height: 30vh;
+    height: 30vh;
     border-radius: 20px 20px 0 0;
 }
 
@@ -24,6 +31,8 @@
     text-align: center;
     margin: 25px 0;
 }
+
+.add
 
 .add-menu-container {
     margin: 100px 0;
@@ -36,8 +45,8 @@
 
 .add-menu-container .row-add-menu .col-add-menu {
     background-color: var(--color-2);
-    min-height: 75vh;
     width: 25vw;
+    min-height: 75vh;
     margin: 0 calc(20vw/6);
     border-radius: 10px;
     display: flex;
@@ -61,26 +70,28 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 45vh;
-    margin: 0 20px;
+    min-height: 45vh;
+    width: 23vw;
+    margin: 0 1vw;
 }
 
 .col-add-menu-info-title {
-    font-size: 40px;
+    font-size: 20px;
     font-weight: bold;
 }
 
 .col-add-menu-info-col{
     display: flex;
+    margin: 10px 0;
 }
 
 .col-add-menu-info-col1{
-    max-width: 15vw;
+    width: 17vw;
 }
 
 .col-add-menu-info-col2{
     margin-left: auto;
-    width: 100px;
+    width: 6vw;
 }
 
 .col-add-menu-info-col p {
@@ -167,6 +178,10 @@
     align-items: center;
 }
 
+.add-food-edit-form{
+    overflow: auto;
+}
+
 .add-menu-form-title {
     font-size: 60px;
     font-weight: bold;
@@ -239,20 +254,24 @@
     align-items: center;
 }
 
+.menu-form-error{
+    color: red;
+}
+
 /* Inventory management */
 
 .add-food-table-value,
 .add-food-table-edit{
     border-collapse: collapse;
+    display: block;
 }
 
 .add-menu-table-title,
 .add-menu-table-col{
     border: #000000 2px solid;
     padding: 5px;
-    font-size: 20px;
+    font-size: 15px;
     border-collapse: collapse;
-    width: 20vw;
 }
 
 .add-food-table-edit input {
@@ -319,8 +338,7 @@
 
 #admin-dashboard-container-expand span {
     color: #ffffff;
-    font-size: 22px;
-    line-height: 40px;
+    font-size: 20px;
     vertical-align: bottom;
     margin-left: 10px;
 }
@@ -332,15 +350,15 @@
 
 #admin-dashboard-container-expand p {
     color: #ffffff69;
-    font-size: 22px;
-    margin: 20px 30px 10px;
+    font-size: 20px;
+    margin: 1.5vh 30px 1vh;
 }
 
 #admin-dashboard-container-expand .admin-dashboard-icon {
     margin-left: 30px;
     height: 4vh;
     object-fit: contain;
-    margin: 10px 0;
+    margin: 1vh 0;
 }
 
 #admin-dashboard-container-expand .admin-dashboard-line {
@@ -434,6 +452,12 @@
     margin: auto;
 }
 
+.add-menu-edit-button,
+.add-menu-save-button,
+.add-menu-cancel-button{
+    width: 6vw;
+}
+
 .inventory-delete-button-no{
     background-color: #999999;
     color: #000000;
@@ -448,7 +472,7 @@
 
 .menu-delete-button,
 .menu-delete-button-no{
-    margin:auto 0 0;
+    align-self:baseline;
     background-color: rgb(255, 71, 71);
     width: 25vw;
     height: 30px;
@@ -456,6 +480,7 @@
     font-size: 25px;
     text-align: center;
     padding: 10px 0;
+    margin-top: auto;
 }
 
 .menu-delete-button-no{

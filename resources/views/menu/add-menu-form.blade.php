@@ -10,13 +10,13 @@
         <div class="add-menu-form-input-div">
             <label for="menu-image">Image</label>
             @if(isset($imageErrMsg))
-            <p>{!!$imageErrMsg!!}</p>
+            <p class="menu-form-error">{!!$imageErrMsg!!}</p>
             @endif
             <input type="file" accept=".png, .jpeg, .jpg" id="menu-image" name="image">
         </div>
         <div class="add-menu-form-input-div">
             @if(isset($nameErrMsg))
-            <p>{!!$nameErrMsg!!}</p>
+            <p class="menu-form-error">{!!$nameErrMsg!!}</p>
             @endif
             @if(isset($name))
             <input type="text" id="menu-name" name="name" placeholder="Menu name" value="{{$name}}">
@@ -26,7 +26,7 @@
         </div>
         <div class="food-dropdown-list food-dropdown-check-list">
             @if(isset($checkboxErrMsg))
-            <p>{!!$checkboxErrMsg!!}</p>
+            <p class="menu-form-error">{!!$checkboxErrMsg!!}</p>
             @endif
             <span class="food-dropdown-anchor">Select Foods</span>
             <ul>
