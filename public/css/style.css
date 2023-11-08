@@ -411,6 +411,10 @@ article {
     opacity: 50%;
 }
 
+.customer-article .container > .col:first-child .navigation ul li a.active{
+    opacity: 100%;
+}
+
 .customer-article .container > .col:first-child .navigation ul li a:hover{
     opacity: 100%;
 }
@@ -452,3 +456,4 @@ article {
     font-size: 18px;
     font-weight: bold;
 }
+
