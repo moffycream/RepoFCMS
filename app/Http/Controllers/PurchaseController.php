@@ -7,6 +7,8 @@ use App\Models\Payment;
 use App\Models\Order;
 use App\Models\Notification;
 use App\Models\UserAccounts;
+use App\Models\OrderMenu;
+use App\Models\Menu;
 
 use Carbon\Carbon;
 
@@ -31,7 +33,8 @@ class PurchaseController extends Controller
     }
 
     public function ProcessPurchase(Request $request){
-    $notificationController = app(NotificationController::class);
+        $notificationController = app(NotificationController::class);
+        
         if (session()->has('username')) {
             $userID = UserAccounts::where('username', session('username'))->first()->userID;
             if ($userID != null)
@@ -40,6 +43,7 @@ class PurchaseController extends Controller
                 // Retrieve the overallTotalPrice from the form input
                 $overallTotalPrice = $request->input('overallTotalPrice');
                 $menuNames = $request->input('menu_names'); // Retrieve an array of menu names
+                $menuIDs = $request->input('menu_ids'); // Retrieve an array of menu ids
                 $concatenatedMenuNames = implode(', ', $menuNames); // link all the menu name added
 
                 //  New order instance
@@ -56,6 +60,15 @@ class PurchaseController extends Controller
                 $order->menu_name = $concatenatedMenuNames; 
 
                 $order->save();
+                
+                // Retrieve the menu ID for each menu name
+                // Iterate over each menu ID and save it to the order-menu table
+                foreach ($menuIDs as $menuID) {
+                    $orderMenu = new OrderMenu();
+                    $orderMenu->orderID = $order->orderID; // Assign the order ID
+                    $orderMenu->menuID = $menuID;
+                    $orderMenu->save();
+                }
             }
         }
 

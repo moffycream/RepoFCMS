@@ -114,7 +114,13 @@ class PaymentController extends Controller
                 }
                 // Save the dta to the database
                 $payment->save();
+
+                return redirect()->route('payment.complete');
             }
         }
+    }
+
+    public function paymentComplete() {
+        return view('payment-complete');
     }
 }

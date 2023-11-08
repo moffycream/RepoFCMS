@@ -59,4 +59,21 @@ class MembershipController extends Controller
             return 3;     
         }
     }
+
+    public function displayTotalAmountPaid()
+    {
+        if (session()->has('username')) {
+            $username = session('username');
+            $user = UserAccounts::where('username', $username)->first();
+
+            if ($user) {
+                $userID = $user->userID;
+                $totalAmountPaid = Payment::where('userID', $userID)->sum('amount_paid');
+
+                return view('membership', ['totalAmountPaid' => $totalAmountPaid]);
+
+            }
+        }
+        return view('login.access-denied');
+    }
 }
