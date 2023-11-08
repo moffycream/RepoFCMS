@@ -107,6 +107,12 @@
                     </div>
                     <!-- Display total required ingredient -->
                     <div>
+                        <table class="add-food-table-value">
+                            <tr class="add-menu-table-row">
+                                <th class="add-menu-table-title">Ingredient ID</th>
+                                <th class="add-menu-table-title">Ingredient name</th>
+                                <th class="add-menu-table-title">Amount</th>
+                            </tr>
                         <p class="col-add-menu-info-title">Required ingredients</p>
                         @php
                         $inventoryCounts = [];
@@ -133,9 +139,23 @@
                         $ingredient = $inventories->where('inventoryID', $inventoryID)->first();
                         @endphp
 
-                        <p>Ingredient Name: {{ $ingredient->inventoryName }} Required number: {{ $inventoryCount }}</p>
+                        <tr class="add-menu-table-row">
+                            <!-- Inventory ID -->
+                            <td class="add-menu-table-col">
+                                <span>{{$ingredient->inventoryID}}</span>
+                            </td>
+                            <!-- Inventory name -->
+                            <td class="add-menu-table-col">
+                                <span>{{$ingredient->inventoryName}}</span>
+                            </td>
+                            <!-- Inventory amount -->
+                            <td class="add-menu-table-col">
+                                <span>{{$inventoryCount}}</span>
+                            </td>
+                        </tr>
                         @endif
                         @endforeach
+                        </table>
                     </div>
                     <!-- Display menu price -->
                     <div class="col-add-menu-info-col">

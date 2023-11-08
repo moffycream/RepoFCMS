@@ -103,23 +103,26 @@ class FoodController extends Controller
         }
 
         //Amount
-        $allAmountIsFilled = true;
+        $allAmountIsFilled = false;
         $atLeastOneAmountIsGreaterThanZero = false;
-        foreach ($request->amount as $amount) {
-            if ($amount === null || $amount === "") {
-                $allAmountIsFilled = false;
+        if (isset($request->amount)) {
+            foreach ($request->amount as $amount) {
+                if ($amount !== null || $amount !== "") {
+                    $allAmountIsFilled = false;
+                }
+                if ($amount > 0) {
+                    $atLeastOneAmountIsGreaterThanZero = true;
+                }
             }
-            if ($amount > 0) {
-                $atLeastOneAmountIsGreaterThanZero = true;
+            if ($allAmountIsFilled == false) {
+                $amountErrMsg .= "The amount field is required.";
             }
-        }
-        if ($allAmountIsFilled == false) {
+            if ($atLeastOneAmountIsGreaterThanZero == false) {
+                $amountErrMsg .= "At least one amount must be greater than 0.";
+            }
+        } else {
             $amountErrMsg .= "The amount field is required.";
         }
-        if ($atLeastOneAmountIsGreaterThanZero == false) {
-            $amountErrMsg .= "At least one amount must be greater than 0.";
-        }
-
         $foods = Food::all();
         $inventories = Inventory::all();
         $menuFoods = MenuFood::all();
