@@ -919,6 +919,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+// for toggling 2FA
+function toggle2FA() {
+    var twoFactorAuthInput = document.querySelector('input[name="twoFactorAuth"]');
+    var current2FAStatus = parseInt(twoFactorAuthInput.value);
+
+    // Toggle the 2FA status
+    if (current2FAStatus === 1) {
+        twoFactorAuthInput.value = 0; // Toggle off
+    } else {
+        twoFactorAuthInput.value = 1; // Toggle on
+    }
+}
+
 // for admin view enquiry
 document.addEventListener('DOMContentLoaded', function () {
     const filterSelect = document.getElementById('filter');

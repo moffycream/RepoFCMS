@@ -13,14 +13,14 @@
                         <!-- Profile Picture -->
                         <div class="profile-img">
                             <img src="{{ asset($user->imagePath) }}" alt="profileimage">
-                        </div>       
+                        </div>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
                     <th></th>
                     <td class="edit-profile-td">
-                    @if(isset($imageErrormsg))
+                        @if(isset($imageErrormsg))
                         <p class="profile-error-msg">{!! $imageErrormsg !!}</p>
                         @endif
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
@@ -52,7 +52,7 @@
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
                         <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
                     </td>
-                   
+
                 </tr>
 
                 <tr>
@@ -153,6 +153,20 @@
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
                         <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>2 Factor Authentication</th>
+                    <td>
+                        @if($user->twoFactorAuth == 1)
+                        <span class="profile-attribute"> Enabled</span>
+                        @else
+                        <span class="profile-attribute"> Disabled</span>
+                        @endif
+                    </td>
+                    <td class=profile-edit-button>
+                        <input type="hidden" name="twoFactorAuth" value="{{ $user->twoFactorAuth }}">
+                        <button type="submit" class="toggle-button" onclick="toggle2FA()">Toggle</button>
                     </td>
                 </tr>
         </div>

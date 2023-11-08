@@ -182,5 +182,12 @@ Route::post('/customer-review-history/comment/{commentID}/edit/save', [ReviewCon
 Route::get('/customer-review-history/review/{reviewID}/delete', [ReviewController::class, 'reviewDelete'])->name('review.delete');
 Route::get('/customer-review-history/comment/{commentID}/delete', [ReviewController::class, 'commentDelete'])->name('review.comment.delete');
 
+<<<<<<< HEAD
 //  Membership
 Route::get('/membership', [MembershipController::class, 'displayTotalAmountPaid']);
+=======
+// Admin - review analytics
+Route::get('/admin-view-reviews', [ReviewController::class, 'adminViewReviews']);
+Route::post('/admin-view-reviews', [ReviewController::class, 'adminSubmitComment'])->name('admin.review.submit.comment');
+Route::post('/admin-view-reviews/filter', [ReviewController::class, 'adminFilter'])->name('admin.reviews.filter');
+>>>>>>> e61e4b4e9dcfcb0cd2b5690f57db9eb47b44e32d

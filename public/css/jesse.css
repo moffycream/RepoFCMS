@@ -198,6 +198,7 @@
 
 .profile-table a,
 .save-button,
+.toggle-button,
 .cancel-button {
     background-color: white;
     color: #fff;
@@ -212,6 +213,7 @@
 
 .profile-table a:hover,
 .save-button:hover ,
+.toggle-button:hover,
 .cancel-button:hover{
     background-color: #55086137;
 }
@@ -223,6 +225,7 @@
 
 .profile-table .profile-edit-text a,
 .save-button,
+.toggle-button,
 a.edit-button,
 .cancel-button {
     font-size: 18px;
@@ -242,6 +245,11 @@ a.edit-button,
 .cancel-button,
 .image {
     display: none;
+}
+
+.toggle-button{
+    margin-left: 5px;
+    padding: 5px;
 }
 
 .profile-error-msg {

@@ -14,6 +14,10 @@
         <a href="{{url('admin-view-feedback')}}"><img class="admin-dashboard-icon" src="{{ asset('images/feedback.png') }}" alt="icon"><span>Feedback</span></a>
         <hr class="admin-dashboard-line">
 
+        <p>Reviews</p>
+        <a href="{{url('admin-view-reviews')}}"><img class="admin-dashboard-icon" src="{{ asset('images/review-icon.png') }}" alt="icon"><span>Reviews</span></a>
+        <hr class="admin-dashboard-line">
+
         <p>Business</p>
         <a href="{{url('business-analytics')}}"><img class="admin-dashboard-icon" src="{{ asset('images/business-analytic.png') }}" alt="icon"><span>Business analytics</span></a>
         <hr class="admin-dashboard-line">
@@ -43,6 +47,9 @@
         <p>Feedback</p>
         <a href="{{url('admin-view-feedback')}}"><img class="admin-dashboard-icon" src="{{ asset('images/feedback.png') }}" alt="icon"></a>
         <hr class="admin-dashboard-line">
+
+        <p>Reviews</p>
+        <a href="{{url('admin-view-reviews')}}"><img class="admin-dashboard-icon" src="{{ asset('images/review-icon.png') }}" alt="icon"></a>
 
         <p>Business</p>
         <a href="{{url('business-analytics')}}"><img class="admin-dashboard-icon" src="{{ asset('images/business-analytic.png') }}" alt="icon"></a>

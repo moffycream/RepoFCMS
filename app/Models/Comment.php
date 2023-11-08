@@ -92,6 +92,13 @@ class Comment extends Model
     {
         // Get the total replies for this comment
         $totalComments = Comment::where('replyToCommentID', $this->commentID)->count();
+
+        // Include the replies for each reply
+        $replies = Comment::where('replyToCommentID', $this->commentID)->get();
+        foreach ($replies as $reply) {
+            $totalComments += $reply->getTotalComments();
+        }
+        
         return $totalComments;
     }
 

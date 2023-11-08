@@ -238,7 +238,7 @@ class ReviewController extends Controller
                 $comment->userID = $userAccount->userID;
                 $comment->commentContent = $validatedData['commentContent'];
                 $comment->save();
-                        // Send notification
+                // Send notification
                 $this->sendNotification($request->reviewID);
                 // Return back to reviews page
                 return redirect('/reviews')->with('success', 'Comment submitted successfully!');
@@ -302,6 +302,134 @@ class ReviewController extends Controller
                 // Return back to reviews page
                 return redirect('/customer-review-history')->with('success', 'Comment submitted successfully!');
             }
+        }
+    }
+
+    // Admin view reviews
+    public function adminViewReviews()
+    {
+        // Get all the reviews with their comments and replies
+        $reviews = Review::with('comments.replies')->get();
+
+        // Get the total number of reviews
+        $totalReviews = $this->adminGetTotalReviews('all');
+
+        // Get the average rating of the reviews
+        $averageRating = $this->adminGetAverageRating('all');
+
+        return view('admin.admin-reviews', ['reviews' => $reviews, 'totalReviews' => $totalReviews, 'averageRating' => $averageRating, 'category' => 'all']);
+    }
+
+    public function adminSubmitComment(Request $request)
+    {
+        // Custom error message
+        $message = [
+            'commentContent.required' => 'Please write your comment.',
+        ];
+        $validatedData = request()->validate([
+            'commentContent' => 'required|max:255',
+        ], $message);
+
+        // Get user id
+        if (session()->has('username')) {
+            $userAccount = UserAccounts::where('username', session('username'))->first();
+            if ($userAccount != null) {
+                // Create a new comment instance
+                $comment = new Comment();
+                $comment->reviewID = $request->reviewID;
+                if ($request->replyToCommentID != null) {
+                    $comment->replyToCommentID = $request->replyToCommentID;
+                }
+                $comment->userID = $userAccount->userID;
+                $comment->commentContent = $validatedData['commentContent'];
+                $comment->save();
+                // Send notification
+                $this->sendNotification($request->reviewID);
+                // Return back to reviews page
+                return redirect('/admin-view-reviews')->with('success', 'Comment submitted successfully!');
+            }
+        }
+    }
+
+    public function adminFilter(Request $request)
+    {
+        // Get the category
+        $category = $request->category;
+
+        // Get all the reviews with their comments and replies
+        $reviews = Review::with('comments.replies')->get();
+
+        // Filter the reviews according to the category
+        if ($category != 'all') {
+            $reviews = $reviews->where('reviewCategory', $category);
+        }
+
+        // Arrange the reviews according to the ascending or descending order
+        if ($request->order == 'ascending') {
+            $reviews = $reviews->sortBy('reviewRating');
+        } else {
+            $reviews = $reviews->sortByDesc('reviewRating');
+        }
+
+        // Get the total number of reviews
+        $totalReviews = $this->adminGetTotalReviews($category);
+
+        // Get the average rating of the reviews
+        $averageRating = $this->adminGetAverageRating($category);
+
+        return view('admin.admin-reviews', ['reviews' => $reviews, 'totalReviews' => $totalReviews, 'averageRating' => $averageRating, 'category' => $category]);
+    }
+
+    public function adminGetTotalReviews($category)
+    {
+        // If category is all, get all reviews
+        if ($category == 'all') {
+            $totalReviews = Review::count();
+            return $totalReviews;
+        } else {
+
+            // Get the total number of reviews
+            $totalReviews = Review::where('reviewCategory', $category)->count();
+            return $totalReviews;
+        }
+
+    }
+
+    // Calculate the average rating of the reviews
+    public function adminGetAverageRating($category)
+    {
+        // Get the total number of reviews
+        $totalReviews = $this->adminGetTotalReviews($category);
+
+        // If the category is all, get all reviews
+        if ($category == 'all') {
+            $totalRating = Review::sum('reviewRating');
+            if ($totalReviews == 0) {
+                $averageRating = 0;
+            } else {
+                $averageRating = $totalRating / $totalReviews;
+            }
+
+            // Round the average rating to 2 decimal places
+            $averageRating = round($averageRating, 2);
+
+            return $averageRating;
+        }
+        else{
+            // Get the total rating of the reviews
+            $totalRating = Review::where('reviewCategory', $category)->sum('reviewRating');
+
+            // Calculate the average rating
+            if ($totalReviews == 0) {
+                $averageRating = 0;
+            } else {
+                $averageRating = $totalRating / $totalReviews;
+            }
+
+            // Round the average rating to 2 decimal places
+            $averageRating = round($averageRating, 2);
+
+            return $averageRating;
         }
     }
 }
