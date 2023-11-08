@@ -186,3 +186,7 @@ Route::get('/customer-review-history/comment/{commentID}/delete', [ReviewControl
 Route::get('/admin-view-reviews', [ReviewController::class, 'adminViewReviews']);
 Route::post('/admin-view-reviews', [ReviewController::class, 'adminSubmitComment'])->name('admin.review.submit.comment');
 Route::post('/admin-view-reviews/filter', [ReviewController::class, 'adminFilter'])->name('admin.reviews.filter');
+
+
+// Customer - Membership
+Route::get('/membership', [MembershipController::class, 'displayTotalAmountPaid']);
