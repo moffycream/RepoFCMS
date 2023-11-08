@@ -11,7 +11,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        
+
         $username = Session::get('username');
         if (!$username) {
             // Redirect the user to the login page if not logged in
@@ -109,9 +109,10 @@ class ProfileController extends Controller
                 }
             }
 
-
-            if ($request->has('cancel')) {
-                return redirect()->route('profile')->with(['user' => $user]);
+            // for toggling 2FA on/off
+            if ($request->has('twoFactorAuth')) {
+                $new2FAStatus = $request->input('twoFactorAuth');
+                $user->twoFactorAuth = $new2FAStatus;
             }
 
             if ($usernameErrorMsg == "" && $phoneErrormsg == "" && $emailErrormsg == "" && $postcodeErrormsg == "" && $imageErrormsg == "") {
@@ -126,19 +127,18 @@ class ProfileController extends Controller
                     ->with('imageErrormsg', $imageErrormsg);
             }
         }
-
     }
 
-      // Get user profile picture
-      public function getProfilePicture()
-      {
-          $profilePicture = null;
-          if (Session::get('username')) {
-              $profilePicture = UserAccounts::where('username', Session::get('username'))->first();
-                if ($profilePicture != null) {
-                    $profilePicture = $profilePicture->imagePath;
-                }
+    // Get user profile picture
+    public function getProfilePicture()
+    {
+        $profilePicture = null;
+        if (Session::get('username')) {
+            $profilePicture = UserAccounts::where('username', Session::get('username'))->first();
+            if ($profilePicture != null) {
+                $profilePicture = $profilePicture->imagePath;
             }
-          return $profilePicture;
-      }
+        }
+        return $profilePicture;
+    }
 }
