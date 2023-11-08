@@ -159,8 +159,10 @@
                     </div>
                     <!-- Display menu price -->
                     <div class="col-add-menu-info-col">
+                        <section class="col-add-menu-info-col1">
                         <p class="col-add-menu-info-title">Price</p>
                         <p>RM {{$menu->totalPrice}}</p>
+                        </section>
                     </div>
                 </div>
             </form>

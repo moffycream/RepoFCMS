@@ -103,11 +103,11 @@ class FoodController extends Controller
         }
 
         //Amount
-        $allAmountIsFilled = false;
+        $allAmountIsFilled = true;
         $atLeastOneAmountIsGreaterThanZero = false;
-        if (isset($request->amount)) {
+        if ($request->amount) {
             foreach ($request->amount as $amount) {
-                if ($amount !== null || $amount !== "") {
+                if ($amount === null || $amount === "") {
                     $allAmountIsFilled = false;
                 }
                 if ($amount > 0) {
