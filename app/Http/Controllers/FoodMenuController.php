@@ -23,13 +23,14 @@ class FoodMenuController extends Controller
         // Retrieve the cart items from the session
         $cart = session('cart', []);
 
+        $totalPrice = $this->showCart();
+
         $notificationController = app(NotificationController::class);
 
         // Checks whether it's an admin session or not
         $this->adminController = $adminController;
 
-
-        return view('food-menu', compact('menus', 'foods', 'cart'), ['notifications' => $notificationController->getNotification()]);
+        return view('food-menu', compact('menus', 'foods', 'cart', 'totalPrice'), ['notifications' => $notificationController->getNotification()]);
     }
 
     public function addToCart(Request $request)
@@ -71,10 +72,78 @@ class FoodMenuController extends Controller
         return redirect()->route('menu.index')->with('success', 'Menu item added to cart.');
     }
 
+    public function removeFromCart(Request $request)
+    {
+        $menuID = $request->input('menu_id');
+
+        $cart = session('cart', []);
+
+        // Find the item index in the cart
+        $cartItemIndex = collect($cart)->search(function ($item) use ($menuID) {
+            return $item['menu']->menuID === $menuID;
+        });
+
+        if ($cartItemIndex === false) {
+            return response()->json(['error' => 'Menu item not found in the cart']);
+        }
+
+        // Remove the item from the cart
+        array_splice($cart, $cartItemIndex, 1);
+
+        // Store the updated cart in the session
+        session(['cart' => $cart]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function updateCart(Request $request)
+    {
+        $menuID = $request->input('menu_id');
+        $action = $request->input('action');
+
+        $cart = session('cart', []);
+
+        // Find the item in the cart
+        $cartItem = collect($cart)->first(function ($item) use ($menuID) 
+        {
+            return $item['menu']->menuID === $menuID;
+        });
+
+        if (!$cartItem) 
+        {
+            return response()->json(['error' => 'Menu item not found in the cart']);
+        }
+
+        if ($action == 'increment') 
+        {
+            $cartItem['quantity']++;
+        } 
+        elseif ($action == 'decrement') 
+        {
+            if ($cartItem['quantity'] > 1) 
+            {
+                $cartItem['quantity']--;
+            }
+        }
+
+        // Store the updated cart in the session
+        session(['cart' => $cart]);
+
+        return response()->json(['success' => true, 'quantity' => $cartItem['quantity']]);
+    }
+
     public function showCart()
     {
         $cart = session('cart', []);
-        return view('cart.index', ['cart' => $cart]);
+
+        // Calculate the total price by iterating through the cart items
+        $totalPrice = 0;
+        foreach ($cart as $item) 
+        {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+
+        return $totalPrice;
     }
 
     public function checkout(Request $request)

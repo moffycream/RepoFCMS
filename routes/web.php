@@ -149,6 +149,8 @@ Route::get('/display-food-menu', [FoodMenuController::class, 'index'])->name('me
 Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('food-menu.addToCart');
 Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
 Route::get('/cart', [FoodMenuController::class, 'showCart'])->name('food-menu.cart');
+Route::post('/remove', [FoodMenuController::class, 'removeFromCart'])->name('food-menu.removeFromCart');
+Route::post('/update', [FoodMenuController::class, 'updateCart'])->name('food-menu.updateCart');
 
 // Feedback
 Route::get('/feedback', [FeedbackController::class, 'index']);
