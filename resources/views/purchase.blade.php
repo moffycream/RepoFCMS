@@ -37,6 +37,7 @@
                         <td>{{ $item['menu']->name }}</td>
                         {{-- Hidden input field to store the value of the menu name --}}
                         <input type="hidden" name="menu_names[]" value="{{ $item['menu']->name }}">
+                        <input type="hidden" name="menu_ids[]" value="{{ $item['menu']->menuID }}">
                         <td>{{ $item['quantity'] }}</td>
                         <td>RM {{ $itemTotalPrice }}</td>
                     </tr>

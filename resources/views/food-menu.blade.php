@@ -158,22 +158,22 @@
         });
     }
 
-    function removeItem(menuID) {
-        $.ajax({
-            type: 'POST',
-            url: '/removeFromCart',
-            data: {
-                _token: '{{ csrf_token() }}',
-                menu_id: menuID
-            },
-            success: function(response) {
-                if (response.success) {
-                    // Remove the item from the cart display
-                    // You may need to reload the cart or update it via JavaScript
-                }
+function removeItem(menuID) {
+    $.ajax({
+        type: 'POST',
+        url: '/removeFromCart', 
+        data: {
+            _token: '{{ csrf_token() }}',
+            menu_id: menuID
+        },
+        success: function (response) {
+            if (response.success) {
+                // Remove the item from the cart display
+                // You may need to reload the cart or update it via JavaScript
             }
-        });
-    }
+        }
+    });
+}
 </script>
 
 <script>

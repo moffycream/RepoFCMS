@@ -28,6 +28,7 @@
                         <li><a href="{{url('profile')}}" class="{{ $activeLink == 'profile' ? 'active' : '' }}">My Profile</a></li>
                         <li><a href="{{url('customer-review-history')}}" class="{{ $activeLink == 'customer-review-history' ? 'active' : '' }}">Review History</a></li>
                         <li><a href="{{url('customer-order-history')}}" class="{{ $activeLink == 'customer-order-history' ? 'active' : '' }}">Order History</a></li>
+                        <li><a href="{{url('membership')}}" class="{{ $activeLink == 'membership' ? 'active' : '' }}">Membership</a></li>
                     </ul>
                 </div>
 

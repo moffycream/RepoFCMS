@@ -74,30 +74,6 @@ class FoodMenuController extends Controller
         return redirect()->route('menu.index')->with('success', 'Menu item added to cart.');
     }
 
-    public function removeFromCart(Request $request)
-    {
-        $menuID = $request->input('menu_id');
-
-        $cart = session('cart', []);
-
-        // Find the item index in the cart
-        $cartItemIndex = collect($cart)->search(function ($item) use ($menuID) {
-            return $item['menu']->menuID === $menuID;
-        });
-
-        if ($cartItemIndex === false) {
-            return response()->json(['error' => 'Menu item not found in the cart']);
-        }
-
-        // Remove the item from the cart
-        array_splice($cart, $cartItemIndex, 1);
-
-        // Store the updated cart in the session
-        session(['cart' => $cart]);
-
-        return response()->json(['success' => true]);
-    }
-
     public function updateCart(Request $request)
     {
         $menuID = $request->input('menu_id');
@@ -111,16 +87,14 @@ class FoodMenuController extends Controller
             return $item['menu']->menuID === $menuID;
         });
 
-        if (!$cartItem) 
-        {
+        if (!$cartItem) {
             return response()->json(['error' => 'Menu item not found in the cart']);
         }
 
         if ($action == 'increment') 
         {
             $cartItem['quantity']++;
-        } 
-        elseif ($action == 'decrement') 
+        } elseif ($action == 'decrement') 
         {
             if ($cartItem['quantity'] > 1) 
             {
@@ -132,6 +106,32 @@ class FoodMenuController extends Controller
         session(['cart' => $cart]);
 
         return response()->json(['success' => true, 'quantity' => $cartItem['quantity']]);
+    }
+
+    public function removeFromCart(Request $request)
+    {
+        $menuID = $request->input('menu_id');
+
+        $cart = session('cart', []);
+
+        // Find the item index in the cart
+        $cartItemIndex = collect($cart)->search(function ($item) use ($menuID) 
+        {
+            return $item['menu']->menuID === $menuID;
+        });
+
+        if ($cartItemIndex === false) 
+        {
+            return response()->json(['error' => 'Menu item not found in the cart']);
+        }
+
+        // Remove the item from the cart
+        array_splice($cart, $cartItemIndex, 1);
+
+        // Store the updated cart in the session
+        session(['cart' => $cart]);
+
+        return response()->json(['success' => true]);
     }
 
     public function showCart()
