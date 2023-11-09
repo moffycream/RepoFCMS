@@ -26,6 +26,7 @@
             <th class="inventory-table-title">Action</th>
         </tr>
         @foreach($listItems as $item)
+        @if($item->isArchive == False)
         <tr class="inventory-table-row">
             <form class="inventory-form" method="POST" action="{{ route('inventory.edit') }}">
                 @csrf
@@ -60,28 +61,29 @@
                     <button class="inventory-save-button" type="submit"><i class="fas fa-save"></i> Save</button>
                     <a class="inventory-cancel-button" href="#"><i class="fas fa-ban"></i> Cancel</a>
                     @php
-                    $canDelete = true;
+                    $canArchive = true;
                     @endphp
 
                     @foreach($foodInventory as $foodItem)
                     @if ($foodItem->inventoryID == $item->inventoryID)
                     @if ($foodItem->amount > 0)
                     @php
-                    $canDelete = false;
+                    $canArchive = false;
                     @endphp
                     @endif
                     @endif
                     @endforeach
 
 
-                    @if($canDelete)
-                    <a class="inventory-delete-button" href="{{ route('inventory.delete', ['id' => $item->inventoryID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
+                    @if($canArchive)
+                    <a class="inventory-delete-button" href="{{ route('inventory.archive', ['id' => $item->inventoryID]) }}" onclick="return confirm('Are you sure you want to archive this record?')"><i class="fas fa-archive"></i> Archive</a>
                     @else
-                    <a class="inventory-delete-button-no" href="{{ route('inventory.delete', ['id' => $item->inventoryID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
+                    <a class="inventory-delete-button-no"><i class="fas fa-archive"></i> Archive</a>
                     @endif
                 </td>
             </form>
         </tr>
+        @endif
         @endforeach
         <tr class="inventory-table-row">
             <form method="POST" action="{{ route('inventory.register') }}">
@@ -113,6 +115,54 @@
                 <td class="inventory-table-col"><button class="inventory-add-button" type="submit"><i class="fas fa-plus"></i> Add</button></td>
             </form>
         </tr>
+    </table>
+
+    <table class="inventory-table">
+        <tr class="inventory-table-row">
+            <th class="inventory-table-title">Ingredient ID</th>
+            <th class="inventory-table-title">Ingredient name</th>
+            <th class="inventory-table-title">Amount</th>
+            <th class="inventory-table-title">Action</th>
+        </tr>
+        @foreach($listItems as $item)
+        @if($item->isArchive == True)
+        <tr class="inventory-table-row">
+            <form class="inventory-form" method="POST" action="{{ route('inventory.edit') }}">
+                @csrf
+                <!-- Inventory ID -->
+                <td class="inventory-table-col">
+                    <p>{{$item->inventoryID}}</p>
+                    <input type="hidden" value="{{ $item->inventoryID }}" name="inventoryID">
+                </td>
+                <!-- Inventory name -->
+                <td class="inventory-table-col">
+                    @if(isset($editName))
+                    <span class="inventory-value">{{$item->inventoryName}}</span>
+                    <input type="text" class="inventory-edit-value" value="{{ $editName }}" name="name">
+                    @else
+                    <span class="inventory-value">{{$item->inventoryName}}</span>
+                    <input type="text" class="inventory-edit-value" value="{{ $item->inventoryName }}" name="name">
+                    @endif
+                </td>
+                <!-- Inventory amount -->
+                <td class="inventory-table-col">
+                    @if(isset($editAmount))
+                    <span class="inventory-value">{{$item->amount}}</span>
+                    <input type="text" class="inventory-edit-value" value="{{ $editAmount }}" name="amount">
+                    @else
+                    <span class="inventory-value">{{$item->amount}}</span>
+                    <input type="text" class="inventory-edit-value" value="{{ $item->amount }}" name="amount">
+                    @endif
+                </td>
+                <!-- Action -->
+                <td class="inventory-table-col">
+                    <a class="inventory-delete-button" href="{{ route('inventory.unarchive', ['id' => $item->inventoryID]) }}" onclick="return confirm('Are you sure you want to unarchive this record?')"><i class="fas fa-upload"></i></i> Unarchive</a>
+                    <a class="inventory-delete-button" href="{{ route('inventory.delete', ['id' => $item->inventoryID]) }}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fas fa-trash-alt"></i> Delete</a>
+                </td>
+            </form>
+        </tr>
+        @endif
+        @endforeach
     </table>
 </div>
 

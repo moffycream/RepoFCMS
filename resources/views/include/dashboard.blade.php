@@ -50,6 +50,7 @@
 
         <p>Reviews</p>
         <a href="{{url('admin-view-reviews')}}"><img class="admin-dashboard-icon" src="{{ asset('images/review-icon.png') }}" alt="icon"></a>
+        <hr class="admin-dashboard-line">
 
         <p>Business</p>
         <a href="{{url('business-analytics')}}"><img class="admin-dashboard-icon" src="{{ asset('images/business-analytic.png') }}" alt="icon"></a>

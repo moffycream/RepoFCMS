@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('inventoryID');
             $table->string('inventoryName');
             $table->unsignedBigInteger('amount');
+            $table->boolean("isArchive")->default(false);
             $table->timestamps();
         });
     }

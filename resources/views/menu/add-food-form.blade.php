@@ -58,6 +58,7 @@
                     <th>Ingredient amount</th>
                 </tr>
                 @foreach($listItems as $item)
+                @if($item->isArchive == false)
                 <tr>
                     <td>{{$item->inventoryID}}</td>
                     <td>{{$item->inventoryName}}</td>
@@ -66,6 +67,7 @@
                         <input id="{{$item->inventoryID}}" name="amount[]" type="number" value="0">
                     </td>
                 </tr>
+                @endif
                 @endforeach
             </table>
         </div>

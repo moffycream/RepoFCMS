@@ -130,6 +130,7 @@
                                     <th class="add-menu-table-title">Ingredient amount</th>
                                 </tr>
                                 @foreach ($inventories as $inventory)
+                                @if ($inventory->isArchive == false)
                                 <tr class="add-menu-table-row">
                                     <!-- Inventory ID -->
                                     <td class="add-menu-table-col">
@@ -158,6 +159,7 @@
                                         <input type="hidden" name="inventoryID[]" value="{{$inventory->inventoryID}}">
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </table>
                         </section>

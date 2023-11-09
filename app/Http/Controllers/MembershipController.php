@@ -5,6 +5,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Models\Notification;
 use App\Models\UserAccounts;
 use App\Models\Payment;
+use App\Models\Membership;
 
 use Illuminate\Http\Request;
 
@@ -70,8 +71,13 @@ class MembershipController extends Controller
                 $userID = $user->userID;
                 $totalAmountPaid = Payment::where('userID', $userID)->sum('amount_paid');
 
-                return view('membership', ['totalAmountPaid' => $totalAmountPaid]);
+                // Calculate the tier based on the total amount paid
+                $tier = $this->calculateTier($totalAmountPaid);
 
+                // Store the data in the 'membership' table
+                Membership::updateOrCreate(['userID' => $userID], ['tier_level' => $tier, 'total_payments' => $totalAmountPaid]);
+
+                return view('membership', ['totalAmountPaid' => $totalAmountPaid, 'tier' => $tier,]);
             }
         }
         return view('login.access-denied');
