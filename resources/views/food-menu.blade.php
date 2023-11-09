@@ -2,7 +2,10 @@
 @section('title', 'Food Menu')
 @section('content')
 
-<h2>Food Menu</h2>
+<div class="foodMenu-main-content-container">
+    <div class="foodMenu-title">
+        <h2>Food Menu</h2>
+    </div>
 <div class="foodMenu container">
     <h2></h2>
     <div class="foodMenu-list">
@@ -23,6 +26,7 @@
             @endforeach
             </ul>
             <br></br>
+            <p style="text-align:left">Stock: {{ $menu->stock }}</p>
             <p>Price: RM {{ $menu->totalPrice }}</p>
             <br></br>
             <form action="{{ route('food-menu.addToCart') }}" method="POST">
@@ -60,6 +64,7 @@
             <button type="submit" class="foodMenu-checkout-button">Checkout</button>
         </form>
     </div>
+</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -106,7 +111,7 @@
     {
         $.ajax({
             type: 'POST',
-            url: '/food-menu.updateCart', 
+            url: '/updateCart', 
             data: 
             {
                 _token: '{{ csrf_token() }}',
@@ -129,7 +134,7 @@
     {
         $.ajax({
             type: 'POST',
-            url: '/foodMenu-removeFromCart', 
+            url: '/removeFromCart', 
             data: 
             {
                 _token: '{{ csrf_token() }}',
