@@ -112,7 +112,10 @@ Route::get('/add-menu/{id}', [MenuController::class, 'deleteMenu'])->name('menu.
 Route::get('/inventory-management', [InventoryController::class, 'index']);
 Route::post('/inventory-management/register', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
 Route::post('/inventory-management/edit', [InventoryController::class, 'editInventory'])->name('inventory.edit');
-Route::get('/inventory-management/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
+Route::get('/inventory-management/delete/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
+Route::get('/inventory-management/archive/{id}', [InventoryController::class, 'archiveInventory'])->name('inventory.archive');
+Route::get('/inventory-management/unarchive/{id}', [InventoryController::class, 'unarchiveInventory'])->name('inventory.unarchive');
+
 
 // Search - customer side
 Route::get('/search-result', [SearchController::class, 'index']);

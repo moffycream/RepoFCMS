@@ -63,7 +63,7 @@ class InventoryController extends Controller
         $inventories = Inventory::all();
         $foodInventories = FoodInventory::all();
 
-        if($nameErrMsg == "" && $amountErrMsg == "") {
+        if ($nameErrMsg == "" && $amountErrMsg == "") {
             //Store image path, name total price to database
             $inventory->save();
             return redirect('/inventory-management')->with(['listItems' => $inventories, 'foodInventory' => $foodInventories]);
@@ -107,7 +107,7 @@ class InventoryController extends Controller
         $inventories = Inventory::all();
         $foodInventories = FoodInventory::all();
 
-        if($nameErrMsg == "" && $amountErrMsg == "") {
+        if ($nameErrMsg == "" && $amountErrMsg == "") {
             //Store image path, name total price to database
             $inventory->save();
             return redirect('/inventory-management')->with(['listItems' => $inventories, 'foodInventory' => $foodInventories]);
@@ -116,11 +116,39 @@ class InventoryController extends Controller
         }
     }
 
+    // Unarchive inventory
+    public function unarchiveInventory($inventoryID)
+    {
+        $inventory = Inventory::find($inventoryID);
+        $inventory->isArchive = false;
+        $inventory->save();
+
+        $inventories = Inventory::all();
+        $foodInventories = FoodInventory::all();
+
+        return view('menu.inventory-management', ['listItems' => $inventories, 'foodInventory' => $foodInventories]);
+    }
+
+    //  Archive inventory
+    public function archiveInventory($inventoryID)
+    {
+        $inventory = Inventory::find($inventoryID);
+        $inventory->isArchive = true;
+        $inventory->save();
+
+        $inventories = Inventory::all();
+        $foodInventories = FoodInventory::all();
+
+        return view('menu.inventory-management', ['listItems' => $inventories, 'foodInventory' => $foodInventories]);
+    }
+
     //  Delete inventory
     public function deleteInventory($inventoryID)
     {
         Inventory::find($inventoryID)->delete();
+        $inventories = Inventory::all();
+        $foodInventories = FoodInventory::all();
 
-        return redirect('/inventory-management');
+        return view('menu.inventory-management', ['listItems' => $inventories, 'foodInventory' => $foodInventories]);
     }
 }

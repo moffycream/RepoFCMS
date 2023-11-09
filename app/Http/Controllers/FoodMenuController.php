@@ -8,6 +8,7 @@ use App\Models\Food;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NotificationController;
 use App\Models\Order;
+use App\Models\Inventory;
 
 
 class FoodMenuController extends Controller
@@ -19,6 +20,7 @@ class FoodMenuController extends Controller
         // Retrieve data from the database
         $menus = Menu::all();
         $foods = Food::all();
+        $inventories = Inventory::all();
 
         // Retrieve the cart items from the session
         $cart = session('cart', []);
@@ -30,7 +32,7 @@ class FoodMenuController extends Controller
         // Checks whether it's an admin session or not
         $this->adminController = $adminController;
 
-        return view('food-menu', compact('menus', 'foods', 'cart', 'totalPrice'), ['notifications' => $notificationController->getNotification()]);
+        return view('food-menu', compact('menus', 'foods', 'cart', 'totalPrice'), ['notifications' => $notificationController->getNotification(), 'inventories' => $inventories]);
     }
 
     public function addToCart(Request $request)
