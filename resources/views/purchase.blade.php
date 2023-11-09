@@ -7,7 +7,7 @@
 
     <form id="PurchaseForm" method="post" action="{{ route('process.purchase') }}">
         @csrf
-        <table id= "display_purchase_item_table">
+        <table id="display_purchase_item_table">
             <thead>
                 <tr>
                     <th>Menu ID</th>
@@ -20,34 +20,35 @@
             <tbody>
                 <tr>
                     @php
-                        $overallTotalPrice = 0; // Initialize order total price with 0
+                    $overallTotalPrice = 0; // Initialize order total price with 0
                     @endphp
 
 
                     @foreach ($cart as $item)
-                        
-                        @php
-                            $itemTotalPrice = $item['quantity'] * $item['price']; // Calculate total price per item
-                            $overallTotalPrice += $itemTotalPrice; // Add item total to overall total
-                            
-                        @endphp
-
-                    <tr>
-                        <td>{{ $item['menu']->menuID }}</td>
-                        <td>{{ $item['menu']->name }}</td>
-                        {{-- Hidden input field to store the value of the menu name --}}
-                        <input type="hidden" name="menu_names[]" value="{{ $item['menu']->name }}">
-                        <input type="hidden" name="menu_ids[]" value="{{ $item['menu']->menuID }}">
-                        <td>{{ $item['quantity'] }}</td>
-                        <td>RM {{ $itemTotalPrice }}</td>
-                    </tr>
-                    @endforeach
 
                     @php
-                        // Store cart data and overall total price in the session
-                        session(['overallTotalPrice' => $overallTotalPrice]);
+                    $itemTotalPrice = $item['quantity'] * $item['price']; // Calculate total price per item
+                    $overallTotalPrice += $itemTotalPrice; // Add item total to overall total
+
                     @endphp
-                    
+
+                <tr>
+                    <td>{{ $item['menu']->menuID }}</td>
+                    <td>{{ $item['menu']->name }}</td>
+                    {{-- Hidden input field to store the value of the menu name --}}
+                    <input type="hidden" name="menu_names[]" value="{{ $item['menu']->name }}">
+                    <input type="hidden" name="menu_ids[]" value="{{ $item['menu']->menuID }}">
+                    <td>{{ $item['quantity'] }}</td>
+                    <input type="hidden" name=menu_quantities[] value="{{ $item['quantity'] }}">
+                    <td>RM {{ $itemTotalPrice }}</td>
+                </tr>
+                @endforeach
+
+                @php
+                // Store cart data and overall total price in the session
+                session(['overallTotalPrice' => $overallTotalPrice]);
+                @endphp
+
                 </tr>
             </tbody>
 
@@ -55,7 +56,7 @@
                 <td>
                     Order Total Price
                 </td>
-                
+
                 <td>
                     <strong>RM {{ $overallTotalPrice }}</strong>
                     {{-- Hidden input field to store the value of the overallTotalPrice --}}
@@ -68,7 +69,7 @@
 
             <tr>
                 <td>
-                    <label for="realname:">Name: </label>   
+                    <label for="realname:">Name: </label>
                 </td>
 
                 <td>
@@ -77,8 +78,8 @@
             </tr>
 
             <tr>
-            <td>
-                    <label for="address:">Address: </label>   
+                <td>
+                    <label for="address:">Address: </label>
                 </td>
 
                 <td>
@@ -88,7 +89,7 @@
 
             <tr>
                 <td>
-                    <label for="contact:">Contact: </label>   
+                    <label for="contact:">Contact: </label>
                 </td>
 
                 <td>
@@ -98,7 +99,7 @@
 
             <tr>
                 <td>
-                    <label for="deliveryMethod:">Delivery Method: </label>   
+                    <label for="deliveryMethod:">Delivery Method: </label>
                 </td>
 
                 <td>
@@ -112,7 +113,7 @@
 
             <tr>
                 <td>
-                    <label for="orderNotes:">Message: </label>   
+                    <label for="orderNotes:">Message: </label>
                 </td>
 
                 <td>
@@ -121,7 +122,7 @@
             </tr>
 
             <td><button type="submit">Next</button></td>
-        </table> 
+        </table>
     </form>
 
 </div>

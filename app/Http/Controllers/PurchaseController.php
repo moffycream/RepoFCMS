@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserAccountController;
 use App\Models\Payment;
@@ -8,7 +9,7 @@ use App\Models\Order;
 use App\Models\Notification;
 use App\Models\UserAccounts;
 use App\Models\OrderMenu;
-use App\Models\Menu;
+
 
 use Carbon\Carbon;
 
@@ -29,17 +30,16 @@ class PurchaseController extends Controller
         } else {
             return view('login.access-denied');
         }
-        
     }
 
-    public function ProcessPurchase(Request $request){
+    public function ProcessPurchase(Request $request)
+    {
         $notificationController = app(NotificationController::class);
-        
+
         if (session()->has('username')) {
             $userID = UserAccounts::where('username', session('username'))->first()->userID;
-            if ($userID != null)
-            {   
-                
+            if ($userID != null) {
+
                 // Retrieve the overallTotalPrice from the form input
                 $overallTotalPrice = $request->input('overallTotalPrice');
                 $menuNames = $request->input('menu_names'); // Retrieve an array of menu names
@@ -53,14 +53,14 @@ class PurchaseController extends Controller
                 $order->name = $request->input('purchase_realname');
                 $order->address = $request->input('purchase_address');
                 $order->contact = $request->input('purchase_contact');
-                $order->delivery =$request->input('DeliveryMethod');
+                $order->delivery = $request->input('DeliveryMethod');
 
                 $order->status = 'Pending'; // Manually set thestatus to "pending"
                 $order->total = $overallTotalPrice;
-                $order->menu_name = $concatenatedMenuNames; 
+                $order->menu_name = $concatenatedMenuNames;
 
                 $order->save();
-                
+
                 // Retrieve the menu ID for each menu name
                 // Iterate over each menu ID and save it to the order-menu table
                 foreach ($menuIDs as $menuID) {
@@ -72,7 +72,6 @@ class PurchaseController extends Controller
             }
         }
 
-        return view('payment', ['totalPrice' => $overallTotalPrice,'notifications' => $notificationController->getNotification(),'orderID' => $order->orderID]);
-
+        return view('payment', ['totalPrice' => $overallTotalPrice, 'notifications' => $notificationController->getNotification(), 'orderID' => $order->orderID, 'menuIDs' => $menuIDs, 'menuQuantities' => $request->input('menu_quantities')]);
     }
 }
