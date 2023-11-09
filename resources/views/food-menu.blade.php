@@ -102,41 +102,49 @@
         });
     });
 
-    function updateQuantity(menuID, action) {
-    $.ajax({
-        type: 'POST',
-        url: '/updateCart', 
-        data: {
-            _token: '{{ csrf_token() }}',
-            menu_id: menuID,
-            action: action
-        },
-        success: function (response) {
-            if (response.success) {
-                // Update the quantity displayed in the cart
-                // You can also update the total price here
-                // You may need to reload the cart or update it via JavaScript
+    function updateQuantity(menuID, action) 
+    {
+        $.ajax({
+            type: 'POST',
+            url: '/food-menu.updateCart', 
+            data: 
+            {
+                _token: '{{ csrf_token() }}',
+                menu_id: menuID,
+                action: action
+            },
+            success: function (response) 
+            {
+                if (response.success) 
+                {
+                    // Update the quantity displayed in the cart
+                    // You can also update the total price here
+                    // You may need to reload the cart or update it via JavaScript
+                }
             }
-        }
-    });
-}
+        });
+    }
 
-function removeItem(menuID) {
-    $.ajax({
-        type: 'POST',
-        url: '/removeFromCart', 
-        data: {
-            _token: '{{ csrf_token() }}',
-            menu_id: menuID
-        },
-        success: function (response) {
-            if (response.success) {
-                // Remove the item from the cart display
-                // You may need to reload the cart or update it via JavaScript
+    function removeItem(menuID) 
+    {
+        $.ajax({
+            type: 'POST',
+            url: '/foodMenu-removeFromCart', 
+            data: 
+            {
+                _token: '{{ csrf_token() }}',
+                menu_id: menuID
+            },
+            success: function (response) 
+            {
+                if (response.success) 
+                {
+                    array_splice($cart, $cartItemIndex, 1);
+                    // You may need to reload the cart or update it via JavaScript
+                }
             }
-        }
-    });
-}
+        });
+    }
 </script>
 
 <script>
