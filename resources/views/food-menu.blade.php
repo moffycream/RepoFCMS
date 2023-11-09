@@ -2,7 +2,10 @@
 @section('title', 'Food Menu')
 @section('content')
 
-<h2>Food Menu</h2>
+<div class="foodMenu-main-content-container">
+    <div class="foodMenu-title">
+        <h2>Food Menu</h2>
+    </div>
 <div class="foodMenu container">
     <h2></h2>
     <div class="foodMenu-list">
@@ -104,6 +107,7 @@
         </form>
     </div>
 </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -142,8 +146,9 @@
     function updateQuantity(menuID, action) {
         $.ajax({
             type: 'POST',
-            url: '/updateCart',
-            data: {
+            url: '/food-menu.updateCart', 
+            data: 
+            {
                 _token: '{{ csrf_token() }}',
                 menu_id: menuID,
                 action: action
@@ -158,22 +163,26 @@
         });
     }
 
-function removeItem(menuID) {
-    $.ajax({
-        type: 'POST',
-        url: '/removeFromCart', 
-        data: {
-            _token: '{{ csrf_token() }}',
-            menu_id: menuID
-        },
-        success: function (response) {
-            if (response.success) {
-                // Remove the item from the cart display
-                // You may need to reload the cart or update it via JavaScript
+    function removeItem(menuID) 
+    {
+        $.ajax({
+            type: 'POST',
+            url: '/foodMenu-removeFromCart', 
+            data: 
+            {
+                _token: '{{ csrf_token() }}',
+                menu_id: menuID
+            },
+            success: function (response) 
+            {
+                if (response.success) 
+                {
+                    array_splice($cart, $cartItemIndex, 1);
+                    // You may need to reload the cart or update it via JavaScript
+                }
             }
-        }
-    });
-}
+        });
+    }
 </script>
 
 <script>

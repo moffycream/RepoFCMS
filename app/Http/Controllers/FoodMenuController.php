@@ -105,7 +105,7 @@ class FoodMenuController extends Controller
         // Store the updated cart in the session
         session(['cart' => $cart]);
 
-        return response()->json(['success' => true, 'quantity' => $cartItem['quantity']]);
+        return redirect()->route('menu.index')->with('success', 'Cart updated.');
     }
 
     public function removeFromCart(Request $request)
@@ -131,7 +131,7 @@ class FoodMenuController extends Controller
         // Store the updated cart in the session
         session(['cart' => $cart]);
 
-        return response()->json(['success' => true]);
+        return redirect()->route('menu.index')->with('success', 'Menu removed.');
     }
 
     public function showCart()
