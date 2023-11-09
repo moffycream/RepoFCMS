@@ -68,7 +68,6 @@
             <!--end calculate stock -->
 
             <br></br>
-            <p style="text-align:left">Stock: {{ $menu->stock }}</p>
             <p>Price: RM {{ $menu->totalPrice }}</p>
             <p>Stock: {{$stock}}</p>
             <br></br>
