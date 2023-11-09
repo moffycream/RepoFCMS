@@ -31,7 +31,7 @@
             <!-- calculate stock -->
             @php
             $inventoryCounts = [];
-            $menuStocks= [];
+            $menuStock= [];
             @endphp
 
             @foreach($menu->foods as $food)
@@ -51,7 +51,7 @@
             @foreach($inventories as $inventory)
             @if($food_inventory->inventoryID == $inventoryID && $inventory->inventoryID == $inventoryID && $inventoryCount > 0)
             @php
-            $menuStocks[] = floor($inventory->amount / $inventoryCount);
+            $menuStock[] = floor($inventory->amount / $inventoryCount);
             @endphp
             @endif
             @endforeach
@@ -59,8 +59,8 @@
             @endforeach
 
             @php
-            $stock = min($menuStocks)
-            $menuStock[$menu->menuID] = $stock;
+            $stock = min($menuStock);
+            $menuStocks[$menu->menuID] = $stock;
             @endphp
             <!--end calculate stock -->
 
