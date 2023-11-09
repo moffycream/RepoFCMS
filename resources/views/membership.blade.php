@@ -35,7 +35,12 @@
     </div>
     
     <aside>
-        <h2>Your Total Spent: </h2>
+
+        {{--Display Total Spending--}}
+        @if(isset($totalAmountPaid))
+            <h2>Your Total Spent: RM{{ $totalAmountPaid }}</h2>
+        @endif
+
     </aside>
 </div>
 

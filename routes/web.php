@@ -132,10 +132,9 @@ Route::get('/op-view-order/cancel/{orderID}', [OrderController::class, 'cancelOr
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
 // Payment
-Route::get('payment', [PaymentController::class, 'index'])->name('payment');
-Route::post('payment/store', [PaymentController::class, 'storePaymentData'])->name('payment.store');
-
-
+Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+Route::post('/payment/store', [PaymentController::class, 'storePaymentData'])->name('payment.store');
+Route::get('/payment/payment-complete', [PaymentController::class, 'paymentComplete'])->name('payment.complete');
 
 // Purchase
 Route::get('/purchase', [PurchaseController::class, 'index'])->name('purchase.index');   // when access /purchase, index method triggered
@@ -183,3 +182,11 @@ Route::post('/customer-review-history/comment/{commentID}/edit/save', [ReviewCon
 Route::get('/customer-review-history/review/{reviewID}/delete', [ReviewController::class, 'reviewDelete'])->name('review.delete');
 Route::get('/customer-review-history/comment/{commentID}/delete', [ReviewController::class, 'commentDelete'])->name('review.comment.delete');
 
+// Admin - review analytics
+Route::get('/admin-view-reviews', [ReviewController::class, 'adminViewReviews']);
+Route::post('/admin-view-reviews', [ReviewController::class, 'adminSubmitComment'])->name('admin.review.submit.comment');
+Route::post('/admin-view-reviews/filter', [ReviewController::class, 'adminFilter'])->name('admin.reviews.filter');
+
+
+// Customer - Membership
+Route::get('/membership', [MembershipController::class, 'displayTotalAmountPaid']);
