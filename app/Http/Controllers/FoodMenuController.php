@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Models\Menu;
 use App\Models\Food;
 use App\Http\Controllers\AdminController;
@@ -43,6 +44,7 @@ class FoodMenuController extends Controller
         {
             return redirect()->route('menu.index')->with('error', 'Menu not found.');
         }
+
         // Get the cart items from the session
         $cart = session('cart', []);
 
@@ -52,49 +54,75 @@ class FoodMenuController extends Controller
             return $item['menu']->menuID === $menu->menuID;
         });
 
+        $stock = $request->input('stock'); // Available stock
+
         if ($existingItemKey !== false) 
         {
-            // If the menu item is in the cart, increment the quantity
-            $cart[$existingItemKey]['quantity'] += 1;
+            // If the menu item is in the cart, check if stock allows increment
+            if ($cart[$existingItemKey]['quantity'] < $stock) 
+            {
+                $cart[$existingItemKey]['quantity'] += 1;
+
+                // Decrease available stock
+                $stock -= 1;
+            } 
+            else 
+            {
+                // Stock is exhausted; you can show an error message here
+            }
         } 
         else 
         {
             // If the menu item is not in the cart, add it
-            $cart[] = 
-            [
-                'menu' => $menu,
-                'quantity' => 1,
-                'price' => $menu->totalPrice // Store the price
-            ];
+            if ($stock > 0) 
+            {
+                $cart[] = [
+                    'menu' => $menu,
+                    'quantity' => 1,
+                    'price' => $menu->totalPrice // Store the price
+                ];
+
+                // Decrease available stock
+                $stock -= 1;
+            } 
+            else 
+            {
+                // Stock is exhausted; you can show an error message here
+            }
         }
 
-        // Store the updated cart in the session
+        // Store the updated cart and available stock in the session
         session(['cart' => $cart]);
 
         return redirect()->route('menu.index')->with('success', 'Menu item added to cart.');
     }
 
+
     public function updateCart(Request $request)
     {
-        $menuID = $request->input('menu_id');
+        Log::info('Update Cart Request Data: ' . json_encode($request->all()));
+        $menu = Menu::find($request->menu_id);
+
         $action = $request->input('action');
 
         $cart = session('cart', []);
 
         // Find the item in the cart
-        $cartItem = collect($cart)->first(function ($item) use ($menuID) 
+        $cartItem = collect($cart)->search(function ($item) use ($menu) 
         {
-            return $item['menu']->menuID === $menuID;
+            return $item['menu']->menuID === $menu->menuID;
         });
 
-        if (!$cartItem) {
-            return response()->json(['error' => 'Menu item not found in the cart']);
+        if (!$cartItem) 
+        {
+            return response()->json(['error' => 'Menu item not found in the cart!']);
         }
 
-        if ($action == 'increment') 
+        if ($action === 'increment') 
         {
-            $cartItem['quantity']++;
-        } elseif ($action == 'decrement') 
+            $cart[$cartItem]['quantity'] += 1;
+        } 
+        elseif ($action === 'decrement') 
         {
             if ($cartItem['quantity'] > 1) 
             {
@@ -110,14 +138,15 @@ class FoodMenuController extends Controller
 
     public function removeFromCart(Request $request)
     {
-        $menuID = $request->input('menu_id');
+        Log::info('Remove From Cart Request Data: ' . json_encode($request->all()));
+        $menu = Menu::find($request->menu_id);
 
         $cart = session('cart', []);
 
         // Find the item index in the cart
-        $cartItemIndex = collect($cart)->search(function ($item) use ($menuID) 
+        $cartItemIndex = collect($cart)->search(function ($item) use ($menu) 
         {
-            return $item['menu']->menuID === $menuID;
+            return $item['menu']->menuID === $menu->menuID;
         });
 
         if ($cartItemIndex === false) 
