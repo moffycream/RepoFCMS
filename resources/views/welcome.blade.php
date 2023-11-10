@@ -13,8 +13,16 @@
 
     <div class="row section-1">
         <div>
+            @if (isset($menuItems))
+            @if (count($menuItems) > 0)
             <h2>Our Popular Menus</h2>
             <hr>
+            @else
+            <h2>Our Menus</h2>
+            <hr>
+            <p>Savor the extraordinary with FoodEdge menus—where every dish is a masterpiece, meticulously crafted to delight your palate and elevate your dining experience.</p>
+            @endif
+            @endif
         </div>
         @if (isset($menuItems))
         <div class="container">
