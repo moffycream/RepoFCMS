@@ -93,10 +93,14 @@ class FoodController extends Controller
 
         //Price
         if ($request->filled("price")) {
-            if ($validator->validateText($request->price, '/^\d{1,8}(\.\d{1,2})?$/')) {
-                $food->price = $request->price;
+            if (is_numeric($request->price)) {
+                if ($validator->validateText($request->price, '/^\d{1,8}(\.\d{1,2})?$/')) {
+                    $food->price = $request->price;
+                } else {
+                    $priceErrMsg .= "The price must be less than 8 digits.";
+                }
             } else {
-                $priceErrMsg .= "The price must be less than 8 digits.";
+                $priceErrMsg .= "The price must be number";
             }
         } else {
             $priceErrMsg .= "The price field is required.";
@@ -199,10 +203,14 @@ class FoodController extends Controller
 
         //Price validation
         if ($request->filled("price")) {
-            if ($validator->validateText($request->price, '/^\d{1,8}(\.\d{1,2})?$/')) {
-                $food->price = $request->price;
+            if (is_numeric($request->price)) {
+                if ($validator->validateText($request->price, '/^\d{1,8}(\.\d{1,2})?$/')) {
+                    $food->price = $request->price;
+                } else {
+                    $priceErrMsg .= "The price must be less than 8 digits.";
+                }
             } else {
-                $priceErrMsg .= "The price must be less than 8 digits.";
+                $priceErrMsg .= "The price must be number";
             }
         } else {
             $priceErrMsg .= "The price field is required.";

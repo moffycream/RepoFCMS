@@ -42,9 +42,9 @@
             <p class="menu-form-error">{!!$priceErrMsg!!}</p>
             @endif
             @if(isset($price))
-            <input type="number" id="food-price" name="price" placeholder="Food price" value="{{$price}}">
+            <input type="text" id="food-price" name="price" placeholder="Food price" value="{{$price}}">
             @else
-            <input type="number" id="food-price" name="price" placeholder="Food price">
+            <input type="text" id="food-price" name="price" placeholder="Food price">
             @endif
         </div>
         <div class="add-menu-form-input-div">
