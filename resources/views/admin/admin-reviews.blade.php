@@ -73,7 +73,7 @@ $replyID = 0;
         if (isset($_POST['category'])) {
         if ($_POST['category'] == 'all') {
         $oldCategory_1 = 'selected';
-        } elseif ($_POST['category'] == 'food') {
+        } elseif ($_POST['category'] == 'menu') {
         $oldCategory_2 = 'selected';
         } elseif ($_POST['category'] == 'service') {
         $oldCategory_3 = 'selected';
@@ -97,7 +97,7 @@ $replyID = 0;
             <div>
                 <select name="category">
                     <option value="all" {{$oldCategory_1}}>All</option>
-                    <option value="food" {{$oldCategory_2}}>Food</option>
+                    <option value="menu" {{$oldCategory_2}}>menu</option>
                     <option value="service" {{$oldCategory_3}}>Service</option>
                     <option value="delivery" {{$oldCategory_4}}>Delivery</option>
                     <option value="others" {{$oldCategory_5}}>Others</option>

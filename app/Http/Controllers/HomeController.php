@@ -14,16 +14,19 @@ class HomeController extends Controller
     {
         // Checks whether is customer session or not
         $userAccountController = app(UserAccountController::class);
-        $notificationController = app(NotificationController::class);
         $userAccountController->setDefaultAdmin();
 
+        // Get the menu items
+        $menuController = app(MenuController::class);
+        $menuItems = $menuController->getMenuByRatings();
 
         if ($userAccountController->verifyCustomer()) {
-            return view('welcome');
+            return view('welcome', ['menuItems' => $menuItems]);
         } else {
-            return view('welcome');
+            return view('welcome', ['menuItems' => $menuItems]);
         }
     }
+
 
   
 
@@ -31,10 +34,9 @@ class HomeController extends Controller
     {
         // Checks whether is customer session or not
         $userAccountController = app(UserAccountController::class);
-        $notificationController = app(NotificationController::class);
 
         if ($userAccountController->verifyCustomer()) {
-            return view('menu', ['notifications' => $notificationController->getNotification()]);
+            return view('menu');
         } else {
             return view('login.access-denied');
         }
@@ -43,8 +45,7 @@ class HomeController extends Controller
     public function about()
     {
         // Checks whether is customer session or not
-        $notificationController = app(NotificationController::class);
 
-        return view('about', ['notifications' => $notificationController->getNotification()]);
+        return view('about');
     }
 }

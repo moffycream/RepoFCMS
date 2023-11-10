@@ -16,6 +16,7 @@ return new class extends Migration
             $table->char('imagePath');
             $table->char('name');
             $table->decimal('totalPrice', 10, 2);
+            $table->decimal('ratings',10,2)->default(0);
             $table->timestamps();
         });
     }

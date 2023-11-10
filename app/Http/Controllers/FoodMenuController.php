@@ -28,12 +28,10 @@ class FoodMenuController extends Controller
 
         $totalPrice = $this->showCart();
 
-        $notificationController = app(NotificationController::class);
-
         // Checks whether it's an admin session or not
         $this->adminController = $adminController;
 
-        return view('food-menu', compact('menus', 'foods', 'cart', 'totalPrice'), ['notifications' => $notificationController->getNotification(), 'inventories' => $inventories]);
+        return view('food-menu', compact('menus', 'foods', 'cart', 'totalPrice'), [ 'inventories' => $inventories]);
     }
 
     public function addToCart(Request $request)

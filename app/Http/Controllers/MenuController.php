@@ -227,4 +227,13 @@ class MenuController extends Controller
 
         return redirect('/add-menu');
     }
+
+    // Get menu by ratings
+    public function getMenuByRatings()
+    {
+        $menu = Menu::all();
+        $menuItems = $menu->sortByDesc('ratings')->take(3);
+        return $menuItems;
+    }
+
 }
