@@ -7,6 +7,7 @@ use App\Models\Review;
 use App\Models\UserAccounts;
 use App\Models\Comment;
 use Illuminate\Contracts\Session\Session;
+use App\Models\Menu;
 use App\Models\Notification;
 
 class ReviewController extends Controller
@@ -76,6 +77,21 @@ class ReviewController extends Controller
                     $review->reviewContent = $validatedData['reviewContent'];
                     $review->reviewRating = $validatedData['reviewRating'];
                     $review->reviewCategory = $validatedData['reviewCategory'];
+
+                    // If the review title is same as the menu item's name and the review category is menu, then the review is about the menu item
+                    $menu = Menu::where('name', $review->reviewTitle)->first();
+                    if ($menu != null) {
+                    if ($review->reviewCategory == 'menu' && $review->reviewTitle == $menu->name) {
+                        $review->menuID = $menu->menuID;
+                        // Update the ratings for the menu item
+                        
+                        // Calculate the new average rating
+                        $newAverageRating = ($menu->ratings * $menu->getTotalReviews() + $review->reviewRating) / ($menu->getTotalReviews() + 1);
+                        $menu->ratings = $newAverageRating;
+                        $menu->save();
+                    }
+                    }
+
                     $review->save();
                     // Return back to reviews page
                     return redirect('/customer-review-history')->with('success', 'Review updated successfully!');
@@ -205,6 +221,20 @@ class ReviewController extends Controller
                 $review->reviewContent = $validatedData['reviewContent'];
                 $review->reviewRating = $validatedData['reviewRating'];
                 $review->reviewCategory = $validatedData['reviewCategory'];
+
+                // If the review title is same as the menu item's name and the review category is menu, then the review is about the menu item
+                $menu = Menu::where('name', $review->reviewTitle)->first();
+                if ($menu != null) {
+                if ($review->reviewCategory == 'menu' && $review->reviewTitle == $menu->name) {
+                    $review->menuID = $menu->menuID;
+
+                    // Calculate the new average rating
+                    $newAverageRating = ($menu->ratings * $menu->getTotalReviews() + $review->reviewRating) / ($menu->getTotalReviews() + 1);
+                    $menu->ratings = $newAverageRating;
+                    $menu->save();
+                }
+                }
+        
                 $review->save();
                 // Return back to reviews page
                 return redirect('/reviews')->with('success', 'Review submitted successfully!');

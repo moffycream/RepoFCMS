@@ -9,7 +9,7 @@
             @csrf
 
             @php
-            $oldCategory_1 = old('reviewCategory') === 'food' ? 'selected' : '';
+            $oldCategory_1 = old('reviewCategory') === 'menu' ? 'selected' : '';
             $oldCategory_2 = old('reviewCategory') === 'service' ? 'selected' : '';
             $oldCategory_3 = old('reviewCategory') === 'delivery' ? 'selected' : '';
             $oldCategory_4 = old('reviewCategory') === 'others' ? 'selected' : '';
@@ -18,7 +18,7 @@
                 <p>Category *</p>
                 <select id="category" name="reviewCategory">
                     <option value="" disabled selected>Select a category</option>
-                    <option value="food" {{$oldCategory_1}}>Food</option>
+                    <option value="menu" {{$oldCategory_1}}>Menu</option>
                     <option value="service" {{$oldCategory_2}}>Service</option>
                     <option value="delivery" {{$oldCategory_3}}>Delivery</option>
                     <option value="others" {{$oldCategory_4}}>Others</option>
