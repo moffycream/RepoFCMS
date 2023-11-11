@@ -28,12 +28,10 @@ class FoodMenuController extends Controller
 
         $totalPrice = $this->showCart();
 
-        $notificationController = app(NotificationController::class);
-
         // Checks whether it's an admin session or not
         $this->adminController = $adminController;
 
-        return view('food-menu', compact('menus', 'foods', 'cart', 'totalPrice'), ['notifications' => $notificationController->getNotification(), 'inventories' => $inventories]);
+        return view('food-menu', compact('menus', 'foods', 'cart', 'totalPrice'), [ 'inventories' => $inventories]);
     }
 
     public function addToCart(Request $request)
@@ -42,7 +40,7 @@ class FoodMenuController extends Controller
 
         if (!$menu) 
         {
-            return redirect()->route('menu.index')->with('error', 'Menu not found.');
+            return redirect()->route('food-menu.index')->with('error', 'Menu not found.');
         }
 
         // Get the cart items from the session
@@ -94,73 +92,82 @@ class FoodMenuController extends Controller
         // Store the updated cart and available stock in the session
         session(['cart' => $cart]);
 
-        return redirect()->route('menu.index')->with('success', 'Menu item added to cart.');
+        return redirect()->route('food-menu.index')->with('success', 'Menu item added to cart.');
     }
 
 
     public function updateCart(Request $request)
     {
-        Log::info('Update Cart Request Data: ' . json_encode($request->all()));
         $menu = Menu::find($request->menu_id);
-
         $action = $request->input('action');
 
+        Log::info('Updating cart for menuID: ' . $menu . ', action: ' . $action);
+
+        // Retrieve the cart items from the session
         $cart = session('cart', []);
 
         // Find the item in the cart
-        $cartItem = collect($cart)->search(function ($item) use ($menu) 
+        $cartItemIndex = collect($cart)->search(function ($item) use ($menu) 
         {
-            return $item['menu']->menuID === $menu->menuID;
+            return $item['menu']->menuID === $menu-> menuID;
         });
 
-        if (!$cartItem) 
+        if ($cartItemIndex !== false) 
         {
-            return response()->json(['error' => 'Menu item not found in the cart!']);
-        }
-
-        if ($action === 'increment') 
-        {
-            $cart[$cartItem]['quantity'] += 1;
-        } 
-        elseif ($action === 'decrement') 
-        {
-            if ($cartItem['quantity'] > 1) 
+            // Update the quantity based on the action
+            if ($action === 'increment') 
             {
-                $cartItem['quantity']--;
+                $cart[$cartItemIndex]['quantity'] += 1;
             }
+            elseif ($action === 'decrement') 
+            {
+                if($cart[$cartItemIndex]['quantity'] > 1)
+                {
+                    $cart[$cartItemIndex]['quantity'] -= 1;
+                }
+                elseif($cart[$cartItemIndex]['quantity'] === 1)
+                {
+                    array_splice($cart, $cartItemIndex, 1);
+                    session(['cart' => $cart]);
+                }
+            }
+
+            // Update the session with the modified cart
+            session(['cart' => $cart]);
+
+            return response()->json(['success' => true]);
         }
 
-        // Store the updated cart in the session
-        session(['cart' => $cart]);
-
-        return redirect()->route('menu.index')->with('success', 'Cart updated.');
+        return response()->json(['success' => false, 'message' => 'Item not found in the cart']);
     }
 
     public function removeFromCart(Request $request)
     {
-        Log::info('Remove From Cart Request Data: ' . json_encode($request->all()));
         $menu = Menu::find($request->menu_id);
 
+        Log::info('Removing item from cart for menuID: ' . $menu);
+
+        // Retrieve the cart items from the session
         $cart = session('cart', []);
 
-        // Find the item index in the cart
+        // Find the item in the cart
         $cartItemIndex = collect($cart)->search(function ($item) use ($menu) 
         {
             return $item['menu']->menuID === $menu->menuID;
         });
 
-        if ($cartItemIndex === false) 
+        if ($cartItemIndex !== false) 
         {
-            return response()->json(['error' => 'Menu item not found in the cart']);
+            // Remove the item from the cart
+            array_splice($cart, $cartItemIndex, 1);
+
+            // Update the session with the modified cart
+            session(['cart' => $cart]);
+
+            return response()->json(['success' => true]);
         }
 
-        // Remove the item from the cart
-        array_splice($cart, $cartItemIndex, 1);
-
-        // Store the updated cart in the session
-        session(['cart' => $cart]);
-
-        return redirect()->route('menu.index')->with('success', 'Menu removed.');
+        return response()->json(['success' => false, 'message' => 'Item not found in the cart.']);
     }
 
     public function showCart()
@@ -201,7 +208,7 @@ class FoodMenuController extends Controller
 
         if (!$selectedOrder) 
         {
-            return redirect()->route('menu.index')->with('error', 'Order not found.');
+            return redirect()->route('food-menu.index')->with('error', 'Order not found.');
         }
 
         // Initialize the cart
@@ -237,6 +244,6 @@ class FoodMenuController extends Controller
         session(['cart' => $cart]);
 
         // Redirect to the menu page or any other page you prefer
-        return redirect()->route('menu.index')->with('success', 'Menu items added to cart.');
+        return redirect()->route('food-menu.index')->with('success', 'Menu items added to cart.');
     }
 }

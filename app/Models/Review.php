@@ -29,6 +29,12 @@ class Review extends Model
         return $this->hasMany(Comment::class, 'reviewID')->whereNull('replyToCommentID');
     }
 
+    // Menu relationship
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class, 'menuID');
+    }
+
     // Get time difference between now and the time the review was created
     public function getTimeDifference()
     {

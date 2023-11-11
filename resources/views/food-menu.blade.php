@@ -135,8 +135,19 @@
         $('.quantity-button[data-action="increment"]').click(function() 
         {
             var menuID = $(this).data('id');
-            updateQuantity(menuID, 'increment');
-            console.log('+ Button clicked');
+            var stock = $(this).data('stock');
+            var quantityElement = $(this).siblings('.quantity');
+
+            // Check if the current quantity is less than the stock amount
+            if (parseInt(quantityElement.text()) < stock) 
+            {
+                updateQuantity(menuID, 'increment');
+            } 
+            else 
+            {
+                // Optionally, you can display a message or handle this case as needed.
+                console.log('Quantity cannot exceed stock amount.');
+            }
         });
 
         // Decrement quantity
@@ -144,7 +155,6 @@
         {
             var menuID = $(this).data('id');
             updateQuantity(menuID, 'decrement');
-            console.log('- Button clicked');
         });
 
         // Remove item
@@ -152,64 +162,68 @@
         {
             var menuID = $(this).data('id');
             removeItem(menuID);
-            console.log('Remove Button clicked');
         });
     });
 
     function updateQuantity(menuID, action) 
     {
-    $.ajax({
-        type: 'POST',
-        url: '/update',
-        data: {
-            _token: '{{ csrf_token() }}',
-            menu_id: menuID,
-            action: action
-        },
-        success: function(response) 
-        {
-            if (response.success) 
+        var csrfToken = '{{ csrf_token() }}';
+
+        console.log('Updating quantity for menuID:', menuID);
+        console.log('CSRF Token:', csrfToken);
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("food-menu.updateCart") }}',
+            data: {
+                _token: csrfToken,
+                menu_id: menuID,
+                action: action
+            },
+            success: function(response) 
             {
-                // Update the quantity displayed in the cart
-                // You can also update the total price here
-                // Example: Update the quantity for the specific item in the cart
-                const $cartItem = $('.foodMenu-cart-item[data-id="' + menuID + '"]');
-                const $quantityElement = $cartItem.find('.foodMenu-cart-item-quantity');
-                const currentQuantity = parseInt($quantityElement.text());
-                if (action === 'increment') 
+                if (response.success) 
                 {
-                    $quantityElement.text(currentQuantity + 1);
-                    console.log('Quantity added by 1');
+                    // Reload the page or update the cart display
+                    location.reload();
                 } 
-                else if (action === 'decrement' && currentQuantity > 1) 
+                else 
                 {
-                    $quantityElement.text(currentQuantity - 1);
-                    console.log('Quantity deducted by 1');
+                    console.error('Error updating quantity:', response.message);
                 }
+            },
+            error: function(xhr, status, error) 
+            {
+                console.error('AJAX error:', error);
             }
-        }
-    });
-}
+        });
+    }
 
 
     function removeItem(menuID) 
     {
         $.ajax({
             type: 'POST',
-            url: '/remove', 
-            data: 
-            {
+            url: '{{ route("food-menu.removeFromCart") }}',
+            data: {
                 _token: '{{ csrf_token() }}',
                 menu_id: menuID
             },
-            success: function (response) 
+            success: function(response) 
             {
                 if (response.success) 
                 {
-                    array_splice($cart, $cartItemIndex, 1);
-                    console.log('Item removed');
-                    // You may need to reload the cart or update it via JavaScript
+                    // Reload the page or update the cart display
+                    location.reload();
+                } 
+                else 
+                {
+                    console.error('Error removing item:', response.message);
                 }
+            },
+            error: function(xhr, status, error) 
+            {
+                console.error('AJAX error:', error);
             }
         });
     }
