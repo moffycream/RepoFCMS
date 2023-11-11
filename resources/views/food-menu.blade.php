@@ -136,7 +136,6 @@
         {
             var menuID = $(this).data('id');
             updateQuantity(menuID, 'increment');
-            console.log('+ Button clicked');
         });
 
         // Decrement quantity
@@ -144,7 +143,6 @@
         {
             var menuID = $(this).data('id');
             updateQuantity(menuID, 'decrement');
-            console.log('- Button clicked');
         });
 
         // Remove item
@@ -152,64 +150,63 @@
         {
             var menuID = $(this).data('id');
             removeItem(menuID);
-            console.log('Remove Button clicked');
         });
     });
 
     function updateQuantity(menuID, action) 
     {
-    $.ajax({
-        type: 'POST',
-        url: '/update',
-        data: {
-            _token: '{{ csrf_token() }}',
-            menu_id: menuID,
-            action: action
-        },
-        success: function(response) 
-        {
-            if (response.success) 
-            {
-                // Update the quantity displayed in the cart
-                // You can also update the total price here
-                // Example: Update the quantity for the specific item in the cart
-                const $cartItem = $('.foodMenu-cart-item[data-id="' + menuID + '"]');
-                const $quantityElement = $cartItem.find('.foodMenu-cart-item-quantity');
-                const currentQuantity = parseInt($quantityElement.text());
-                if (action === 'increment') 
-                {
-                    $quantityElement.text(currentQuantity + 1);
-                    console.log('Quantity added by 1');
-                } 
-                else if (action === 'decrement' && currentQuantity > 1) 
-                {
-                    $quantityElement.text(currentQuantity - 1);
-                    console.log('Quantity deducted by 1');
+        var csrfToken = '{{ csrf_token() }}';
+
+        console.log('Updating quantity for menuID:', menuID);
+        console.log('CSRF Token:', csrfToken);
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("food-menu.updateCart") }}',
+            data: {
+                _token: csrfToken,
+                menu_id: menuID,
+                action: action
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Reload the page or update the cart display
+                    location.reload();
+                } else {
+                    console.error('Error updating quantity:', response.message);
                 }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX error:', error);
             }
-        }
-    });
-}
+        });
+    }
 
 
     function removeItem(menuID) 
     {
         $.ajax({
             type: 'POST',
-            url: '/remove', 
-            data: 
-            {
+            url: '{{ route("food-menu.removeFromCart") }}',
+            data: {
                 _token: '{{ csrf_token() }}',
                 menu_id: menuID
             },
-            success: function (response) 
+            success: function(response) 
             {
                 if (response.success) 
                 {
-                    array_splice($cart, $cartItemIndex, 1);
-                    console.log('Item removed');
-                    // You may need to reload the cart or update it via JavaScript
+                    // Reload the page or update the cart display
+                    location.reload();
+                } 
+                else 
+                {
+                    console.error('Error removing item:', response.message);
                 }
+            },
+            error: function(xhr, status, error) 
+            {
+                console.error('AJAX error:', error);
             }
         });
     }
