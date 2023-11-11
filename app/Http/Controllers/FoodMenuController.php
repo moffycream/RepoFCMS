@@ -112,6 +112,8 @@ class FoodMenuController extends Controller
             return $item['menu']->menuID === $menu-> menuID;
         });
 
+        $stock = $request->input('stock');
+
         if ($cartItemIndex !== false) 
         {
             // Update the quantity based on the action
@@ -119,9 +121,17 @@ class FoodMenuController extends Controller
             {
                 $cart[$cartItemIndex]['quantity'] += 1;
             } 
-            elseif ($action === 'decrement' && $cart[$cartItemIndex]['quantity'] > 1) 
+            elseif ($action === 'decrement') 
             {
-                $cart[$cartItemIndex]['quantity'] -= 1;
+                if($cart[$cartItemIndex]['quantity'] > 1)
+                {
+                    $cart[$cartItemIndex]['quantity'] -= 1;
+                }
+                elseif($cart[$cartItemIndex]['quantity'] === 1)
+                {
+                    array_splice($cart, $cartItemIndex, 1);
+                    session(['cart' => $cart]);
+                }
             }
 
             // Update the session with the modified cart
