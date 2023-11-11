@@ -135,7 +135,19 @@
         $('.quantity-button[data-action="increment"]').click(function() 
         {
             var menuID = $(this).data('id');
-            updateQuantity(menuID, 'increment');
+            var stock = $(this).data('stock');
+            var quantityElement = $(this).siblings('.quantity');
+
+            // Check if the current quantity is less than the stock amount
+            if (parseInt(quantityElement.text()) < stock) 
+            {
+                updateQuantity(menuID, 'increment');
+            } 
+            else 
+            {
+                // Optionally, you can display a message or handle this case as needed.
+                console.log('Quantity cannot exceed stock amount.');
+            }
         });
 
         // Decrement quantity
