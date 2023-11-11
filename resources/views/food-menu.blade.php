@@ -168,15 +168,20 @@
                 menu_id: menuID,
                 action: action
             },
-            success: function(response) {
-                if (response.success) {
+            success: function(response) 
+            {
+                if (response.success) 
+                {
                     // Reload the page or update the cart display
                     location.reload();
-                } else {
+                } 
+                else 
+                {
                     console.error('Error updating quantity:', response.message);
                 }
             },
-            error: function(xhr, status, error) {
+            error: function(xhr, status, error) 
+            {
                 console.error('AJAX error:', error);
             }
         });

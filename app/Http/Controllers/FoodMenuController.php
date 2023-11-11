@@ -120,16 +120,18 @@ class FoodMenuController extends Controller
             if ($action === 'increment') 
             {
                 $cart[$cartItemIndex]['quantity'] += 1;
-            } 
+            }
             elseif ($action === 'decrement') 
             {
                 if($cart[$cartItemIndex]['quantity'] > 1)
                 {
                     $cart[$cartItemIndex]['quantity'] -= 1;
+                    $stock -= 1;
                 }
                 elseif($cart[$cartItemIndex]['quantity'] === 1)
                 {
                     array_splice($cart, $cartItemIndex, 1);
+                    $stock += 1;
                     session(['cart' => $cart]);
                 }
             }
