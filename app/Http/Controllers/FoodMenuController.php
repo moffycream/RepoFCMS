@@ -112,15 +112,13 @@ class FoodMenuController extends Controller
             return $item['menu']->menuID === $menu-> menuID;
         });
 
-        $stock = $request->input('stock');
-
         if ($cartItemIndex !== false) 
         {
             // Update the quantity based on the action
             if ($action === 'increment') 
             {
                 $cart[$cartItemIndex]['quantity'] += 1;
-            } 
+            }
             elseif ($action === 'decrement') 
             {
                 if($cart[$cartItemIndex]['quantity'] > 1)

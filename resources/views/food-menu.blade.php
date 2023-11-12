@@ -95,9 +95,15 @@
                     <p><strong>Menu:</strong> {{ $item['menu']->name }}</p>
                     <p><strong>Price:</strong> RM {{ $item['price'] }}</p>
                     <p><strong>Quantity:</strong>
-                        <borderless class="quantity-button borderless" data-id="{{ $item['menu']->menuID }}" data-action="decrement">-</borderless>
+                        <borderless class="quantity-button borderless" data-id="{{ $item['menu']->menuID }}" data-action="decrement" 
+                            data-stock="{{ $menuStocks[$menu->menuID] }}">-</borderless>
                         {{ $item['quantity'] }}
-                        <borderless class="quantity-button borderless" data-id="{{ $item['menu']->menuID }}" data-action="increment">+</borderless>
+                        <borderless class="quantity-button borderless"
+                            data-id="{{ $item['menu']->menuID }}"
+                            data-action="increment" 
+                            data-stock="{{ $menuStocks[$menu->menuID] }}" 
+                            data-quantity="{{ $item['quantity'] }}"
+                            @if ($menuStocks[$menu->menuID] <= 0) disabled @endif>+</borderless>
                         <red-button class="remove-button red-button" data-id="{{ $item['menu']->menuID }}">Remove</red-button>
                     </p>
                 </div>
@@ -135,7 +141,23 @@
         $('.quantity-button[data-action="increment"]').click(function() 
         {
             var menuID = $(this).data('id');
-            updateQuantity(menuID, 'increment');
+            var stock = $(this).data('stock');
+            var quantityElement = $(this).data('quantity');
+            var currentQuantity = parseInt(quantityElement);
+
+            console.log('Current Quantity:', currentQuantity);
+            console.log('Stock:', stock);
+
+            // Check if the current quantity is less than the stock amount
+            if (currentQuantity < stock) 
+            {
+                updateQuantity(menuID, 'increment');
+            } 
+            else 
+            {
+                // Optionally, you can display a message or handle this case as needed.
+                console.log('Quantity cannot exceed stock amount.');
+            }
         });
 
         // Decrement quantity
@@ -168,15 +190,20 @@
                 menu_id: menuID,
                 action: action
             },
-            success: function(response) {
-                if (response.success) {
+            success: function(response) 
+            {
+                if (response.success) 
+                {
                     // Reload the page or update the cart display
                     location.reload();
-                } else {
+                } 
+                else 
+                {
                     console.error('Error updating quantity:', response.message);
                 }
             },
-            error: function(xhr, status, error) {
+            error: function(xhr, status, error) 
+            {
                 console.error('AJAX error:', error);
             }
         });

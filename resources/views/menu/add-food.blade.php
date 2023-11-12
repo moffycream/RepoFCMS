@@ -78,7 +78,7 @@
                         <section class="col-add-menu-info-col1">
                             <p class="col-add-menu-info-title">Price</p>
                             <p class="add-menu-value">RM {{$food->price}}</p>
-                            <input type="number" class="add-menu-edit-value" name="price" value="{{$food->price}}">
+                            <input type="text" class="add-menu-edit-value" name="price" value="{{$food->price}}">
                         </section>
                         <section class="col-add-menu-info-col2">
                             <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
