@@ -4,11 +4,11 @@
 <h1 class="add-menu-title">Inventory Management</h1>
 
 
-<div class="add-menu-form-container">
-
+<div class="inventory-container">
     @if(isset($editNameErrMsg) || isset($editAmountErrMsg))
     <div id="add-menu-error-window">
         <i class="fas fa-times" id="close-window-button"></i>
+        <p class="inventory-errmsg">Error message</p>
         @if(isset($editNameErrMsg))
         <p class="inventory-error">{!!$editNameErrMsg!!}</p>
         @endif
@@ -18,6 +18,7 @@
     </div>
     @endif
 
+    <p class="inventory-table-title-big">Inventory table</p>
     <table class="inventory-table">
         <tr class="inventory-table-row">
             <th class="inventory-table-title">Ingredient ID</th>
@@ -117,6 +118,7 @@
         </tr>
     </table>
 
+    <p class="inventory-table-title-big">Archived inventory table</p>
     <table class="inventory-table">
         <tr class="inventory-table-row">
             <th class="inventory-table-title">Ingredient ID</th>

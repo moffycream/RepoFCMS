@@ -4,40 +4,42 @@
 
 
 <div class="search-container">
-    <form class="search-filter-form" method="POST" action="{{ route('search.filter') }}">
-        @csrf
-        <p>Price filter</p>
-        <input type="hidden" name="search" value="{{$search}}">
-        <div>
-            <input type="radio" name="filter" id="price0" value="price0">
-            <label for="price0">All</label>
-        </div>
-        <div>
-            <input type="radio" name="filter" id="price1" value="price1">
-            <label for="price1">RM 0 - RM 100</label>
-        </div>
-        <div>
-            <input type="radio" name="filter" id="price2" value="price2">
-            <label for="price2">RM 101 - Rm 200</label>
-        </div>
-        <div>
-            <input type="radio" name="filter" id="price3" value="price3">
-            <label for="price3">RM 201 - RM 300</label>
-        </div>
-        <div>
-            <input type="radio" name="filter" id="price4" value="price4">
-            <label for="price4">RM 301 - RM 400</label>
-        </div>
-        <div>
-            <input type="radio" name="filter" id="price5" value="price5">
-            <label for="price5">RM 401 - RM 500</label>
-        </div>
-        <div>
-            <input type="radio" name="filter" id="price6" value="price6">
-            <label for="price6">RM 501 and above</label>
-        </div>
-        <button class="feedback-submit-button" type="submit">Submit</button>
-    </form>
+    <div class="search-filter-form-container">
+        <form class="search-filter-form" method="POST" action="{{ route('search.filter') }}">
+            @csrf
+            <p><span class="search-bold">Price filter</span></p>
+            <input type="hidden" name="search" value="{{$search}}">
+            <div>
+                <input type="radio" name="filter" id="price0" value="price0">
+                <label for="price0">All</label>
+            </div>
+            <div>
+                <input type="radio" name="filter" id="price1" value="price1">
+                <label for="price1">RM 0 - RM 100</label>
+            </div>
+            <div>
+                <input type="radio" name="filter" id="price2" value="price2">
+                <label for="price2">RM 101 - Rm 200</label>
+            </div>
+            <div>
+                <input type="radio" name="filter" id="price3" value="price3">
+                <label for="price3">RM 201 - RM 300</label>
+            </div>
+            <div>
+                <input type="radio" name="filter" id="price4" value="price4">
+                <label for="price4">RM 301 - RM 400</label>
+            </div>
+            <div>
+                <input type="radio" name="filter" id="price5" value="price5">
+                <label for="price5">RM 401 - RM 500</label>
+            </div>
+            <div>
+                <input type="radio" name="filter" id="price6" value="price6">
+                <label for="price6">RM 501 and above</label>
+            </div>
+            <button class="search-filter-button" type="submit">Submit</button>
+        </form>
+    </div>
     <div class="search-results">
         <!-- If got filter -->
         @if(isset($filter))
@@ -110,12 +112,12 @@
                         <div class="search-result">
                             <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
                             <div>
-                                <p>Menu name: {{$searchResult->name}}</p>
-                                <p>Foods:</p>
+                                <p><span class="search-bold">Menu name:</span> {{$searchResult->name}}</p>
+                                <p><span class="search-bold">Foods:</span></p>
                                 @foreach($searchResult->foods as $food)
                                 <p>{{$food->name}}</p>
                                 @endforeach
-                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                                <p><span class="search-bold">Price:</span> RM {{$searchResult->totalPrice}}</p>
                             </div>
                         </div>
                     @endif
@@ -126,12 +128,12 @@
                         <div class="search-result">
                             <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
                             <div>
-                                <p>Menu name: {{$searchResult->name}}</p>
-                                <p>Foods:</p>
+                                <p><span class="search-bold">Menu name:</span> {{$searchResult->name}}</p>
+                                <p><span class="search-bold">Foods:</span></p>
                                 @foreach($searchResult->foods as $food)
                                 <p>{{$food->name}}</p>
                                 @endforeach
-                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                                <p><span class="search-bold">Price:</span> RM {{$searchResult->totalPrice}}</p>
                             </div>
                         </div>
                         @endif
@@ -143,12 +145,12 @@
                         <div class="search-result">
                             <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
                             <div>
-                                <p>Menu name: {{$searchResult->name}}</p>
-                                <p>Foods:</p>
+                                <p><span class="search-bold">Menu name:</span> {{$searchResult->name}}</p>
+                                <p><span class="search-bold">Foods:</span></p>
                                 @foreach($searchResult->foods as $food)
                                 <p>{{$food->name}}</p>
                                 @endforeach
-                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                                <p><span class="search-bold">Price:</span> RM {{$searchResult->totalPrice}}</p>
                             </div>
                         </div> 
                         @endif
@@ -160,12 +162,12 @@
                         <div class="search-result">
                             <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
                             <div>
-                                <p>Menu name: {{$searchResult->name}}</p>
-                                <p>Foods:</p>
+                                <p><span class="search-bold">Menu name:</span> {{$searchResult->name}}</p>
+                                <p><span class="search-bold">Foods:</span></p>
                                 @foreach($searchResult->foods as $food)
                                 <p>{{$food->name}}</p>
                                 @endforeach
-                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                                <p><span class="search-bold">Price:</span> RM {{$searchResult->totalPrice}}</p>
                             </div>
                         </div>  
                         @endif
@@ -177,12 +179,12 @@
                         <div class="search-result">
                             <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
                             <div>
-                                <p>Menu name: {{$searchResult->name}}</p>
-                                <p>Foods:</p>
+                                <p><span class="search-bold">Menu name:</span> {{$searchResult->name}}</p>
+                                <p><span class="search-bold">Foods:</span></p>
                                 @foreach($searchResult->foods as $food)
                                 <p>{{$food->name}}</p>
                                 @endforeach
-                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                                <p><span class="search-bold">Price:</span> RM {{$searchResult->totalPrice}}</p>
                             </div>
                         </div>  
                         @endif
@@ -194,12 +196,12 @@
                         <div class="search-result">
                             <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
                             <div>
-                                <p>Menu name: {{$searchResult->name}}</p>
-                                <p>Foods:</p>
+                                <p><span class="search-bold">Menu name:</span> {{$searchResult->name}}</p>
+                                <p><span class="search-bold">Foods:</span></p>
                                 @foreach($searchResult->foods as $food)
                                 <p>{{$food->name}}</p>
                                 @endforeach
-                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                                <p><span class="search-bold">Price:</span> RM {{$searchResult->totalPrice}}</p>
                             </div>
                         </div>
                         @endif
@@ -211,12 +213,12 @@
                         <div class="search-result">
                             <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
                             <div>
-                                <p>Menu name: {{$searchResult->name}}</p>
-                                <p>Foods:</p>
+                                <p><span class="search-bold">Menu name:</span> {{$searchResult->name}}</p>
+                                <p><span class="search-bold">Foods:</span></p>
                                 @foreach($searchResult->foods as $food)
                                 <p>{{$food->name}}</p>
                                 @endforeach
-                                <p>Price: RM {{$searchResult->totalPrice}}</p>
+                                <p><span class="search-bold">Price:</span> RM {{$searchResult->totalPrice}}</p>
                             </div>
                         </div>
                         @endif
@@ -248,14 +250,14 @@
                 @foreach ($listItems as $searchResult)
                     <hr class="search-separate-line">
                     <div class="search-result">
-                        <img class="search-img" src="asset($searchResult->imagePath)" alt="image">
+                        <img class="search-img" src="{{ asset($searchResult->imagePath) }}" alt="image">
                         <div>
-                            <p>Menu name: {{$searchResult->name}}</p>
-                            <p>Foods:</p>
+                            <p><span class="search-bold">Menu name:</span> {{$searchResult->name}}</p>
+                            <p><span class="search-bold">Foods:</span></p>
                             @foreach($searchResult->foods as $food)
                             <p>{{$food->name}}</p>
                             @endforeach
-                            <p>Price: RM {{$searchResult->totalPrice}}</p>
+                            <p><span class="search-bold">Price:</span> RM {{$searchResult->totalPrice}}</p>
                         </div>
                     </div>
                 @endforeach
