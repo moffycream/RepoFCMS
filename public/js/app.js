@@ -734,64 +734,92 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-//  purchase pages - display various payment
+// purchase pages - display various payment
 document.addEventListener('DOMContentLoaded', function () {
     const PurchaseForm = document.getElementById('PurchaseForm');
-    var pattern = /^[a-zA-Z ]+$/
+    var pattern = /^[a-zA-Z ]+$/;
+    var Numpattern = /^[0-9]+$/;
 
-    function ValidatePurchaseForm() {
-        const errors = [];
-        const realname = document.getElementById('purchase_realname').value;
-        const address = document.getElementById('purchase_address').value;
-        const contact = document.getElementById('purchase_contact').value;
-        const deliveryMethod = document.getElementById("DeliveryMethod");
-        const orderNotes = document.getElementById("purchase_orderNotes");
-        const overallTotalPrice = parseFloat(document.getElementById("purchase_overall_total_price").value);
+    function ValidatePurchaseForm(event) {
+        let errorCount = 0;
+
+        const realname = document.getElementById('purchase_realname');
+        const address = document.getElementById('purchase_address');
+        const contact = document.getElementById('purchase_contact');
+        const deliveryMethod = document.getElementById('purchase_deliveryMethod');
+        const orderNotes = document.getElementById('purchase_orderNotes');
+
+
+        const realnameError = document.getElementById('purchase_realname_error');
+        const addressError = document.getElementById('purchase_address_error');
+        const contactError = document.getElementById('purchase_contact_error');
+        const deliveryMethodError = document.getElementById('purchase_deliveryMethod_error');
+        const orderNotesError = document.getElementById('purchase_orderNotes_error');
+
+        // Clear previous errors
+        errorCount = 0;
+        realnameError.innerHTML = '';
+        addressError.innerHTML = '';
+        contactError.innerHTML = '';
+        deliveryMethodError.innerHTML = '';
+        purchase_orderNotes_error.innerHTML = '';
 
         //  validation for name
-        if (!pattern.test(realname)) {
-            errors.push('Your name must only contain alpha character only.\n');
+        if (!pattern.test(realname.value)){
+            realnameError.innerHTML = '&#x2022; Your name must only contain alpha characters only.';
+            errorCount += 1;
         }
 
-        // validation for address
-        if (address.length < 15) {
-            errors.push('Address must be at least 15 characters long.\n');
-        } else if (address.length > 100) {
-            errors.push('Address must be within 255 characters long.\n');
+        if (address.value.length < 15){
+            addressError.innerHTML = '&#x2022; Address must be at least 15 characters long.';
+            errorCount += 1;
+
+        } else if (address.value.length > 100){
+            addressError.innerHTML = '&#x2022; Address must be within 100 characters long.';
+            errorCount += 1;
+
         }
 
-        //  validation for contact
-        if (contact.length > 11 || contact.length < 10) {
-            errors.push('Your contact number must within 10-11 digit only.\n');
-        };
+        // Validation for contact
+        if (contact.value.length > 11 || contact.value.length < 10){
+            contactError.innerHTML = '&#x2022; Your contact number must be within 10-11 digits only.';
+            errorCount += 1;
 
-        //  validate delivery mehtod
-        if (deliveryMethod.value === "none") {
-            errors.push("Please select a valid delivery method.");
-        };
-
-        //  validate delivery mehtod
-        if (orderNotes.value === "") {
-            errors.push("Please put some order notes for this order.");
-        };
-
-        if (overallTotalPrice === 0) {
-            errors.push("You have no orders right now.");
+        } else if (!Numpattern.test(contact.value)){
+            contactError.innerHTML = '&#x2022; Your contact number must be must contain number only.';
+            errorCount += 1;
         }
 
-        //  display error msg
-        if (errors.length > 0) {
+        // Validate delivery method
+        if (deliveryMethod.value === "none"){
+            deliveryMethodError.innerHTML = '&#x2022; Please select a valid delivery method.';
+            errorCount += 1;
+
+        } else if (deliveryMethod.value === ""){
+            deliveryMethodError.innerHTML = '&#x2022; Please select a valid delivery method.';
+            errorCount += 1;
+
+        }
+
+        // Validate Order Notes
+        if(orderNotes.value === ""){
+            orderNotesError.innerHTML = '&#x2022; Please input none if there is no extra message.';
+            errorCount += 1;
+        }
+
+        if (errorCount > 0) {
             event.preventDefault(); // Prevent form submission
-            alert(errors.join('')); // Display all error messages
         }
     }
 
+    // when the form is on submit, trigger the validation function
     if (PurchaseForm) {
-        PurchaseForm.onsubmit = ValidatePurchaseForm;
+        PurchaseForm.addEventListener('submit', ValidatePurchaseForm);
     }
-
 
 });
+
+
 
 //jesse'js 
 // customer-orders-listings's js 

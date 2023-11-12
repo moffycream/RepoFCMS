@@ -69,11 +69,12 @@
 
             <tr>
                 <td>
-                    <label for="realname:">Name: </label>
+                    <label for="purchase_realname:">Name: </label>
                 </td>
 
                 <td>
                     <input type="text" id="purchase_realname" name="purchase_realname" placeholder="Name" required>
+                    <div id="purchase_realname_error" class="purchase_error"></div>
                 </td>
             </tr>
 
@@ -84,6 +85,8 @@
 
                 <td>
                     <input type="text" id="purchase_address" name="purchase_address" placeholder="Address" required>
+                    <div id="purchase_address_error" class="purchase_error"></div>
+
                 </td>
             </tr>
 
@@ -94,6 +97,7 @@
 
                 <td>
                     <input type="text" id="purchase_contact" name="purchase_contact" placeholder="Contact" required>
+                    <div id="purchase_contact_error" class="purchase_error"></div>
                 </td>
             </tr>
 
@@ -103,21 +107,23 @@
                 </td>
 
                 <td>
-                    <select id="DeliveryMethod" name="DeliveryMethod">
+                    <select id="purchase_deliveryMethod" name="purchase_deliveryMethod">
                         <option value="none" disabled selected>Delivery method</option>
                         <option value="Delivery">Delivery</option>
                         <option value="Self_Pickup">Self Pick Up</option>
                     </select>
+                    <div id="purchase_deliveryMethod_error" class="purchase_error"></div>
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    <label for="orderNotes:">Message: </label>
+                    <label for="purchase_orderNotes:">Message: </label>
                 </td>
 
                 <td>
-                    <textarea type="text area" id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Message: (e.g. Cleaning crew, special request )" reqired rows="4" cols="50"></textarea>
+                    <textarea id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Message: (e.g. Cleaning crew, special request )" rows="4" cols="50"></textarea>
+                    <div id="purchase_orderNotes_error" class="purchase_error"></div>
                 </td>
             </tr>
 
