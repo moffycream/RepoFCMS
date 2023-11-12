@@ -40,6 +40,7 @@
         @if(isset($totalAmountPaid))
             <h2>Your Total Spent: RM{{ $totalAmountPaid }}</h2>
             <h2>Current Tier Level: {{ $tier }}</h2>
+            <p>Discount Amount: {{ $discountAmount }}</p>
         @endif
 
     </aside>
