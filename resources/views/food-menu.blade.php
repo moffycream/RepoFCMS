@@ -101,9 +101,8 @@
                         <borderless class="quantity-button borderless"
                             data-id="{{ $item['menu']->menuID }}"
                             data-action="increment" 
-                            data-stock="{{ $menuStocks[$menu->menuID] }}" 
-                            data-quantity="{{ $item['quantity'] }}"
-                            @if ($menuStocks[$menu->menuID] <= 0) disabled @endif>+</borderless>
+                            data-stock="{{ $menuStocks[$item['menu']->menuID] }}" 
+                            data-quantity="{{ $item['quantity'] }}">+</borderless>
                         <red-button class="remove-button red-button" data-id="{{ $item['menu']->menuID }}">Remove</red-button>
                     </p>
                 </div>
@@ -143,13 +142,13 @@
             var menuID = $(this).data('id');
             var stock = $(this).data('stock');
             var quantityElement = $(this).data('quantity');
-            var currentQuantity = parseInt(quantityElement);
 
-            console.log('Current Quantity:', currentQuantity);
+            console.log('Menu ID: ', menuID);
+            console.log('Current Quantity:', quantityElement);
             console.log('Stock:', stock);
 
             // Check if the current quantity is less than the stock amount
-            if (currentQuantity < stock) 
+            if (quantityElement < stock) 
             {
                 updateQuantity(menuID, 'increment');
             } 
@@ -259,6 +258,7 @@
                     data: $form.serialize(),
                     success: function(response) 
                     {
+                        
                         // Update the cart and available stock
                         $form.find('.foodMenu-add-to-cart-button').data('stock', stock - 1);
                         updateStockDisplay(stock - 1);
@@ -286,7 +286,6 @@
         });
     }
 </script>
-
 
 <script>
     $(document).ready(function() 
