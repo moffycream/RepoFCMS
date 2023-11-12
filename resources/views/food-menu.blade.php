@@ -95,9 +95,15 @@
                     <p><strong>Menu:</strong> {{ $item['menu']->name }}</p>
                     <p><strong>Price:</strong> RM {{ $item['price'] }}</p>
                     <p><strong>Quantity:</strong>
-                        <borderless class="quantity-button borderless" data-id="{{ $item['menu']->menuID }}" data-action="decrement">-</borderless>
+                        <borderless class="quantity-button borderless" data-id="{{ $item['menu']->menuID }}" data-action="decrement" 
+                            data-stock="{{ $menuStocks[$menu->menuID] }}">-</borderless>
                         {{ $item['quantity'] }}
-                        <borderless class="quantity-button borderless" data-id="{{ $item['menu']->menuID }}" data-action="increment">+</borderless>
+                        <borderless class="quantity-button borderless"
+                            data-id="{{ $item['menu']->menuID }}"
+                            data-action="increment" 
+                            data-stock="{{ $menuStocks[$menu->menuID] }}" 
+                            data-quantity="{{ $item['quantity'] }}"
+                            @if ($menuStocks[$menu->menuID] <= 0) disabled @endif>+</borderless>
                         <red-button class="remove-button red-button" data-id="{{ $item['menu']->menuID }}">Remove</red-button>
                     </p>
                 </div>
@@ -136,10 +142,14 @@
         {
             var menuID = $(this).data('id');
             var stock = $(this).data('stock');
-            var quantityElement = $(this).siblings('.quantity');
+            var quantityElement = $(this).data('quantity');
+            var currentQuantity = parseInt(quantityElement);
+
+            console.log('Current Quantity:', currentQuantity);
+            console.log('Stock:', stock);
 
             // Check if the current quantity is less than the stock amount
-            if (parseInt(quantityElement.text()) < stock) 
+            if (currentQuantity < stock) 
             {
                 updateQuantity(menuID, 'increment');
             } 
