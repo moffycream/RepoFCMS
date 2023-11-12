@@ -275,34 +275,67 @@
 
 /*---------------ORDER TRACKING PAGE-------------*/
 .order-tracking-container {
-    background-color: #e8dcd4;
+    max-width: 1600px;
+    margin: 0 auto;
     padding: 20px;
+    border: 1px solid #000000;
+    background-color: #e8dcd4;
     border-radius: 10px;
 }
 
-.order-tracking-container h1{
-    text-align: center;
-    font-size: 28px;
+.order-tracking-container h1 {
+    color: #333;
+}
+
+#order-tracking-order-status,
+#order-tracking-order-details,
+#order-tracking-payment-details,
+#order-tracking-company-details {
+    margin-bottom: 100px;
+}
+
+#order-tracking-order-status h2,
+#order-tracking-order-details h2,
+#order-tracking-payment-details h2,
+#order-tracking-company-details h2 {
     margin-bottom: 20px;
+    color: #333;
 }
 
-.order-tracking-details{
-    display: flex;
-    justify-content: space-around;
-}
-
-.order-tracking-details ul li{
+ul {
     list-style: none;
+    padding: 0;
+}
+
+li {
     margin-bottom: 10px;
 }
 
-/* Style the order status section */
-#order-tracking-order-status {
-    margin-bottom: 20px;
+span {
+    font-weight: bold;
+    color: #0066c0; /* Amazon's primary blue color */
 }
 
-/* Style the order details section */
-#order-tracking-order-details {
+#order-tracking-order-status ul li span {
+    color: #d44638; /* Amazon's red color for status */
+}
+
+/* Add responsive styles if needed */
+@media (max-width: 600px) {
+    .order-tracking-container {
+        padding: 10px;
+    }
+}
+
+#order-tracking-company-details {
+    width: 50%;
+    margin-right: 30px;
+    background-color: #c5abb6;
+    padding: 50px 0 100px 20px;
+    border-radius: 10px;
+}
+
+#order-tracking-payment-details{
     width: 50%;
     margin-right: 30px;
     background-color: #e0ccd4;
@@ -310,12 +343,15 @@
     border-radius: 10px;
 }
 
-/* Style the company details section */
-#order-tracking-company-details {
+#order-tracking-order-details {
     width: 50%;
-    background-color: #c5abb6;
+    margin-right: 30px;
+    background-color: #e8d2d9;
     padding: 50px 0 100px 20px;
     border-radius: 10px;
 }
 
-
+.order-tracking-details{
+    display: flex;
+    justify-content: space-around;
+}

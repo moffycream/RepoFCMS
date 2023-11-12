@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\UserAccountController;
 use App\Models\Notification;
+use App\Models\Order;
+use App\Models\UserAccounts;
 
 use Illuminate\Http\Request;
 
@@ -19,4 +21,5 @@ class OrderTrackingController extends Controller
         } else {
             return view('login.access-denied');
         }
-    }}
+    }
+}

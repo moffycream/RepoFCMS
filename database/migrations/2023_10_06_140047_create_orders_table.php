@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('address');
             $table->string('contact');
+            $table->timestamp('status_update_time')->nullable();
             $table->timestamps();
             $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
         });

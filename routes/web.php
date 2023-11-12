@@ -193,3 +193,6 @@ Route::post('/admin-view-reviews/filter', [ReviewController::class, 'adminFilter
 
 // Customer - Membership
 Route::get('/membership', [MembershipController::class, 'UpdateMembership']);
+
+// Customer - Order Tracking
+Route::get('/order-tracking/{orderID}', [OrderListingController::class, 'trackOrder'])->name('order-tracking');

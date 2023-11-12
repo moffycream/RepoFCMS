@@ -54,6 +54,17 @@ class OrderListingController extends Controller
         }
     }
 
+    public function trackOrder($orderID){
+        $userAccountController = app(UserAccountController::class);
+        $selectedOrder = Order::find($orderID);
+
+        if ($userAccountController->verifyCustomer()) {
+            return view('customer.order-tracking', ['selectedOrder' => $selectedOrder]);
+        } else {
+            return view('login.access-denied');
+        }
+    }
+
     public function cancelOrder($orderID)
     {
         $notificationController = app(NotificationController::class);
