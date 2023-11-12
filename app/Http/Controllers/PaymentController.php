@@ -14,17 +14,21 @@ use App\Models\MenuFood;
 use App\Models\Food;
 use App\Models\FoodInventory;
 use App\Models\Inventory;
+use App\Models\Membership;
 
 // validations
 class PaymentController extends Controller
 {
     // used for verification
     protected $userAccountController;
-    public function index(UserAccountController $userAccountController)
+
+    protected $membershipController;
+
+    public function index(UserAccountController $userAccountController , MembershipController $membershipController)
     {
         // Checks whether is customer session or not
         $this->userAccountController = $userAccountController;
-
+        
         if ($this->userAccountController->verifyCustomer()) {
             return view('payment', ['notifications' => Notification::all()]);
         } else {

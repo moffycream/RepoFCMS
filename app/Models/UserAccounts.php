@@ -25,4 +25,9 @@ class UserAccounts extends Model
     {
         return $this->hasMany(Review::class, 'userID');
     }
+
+    public function membership()
+    {
+        return $this->hasOne(Membership::class, 'userID', 'userID');
+    }
 }

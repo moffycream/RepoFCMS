@@ -192,4 +192,4 @@ Route::post('/admin-view-reviews/filter', [ReviewController::class, 'adminFilter
 
 
 // Customer - Membership
-Route::get('/membership', [MembershipController::class, 'displayTotalAmountPaid']);
+Route::get('/membership', [MembershipController::class, 'UpdateMembership']);

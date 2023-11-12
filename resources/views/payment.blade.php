@@ -13,7 +13,13 @@
         $overallTotalPrice = session('overallTotalPrice', 0);
         @endphp
 
-        <p>Total Price: RM {{ $overallTotalPrice }}</p>
+        <!-- Display the total amount -->
+        @if($overallTotalPrice > 0)
+            <p>Total Price: RM {{ $overallTotalPrice }}</p>
+        @else
+            <p>RM: -</p>
+        @endif
+
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
         <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
         <input type="hidden" name="orderID" value="{{ $orderID }}">
@@ -23,6 +29,7 @@
         @foreach($menuQuantities as $menuQuantity)
         <input type="hidden" name="menuQuantities[]" value="{{$menuQuantity}}">
         @endforeach
+
         <table id="payment_form_table">
 
             <tr>

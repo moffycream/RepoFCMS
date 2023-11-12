@@ -18,4 +18,9 @@ class Payment extends Model
     {
         return $this->belongsTo(UserAccounts::class, 'userID', 'userID');
     }
+
+    public function membership()
+    {
+        return $this->belongsTo(Membership::class);
+    }
 }

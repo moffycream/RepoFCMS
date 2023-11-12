@@ -9,7 +9,9 @@ class Membership extends Model
 {
     protected $table = 'membership'; // table name
 
-    protected $fillable = ['userID', 'tier_level', 'total_payments']; // fields that can be mass-assigned
+    protected $primaryKey = 'membershipID';
+
+    protected $fillable = ['userID', 'tier_level', 'total_payments', 'discount_amount']; // fields that can be mass-assigned
 
     public function userAccount()
     {
