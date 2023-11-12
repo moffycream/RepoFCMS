@@ -61,8 +61,10 @@
                     <strong>RM {{ $overallTotalPrice }}</strong>
                     {{-- Hidden input field to store the value of the overallTotalPrice --}}
                     <input id="purchase_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
+                    <div id="purchase_overallTotalPrice_error" class="purchase_error"></div>
+
                 </td>
-            <tr>
+            <tr>    
         </table>
 
         <table id="purchase_form_table">

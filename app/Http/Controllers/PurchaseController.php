@@ -53,7 +53,7 @@ class PurchaseController extends Controller
                 $order->name = $request->input('purchase_realname');
                 $order->address = $request->input('purchase_address');
                 $order->contact = $request->input('purchase_contact');
-                $order->delivery = $request->input('DeliveryMethod');
+                $order->delivery = $request->input('purchase_deliveryMethod');
 
                 $order->status = 'Pending'; // Manually set thestatus to "pending"
                 $order->total = $overallTotalPrice;

@@ -311,8 +311,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const CreditCardForm = document.getElementById('CreditCardForm');
     const DebitCardForm = document.getElementById('DebitCardForm');
     const EwalletForm = document.getElementById('EwalletForm');
-    var pattern = /^[a-zA-Z ]+$/
-    var Numpattern = /^[0-9]+$/;
 
     // Display payment method based on user choice
     if (PaymentChoice) {
@@ -343,6 +341,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <option value="BSN Bank">BSN Bank</option>
                         <option value="AM Bank">AM Bank</option>
                     </select>
+                    <div id="payment_selectedBank_error" class="payment_error"></div>
                 </td>
 
                 <br><br>
@@ -353,6 +352,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="bank_username" name="bank_username" placeholder="Username" required>
+                    <div id="payment_bankUsername_error" class="payment_error"></div>
                 </td>
                 
                 <br><br>
@@ -363,6 +363,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <td>
                     <input type="text" id="account_number" name="account_number" placeholder="Account Number" required>
+                    <div id="payment_accountNumber_error" class="payment_error"></div>
                 </td>
 
                 <br><br>
@@ -373,6 +374,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="password" id="bank_password" name="bank_password" placeholder="Password" required>
+                    <div id="payment_bankPassword_error" class="payment_error"></div>
                 </td>
 
                 <br><br>
@@ -383,6 +385,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
+                    <div id="payment_paymentAmount_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -394,7 +397,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>
                     <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
                 </td>
-                
                 `;
 
             }
@@ -409,6 +411,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_cardNumber" name="payment_cardNumber" placeholder="Card Number" required>
+                    <div id="payment_cardNumber_error" class="payment_error"></div>
                 </td>
                 
                 <br><br>
@@ -419,6 +422,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_cvv" name="payment_cvv" placeholder="CVV" required>
+                    <div id="payment_cvv_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -429,6 +433,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_cardholder" name="payment_cardholder" placeholder="Card Holder Name" required>
+                    <div id="payment_cardHolder_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -439,6 +444,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_billingAddress" name="payment_billingAddress" placeholder="Billing Address" required>
+                    <div id="payment_billingAddress_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -449,6 +455,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
+                    <div id="payment_paymentAmount_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -473,6 +480,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_cardNumber" name="payment_cardNumber" placeholder="Card Number" required>
+                    <div id="payment_cardNumber_error" class="payment_error"></div>
                 </td>
                 
                 <br><br>
@@ -483,6 +491,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_cvv" name="payment_cvv" placeholder="CVV" required>
+                    <div id="payment_cvv_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -493,6 +502,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_cardholder" name="payment_cardholder" placeholder="Card Holder Name" required>
+                    <div id="payment_cardHolder_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -503,6 +513,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_billingAddress" name="payment_billingAddress" placeholder="Billing Address" required>
+                    <div id="payment_billingAddress_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -513,6 +524,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
+                    <div id="payment_paymentAmount_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -543,6 +555,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <option value="Sarawak_Pay">Sarawak Pay</option>
                         <option value="Grab_Pay">Grab Pay</option>
                     </select>
+                    <div id="payment_ewalletType_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -553,6 +566,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <td>
                     <input type="text" id="ewallet_username" name="ewallet_username" placeholder="Username" required>
+                    <div id="payment_ewalletUsername_error" class="payment_error"></div>
                 </td>
                 
                 <br><br>
@@ -563,6 +577,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 <td>
                     <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
+                    <div id="payment_paymentAmount_error" class="payment_error"></div>
                 </td>
     
                 <br><br>
@@ -617,9 +632,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function ValidatePaymentForm() {
-        const errors = [];
+        // validate for pattern of the input
         var pattern = /^[a-zA-Z ]+$/
         var Numpattern = /^[0-9]+$/;
+        var errorCount = 0;
+
+        // display for payment method error 
+        const paymentMethodError = document.getElementById('payment_paymentMethod_error');
+        const paymentChoice = document.getElementById('PaymentMethod');
+
+        // reset to empty
+        paymentMethodError.innerHTML = '';
+
+        // display error message for payment method
+        if (paymentChoice.value === "none") {
+            paymentMethodError.innerHTML = '&#x2022; Please select a payment method.';
+            errorCount += 1;
+        }
 
         if (PaymentChoice.value === "OnlineBanking") {
             const selectedBank = document.getElementById('selected_bank');
@@ -628,33 +657,62 @@ document.addEventListener('DOMContentLoaded', function () {
             const accountNumber = document.getElementById('account_number').value;
             const amount = document.getElementById('payment_amount').value;
 
+            const selectedBankError = document.getElementById('payment_selectedBank_error');
+            const usernamekError = document.getElementById('payment_bankUsername_error');
+            const passwordError = document.getElementById('payment_bankPassword_error');
+            const accountNumberError = document.getElementById('payment_accountNumber_error');
+            const amountError = document.getElementById('payment_paymentAmount_error');
+
+            // Clear previous errors
+            selectedBankError.innerHTML = '';
+            usernamekError.innerHTML = '';
+            passwordError.innerHTML = '';
+            accountNumberError.innerHTML = '';
+            amountError.innerHTML = '';
+
             //  validate selected bank mehtod
-            if (selectedBank.value === "none") {
-                errors.push("Please select a bank to do online banking.\n");
+            if (selectedBank.value === "none"){
+                selectedBankError.innerHTML = '&#x2022; Please select a bank to do online banking.';
+                errorCount += 1;
+
+            } else if (selectedBank.value === ""){
+                selectedBankError.innerHTML = '&#x2022; Please select a bank to do online banking.';
+                errorCount += 1;
+
             };
 
             //  validation for name
             if (username.length < 5 || username.length > 25) {
-                errors.push('Username must be within 5 to 25 characters long.\n');
+                usernamekError.innerHTML = '&#x2022; Username must be within 5 to 25 characters long.';
+                errorCount += 1;
+
             }
 
             //  validation for password
             if (password.length < 5 || password.length > 25) {
-                errors.push('Password must be within 5 to 15 characters long.\n');
+                passwordError.innerHTML = '&#x2022; Password must be within 5 to 15 characters long.';
+                errorCount += 1;
+
             }
 
             //  validation for Account Numbers
             if (accountNumber.length < 8 || accountNumber.length > 16) {
-                errors.push('Account Numbers must be within 8 to 16 characters long.\n');
+                accountNumberError.innerHTML = '&#x2022; Account Numbers must be within 8 to 16 characters long.';
+                errorCount += 1;
+
             }
 
             if (!Numpattern.test(accountNumber)) {
-                errors.push('Account Numbers must only contain numbers only.\n');
+                accountNumberError.innerHTML = '&#x2022; Account Numbers must only contain numbers only.';
+                errorCount += 1;
+
             }
 
             //  validation for Amount
             if (!Numpattern.test(amount)) {
-                errors.push('Amount must contain numbers only.\n');
+                amountError.innerHTML = '&#x2022; Amount must contain numbers only.';
+                errorCount += 1;
+
             }
 
         } else if (PaymentChoice.value === "CreditCard" || PaymentChoice.value === "DebitCard") {
@@ -664,38 +722,67 @@ document.addEventListener('DOMContentLoaded', function () {
             const billingAddress = document.getElementById('payment_billingAddress').value;
             const amount = document.getElementById('payment_amount').value;
 
+            const cardNumberError = document.getElementById('payment_cardNumber_error');
+            const cvvError = document.getElementById('payment_cvv_error');
+            const cardHolderError = document.getElementById('payment_cardHolder_error');
+            const billingAddressError = document.getElementById('payment_billingAddress_error');
+            const amountError = document.getElementById('payment_paymentAmount_error');
+
+            // Clear previous errors
+            cardNumberError.innerHTML = '';
+            cvvError.innerHTML = '';
+            cardHolderError.innerHTML = '';
+            billingAddressError.innerHTML = '';
+            amountError.innerHTML = '';
+
             //  validation for Card Number
             if (!Numpattern.test(cardNumber)) {
-                errors.push('Card Number must contain numbers only.\n');
+                cardNumberError.innerHTML = '&#x2022; Card Number must contain numbers only.';
+                errorCount += 1;
+
             }
             if (cardNumber.length != 16) {
-                errors.push('Card Number must be 16 numbers.\n');
+                cardNumberError.innerHTML = '&#x2022; Card Number must be 16 numbers.';
+                errorCount += 1;
+
             }
 
             //  validation for CVV
             if (!Numpattern.test(cvv)) {
-                errors.push('CVV number must contain numbers only.\n');
+                cvvError.innerHTML = '&#x2022; CVV number must contain numbers only.';
+                errorCount += 1;
+
             }
             if (cvv.length < 3 || cvv.length > 4) {
-                errors.push('CVV number must only contain 3-4 digits.\n');
+                cvvError.innerHTML = '&#x2022; CVV number must only contain 3-4 digits.';
+                errorCount += 1;
+
             }
 
             //  validation for Card Holder Name
             if (!pattern.test(cardHolder)) {
-                errors.push('Your Card Holder Name must only contain alpha character only.\n');
+                cardHolderError.innerHTML = '&#x2022; Your Card Holder Name must only contain alpha character only.';
+                errorCount += 1;
+
             }
             if (cardHolder.length < 5 || cardHolder.length > 25) {
-                errors.push('Card Holder name must be within 5 to 25 characters long.\n');
+                cardHolderError.innerHTML = '&#x2022; Card Holder name must be within 5 to 25 characters long.';
+                errorCount += 1;
+
             }
 
             //  validation for billing address
             if (billingAddress.length < 10 || billingAddress.length > 255) {
-                errors.push('Billing Address must be within 10 to 255 characters long.\n');
+                billingAddressError.innerHTML = '&#x2022; Billing Address must be within 10 to 255 characters long.';
+                errorCount += 1;
+
             }
 
             //  validation for Amount
             if (!Numpattern.test(amount)) {
-                errors.push('Amount must contain numbers only.\n');
+                amountError.innerHTML = '&#x2022; Amount must contain numbers only.';
+                errorCount += 1;
+
             }
 
         } else if (PaymentChoice.value === "Ewallet") {
@@ -703,34 +790,45 @@ document.addEventListener('DOMContentLoaded', function () {
             const ewalletType = document.getElementById('eWallet_type');
             const amount = document.getElementById('payment_amount').value;
 
+            const ewalletTypeError = document.getElementById('payment_ewalletType_error');
+            const ewalletUsernameError = document.getElementById('payment_ewalletUsername_error');
+            const amountError = document.getElementById('payment_paymentAmount_error');
+
+            // Clear previous errors
+            ewalletTypeError.innerHTML = '';
+            ewalletUsernameError.innerHTML = '';
+            amountError.innerHTML = '';
+
             //  validate selected bank mehtod
             if (ewalletType.value === "none") {
-                errors.push("Please select a E-Wallet to do payment.\n");
+                ewalletTypeError.innerHTML = '&#x2022; Please select a E-Wallet to do payment.';
+                errorCount += 1;
             };
 
             //  validation for e wallet username
             if (userName.length < 5 || userName.length > 25) {
-                errors.push('Username must be within 5 to 25 characters long.\n');
+                ewalletUsernameError.innerHTML = '&#x2022; Username must be within 5 to 25 characters long.';
+                errorCount += 1;
             }
 
             //  validation for Amount
             if (!Numpattern.test(amount)) {
-                errors.push('Amount must contain numbers only.\n');
+                amountError.innerHTML = '&#x2022; Amount must contain numbers only.';
+                errorCount += 1;
             }
 
-        } else if (PaymentChoice.value === "none") {
-            errors.push("Please select a payment method.");
         }
 
         //  display error msg
-        if (errors.length > 0) {
+        if (errorCount > 0) {
             event.preventDefault(); // Prevent form submission
-            alert(errors.join('')); // Display all error messages
         }
     }
 
     if (PaymentForm) {
-        PaymentForm.onsubmit = ValidatePaymentForm;
+        PaymentForm.onsubmit = function (event) {
+            ValidatePaymentForm(event);
+        };    
     }
 });
 
@@ -748,13 +846,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const contact = document.getElementById('purchase_contact');
         const deliveryMethod = document.getElementById('purchase_deliveryMethod');
         const orderNotes = document.getElementById('purchase_orderNotes');
-
+        const overallTotalPrice = parseFloat(document.getElementById("purchase_overall_total_price").value);
 
         const realnameError = document.getElementById('purchase_realname_error');
         const addressError = document.getElementById('purchase_address_error');
         const contactError = document.getElementById('purchase_contact_error');
         const deliveryMethodError = document.getElementById('purchase_deliveryMethod_error');
         const orderNotesError = document.getElementById('purchase_orderNotes_error');
+        const overallTotalPriceError = document.getElementById('purchase_overallTotalPrice_error');
+
 
         // Clear previous errors
         errorCount = 0;
@@ -762,7 +862,8 @@ document.addEventListener('DOMContentLoaded', function () {
         addressError.innerHTML = '';
         contactError.innerHTML = '';
         deliveryMethodError.innerHTML = '';
-        purchase_orderNotes_error.innerHTML = '';
+        purchase_orderNotes_error.innerHTML = '';   
+        overallTotalPriceError.innerHTML = '';
 
         //  validation for name
         if (!pattern.test(realname.value)){
@@ -807,6 +908,12 @@ document.addEventListener('DOMContentLoaded', function () {
             errorCount += 1;
         }
 
+        // Validate the overall total price
+        if (overallTotalPrice === 0 || isNaN(overallTotalPrice)) {
+            overallTotalPriceError.innerHTML = '&#x2022; You have no orders right now.';
+            errorCount += 1;
+        }
+
         if (errorCount > 0) {
             event.preventDefault(); // Prevent form submission
         }
@@ -818,8 +925,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
-
-
 
 //jesse'js 
 // customer-orders-listings's js 

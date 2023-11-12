@@ -46,6 +46,7 @@
                         <option value="DebitCard">Debit Card</option>
                         <option value="Ewallet">E-Wallet</option>
                     </select>
+                    <div id="payment_paymentMethod_error" class="payment_error"></div>
                 </td>
             </tr>
 
