@@ -493,14 +493,23 @@
 }
 
 /* Inventory management */
+.inventory-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.inventory-table{
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+    margin-bottom: 100px;
+}
 .inventory-table,
 .inventory-table-title,
 .inventory-table-col{
     border: #000000 2px solid;
     border-collapse: collapse;
     padding: 10px;
-    margin: auto;
-    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
     font-size: 20px;
 }
 
@@ -512,10 +521,10 @@
     text-decoration: none;
 }
 
-.inventory-error{
-    color: red;
-    font-size: 30px;
-    text-align: center;
+.inventory-table-title-big{
+    border: none;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 /*search*/
@@ -556,13 +565,15 @@
 
 .search-results{
     border-left: solid 0.5px rgba(0, 0, 0, 0.164);
+    margin-right: 25px;
 }
 
 .search-result{
     display: flex;
     flex-wrap: wrap;
-    margin: 25px 25px;
+    margin: 25px;
     font-size: 20px;
+    background-color: #eeeeee;
 }
 
 .search-img{    
@@ -577,10 +588,28 @@
     border: solid 0.5px rgba(0, 0, 0, 0.164);
 }
 
+.search-filter-form-container{
+height: 100vh;
+}
+
 .search-filter-form{
     display: flex;
     flex-direction: column;
-    min-width: 8vw;
-    height: 100vh;
-    margin: 5vh 1vw 0;
+    min-width: 10vw;
+    margin: 1vh 0.5vw 0;
+    background-color: #eeeeee;
+    border-bottom: solid 0.5px rgba(0, 0, 0, 0.164);
+    padding: 5px;
+}
+
+.search-bold{
+    font-weight: bold;
+}
+
+.search-filter-button{
+    background-color: #473447;
+    color: white;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
 }
