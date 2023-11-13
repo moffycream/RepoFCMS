@@ -1,8 +1,8 @@
-@extends('layouts.app')
-@section('title', 'Orders')
+@extends('layouts.customer')
+@section('title', 'Orders-History')
 @section('content')
 <h1 class="title">Order History</h1>
-<div class="container-customer">
+<div class="container-customer-order-history">
     <table class="container-customer-table">
         <thead>
             <tr>
