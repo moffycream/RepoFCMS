@@ -5,7 +5,7 @@
 
 <div class="page-content-container">
     <div class="businessAnalytics-title">
-        <h1>Business Analytics</h1>
+        <h1 class="title">Business Analytics</h1>
     </div>
 
 <div class="businessAnalytics-main-content">
@@ -135,7 +135,7 @@
 
 <div class="businessAnalytics-background-color">
 <!-- Create a container for the chart and control elements -->
-<div class="businessAnalytics-chart-container" style="position: relative; width: 1475px;">
+<div class="businessAnalytics-chart-container" style="position: relative;">
     <!-- Chart canvas -->
     <canvas id="monthlyChart" width="400" height="200"></canvas>
 

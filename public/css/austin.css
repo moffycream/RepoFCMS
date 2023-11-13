@@ -32,7 +32,6 @@
     margin: 25px 0;
 }
 
-.add
 
 .add-menu-container {
     margin: 100px 0;
@@ -150,9 +149,6 @@
 }
 
 /* Add menu & food form*/
-.add-menu-form-container {
-    margin: 10vh 0;
-}
 
 .add-menu-form {
     background: linear-gradient(135deg, #fff3e8, #f3d7d7);
