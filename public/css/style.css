@@ -360,9 +360,9 @@ article {
  .title {
     font-size: 45px;
     text-align: center;
-    background-color: var(--color-3);
+    font-weight: bold;
     padding: 15px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     color: #000000;
 }
 

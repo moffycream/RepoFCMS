@@ -386,7 +386,7 @@
     border: 1px solid #00000077;
     border-radius: 10px;
     padding: 50px;
-    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+    background: white;
     display: inline-block;
     margin: 20px;
 }
