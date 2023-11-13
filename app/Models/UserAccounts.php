@@ -28,6 +28,11 @@ class UserAccounts extends Model
 
     public function membership()
     {
-        return $this->hasOne(Membership::class, 'userID', 'userID');
+        return $this->hasOne(Membership::class, 'userID');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'userID');
     }
 }

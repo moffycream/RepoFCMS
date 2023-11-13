@@ -14,22 +14,23 @@
         <section id="order-tracking-order-details">
             <h2>Order Details</h2>
             <ul>
-                <li>Order ID: <span id="order-id"></span></li>
-                <li>Menu Name: <span id="menu-name"></span></li>
-                <li>Address: <span id="delivery-address"></span></li>
-                <li>Contact: <span id="contact-number"></span></li>
-                <li>Status Update Time: <span id="order-status-update-time"></span></li>
-                <li>Status: <span id="order-status"></span></li>
-                <li>Delivery Method: <span id="delivery-method"></span></li>
+                <li>Order ID: {{$selectedOrder->orderID}}</li>
+                <li>Menu Name: {{$selectedOrder->menu_name}}</li>
+                <li>Address: {{$selectedOrder->address}}</li>
+                <li>Contact: {{$selectedOrder->contact}}</li>
+                <li>Status Update Time: {{$selectedOrder->status_update_time}}</li>
+                <li>Status: {{$selectedOrder->status}}</li>
+                <li>Delivery Method: {{$selectedOrder->delivery}}</li>
             </ul>
         </section>
 
         <section id="order-tracking-payment-details">
             <h2>Payment Details</h2>
             <ul>
-                <li>Payment Time: <span id="payment-time"></span></li>
-                <li>Payment Method: <span id="payment-method"></span></li>
-                <li>Total Paid: <span id="total-paid"></span></li>
+                <li>Transaction ID: {{$selectedOrder->payment->transactionID}}</li>
+                <li>Payment Time: {{$selectedOrder->payment->dateOfPayment}}</li>
+                <li>Payment Method: {{$selectedOrder->payment->payment_method}}</li>
+                <li>Total Paid: {{$selectedOrder->payment->total_price}}</li>
             </ul>
         </section>
         

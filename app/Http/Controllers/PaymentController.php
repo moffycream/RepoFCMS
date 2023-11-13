@@ -24,7 +24,7 @@ class PaymentController extends Controller
 
     protected $membershipController;
 
-    public function index(UserAccountController $userAccountController , MembershipController $membershipController)
+    public function index(UserAccountController $userAccountController)
     {
         // Checks whether is customer session or not
         $this->userAccountController = $userAccountController;
@@ -157,5 +157,16 @@ class PaymentController extends Controller
     public function paymentComplete()
     {
         return view('payment-complete');
+    }
+
+    public function viewMembership($userID){
+        $userAccountController = app(UserAccountController::class);
+        $viewMembership = Membership::find($userID);
+        
+        if ($userAccountController->verifyCustomer()) {
+            return view('payment', ['viewMembership' => $viewMembership]);
+        } else {
+            return view('login.access-denied');
+        }
     }
 }

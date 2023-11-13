@@ -311,11 +311,6 @@ li {
     margin-bottom: 10px;
 }
 
-span {
-    font-weight: bold;
-    color: #0066c0; /* Amazon's primary blue color */
-}
-
 #order-tracking-order-status ul li span {
     color: #d44638; /* Amazon's red color for status */
 }

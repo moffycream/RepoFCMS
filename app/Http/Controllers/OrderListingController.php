@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\UserAccounts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserAccountController;
@@ -56,8 +57,8 @@ class OrderListingController extends Controller
 
     public function trackOrder($orderID){
         $userAccountController = app(UserAccountController::class);
-        $selectedOrder = Order::find($orderID);
-
+        $selectedOrder = Order::with('payment')->find($orderID);
+        
         if ($userAccountController->verifyCustomer()) {
             return view('customer.order-tracking', ['selectedOrder' => $selectedOrder]);
         } else {
