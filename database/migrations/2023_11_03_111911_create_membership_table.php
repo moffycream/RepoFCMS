@@ -16,12 +16,14 @@ return new class extends Migration
             $table->unsignedBigInteger('userID');
             $table->integer('tier_level');
             $table->decimal('total_payments', 10, 2); // precison 10 and 2 decimal point
+            $table->integer('discount_amount')->default(0); // default discount is 0
+            $table->integer('remaining_discounts')->default(5); // only 5 discount 
             $table->timestamps();
-            $table->foreign('userID')->references('userID')->on('user_accounts');
+            $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
 
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */

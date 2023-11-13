@@ -7,6 +7,7 @@
     @if(isset($editNameErrMsg) || isset($editDescriptionErrMsg) || isset($editPriceErrMsg) || isset($editAmountErrMsg))
     <div id="add-menu-error-window">
         <i class="fas fa-times" id="close-window-button"></i>
+        <p class="inventory-errmsg">Error message</p>
         @if(isset($editNameErrMsg))
         <p>{!!$editNameErrMsg!!}</p>
         @endif
@@ -78,7 +79,7 @@
                         <section class="col-add-menu-info-col1">
                             <p class="col-add-menu-info-title">Price</p>
                             <p class="add-menu-value">RM {{$food->price}}</p>
-                            <input type="number" class="add-menu-edit-value" name="price" value="{{$food->price}}">
+                            <input type="text" class="add-menu-edit-value" name="price" value="{{$food->price}}">
                         </section>
                         <section class="col-add-menu-info-col2">
                             <p class="add-menu-edit-button"><i class="far fa-edit"></i> Edit</p>
@@ -130,6 +131,7 @@
                                     <th class="add-menu-table-title">Ingredient amount</th>
                                 </tr>
                                 @foreach ($inventories as $inventory)
+                                @if ($inventory->isArchive == false)
                                 <tr class="add-menu-table-row">
                                     <!-- Inventory ID -->
                                     <td class="add-menu-table-col">
@@ -158,6 +160,7 @@
                                         <input type="hidden" name="inventoryID[]" value="{{$inventory->inventoryID}}">
                                     </td>
                                 </tr>
+                                @endif
                                 @endforeach
                             </table>
                         </section>

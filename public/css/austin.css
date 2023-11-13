@@ -351,19 +351,19 @@
 #admin-dashboard-container-expand p {
     color: #ffffff69;
     font-size: 20px;
-    margin: 1.5vh 30px 1vh;
+    margin: 0.5vh 30px 0.5vh;
 }
 
 #admin-dashboard-container-expand .admin-dashboard-icon {
     margin-left: 30px;
     height: 4vh;
     object-fit: contain;
-    margin: 1vh 0;
+    margin: 0.5vh 0;
 }
 
 #admin-dashboard-container-expand .admin-dashboard-line {
-    width: 240px;
-    margin: 1vh 30px 0;
+    width: 13vw;
+    margin: 0.5vh 1vw 0.5vh;
     border-color: rgba(255, 255, 255, 0.164);
 }
 
@@ -394,7 +394,7 @@
 #admin-dashboard-expand-icon {
     width: 20px;
     cursor: pointer;
-    margin-top: 2vh;
+    margin-top: 1vh;
 }
 
 #admin-dashboard-container-minimize a {
@@ -404,13 +404,12 @@
 #admin-dashboard-container-minimize p {
     color: #ffffff69;
     font-size: 15px;
-    margin: 3vh 0 1.5vh;
+    margin: 1.5vh 0 1.5vh;
 }
 
 #admin-dashboard-container-minimize .admin-dashboard-line {
     width: 3vw;
     border-color: rgba(255, 255, 255, 0.164);
-    margin-top: 0.5vh;
 }
 
 /* logout */
@@ -494,14 +493,23 @@
 }
 
 /* Inventory management */
+.inventory-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.inventory-table{
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+    margin-bottom: 100px;
+}
 .inventory-table,
 .inventory-table-title,
 .inventory-table-col{
     border: #000000 2px solid;
     border-collapse: collapse;
     padding: 10px;
-    margin: auto;
-    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
     font-size: 20px;
 }
 
@@ -513,10 +521,10 @@
     text-decoration: none;
 }
 
-.inventory-error{
-    color: red;
-    font-size: 30px;
-    text-align: center;
+.inventory-table-title-big{
+    border: none;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 /*search*/
@@ -557,13 +565,15 @@
 
 .search-results{
     border-left: solid 0.5px rgba(0, 0, 0, 0.164);
+    margin-right: 25px;
 }
 
 .search-result{
     display: flex;
     flex-wrap: wrap;
-    margin: 25px 25px;
+    margin: 25px;
     font-size: 20px;
+    background-color: #eeeeee;
 }
 
 .search-img{    
@@ -578,10 +588,28 @@
     border: solid 0.5px rgba(0, 0, 0, 0.164);
 }
 
+.search-filter-form-container{
+height: 100vh;
+}
+
 .search-filter-form{
     display: flex;
     flex-direction: column;
-    min-width: 8vw;
-    height: 100vh;
-    margin: 5vh 1vw 0;
+    min-width: 10vw;
+    margin: 1vh 0.5vw 0;
+    background-color: #eeeeee;
+    border-bottom: solid 0.5px rgba(0, 0, 0, 0.164);
+    padding: 5px;
+}
+
+.search-bold{
+    font-weight: bold;
+}
+
+.search-filter-button{
+    background-color: #473447;
+    color: white;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
 }

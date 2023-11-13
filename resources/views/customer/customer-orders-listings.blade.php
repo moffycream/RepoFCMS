@@ -64,6 +64,11 @@
                 </div>
 
             </div>
+
+            <div>
+                <a href="{{ route('order-tracking', ['orderID' => $selectedOrder->orderID]) }}" class="customer-container-track-button">Track Order</a>
+            </div>
+
             <div class="row-status">
                 @php
                 $classStatus="";
@@ -94,6 +99,7 @@
                 <p class="customer-status"><div class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($classStatus))}}">{{$selectedOrder->status}}</div></p>
             </div>
             <div class="row-actions">
+
             </div>
 
             <div class="row-actions">

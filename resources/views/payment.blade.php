@@ -10,13 +10,26 @@
         @csrf
 
         @php
-            $overallTotalPrice = session('overallTotalPrice', 0);
+        $overallTotalPrice = session('overallTotalPrice', 0);
         @endphp
 
-        <p>Total Price: RM {{ $overallTotalPrice }}</p>
+        <!-- Display the total amount -->
+        @if($overallTotalPrice > 0)
+            <p>Total Price: RM {{ $overallTotalPrice }}</p>
+        @else
+            <p>RM: -</p>
+        @endif
+
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
         <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
-        <input type="hidden" name="orderID" value="{{ $orderID }}"> 
+        <input type="hidden" name="orderID" value="{{ $orderID }}">
+        @foreach($menuIDs as $menuID)
+        <input type="hidden" name="menuIDs[]" value="{{$menuID}}">
+        @endforeach
+        @foreach($menuQuantities as $menuQuantity)
+        <input type="hidden" name="menuQuantities[]" value="{{$menuQuantity}}">
+        @endforeach
+
         <table id="payment_form_table">
 
             <tr>
@@ -33,25 +46,26 @@
                         <option value="DebitCard">Debit Card</option>
                         <option value="Ewallet">E-Wallet</option>
                     </select>
+                    <div id="payment_paymentMethod_error" class="payment_error"></div>
                 </td>
             </tr>
 
             <tr>
                 <td>
                     <div id="OnlineBankingForm">
-                    <!-- Content to be insert from JS -->
+                        <!-- Content to be insert from JS -->
                     </div>
 
                     <div id="CreditCardForm">
-                    <!-- Content to be insert from JS -->
+                        <!-- Content to be insert from JS -->
                     </div>
 
                     <div id="DebitCardForm">
-                    <!-- Content to be insert from JS -->
+                        <!-- Content to be insert from JS -->
                     </div>
 
                     <div id="EwalletForm">
-                    <!-- Content to be insert from JS -->
+                        <!-- Content to be insert from JS -->
                     </div>
 
                     <!-- for QR code display -->
@@ -60,9 +74,9 @@
                     <script>
                         const assetUrl = "{{ asset('images/payment-QR-code.png') }}";
                     </script>
-                </td> 
+                </td>
             </tr>
-            
+
             <tr>
                 <td><button type="submit">Confirm Payment</button></td>
             </tr>

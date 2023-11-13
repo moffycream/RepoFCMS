@@ -112,7 +112,10 @@ Route::get('/add-menu/{id}', [MenuController::class, 'deleteMenu'])->name('menu.
 Route::get('/inventory-management', [InventoryController::class, 'index']);
 Route::post('/inventory-management/register', [InventoryController::class, 'registerNewInventory'])->name('inventory.register');
 Route::post('/inventory-management/edit', [InventoryController::class, 'editInventory'])->name('inventory.edit');
-Route::get('/inventory-management/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
+Route::get('/inventory-management/delete/{id}', [InventoryController::class, 'deleteInventory'])->name('inventory.delete');
+Route::get('/inventory-management/archive/{id}', [InventoryController::class, 'archiveInventory'])->name('inventory.archive');
+Route::get('/inventory-management/unarchive/{id}', [InventoryController::class, 'unarchiveInventory'])->name('inventory.unarchive');
+
 
 // Search - customer side
 Route::get('/search-result', [SearchController::class, 'index']);
@@ -144,7 +147,7 @@ Route::post('/payment', [PurchaseController::class, 'ProcessPurchase'])->name('p
 Route::get('/business-analytics', [AnalyticsController::class, 'index']);
 
 // Display menu
-Route::get('/display-food-menu', [FoodMenuController::class, 'index'])->name('menu.index');
+Route::get('/display-food-menu', [FoodMenuController::class, 'index'])->name('food-menu.index');
 Route::post('/add-to-cart', [FoodMenuController::class, 'addToCart'])->name('food-menu.addToCart');
 Route::post('/checkout', [FoodMenuController::class, 'checkout'])->name('food-menu.checkout');
 Route::get('/cart', [FoodMenuController::class, 'showCart'])->name('food-menu.cart');
@@ -189,4 +192,7 @@ Route::post('/admin-view-reviews/filter', [ReviewController::class, 'adminFilter
 
 
 // Customer - Membership
-Route::get('/membership', [MembershipController::class, 'displayTotalAmountPaid']);
+Route::get('/membership', [MembershipController::class, 'UpdateMembership']);
+
+// Customer - Order Tracking
+Route::get('/order-tracking/{orderID}', [OrderListingController::class, 'trackOrder'])->name('order-tracking');

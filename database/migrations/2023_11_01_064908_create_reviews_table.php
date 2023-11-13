@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id('reviewID');
             $table->unsignedBigInteger('userID');
+            $table->unsignedBigInteger('menuID')->nullable();
             $table->string('reviewTitle');
             $table->string('reviewContent');
             $table->integer('reviewRating');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('userID')->references('userID')->on('user_accounts');
+            $table->foreign('menuID')->references('menuID')->on('menus');
         });
     }
 

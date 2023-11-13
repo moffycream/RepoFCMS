@@ -7,6 +7,7 @@
     @if(isset($editNameErrMsg) || isset($editCheckboxErrMsg))
     <div id="add-menu-error-window">
         <i class="fas fa-times" id="close-window-button"></i>
+        <p class="inventory-errmsg">Error message</p>
         @if(isset($editNameErrMsg))
         <p>{!!$editNameErrMsg!!}</p>
         @endif

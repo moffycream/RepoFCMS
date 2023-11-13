@@ -2,9 +2,11 @@
 @section('title', 'Business Analytics')
 @section('content')
 
-<div class="businessAnalytics-title">
-    <h1>Business Analytics</h1>
-</div>
+
+<div class="page-content-container">
+    <div class="businessAnalytics-title">
+        <h1>Business Analytics</h1>
+    </div>
 
 <div class="businessAnalytics-main-content">
 
@@ -36,6 +38,7 @@
 
 <div class="businessAnalytics-data-table">
     <h2>Revenue Data Table</h2>
+    <div class="businessAnalytics-backgroun-color">
     <table>
         <thead>
             <tr>
@@ -69,13 +72,16 @@
         </tfoot>
     </table>
 </div>
+</div>
 
 <div class="businessAnalytics-total-revenue">
     <h1>Total Revenue: </h1>
 </div>
 
+<div class="businessAnalytics-background-color">
 <div class="businessAnalytics-chart-container">
     <canvas id="revenueChart" width="400" height="200"></canvas>
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -127,6 +133,7 @@
     <h1>Monthly Sales vs. Orders</h1>
 </div>
 
+<div class="businessAnalytics-background-color">
 <!-- Create a container for the chart and control elements -->
 <div class="businessAnalytics-chart-container" style="position: relative; width: 1475px;">
     <!-- Chart canvas -->
@@ -141,6 +148,7 @@
         <option value="sales">Sales</option>
         <option value="orders">Orders</option>
     </select>
+</div>
 </div>
 
 <script>
@@ -358,5 +366,6 @@
     }
 </script>
 
+</div>
 </div>
 @endsection

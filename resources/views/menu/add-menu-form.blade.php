@@ -62,6 +62,7 @@
                     <th>Amount</th>
                 </tr>
                 @foreach($inventory as $inventory)
+                @if($inventory->isArchive == false)
                 <tr>
                     <td>
                         {{$inventory->inventoryID}}
@@ -70,6 +71,7 @@
                     <td>{{$inventory->inventoryName}}</td>
                     <td><span class="add-menu-required-ingredient">0</span></td>
                 </tr>
+                @endif
                 @endforeach
             </table>
         </div>

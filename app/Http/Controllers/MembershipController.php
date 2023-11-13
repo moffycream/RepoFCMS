@@ -5,6 +5,7 @@ use App\Http\Controllers\UserAccountController;
 use App\Models\Notification;
 use App\Models\UserAccounts;
 use App\Models\Payment;
+use App\Models\Membership;
 
 use Illuminate\Http\Request;
 
@@ -20,23 +21,6 @@ class MembershipController extends Controller
             return view('membership', ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
-        }
-    }
-
-    public function stormembership(Request $request){
-        if (session()->has('username')) {
-            $userID = UserAccounts::where('username', session('username'))->first()->userID;
-            if ($userID != null){   
-                // Retrieve payment data for the user
-                $payments = Payment::where('userID', $userID->userID)->get();
-
-                // Calculate the total spent
-                $totalSpent = $payments->sum('total_price');
-
-                // Determine the tier based on the total spent
-                $tier = $this->calculateTier($totalSpent);
-
-            }
         }
     }
 
@@ -60,7 +44,7 @@ class MembershipController extends Controller
         }
     }
 
-    public function displayTotalAmountPaid()
+    public function UpdateMembership()
     {
         if (session()->has('username')) {
             $username = session('username');
@@ -70,10 +54,47 @@ class MembershipController extends Controller
                 $userID = $user->userID;
                 $totalAmountPaid = Payment::where('userID', $userID)->sum('amount_paid');
 
-                return view('membership', ['totalAmountPaid' => $totalAmountPaid]);
+                // Calculate the tier based on the total amount paid
+                $tier = $this->calculateTier($totalAmountPaid);
+                $discountAmount = 0;
+                $discountAmount = $this->getDiscountAmount($tier, $userID);
 
+                // Store the data in the 'membership' table
+                Membership::updateOrCreate(['userID' => $userID], ['tier_level' => $tier, 'total_payments' => $totalAmountPaid, 'discount_amount' => $discountAmount,]);
+
+                return view('membership', ['totalAmountPaid' => $totalAmountPaid, 'tier' => $tier, 'discountAmount'=> $discountAmount,]);
             }
         }
         return view('login.access-denied');
+    }
+
+    // Add this function to get the discount amount based on the tier
+    public function getDiscountAmount($tier, $userID)
+    {
+        $membership = Membership::where('userID', $userID)->first();
+        
+        // if there is no record in the database
+        if (!$membership) {
+            return 0;
+        }
+        
+        // get the remaining discount
+        $remainingDiscounts = max(0, $membership->remaining_discounts);
+
+        // Check if the remaining discounts are available
+        if ($remainingDiscounts > 0) {
+            switch ($tier) {
+                case 1:
+                    return 20; // RM20 for tier 1
+                case 2:
+                    return 30; // RM30 for tier 2
+                case 3:
+                    return 40; // RM40 for tier 3
+                default:
+                    return 0; // No discount 
+            }
+        }
+
+        return 0;
     }
 }
