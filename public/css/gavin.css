@@ -128,7 +128,7 @@
     color: #ffffff;
     padding: 10px;
     border-radius: 5px;
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 .register-submit-button:hover {
@@ -137,7 +137,7 @@
     border-color: #ffffff;
     cursor: pointer;
     transform: scale(1.1);
-    transition: 0.5s;
+    transition: 0.1s;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -193,7 +193,7 @@
     background-color: #fff;
     color: #312431;
     transform: scale(1.1);
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 /* Admin Dashboard Page */
@@ -220,7 +220,7 @@
 .container-admin-dashboard a:hover {
     background-color: #312431;
     color: #ffff;
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 /* Admin Register page */
@@ -255,9 +255,13 @@
     text-align: center;
 }
 
-.admin-register-centre-column #accountType {
-    padding: 10px 20px;
+.admin-register-box .accountType{
+    margin: 10px;
+    padding: 10px 10px;
     text-align: left;
+    width: auto;
+    height: 40px;
+    border-radius: 5px;
 }
 
 .admin-register-centre-column select,
@@ -311,7 +315,7 @@
     color: #ffffff;
     padding: 10px;
     border-radius: 5px;
-    transition: 0.5s;
+    transition: 0.1s;
     margin-top: 10px;
 }
 
@@ -321,7 +325,7 @@
     border-color: #ffffff;
     cursor: pointer;
     transform: scale(1.1);
-    transition: 0.5s;
+    transition: 0.1s;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -365,7 +369,7 @@
 .button:hover {
     background-color: #2b0548;
     transform: scale(1.1);
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 .container-register-successful p {
@@ -389,27 +393,27 @@
 }
 
 .box-feedback-page {
-    border: 1px solid #00000077;
     border-radius: 10px;
     padding: 50px;
     background: white;
     display: inline-block;
     margin: 20px;
+    width: 750px;
 }
 
 .container-feedback-page p {
     padding: 3px 0;
-    font-size: 13px;
+    font-size: 17px;
     opacity: 0.7;
 }
 
 .container-feedback-page h2 {
-    font-size: 18px;
+    font-size: 22px;
     padding-bottom: 3px;
 }
 
 .container-feedback-page h3 {
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 500;
     padding-top: 10px;
 }
@@ -432,17 +436,18 @@
     color: #ffffff;
     padding: 8px 14px;
     border-radius: 5px;
-    transition: 0.5s;
-    margin-top: 10px;
+    transition: 0.1s;
+    margin-top: 20px;
+    width: 80px;
+    height: 40px;
 }
 
 .container-feedback-page form button:hover {
-    background-color: #ffffff;
-    color: var(--color-1);
+    opacity: 95%;
     border-color: #ffffff;
     cursor: pointer;
-    transform: scale(1.1);
-    transition: 0.5s;
+    transform: scale(1.2);
+    transition: 0.1s;
 }
 
 .feedback-box-columns {
@@ -461,7 +466,8 @@
 
 .feedback-box input[type="text"],
 .feedback-box input[type="email"] {
-    width: 90%;
+    width: 95%;
+    height: 30px;
     margin: 8px auto;
 }
 
@@ -469,13 +475,14 @@
     padding: 0 10px;
     display: flex;
     flex-direction: column;
+    width: 30%;
 }
 
 .feedback-box textarea {
     width: 95%;
     margin: 5px auto;
     resize: none;
-    height: 100px;
+    height: 150px;
 }
 
 .star {
@@ -544,7 +551,7 @@
     color: #ffffff;
     padding: 8px 14px;
     border-radius: 5px;
-    transition: 0.5s;
+    transition: 0.1s;
     margin-top: 10px;
 }
 
@@ -554,7 +561,7 @@
     border-color: #ffffff;
     cursor: pointer;
     transform: scale(1.1);
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 .container-admin-view-feedback table {
@@ -596,7 +603,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 .two-factor-authentication-verify:hover {
@@ -605,7 +612,7 @@
     border-color: #ffffff;
     cursor: pointer;
     transform: scale(1.1);
-    transition: 0.5s;
+    transition: 0.1s;
 }
 
 .container-two-factor-authentication input {
