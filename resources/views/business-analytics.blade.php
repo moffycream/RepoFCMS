@@ -8,70 +8,70 @@
         <h1 class="title">Business Analytics</h1>
     </div>
 
-<div class="businessAnalytics-main-content">
+    <div class="businessAnalytics-main-content">
 
-<div class="businessAnalytics-information-boxes">
-    <div class="businessAnalytics-info-box">
-        <h2>Purchase Frequency</h2>
-        <p>Average purchase frequency in days: <strong>{{ $purchaseFrequency }} days</strong></p>
+    <div class="businessAnalytics-information-boxes">
+        <div class="businessAnalytics-info-box">
+            <h2>Purchase Frequency</h2>
+            <p>Average purchase frequency in days: <strong>{{ $purchaseFrequency }} days</strong></p>
+        </div>
+
+        <div class="businessAnalytics-info-box">
+            <h2>Sales Comparison</h2>
+            <p>Sales in current month: <strong>{{ $currentMonthSales }}</strong></p>
+            <p>Sales in the last month: <strong>{{ $lastMonthSales }}</strong></p>
+            <p>Sales : <strong>{{ $salesIncrease }}%</strong></p>
+        </div>
+
+        <div class="businessAnalytics-info-box">
+            <h2>Orders Comparison</h2>
+            <p>Order in current month: <strong>{{ $currentMonthOrders }}</strong></p>
+            <p>Orders in the last month: <strong>{{ $lastMonthOrders }}</strong></p>
+            <p>Orders : <strong>{{ $orderIncrease }}%</strong></p>
+        </div>
+
+        <div class="businessAnalytics-info-box">
+            <h2>Available Products</h2>
+            <p>Total available products: <strong>{{ $availableProducts }}</strong></p>
+        </div>
     </div>
 
-    <div class="businessAnalytics-info-box">
-        <h2>Sales Comparison</h2>
-        <p>Sales in current month: <strong>{{ $currentMonthSales }}</strong></p>
-        <p>Sales in the last month: <strong>{{ $lastMonthSales }}</strong></p>
-        <p>Sales : <strong>{{ $salesIncrease }}%</strong></p>
-    </div>
-
-    <div class="businessAnalytics-info-box">
-        <h2>Orders Comparison</h2>
-        <p>Order in current month: <strong>{{ $currentMonthOrders }}</strong></p>
-        <p>Orders in the last month: <strong>{{ $lastMonthOrders }}</strong></p>
-        <p>Orders : <strong>{{ $orderIncrease }}%</strong></p>
-    </div>
-
-    <div class="businessAnalytics-info-box">
-        <h2>Available Products</h2>
-        <p>Total available products: <strong>{{ $availableProducts }}</strong></p>
-    </div>
-</div>
-
-<div class="businessAnalytics-data-table">
-    <h2>Revenue Data Table</h2>
-    <div class="businessAnalytics-backgroun-color">
-    <table>
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>User ID</th>
-                <th>Order Amount</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-                $totalAmount = 0; // Initialize a variable to store the total amount
-            @endphp
-
-            @foreach ($orders as $UserAccounts)
+    <div class="businessAnalytics-data-table">
+        <h2>Revenue Data Table</h2>
+        <div class="businessAnalytics-backgroun-color">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ $UserAccounts->orderID }}</td>
-                    <td>{{ $UserAccounts->userID }}</td>
-                    <td>RM {{ $UserAccounts->total }}</td>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Order Amount</th>
                 </tr>
-
+            </thead>
+            <tbody>
                 @php
-                    $totalAmount += $UserAccounts->total; // Add the order total to the total amount
+                    $totalAmount = 0; // Initialize a variable to store the total amount
                 @endphp
-            @endforeach
-        </tbody>
-        <tfoot>
-            <tr>
-                <th colspan="2">Total:</th>
-                <td>RM {{ number_format($totalAmount, 2) }}</td>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+
+                @foreach ($orders as $UserAccounts)
+                    <tr>
+                        <td>{{ $UserAccounts->orderID }}</td>
+                        <td>{{ $UserAccounts->userID }}</td>
+                        <td>RM {{ $UserAccounts->total }}</td>
+                    </tr>
+
+                    @php
+                        $totalAmount += $UserAccounts->total; // Add the order total to the total amount
+                    @endphp
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">Total:</th>
+                    <td>RM {{ number_format($totalAmount, 2) }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
 
 <div class="businessAnalytics-total-revenue">
@@ -79,9 +79,9 @@
 </div>
 
 <div class="businessAnalytics-background-color">
-<div class="businessAnalytics-chart-container">
-    <canvas id="revenueChart" width="400" height="200"></canvas>
-</div>
+    <div class="businessAnalytics-chart-container">
+        <canvas id="revenueChart" width="400" height="200"></canvas>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -134,21 +134,21 @@
 </div>
 
 <div class="businessAnalytics-background-color">
-<!-- Create a container for the chart and control elements -->
-<div class="businessAnalytics-chart-container" style="position: relative; width: 1475px;">
-    <!-- Chart canvas -->
-    <canvas id="monthlyChart" width="400" height="200"></canvas>
+    <!-- Create a container for the chart and control elements -->
+    <div class="businessAnalytics-chart-container" style="position: relative;">
+        <!-- Chart canvas -->
+        <canvas id="monthlyChart" width="400" height="200"></canvas>
 
-    <!-- Sorting button in the top right corner -->
-    <button id="sortButton" disabled style="position: absolute; top: 10px; right: 10px;">Sort Ascending</button>
+        <!-- Sorting button in the top right corner -->
+        <button id="sortButton" disabled style="position: absolute; top: 10px; right: 10px;">Sort Ascending</button>
 
-    <!-- Dropdown for data selection in the top right corner -->
-    <select id="dataSelector" style="position: absolute; top: 10px; right: 113px;">
-        <option value="both">Both Sales and Orders</option>
-        <option value="sales">Sales</option>
-        <option value="orders">Orders</option>
-    </select>
-</div>
+        <!-- Dropdown for data selection in the top right corner -->
+        <select id="dataSelector" style="position: absolute; top: 10px; right: 113px;">
+            <option value="both">Both Sales and Orders</option>
+            <option value="sales">Sales</option>
+            <option value="orders">Orders</option>
+        </select>
+    </div>
 </div>
 
 <script>
@@ -364,8 +364,6 @@
         });
         return mappedData;
     }
+    
 </script>
-
-</div>
-</div>
 @endsection
