@@ -135,7 +135,7 @@
 
 <div class="businessAnalytics-background-color">
 <!-- Create a container for the chart and control elements -->
-<div class="businessAnalytics-chart-container" style="position: relative; width: 1475px;">
+<div class="businessAnalytics-chart-container" style="position: relative;">
     <!-- Chart canvas -->
     <canvas id="monthlyChart" width="400" height="200"></canvas>
 
