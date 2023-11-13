@@ -744,3 +744,22 @@ article {
     color: #000000;
     line-height: 1.5;
 }
+
+/* for submit buttons */
+.submit-button {
+    background-color: var(--color-1);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+.submit-button:hover {
+    background-color: #ffffff;
+    color: var(--color-1);
+    border-color: #ffffff;
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.5s;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
