@@ -33,7 +33,7 @@
         <!-- Block of display food image and details -->
         <div class="col-add-menu">
             <!-- Display food image -->
-            <img src="{{$food->imagePath}}" alt="Image" class="food-logo">
+            <img src="{{asset($food->imagePath)}}" alt="Image" class="food-logo">
             <form class="add-food-edit-form" method="POST" action="{{ route('food.edit')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="foodID" value="{{$food->foodID}}">
