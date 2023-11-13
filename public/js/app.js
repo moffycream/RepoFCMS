@@ -324,79 +324,69 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 htmlToInsert = `
                 <h1>Online Banking</h1>
+                <div class="payment-form-input-field">
+                    <tr>
+                        <td>
+                            <label for="selected_bank">Select your bank:</label>
+                        </td>
 
-                <br><br>
+                        <td>
+                            <select id="selected_bank" name="selected_bank">
+                                <option value="none" disabled selected>Select Your Bank</option>
+                                <option value="RHB Bank">RHB Bank</option>
+                                <option value="MayBank">MayBank</option>
+                                <option value="CIMB Bank">CIMB Bank</option>
+                                <option value="BSN Bank">BSN Bank</option>
+                                <option value="AM Bank">AM Bank</option>
+                            </select>
+                            <div id="payment_selectedBank_error" class="payment_error"></div>
+                        </td>
+                    </tr>
 
-                <td>
-                <label for="selected_bank">Select your bank:</label>
+                    <td>
+                        <label for="bank_username:">Username: </label>   
+                    </td>
 
-                </td>
+                    <td>
+                        <input type="text" id="bank_username" name="bank_username" placeholder="Username" required>
+                        <div id="payment_bankUsername_error" class="payment_error"></div>
+                    </td>
+                    
+                    <td>
+                        <label for="account_number:">Account Number: </label>   
+                    </td>
 
-                <td>
-                    <select id="selected_bank" name="selected_bank">
-                        <option value="none" disabled selected>Select Your Bank</option>
-                        <option value="RHB Bank">RHB Bank</option>
-                        <option value="MayBank">MayBank</option>
-                        <option value="CIMB Bank">CIMB Bank</option>
-                        <option value="BSN Bank">BSN Bank</option>
-                        <option value="AM Bank">AM Bank</option>
-                    </select>
-                    <div id="payment_selectedBank_error" class="payment_error"></div>
-                </td>
+                    <td>
+                        <input type="text" id="account_number" name="account_number" placeholder="Account Number" required>
+                        <div id="payment_accountNumber_error" class="payment_error"></div>
+                    </td>
 
-                <br><br>
-    
-                <td>
-                    <label for="bank_username:">Username: </label>   
-                </td>
-    
-                <td>
-                    <input type="text" id="bank_username" name="bank_username" placeholder="Username" required>
-                    <div id="payment_bankUsername_error" class="payment_error"></div>
-                </td>
-                
-                <br><br>
+                    <td>
+                        <label for="bank_password:">Password: </label>   
+                    </td>
 
-                <td>
-                    <label for="account_number:">Account Number: </label>   
-                </td>
+                    <td>
+                        <input type="password" id="bank_password" name="bank_password" placeholder="Password" required>
+                        <div id="payment_bankPassword_error" class="payment_error"></div>
+                    </td>
 
-                <td>
-                    <input type="text" id="account_number" name="account_number" placeholder="Account Number" required>
-                    <div id="payment_accountNumber_error" class="payment_error"></div>
-                </td>
+                    <td>
+                        <label for="payment_amount">Amount: </label>
+                    </td>
 
-                <br><br>
-    
-                <td>
-                    <label for="bank_password:">Password: </label>   
-                </td>
-    
-                <td>
-                    <input type="password" id="bank_password" name="bank_password" placeholder="Password" required>
-                    <div id="payment_bankPassword_error" class="payment_error"></div>
-                </td>
+                    <td>
+                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
+                        <div id="payment_paymentAmount_error" class="payment_error"></div>
+                    </td>
 
-                <br><br>
-    
-                <td>
-                    <label for="payment_amount">Amount: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
-                    <div id="payment_paymentAmount_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="description">Description: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
-                </td>
+                    <td>
+                        <label for="description">Description: </label>
+                    </td>
+
+                    <td>
+                        <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
+                    </td>
+                </div>
                 `;
 
             }
@@ -404,193 +394,171 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 htmlToInsert = `
                 <h1>Credit Card</h1>
-    
-                <td>
-                    <label for="cardNumber:">Card Number: </label>   
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_cardNumber" name="payment_cardNumber" placeholder="Card Number" required>
-                    <div id="payment_cardNumber_error" class="payment_error"></div>
-                </td>
+                <div class="payment-form-input-field">
+                    <td>
+                        <label for="cardNumber:">Card Number: </label>   
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_cardNumber" name="payment_cardNumber" placeholder="Card Number" required>
+                        <div id="payment_cardNumber_error" class="payment_error"></div>
+                    </td>
+                            
+                    <td>
+                        <label for="cvv">CVV: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_cvv" name="payment_cvv" placeholder="CVV" required>
+                        <div id="payment_cvv_error" class="payment_error"></div>
+                    </td>
                 
-                <br><br>
-    
-                <td>
-                    <label for="cvv">CVV: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_cvv" name="payment_cvv" placeholder="CVV" required>
-                    <div id="payment_cvv_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="cardholder">Card Holder Name: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_cardholder" name="payment_cardholder" placeholder="Card Holder Name" required>
-                    <div id="payment_cardHolder_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="billingAddress">Billing Address: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_billingAddress" name="payment_billingAddress" placeholder="Billing Address" required>
-                    <div id="payment_billingAddress_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="payment_amount">Amount: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
-                    <div id="payment_paymentAmount_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="payment_description">Description: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
-                </td>
+                    <td>
+                        <label for="cardholder">Card Holder Name: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_cardholder" name="payment_cardholder" placeholder="Card Holder Name" required>
+                        <div id="payment_cardHolder_error" class="payment_error"></div>
+                    </td>
+                
+                    <td>
+                        <label for="billingAddress">Billing Address: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_billingAddress" name="payment_billingAddress" placeholder="Billing Address" required>
+                        <div id="payment_billingAddress_error" class="payment_error"></div>
+                    </td>
+                
+                    <td>
+                        <label for="payment_amount">Amount: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
+                        <div id="payment_paymentAmount_error" class="payment_error"></div>
+                    </td>
+                
+                    <td>
+                        <label for="payment_description">Description: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
+                    </td>
+                </div>
                 `;
             }
             else if (SelectedPaymentChoice === 'DebitCard') {
 
                 htmlToInsert = `
                 <h1>Debit Card</h1>
-    
-                <td>
-                    <label for="cardNumber:">Card Number: </label>   
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_cardNumber" name="payment_cardNumber" placeholder="Card Number" required>
-                    <div id="payment_cardNumber_error" class="payment_error"></div>
-                </td>
+                <div class="payment-form-input-field">
+
+                    <td>
+                        <label for="cardNumber:">Card Number: </label>   
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_cardNumber" name="payment_cardNumber" placeholder="Card Number" required>
+                        <div id="payment_cardNumber_error" class="payment_error"></div>
+                    </td>
+                            
+                    <td>
+                        <label for="cvv">CVV: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_cvv" name="payment_cvv" placeholder="CVV" required>
+                        <div id="payment_cvv_error" class="payment_error"></div>
+                    </td>
                 
-                <br><br>
-    
-                <td>
-                    <label for="cvv">CVV: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_cvv" name="payment_cvv" placeholder="CVV" required>
-                    <div id="payment_cvv_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="cardholder">Card Holder Name: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_cardholder" name="payment_cardholder" placeholder="Card Holder Name" required>
-                    <div id="payment_cardHolder_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="billingAddress">Billing Address: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_billingAddress" name="payment_billingAddress" placeholder="Billing Address" required>
-                    <div id="payment_billingAddress_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="amount">Amount: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
-                    <div id="payment_paymentAmount_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="description">Description: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
-                </td>
+                    <td>
+                        <label for="cardholder">Card Holder Name: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_cardholder" name="payment_cardholder" placeholder="Card Holder Name" required>
+                        <div id="payment_cardHolder_error" class="payment_error"></div>
+                    </td>
+                
+                    <td>
+                        <label for="billingAddress">Billing Address: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_billingAddress" name="payment_billingAddress" placeholder="Billing Address" required>
+                        <div id="payment_billingAddress_error" class="payment_error"></div>
+                    </td>
+                
+                    <td>
+                        <label for="amount">Amount: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
+                        <div id="payment_paymentAmount_error" class="payment_error"></div>
+                    </td>
+                
+                    <td>
+                        <label for="description">Description: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
+                    </td>
+                </div>
                 `;
             }
             else if (SelectedPaymentChoice === 'Ewallet') {
 
                 htmlToInsert = `
                 <h1>E-Wallet</h1>
-    
-                <td>
-                    <label for="eWallet_type">E-Wallet Type: </label>
-                </td>
-    
-                <td>
-                    <select id="eWallet_type" name="eWallet_type">
-                        <option value="none" disabled selected>E-Wallet Type</option>
-                        <option value="Touch_and_Go">Touch and Go</option>
-                        <option value="Boost">Boost</option>
-                        <option value="Sarawak_Pay">Sarawak Pay</option>
-                        <option value="Grab_Pay">Grab Pay</option>
-                    </select>
-                    <div id="payment_ewalletType_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
+                <div class="payment-form-input-field">
 
-                <td>
-                    <label for="ewallet_username:">Username: </label>   
-                </td>
+                    <td>
+                        <label for="eWallet_type">E-Wallet Type: </label>
+                    </td>
+        
+                    <td>
+                        <select id="eWallet_type" name="eWallet_type">
+                            <option value="none" disabled selected>E-Wallet Type</option>
+                            <option value="Touch_and_Go">Touch and Go</option>
+                            <option value="Boost">Boost</option>
+                            <option value="Sarawak_Pay">Sarawak Pay</option>
+                            <option value="Grab_Pay">Grab Pay</option>
+                        </select>
+                        <div id="payment_ewalletType_error" class="payment_error"></div>
+                    </td>
+        
+                    <td>
+                        <label for="ewallet_username:">Username: </label>   
+                    </td>
 
-                <td>
-                    <input type="text" id="ewallet_username" name="ewallet_username" placeholder="Username" required>
-                    <div id="payment_ewalletUsername_error" class="payment_error"></div>
-                </td>
+                    <td>
+                        <input type="text" id="ewallet_username" name="ewallet_username" placeholder="Username" required>
+                        <div id="payment_ewalletUsername_error" class="payment_error"></div>
+                    </td>
+                            
+                    <td>
+                        <label for="payment_amount">Amount: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
+                        <div id="payment_paymentAmount_error" class="payment_error"></div>
+                    </td>
                 
-                <br><br>
-    
-                <td>
-                    <label for="payment_amount">Amount: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
-                    <div id="payment_paymentAmount_error" class="payment_error"></div>
-                </td>
-    
-                <br><br>
-    
-                <td>
-                    <label for="description">Description: </label>
-                </td>
-    
-                <td>
-                    <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
-                </td>
+                    <td>
+                        <label for="description">Description: </label>
+                    </td>
+        
+                    <td>
+                        <input type="text" id="payment_description" name="payment_description" placeholder="Description" required>
+                    </td>
+                </div>
                 `;
-
             }
 
             // reset 

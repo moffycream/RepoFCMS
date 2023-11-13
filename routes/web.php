@@ -196,5 +196,3 @@ Route::get('/membership', [MembershipController::class, 'UpdateMembership']);
 
 // Customer - Order Tracking
 Route::get('/order-tracking/{orderID}', [OrderListingController::class, 'trackOrder'])->name('order-tracking');
-
-// Route::post('/payment', [PaymentController::class, 'viewMembership'])->name('viewMembership');

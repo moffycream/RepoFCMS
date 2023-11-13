@@ -115,61 +115,78 @@
 
 /* Styles for the container-payment-page */
 .container-payment-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Styles for the h1 heading */
-.container-payment-page h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* Styles for the main form container */
-#PaymentForm {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: #e8dcd4;
+    border-radius: 20px;
+    border: 1px solid #000000;
+}
+
+/* Styles for the h1 heading */
+.container-payment-page h1{
+    font-size: 40px;
+    padding-bottom: 65px;
+}
+
+#payment-total-price{
+    font-size: 28px;
+    font-family: sans-serif;
+    color: #674c64;
+    font-weight: 560;
+    padding-bottom: 65px;
+    text-align: center;
 }
 
 /* Styles for the payment_form_table */
 #payment_form_table {
-    width: 100%;
     border-collapse: collapse;
+    text-align: center;
+}
+
+#OnlineBankingForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#CreditCardForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#DebitCardForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#EwalletForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
 #payment_form_table td {
+    font-size: 20px;
     padding: 10px;
 }
 
 /* Styles for the total price heading */
 #payment_form_table h1 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    padding-top: 30px;
+    font-size: 25px;
 }
 
-/* Styles for the list of orders */
-#payment_form_table ul {
-    list-style: none;
-    padding: 0;
+.payment-form-input-field{
+    text-align: left;
 }
-
-#payment_form_table li {
-    margin-bottom: 5px;
-}
-
-/* Styles for the payment method label and select */
-#payment_form_table label {
-    font-weight: bold;
-}
-
-#payment_form_table select {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
 
 /* Styles for the "Confirm Payment" button */
 #payment_form_table button[type="submit"] {
@@ -179,6 +196,8 @@
     border: none;
     cursor: pointer;
     margin-top: 10px;
+    border-radius: 5px;
+
 }
 
 #payment_form_table button[type="submit"]:hover {
@@ -186,12 +205,19 @@
     transition: all 0.3s ease;
 }
 
-#payment_form_table select,
-#payment_form_table input[type="text"],
-#payment_form_table input[type="date"] {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
+#payment_form_table input,
+#payment_form_table textarea,
+#payment_form_table select {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
+    width: 100%; 
+}
+
+#payment_form_table select{
+    width: 300px;
 }
 
 .payment_error{
@@ -199,7 +225,6 @@
 }
 
 /*---------------MEMBERSHIP PAGE-------------*/
-
 .membership-container {
     padding: 20px;
     text-align: center;
