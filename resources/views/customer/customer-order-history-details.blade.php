@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Orders')
+@section('title', 'Orders-History-Details')
 @section('content')
 
 <h1 class="title">Order History Details</h1>
