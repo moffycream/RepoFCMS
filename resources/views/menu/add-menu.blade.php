@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Dashboard')
 @section('content')
-<h1 class="add-menu-title">Add Menu</h1>
+<h1 class="title">Add Menu</h1>
 
 <div class="add-menu-container">
     @if(isset($editNameErrMsg) || isset($editCheckboxErrMsg))

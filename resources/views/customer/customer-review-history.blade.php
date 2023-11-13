@@ -50,7 +50,7 @@
             <div class="review-action">
                 <button type="button" onclick="toggleComments('{{$reviewID}}')"><i class="fas fa-comment-alt"></i><span>Comment</span> <span>({{$review->getTotalComments()}})</span></button>
                 <button type="button" onclick="toggleReply('{{$replyID}}')"><i class="fas fa-reply"></i><span>Reply</span></button>
-                <a href="{{route('review.edit', $review->reviewID)}}"><i class="fas fa-edit"></i><span>Edit</span></a>
+                <a onclick="toggleReviewEdit('{{$replyID}}')"><i class="fas fa-edit"></i><span>Edit</span></a>
                 <a href="{{route('review.delete', $review->reviewID)}}"><i class="fas fa-trash"></i><span>Delete</span></a>
             </div>
             <div class="reply" id="reply-{{$replyID}}">
@@ -71,6 +71,83 @@
         @include('include.comment', ['comment' => $comment, 'replyID' => $replyID])
         @endforeach
     </div>
+    
+    <div class="container-review-edit"  id="edit-form-{{$reviewID}}">
+    <div class="review-edit-bg"></div>
+    <div class="review-edit">
+        <h1>Edit Review</h1>
+        <form method="post" action="{{ route('review.edit.submit', $reviewID) }}">
+            @csrf
+            @php
+            $oldCategory_1 = "";
+            $oldCategory_2 = "";
+            $oldCategory_3 = "";
+            $oldCategory_4 = "";
+            if ($review->reviewCategory === 'food') {
+            $oldCategory_1 = 'selected';
+            } else if ($review->reviewCategory  === 'service') {
+            $oldCategory_2 = 'selected';
+            } else if ($review->reviewCategory  === 'delivery') {
+            $oldCategory_3 = 'selected';
+            } else if ($review->reviewCategory  === 'others') {
+            $oldCategory_4 = 'selected';
+            }
+
+            @endphp
+            <div class="row">
+                <p>Category *</p>
+                <select id="category" name="reviewCategory">
+                    <option value="" disabled selected>Select a category</option>
+                    <option value="food" {{$oldCategory_1}}>Food</option>
+                    <option value="service" {{$oldCategory_2}}>Service</option>
+                    <option value="delivery" {{$oldCategory_3}}>Delivery</option>
+                    <option value="others" {{$oldCategory_4}}>Others</option>
+                </select>
+                @if ($errors->has('reviewCategory'))
+                <span class="error">{{ $errors->first('reviewCategory') }}</span>
+                @endif
+            </div>
+
+            <div class="row">
+                <p>Your overall rating *</p>
+                <div class="container-stars">
+                    @for ($i = 5; $i >= 1; $i--)
+                    @php
+                    $oldRating = $review->reviewRating == $i ? 'checked' : '';
+                    @endphp
+                    <input type="radio" id="{{ $i }}" name="reviewRating" value="{{ $i }}" {{$oldRating}}>
+                    <label for="{{ $i }}"><i class="fas fa-star"></i></label>
+                    @endfor
+                </div>
+                @if ($errors->has('reviewRating'))
+                <span class="error">{{ $errors->first('reviewRating') }}</span>
+                @endif
+            </div>
+
+            <div class="row">
+                <p>Title of your review *</p>
+                <input type="text" id="title" name="reviewTitle" value="{{$review->reviewTitle}}" placeholder="Title of your review">
+                @if ($errors->has('reviewTitle'))
+                <span class="error">{{ $errors->first('reviewTitle') }}</span>
+                @endif
+            </div>
+
+            <div class="row">
+                <p>Your review *</p>
+                <textarea id="review" name="reviewContent" placeholder="Your review" >{{$review->reviewContent}}</textarea>
+                @if ($errors->has('reviewContent'))
+                <span class="error">{{ $errors->first('reviewContent') }}</span>
+                @endif
+            </div>
+
+            <div class="row-action">
+                <a onclick="toggleReviewEdit('{{$replyID}}')">Cancel</a>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    
     @empty
     @endforelse
 </div>

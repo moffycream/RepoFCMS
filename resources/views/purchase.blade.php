@@ -114,8 +114,8 @@
                     <select id="purchase_deliveryMethod" name="purchase_deliveryMethod">
                         <option value="none" disabled selected>Delivery method</option>
                         <option value="Delivery">Delivery</option>
-                        <option value="Self_Pickup">Self Pick Up</option>
-                    </select>
+                        <option value="Self Pick Up">Self Pick Up</option>
+                    </select> 
                     <div id="purchase_deliveryMethod_error" class="purchase_error"></div>
                 </td>
             </tr>

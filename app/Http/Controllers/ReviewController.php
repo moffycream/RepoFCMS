@@ -98,6 +98,7 @@ class ReviewController extends Controller
                 }
             }
         }
+        
         return redirect('/customer-review-history/{reviewID}')->withErrors($validatedData);
     }
 
