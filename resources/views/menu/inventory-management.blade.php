@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('title', 'Inventory management')
 @section('content')
-<h1 class="add-menu-title">Inventory Management</h1>
+<h1 class="title">Inventory Management</h1>
 
 
 <div class="inventory-container">

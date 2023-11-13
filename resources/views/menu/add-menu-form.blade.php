@@ -2,10 +2,10 @@
 @section('title', 'Dashboard')
 @section('content')
 <div class="add-menu-form-container">
+    <p class="title">Add Menu Form</p>
     <form class="add-menu-form" id="add-menu-form" method="POST" action="{{ route('menu.register') }}" enctype="multipart/form-data">
         @csrf
         <div>
-            <p class="add-menu-form-title">Add Menu Form</p>
         </div>
         <div class="add-menu-form-input-div">
             <label for="menu-image">Image</label>
