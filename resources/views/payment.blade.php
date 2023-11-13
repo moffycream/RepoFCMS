@@ -20,8 +20,6 @@
             <p>RM: -</p>
         @endif
 
-        <p>user name: {{ $user->userID }}</p>
-
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
         <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
         <input type="hidden" name="orderID" value="{{ $orderID }}">
