@@ -795,6 +795,13 @@ details[open] summary::before {
     margin-left: 20px;
     width: 150px;
     cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.container-review-form .panel form div button:hover {
+    opacity: 90%;
+    scale: 1.1;
+    transition: 0.1s ease;
 }
 
 .container-review-form .panel form div a {
@@ -809,11 +816,14 @@ details[open] summary::before {
     margin-left: 20px;
     width: 130px;
     cursor: pointer;
+    transition: 0.1s ease;
 
 }
 
-.container-review-form .panel form div button:hover {
-    opacity: 80%;
+.container-review-form .panel form div a:hover {
+    opacity: 90%;
+    scale: 1.1;
+    transition: 0.1s ease;
 }
 
 /* Errors */
@@ -1163,7 +1173,7 @@ details[open] summary::before {
     font-size: 28px;
 }
 
-.container-admin-reviews .row-overall{
+.container-admin-reviews .row-overall {
     width: 80%;
     margin: 40px auto;
     display: flex;
@@ -1173,7 +1183,7 @@ details[open] summary::before {
     padding: 20px;
 }
 
-.container-admin-reviews .row-overall > div{
+.container-admin-reviews .row-overall>div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1182,35 +1192,35 @@ details[open] summary::before {
     padding: 20px;
 }
 
-.container-admin-reviews .row-overall > div:last-child .container-stars .row-stars{
+.container-admin-reviews .row-overall>div:last-child .container-stars .row-stars {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.container-admin-reviews .row-overall > div:last-child .container-stars .row-stars .fas{
+.container-admin-reviews .row-overall>div:last-child .container-stars .row-stars .fas {
     color: #ffc400;
     font-size: 18px;
     margin-right: 5px;
 }
 
-.container-admin-reviews .row-overall > div:last-child .container-stars .row-stars .far{
+.container-admin-reviews .row-overall>div:last-child .container-stars .row-stars .far {
     color: #ffc400;
     font-size: 18px;
     margin-right: 5px;
 }
 
-.container-admin-reviews .row-overall > div:last-child .container-stars .row-stars .col-stars:last-child{
+.container-admin-reviews .row-overall>div:last-child .container-stars .row-stars .col-stars:last-child {
     margin-left: 20px;
 }
 
-.container-admin-reviews .row-overall > div:last-child .container-stars .row-stars .col-stars:last-child h2{
+.container-admin-reviews .row-overall>div:last-child .container-stars .row-stars .col-stars:last-child h2 {
     font-size: 18px;
     font-weight: bold;
 
 }
 
-.container-admin-reviews .row-overall > div{
+.container-admin-reviews .row-overall>div {
     flex: 1;
     margin: 0 20px;
     display: flex;
@@ -1218,14 +1228,14 @@ details[open] summary::before {
     justify-content: center;
 }
 
-.container-admin-reviews .row-overall > div > p{
+.container-admin-reviews .row-overall>div>p {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
     opacity: 50%;
 }
 
-.container-admin-reviews .row-overall > div > h2{
+.container-admin-reviews .row-overall>div>h2 {
     font-size: 28px;
     font-weight: bold;
 }

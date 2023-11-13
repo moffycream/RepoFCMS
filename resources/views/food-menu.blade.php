@@ -4,7 +4,7 @@
 
 <div class="foodMenu-main-content-container">
     <div class="foodMenu-title">
-        <h2>Food Menu</h2>
+        <h2 class="title">Food Menu</h2>
     </div>
 <div class="foodMenu container">
     <h2></h2>

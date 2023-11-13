@@ -447,6 +447,17 @@
     margin: auto;
 }
 
+.inventory-edit-button:hover,
+.inventory-save-button:hover,
+.inventory-cancel-button:hover,
+.inventory-delete-button:hover,
+.inventory-add-button:hover,
+.add-menu-edit-button:hover,
+.add-menu-save-button:hover,
+.add-menu-cancel-button:hover{
+    background-color: #55086137;
+}
+
 .add-menu-edit-button,
 .add-menu-save-button,
 .add-menu-cancel-button{
@@ -519,7 +530,7 @@
 
 .inventory-table-title-big{
     border: none;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
 }
 
