@@ -32,6 +32,7 @@
     margin-bottom: 120px;
 }
 
+/* input area styling */
 #purchase_form_table input,
 #purchase_form_table textarea,
 #purchase_form_table select {
@@ -70,7 +71,7 @@
 }
 
 #display_purchase_item_table tbody {
-    background-color: #e0ccd4; /* Gray background color */
+    background-color: #e0ccd4;
 }
 
 #display_purchase_item_table th,
@@ -85,7 +86,7 @@
 
 /* Styles for the purchase form table */
 #purchase_form_table {
-    width: 45%; /* Adjust the width as needed */
+    width: 45%;
 }
 
 /* Styles for the form labels and input fields */
@@ -109,6 +110,7 @@
     transition: all 0.3s ease;
 }
 
+/* error message */
 .purchase_error{
     color: red;
 }
@@ -224,20 +226,40 @@
     color: red;
 }
 
+#membership-aside{
+    text-align: left;
+    border: 3px solid #00000077;
+    border-radius: 10px;
+    margin-left: 85%;
+    margin-right: 0.7%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e0ccd4;
+    font-size: 20px;
+}
+
+#membership-aside p{
+    padding-bottom: 10px;
+}
+
 /*---------------MEMBERSHIP PAGE-------------*/
 .membership-container {
     padding: 20px;
     text-align: center;
     background-color: #e8dcd4;
+    padding-bottom: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
 }
 
 .membership-container h1{
-    font-size: 28px;
+    font-size: 40px;
     margin-bottom: 20px;
 }
 
 .membership-container h2{
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 
@@ -254,7 +276,7 @@
     list-style: none;
     padding: 10px;
     text-align: left;
-
+    font-size: 18px;
 }
 
 .membership-container section{
@@ -265,23 +287,29 @@
     margin: 10px;
 }
 
-#tier1 {
+#tier0 p,#tier1 p, #tier2 p, #tier3 p{
+    font-size: 23px;
+    padding-bottom: 40px;
+    padding-top: 15px;
+}
+
+#tier0 {
     background-color: #e8d2d9;
-    padding: 50px 0 100px 30px;
+    padding: 50px 0 100px 0;
 }
 
-#tier1 p, #tier2 p, #tier3 p{
-    font-size: 20px;
-    padding-bottom: 30px;
-}
-
-#tier2 {
+#tier1 {
     background-color: #e0ccd4;
     padding: 50px 0 100px 0;
 }
 
-#tier3 {
+#tier2 {
     background-color: #c5abb6;
+    padding: 50px 0 100px 0;
+}
+
+#tier3 {
+    background-color: #8e7387;
     padding: 50px 0 100px 0;
 }
 
@@ -289,7 +317,7 @@
 .benefit-list {
     list-style: disc;
     margin-left: 20px;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .benefit-item {
