@@ -32,6 +32,7 @@
     margin-bottom: 120px;
 }
 
+/* input area styling */
 #purchase_form_table input,
 #purchase_form_table textarea,
 #purchase_form_table select {
@@ -70,7 +71,7 @@
 }
 
 #display_purchase_item_table tbody {
-    background-color: #e0ccd4; /* Gray background color */
+    background-color: #e0ccd4;
 }
 
 #display_purchase_item_table th,
@@ -85,7 +86,7 @@
 
 /* Styles for the purchase form table */
 #purchase_form_table {
-    width: 45%; /* Adjust the width as needed */
+    width: 45%;
 }
 
 /* Styles for the form labels and input fields */
@@ -109,67 +110,87 @@
     transition: all 0.3s ease;
 }
 
+/* error message */
 .purchase_error{
     color: red;
 }
 
+/*---------------PAYMENT PAGE-------------*/
+
 /* Styles for the container-payment-page */
 .container-payment-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Styles for the h1 heading */
-.container-payment-page h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-/* Styles for the main form container */
-#PaymentForm {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: #e8dcd4;
+    border-radius: 20px;
+    border: 1px solid #000000;
+}
+
+/* Styles for the h1 heading */
+.container-payment-page h1{
+    font-size: 40px;
+    padding-bottom: 65px;
+}
+
+#payment-total-price{
+    font-size: 28px;
+    font-family: sans-serif;
+    color: #674c64;
+    font-weight: 560;
+    padding-bottom: 65px;
+    text-align: center;
 }
 
 /* Styles for the payment_form_table */
 #payment_form_table {
-    width: 100%;
     border-collapse: collapse;
+    text-align: center;
+}
+
+#OnlineBankingForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#CreditCardForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#DebitCardForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#EwalletForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
 #payment_form_table td {
+    font-size: 20px;
     padding: 10px;
 }
 
 /* Styles for the total price heading */
 #payment_form_table h1 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    padding-top: 30px;
+    font-size: 25px;
 }
 
-/* Styles for the list of orders */
-#payment_form_table ul {
-    list-style: none;
-    padding: 0;
+.payment-form-input-field{
+    text-align: left;
 }
-
-#payment_form_table li {
-    margin-bottom: 5px;
-}
-
-/* Styles for the payment method label and select */
-#payment_form_table label {
-    font-weight: bold;
-}
-
-#payment_form_table select {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
 
 /* Styles for the "Confirm Payment" button */
 #payment_form_table button[type="submit"] {
@@ -179,6 +200,8 @@
     border: none;
     cursor: pointer;
     margin-top: 10px;
+    border-radius: 5px;
+
 }
 
 #payment_form_table button[type="submit"]:hover {
@@ -186,33 +209,59 @@
     transition: all 0.3s ease;
 }
 
-#payment_form_table select,
-#payment_form_table input[type="text"],
-#payment_form_table input[type="date"] {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
+#payment_form_table input,
+#payment_form_table textarea,
+#payment_form_table select {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
+    width: 100%; 
+}
+
+#payment_form_table select{
+    width: 300px;
 }
 
 .payment_error{
     color: red;
 }
 
-/*---------------MEMBERSHIP PAGE-------------*/
+#membership-aside{
+    text-align: left;
+    border: 3px solid #00000077;
+    border-radius: 10px;
+    margin-left: 85%;
+    margin-right: 0.7%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e0ccd4;
+    font-size: 20px;
+}
 
+#membership-aside p{
+    padding-bottom: 10px;
+}
+
+/*---------------MEMBERSHIP PAGE-------------*/
 .membership-container {
     padding: 20px;
     text-align: center;
     background-color: #e8dcd4;
+    padding-bottom: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
 }
 
 .membership-container h1{
-    font-size: 28px;
+    font-size: 40px;
     margin-bottom: 20px;
 }
 
 .membership-container h2{
-    font-size: 24px;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 
@@ -229,7 +278,7 @@
     list-style: none;
     padding: 10px;
     text-align: left;
-
+    font-size: 18px;
 }
 
 .membership-container section{
@@ -240,23 +289,29 @@
     margin: 10px;
 }
 
-#tier1 {
+#tier0 p,#tier1 p, #tier2 p, #tier3 p{
+    font-size: 23px;
+    padding-bottom: 40px;
+    padding-top: 15px;
+}
+
+#tier0 {
     background-color: #e8d2d9;
-    padding: 50px 0 100px 30px;
+    padding: 50px 0 100px 0;
 }
 
-#tier1 p, #tier2 p, #tier3 p{
-    font-size: 20px;
-    padding-bottom: 30px;
-}
-
-#tier2 {
+#tier1 {
     background-color: #e0ccd4;
     padding: 50px 0 100px 0;
 }
 
-#tier3 {
+#tier2 {
     background-color: #c5abb6;
+    padding: 50px 0 100px 0;
+}
+
+#tier3 {
+    background-color: #8e7387;
     padding: 50px 0 100px 0;
 }
 
@@ -264,7 +319,7 @@
 .benefit-list {
     list-style: disc;
     margin-left: 20px;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .benefit-item {
@@ -273,26 +328,45 @@
 
 /*---------------ORDER TRACKING PAGE-------------*/
 .order-tracking-container {
-    max-width: 1600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1800px;
     margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
     padding: 20px;
-    border: 1px solid #000000;
     background-color: #e8dcd4;
-    border-radius: 10px;
+    border-radius: 20px;
+    border: 1px solid #00000077;
 }
 
 .order-tracking-container h1 {
-    color: #333;
+    font-size: 40px;
+    margin-bottom: 40px;
 }
 
-#order-tracking-order-status,
 #order-tracking-order-details,
 #order-tracking-payment-details,
 #order-tracking-company-details {
     margin-bottom: 100px;
+    margin-left: 30px;
 }
 
-#order-tracking-order-status h2,
+#order-tracking-order-details table,
+#order-tracking-payment-details table,
+#order-tracking-company-details table {
+    font-size: 18px;
+    width: 510px;
+}
+
+#order-tracking-order-details table tr td,
+#order-tracking-payment-details table tr td,
+#order-tracking-company-details table tr td {
+    width: 100px;
+    padding-bottom: 20px;
+}
+
 #order-tracking-order-details h2,
 #order-tracking-payment-details h2,
 #order-tracking-company-details h2 {
@@ -300,24 +374,10 @@
     color: #333;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 10px;
-}
-
-#order-tracking-order-status ul li span {
-    color: #d44638; /* Amazon's red color for status */
-}
-
-/* Add responsive styles if needed */
-@media (max-width: 600px) {
-    .order-tracking-container {
-        padding: 10px;
-    }
+#order-tracking-data-span{
+    font-size: 21px;
+    font-weight: 550;
+    color: #8e7387;
 }
 
 #order-tracking-company-details {
@@ -347,4 +407,12 @@ li {
 .order-tracking-details{
     display: flex;
     justify-content: space-around;
+}
+
+#customer-container-track-button{
+    width: 500px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 110px;
 }

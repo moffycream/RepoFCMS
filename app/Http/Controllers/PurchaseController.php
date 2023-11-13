@@ -56,6 +56,7 @@ class PurchaseController extends Controller
                 $order->delivery = $request->input('purchase_deliveryMethod');
 
                 $order->status = 'Pending'; // Manually set thestatus to "pending"
+                $order->status_update_time = now();
                 $order->total = $overallTotalPrice;
                 $order->menu_name = $concatenatedMenuNames;
 

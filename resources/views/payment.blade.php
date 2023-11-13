@@ -4,7 +4,7 @@
 
 <div class="container-payment-page">
 
-    <h1>Orders:</h1>
+    <h1>Payment</h1>
 
     <form id="PaymentForm" method="post" action="{{ route('payment.store') }}"><!-- name at route -->
         @csrf
@@ -15,9 +15,9 @@
 
         <!-- Display the total amount -->
         @if($overallTotalPrice > 0)
-            <p>Total Price: RM {{ $overallTotalPrice }}</p>
+            <p id='payment-total-price'>Total Price: RM {{ $overallTotalPrice }}</p>
         @else
-            <p>RM: -</p>
+            <p id='payment-total-price'>RM: -</p>
         @endif
 
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
