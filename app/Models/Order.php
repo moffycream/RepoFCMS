@@ -13,6 +13,10 @@ class Order extends Model
 
     protected $primaryKey = 'orderID';
 
+    public $timestamps = true;
+
+    protected $fillable = ['status_update_time'];
+
     protected $casts = [
         'created-at' => 'datetime:d F Y g:i A'
     ];
