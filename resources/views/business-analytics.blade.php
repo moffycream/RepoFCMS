@@ -5,7 +5,7 @@
 
 <div class="page-content-container">
     <div class="businessAnalytics-title">
-        <h1>Business Analytics</h1>
+        <h1 class="title">Business Analytics</h1>
     </div>
 
 <div class="businessAnalytics-main-content">

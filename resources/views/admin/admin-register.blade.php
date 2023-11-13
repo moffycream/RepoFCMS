@@ -4,6 +4,7 @@
 <div class="container-admin-register-page">
     <form method="post" action="{{route('admin.register')}}">
         @csrf
+        <h1>Admin Register Account</h1>
         <div class="admin-register-box">
             <div class="admin-register-box-columns">
                 <div class="admin-register-left-column">

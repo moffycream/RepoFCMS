@@ -232,6 +232,12 @@
     justify-content: center;
 }
 
+.container-admin-register-page h1 {
+    font-size: 45px;
+    padding-left: 150px;
+    padding-bottom: 50px;
+}
+
 .admin-register-left-column {
     width: 300px;
     margin: 20px 50px 0 40px;
@@ -386,7 +392,7 @@
     border: 1px solid #00000077;
     border-radius: 10px;
     padding: 50px;
-    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+    background: white;
     display: inline-block;
     margin: 20px;
 }
@@ -511,6 +517,11 @@
     padding-top: 30px;
 }
 
+.container-admin-view-feedback h1 {
+    font-size: 45px;
+    padding-bottom: 5px;
+}
+
 .container-admin-view-feedback p {
     padding: 5px 0;
 }
@@ -577,7 +588,7 @@
     font-size: 13px;
 }
 
-.two-factor-authentication-verify{
+.two-factor-authentication-verify {
     margin-top: 10px;
     padding: 10px;
     background-color: var(--color-1);
@@ -596,6 +607,7 @@
     transform: scale(1.1);
     transition: 0.5s;
 }
+
 .container-two-factor-authentication input {
     padding: 10px;
     border: 1px solid #00000077;
