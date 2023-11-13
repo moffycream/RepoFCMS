@@ -125,7 +125,7 @@
     font-size: 16px;
     margin: 5px;
     cursor: pointer;
-    border-radius: 20px;
+    border-radius: 5px;
     width: 100px;
 }
 
@@ -137,7 +137,7 @@
 
 /* Profile */
 .profile-container {
-    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+   
     border-radius: 25px;
     padding: 20px;
     text-align: center;
@@ -219,7 +219,7 @@
     padding: 5px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: background-color 0.1s;
     margin: 10px 0;
     
 }   
@@ -324,7 +324,7 @@ a.edit-button,
     background-color: #e0e4e4be;
     border: none;
     border-left: 5px solid #473447;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.1s ease-in-out;
 }
 
 
@@ -337,7 +337,7 @@ a.edit-button,
 
 .container-customer-view-order .col-customer-view-order details summary::before {
     content: '▶';
-    transition: transform 0.3s;
+    transition: transform 0.1s;
 }
 
 details[open] summary::before {
