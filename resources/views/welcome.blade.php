@@ -7,7 +7,7 @@
         <div>
             <h1>FOOD IS ONLY THE BEGININGING</h1>
             <p>For the price of a table in a restaurant, book a private<br> chef in your own place.</p>
-            <a>Start Exploring</a>
+            <a href="url('display-food-menu')">Start Exploring</a>
         </div>
     </div>
 

@@ -974,6 +974,7 @@ details[open] summary::before {
     margin-left: 20px;
     width: 150px;
     cursor: pointer;
+    transition: 0.1s ease;
 }
 
 .container-review-history .review-edit form div a {
@@ -988,11 +989,19 @@ details[open] summary::before {
     margin-left: 20px;
     width: 130px;
     cursor: pointer;
+    transition: 0.1s ease;
+}
 
+.container-review-history .review-edit form div a:hover {
+    opacity: 90%;
+    scale: 1.1;
+    transition: 0.1s ease;
 }
 
 .container-review-history .review-edit form div button:hover {
-    opacity: 80%;
+    opacity: 90%;
+    scale: 1.1;
+    transition: 0.1s ease;
 }
 
 /* Errors */

@@ -1146,3 +1146,16 @@ document.addEventListener("DOMContentLoaded", function () {
         comment.style.marginLeft = `${marginLeft}px`;
     });
 });
+
+
+
+// Toggle reply button to show input field for reply for a specific reply form
+function toggleReviewEdit(reviewID) {
+    const reviewForm = document.getElementById(`edit-form-${reviewID}`);
+    // Toggle the display of the reply form
+    if (reviewForm.style.display === 'none' || reviewForm.style.display === '') {
+        reviewForm.style.display = 'block';
+    } else {
+        reviewForm.style.display = 'none';
+    }
+}
