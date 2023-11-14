@@ -1058,15 +1058,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Review page
-document.addEventListener('DOMContentLoaded', function () {
-    // Set the initial state of comments and the reply input
-    const comments = document.querySelectorAll('.comment');
-    comments.forEach(function (comment) {
-        if (comment.style.display !== 'none' && window.getComputedStyle(comment).display !== 'none') {
-            comment.style.display = 'none';
-        }
-    });
-});
+
 
 // Toggle comment button to show and hide all the comments
 function toggleComments(reviewID) {
@@ -1123,6 +1115,19 @@ function toggleReviewEdit(reviewID) {
     // Toggle the display of the reply form
     if (reviewForm.style.display === 'none' || reviewForm.style.display === '') {
         reviewForm.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        reviewForm.style.display = 'none';
+    }
+}
+
+// Toggle reply button to show input field for reply for a specific reply form
+function toggleReviewCommentEdit(commentID) {
+    const reviewForm = document.getElementById(`edit-comment-form-${commentID}`);
+    // Toggle the display of the reply form
+    if (reviewForm.style.display === 'none' || reviewForm.style.display === '') {
+        reviewForm.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
         reviewForm.style.display = 'none';
     }

@@ -7,7 +7,7 @@
         <div>
             <h1>FOOD IS ONLY THE BEGININGING</h1>
             <p>For the price of a table in a restaurant, book a private<br> chef in your own place.</p>
-            <a href="url('display-food-menu')">Start Exploring</a>
+            <a href="{{url('display-food-menu')}}">Start Exploring</a>
         </div>
     </div>
 
@@ -21,6 +21,9 @@
             <h2>Our Menus</h2>
             <hr>
             <p>Savor the extraordinary with FoodEdge menus—where every dish is a masterpiece, meticulously crafted to delight your palate and elevate your dining experience.</p>
+            
+            <!-- Make a slider for foods -->
+            
             @endif
             @endif
         </div>

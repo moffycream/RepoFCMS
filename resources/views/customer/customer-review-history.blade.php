@@ -50,7 +50,7 @@
             <div class="review-action">
                 <button type="button" onclick="toggleComments('{{$reviewID}}')"><i class="fas fa-comment-alt"></i><span>Comment</span> <span>({{$review->getTotalComments()}})</span></button>
                 <button type="button" onclick="toggleReply('{{$replyID}}')"><i class="fas fa-reply"></i><span>Reply</span></button>
-                <a onclick="toggleReviewEdit('{{$replyID}}')"><i class="fas fa-edit"></i><span>Edit</span></a>
+                <a onclick="toggleReviewEdit('{{$reviewID}}')"><i class="fas fa-edit"></i><span>Edit</span></a>
                 <a href="{{route('review.delete', $review->reviewID)}}"><i class="fas fa-trash"></i><span>Delete</span></a>
             </div>
             <div class="reply" id="reply-{{$replyID}}">
@@ -71,8 +71,13 @@
         @include('include.comment', ['comment' => $comment, 'replyID' => $replyID])
         @endforeach
     </div>
-    
-    <div class="container-review-edit"  id="edit-form-{{$reviewID}}">
+
+
+    @if (session()->has('errorID') && session('errorID') == $reviewID)
+    <div class="container-review-edit" style="display: block;" id="edit-form-{{$reviewID}}">
+    @else
+    <div class="container-review-edit" style="display: none;" id="edit-form-{{$reviewID}}">
+    @endif
     <div class="review-edit-bg"></div>
     <div class="review-edit">
         <h1>Edit Review</h1>
@@ -119,29 +124,35 @@
                     <label for="{{ $i }}"><i class="fas fa-star"></i></label>
                     @endfor
                 </div>
+                @if (session()->has('errorID') && session('errorID') == $reviewID)
                 @if ($errors->has('reviewRating'))
                 <span class="error">{{ $errors->first('reviewRating') }}</span>
+                @endif
                 @endif
             </div>
 
             <div class="row">
                 <p>Title of your review *</p>
                 <input type="text" id="title" name="reviewTitle" value="{{$review->reviewTitle}}" placeholder="Title of your review">
+                @if (session()->has('errorID') && session('errorID') == $reviewID)
                 @if ($errors->has('reviewTitle'))
                 <span class="error">{{ $errors->first('reviewTitle') }}</span>
+                @endif
                 @endif
             </div>
 
             <div class="row">
                 <p>Your review *</p>
                 <textarea id="review" name="reviewContent" placeholder="Your review" >{{$review->reviewContent}}</textarea>
+                @if (session()->has('errorID') && session('errorID') == $reviewID)
                 @if ($errors->has('reviewContent'))
                 <span class="error">{{ $errors->first('reviewContent') }}</span>
+                @endif
                 @endif
             </div>
 
             <div class="row-action">
-                <a onclick="toggleReviewEdit('{{$replyID}}')">Cancel</a>
+                <a onclick="toggleReviewEdit('{{$reviewID}}')">Cancel</a>
                 <button type="submit">Save</button>
             </div>
         </form>

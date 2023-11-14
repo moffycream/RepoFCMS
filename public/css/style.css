@@ -513,7 +513,7 @@ article {
 
 .container-home>.section-1 {
     width: 100%;
-    min-height: 30vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

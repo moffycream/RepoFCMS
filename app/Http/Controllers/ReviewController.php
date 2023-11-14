@@ -9,6 +9,7 @@ use App\Models\Comment;
 use Illuminate\Contracts\Session\Session;
 use App\Models\Menu;
 use App\Models\Notification;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
@@ -34,11 +35,6 @@ class ReviewController extends Controller
         return view('customer.customer-review-history', ['reviews' => $reviews, 'reviewHistory' => true]);
     }
 
-    public function reviewEdit($reviewID)
-    {
-        return view('review-edit', ['reviewID' => $reviewID]);
-    }
-
     public function commentEdit($commentID)
     {
         return view('review-comment-edit', ['commentID' => $commentID]);
@@ -58,12 +54,16 @@ class ReviewController extends Controller
         ];
 
         // Validate the user's input
-        $validatedData = request()->validate([
+        $validator = Validator::make($request->all(),[
             'reviewTitle' => 'required|max:255',
             'reviewContent' => 'required|max:255',
             'reviewRating' => 'required|numeric|min:1|max:5',
             'reviewCategory' => 'required|max:255',
         ], $message);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput()->with('errorID', $request->reviewID);
+        }
 
         // Get user id
         if (session()->has('username')) {
@@ -73,10 +73,10 @@ class ReviewController extends Controller
                 $review = Review::where('reviewID', $request->reviewID)->first();
                 if ($review != null) {
                     // Update the review
-                    $review->reviewTitle = $validatedData['reviewTitle'];
-                    $review->reviewContent = $validatedData['reviewContent'];
-                    $review->reviewRating = $validatedData['reviewRating'];
-                    $review->reviewCategory = $validatedData['reviewCategory'];
+                    $review->reviewTitle = $request->reviewTitle;
+                    $review->reviewContent = $request->reviewContent;
+                    $review->reviewRating = $request->reviewRating;
+                    $review->reviewCategory = $request->reviewCategory;
 
                     // If the review title is same as the menu item's name and the review category is menu, then the review is about the menu item
                     $menu = Menu::where('name', $review->reviewTitle)->first();
@@ -98,8 +98,6 @@ class ReviewController extends Controller
                 }
             }
         }
-        
-        return redirect('/customer-review-history/{reviewID}')->withErrors($validatedData);
     }
 
     public function saveCommentEdit(Request $request)
@@ -108,9 +106,15 @@ class ReviewController extends Controller
         $message = [
             'commentContent.required' => 'Please write your comment.',
         ];
-        $validatedData = request()->validate([
+        $validator = Validator::make($request->all(),[
             'commentContent' => 'required|max:255',
         ], $message);
+
+        $comment = Comment::where('commentID', $request->commentID)->first();
+        $reviewID = $comment->reviewID;
+        if ($validator->fails()) {
+            return redirect('/customer-review-history')->withErrors($validator)->withInput()->with('errorCommentID', $request->commentID)->with('targetReviewID',  $reviewID);
+        }
 
         // Get user id
         if (session()->has('username')) {
@@ -120,14 +124,13 @@ class ReviewController extends Controller
                 $comment = Comment::where('commentID', $request->commentID)->first();
                 if ($comment != null) {
                     // Update the comment
-                    $comment->commentContent = $validatedData['commentContent'];
+                    $comment->commentContent = $request->commentContent;
                     $comment->save();
                     // Return back to reviews page
                     return redirect('/customer-review-history')->with('success', 'Comment updated successfully!');
                 }
             }
         }
-        return redirect('/customer-review-history/{commentID}')->withErrors($validatedData);
     }
 
     public function reviewDelete($reviewID)
