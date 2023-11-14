@@ -172,7 +172,7 @@ class ReviewController extends Controller
                     $comment->delete();
 
                     // Send notification
-                    $this->sendNotification($comment->reviewID);
+                    $this->sendNotification($comment->reviewID, "delete comment");
 
                     // Return back to reviews page
                     return redirect('/customer-review-history')->with('success', 'Comment deleted successfully!');
@@ -238,8 +238,11 @@ class ReviewController extends Controller
                     $menu->save();
                 }
                 }
-        
+ 
                 $review->save();
+                // Send notification to the user who made the review
+                $this->sendNotification($review->reviewID, "make review");
+                
                 // Return back to reviews page
                 return redirect('/reviews')->with('success', 'Review submitted successfully!');
             }
@@ -273,7 +276,7 @@ class ReviewController extends Controller
                 $comment->commentContent = $validatedData['commentContent'];
                 $comment->save();
                 // Send notification
-                $this->sendNotification($request->reviewID);
+                $this->sendNotification($request->reviewID, "comment");
                 // Return back to reviews page
                 return redirect('/reviews')->with('success', 'Comment submitted successfully!');
             }
@@ -281,7 +284,7 @@ class ReviewController extends Controller
     }
 
     // Send notification
-    public function sendNotification($reviewID)
+    public function sendNotification($reviewID, $type)
     {
         // Get the review
         $review = Review::where('reviewID', $reviewID)->first();
@@ -294,13 +297,18 @@ class ReviewController extends Controller
                     $loggedInUserAccount = UserAccounts::where('username', session('username'))->first();
                     if ($loggedInUserAccount != null) {
                         // Create a new notification instance
-                        // No need to send notification if the user is commenting on their own review
-                        if ($userAccount->userID == $loggedInUserAccount->userID) {
-                            return;
-                        }
                         $notification = new Notification();
                         $notification->userID = $userAccount->userID;
-                        $notification->content = $loggedInUserAccount->username . ' commented on your review.';
+                        if ($type == "comment") {
+                            $notification->content = $loggedInUserAccount->username . ' commented on your review.';
+                        } else if ($type == "delete comment") {
+                            $notification->content = $loggedInUserAccount->username . ' deleted their comment on your review.';
+                        } else if ($type == "make review") {
+                            $notification->content = ' review submitted successfully.';
+                        } else {
+                            $notification->content = 'New review submitted.';
+                        }
+                       
                         $notification->save();
                     }
                 }
@@ -332,7 +340,7 @@ class ReviewController extends Controller
                 $comment->commentContent = $validatedData['commentContent'];
                 $comment->save();
                 // Send notification
-                $this->sendNotification($request->reviewID);
+                $this->sendNotification($request->reviewID, "comment");
                 // Return back to reviews page
                 return redirect('/customer-review-history')->with('success', 'Comment submitted successfully!');
             }
@@ -378,7 +386,7 @@ class ReviewController extends Controller
                 $comment->commentContent = $validatedData['commentContent'];
                 $comment->save();
                 // Send notification
-                $this->sendNotification($request->reviewID);
+                $this->sendNotification($request->reviewID, "comment");
                 // Return back to reviews page
                 return redirect('/admin-view-reviews')->with('success', 'Comment submitted successfully!');
             }
