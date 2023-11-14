@@ -138,13 +138,22 @@
     padding-bottom: 65px;
 }
 
-#payment-total-price{
+#container-payment-show-payment{
     font-size: 28px;
     font-family: sans-serif;
-    color: #674c64;
-    font-weight: 560;
     padding-bottom: 65px;
     text-align: center;
+}
+
+#container-payment-show-payment table{
+    text-align: left;
+    table-layout: fixed;
+}
+
+#container-payment-show-payment tr td p{
+    color: #674c64;
+    font-weight: 700;
+    padding-bottom: 10px;
 }
 
 /* Styles for the payment_form_table */

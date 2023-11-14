@@ -6,19 +6,67 @@
 
     <h1>Payment</h1>
 
+    @php
+        $overallTotalPrice = session('overallTotalPrice', 0);
+    @endphp
+
+        <div id='container-payment-show-payment'>
+            <table>
+                <tr>
+                    <td>
+                        <p>Order Total Price: </p>
+                    </td>
+
+                    <td>
+                        <!-- Display the total amount -->
+                        @if($overallTotalPrice > 0)
+                            <p id='payment-total-price'>RM {{ $overallTotalPrice }}</p>
+                        @else
+                            <p id='payment-total-price'>RM: -</p>
+                        @endif
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Discount Given: </p>
+                    </td>
+
+                    <td>
+                        <p>- RM </p>
+                        @if(isset($membership))
+                            @if($membership->isNotEmpty())
+                                <p>Discount:</p>
+                                <ul>
+                                    @foreach($membership as $member)
+                                        <li>{{ $member->discount_amount }}</li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <!-- Membership data is not available -->
+                                <p>No Membership Data</p>
+                            @endif
+                        @else
+                            <p>No data available</p>
+                        @endif
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Total Price: </p>
+                    </td>
+
+                    <td>
+                        <p>RM </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
     <form id="PaymentForm" method="post" action="{{ route('payment.store') }}"><!-- name at route -->
         @csrf
-
-        @php
-        $overallTotalPrice = session('overallTotalPrice', 0);
-        @endphp
-
-        <!-- Display the total amount -->
-        @if($overallTotalPrice > 0)
-            <p id='payment-total-price'>Total Price: RM {{ $overallTotalPrice }}</p>
-        @else
-            <p id='payment-total-price'>RM: -</p>
-        @endif
 
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
         <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">

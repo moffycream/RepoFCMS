@@ -22,15 +22,22 @@ class PaymentController extends Controller
     // used for verification
     protected $userAccountController;
 
-    protected $membershipController;
-
     public function index(UserAccountController $userAccountController)
     {
-        // Checks whether is customer session or not
+        $userAccountController = app(UserAccountController::class);
+        $userAccount = UserAccounts::where('username', session('username'))->first();
+        $membership = [];
+    
+        if ($userAccount) {
+            $userID = $userAccount->userID;
+            $membership = Membership::where('userID', $userID)->get();
+        }
+    
+        // Checks whether it is a customer session or not
         $this->userAccountController = $userAccountController;
-        
+    
         if ($this->userAccountController->verifyCustomer()) {
-            return view('payment', ['notifications' => Notification::all()]);
+            return view('payment', ['notifications' => Notification::all(), 'membership' => $membership]);
         } else {
             return view('login.access-denied');
         }
@@ -159,14 +166,14 @@ class PaymentController extends Controller
         return view('payment-complete');
     }
 
-    public function viewMembership($userID){
-        $userAccountController = app(UserAccountController::class);
-        $viewMembership = Membership::find($userID);
+    // public function viewMembership($userID){
+    //     $userAccountController = app(UserAccountController::class);
+    //     $viewMembership = Membership::find($userID);
         
-        if ($userAccountController->verifyCustomer()) {
-            return view('payment', ['viewMembership' => $viewMembership]);
-        } else {
-            return view('login.access-denied');
-        }
-    }
+    //     if ($userAccountController->verifyCustomer()) {
+    //         return view('payment', ['viewMembership' => $viewMembership]);
+    //     } else {
+    //         return view('login.access-denied');
+    //     }
+    // }
 }
