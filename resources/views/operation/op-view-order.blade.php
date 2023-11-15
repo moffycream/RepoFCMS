@@ -109,7 +109,9 @@
                 @endif
                     @if($selectedOrder->status == 'Preparing' || $selectedOrder->status == 'Ready for pickup' || $selectedOrder->status == 'Delivery on the way')
                     @else
-                    <a class="cancel" href="{{route('op.cancel-order', $selectedOrder->orderID)}}" title="cancel order"><i class="fas fa-trash"></i></a>
+                    <!-- Add javascript confirmation -->
+
+                    <a class="cancel" href="{{route('op.cancel-order', $selectedOrder->orderID)}}" title="cancel order" onclick="cancelOrderConfirmation()"><i class="fas fa-trash"></i></a>
                     @endif
             </div>
             @endif
