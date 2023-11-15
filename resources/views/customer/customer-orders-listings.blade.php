@@ -92,7 +92,7 @@
                 {
                 $classStatus = "deliveryontheway";
                 }
-                else if($$selectedOrder->status=="Ready for pickup")
+                else if($selectedOrder->status=="Ready for pickup")
                 {
                 $classStatus = "readyforpickup";
                 }
