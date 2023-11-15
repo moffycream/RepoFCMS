@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // display error message for payment method
         if (paymentChoice.value === "none") {
-            paymentMethodError.innerHTML = '&#x2022; Please select a payment method.';
+            paymentMethodError.innerHTML = ' Please select a payment method.';
             errorCount += 1;
         }
 
@@ -601,38 +601,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
             //  validate selected bank mehtod
             if (selectedBank.value === "none"){
-                selectedBankError.innerHTML = '&#x2022; Please select a bank to do online banking.';
+                selectedBankError.innerHTML = ' Please select a bank to do online banking.';
                 errorCount += 1;
 
             } else if (selectedBank.value === ""){
-                selectedBankError.innerHTML = '&#x2022; Please select a bank to do online banking.';
+                selectedBankError.innerHTML = ' Please select a bank to do online banking.';
                 errorCount += 1;
 
             };
 
             //  validation for name
             if (username.length < 5 || username.length > 25) {
-                usernamekError.innerHTML = '&#x2022; Username must be within 5 to 25 characters long.';
+                usernamekError.innerHTML = ' Username must be within 5 to 25 characters long.';
                 errorCount += 1;
 
             }
 
             //  validation for password
             if (password.length < 5 || password.length > 25) {
-                passwordError.innerHTML = '&#x2022; Password must be within 5 to 15 characters long.';
+                passwordError.innerHTML = ' Password must be within 5 to 15 characters long.';
                 errorCount += 1;
 
             }
 
             //  validation for Account Numbers
             if (accountNumber.length < 8 || accountNumber.length > 16) {
-                accountNumberError.innerHTML = '&#x2022; Account Numbers must be within 8 to 16 characters long.';
+                accountNumberError.innerHTML = ' Account Numbers must be within 8 to 16 characters long.';
                 errorCount += 1;
 
             }
 
             if (!Numpattern.test(accountNumber)) {
-                accountNumberError.innerHTML = '&#x2022; Account Numbers must only contain numbers only.';
+                accountNumberError.innerHTML = ' Account Numbers must only contain numbers only.';
                 errorCount += 1;
 
             }
@@ -656,43 +656,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
             //  validation for Card Number
             if (!Numpattern.test(cardNumber)) {
-                cardNumberError.innerHTML = '&#x2022; Card Number must contain numbers only.';
+                cardNumberError.innerHTML = ' Card Number must contain numbers only.';
                 errorCount += 1;
 
             }
             if (cardNumber.length != 16) {
-                cardNumberError.innerHTML = '&#x2022; Card Number must be 16 numbers.';
+                cardNumberError.innerHTML = ' Card Number must be 16 numbers.';
                 errorCount += 1;
 
             }
 
             //  validation for CVV
             if (!Numpattern.test(cvv)) {
-                cvvError.innerHTML = '&#x2022; CVV number must contain numbers only.';
+                cvvError.innerHTML = ' CVV number must contain numbers only.';
                 errorCount += 1;
 
             }
             if (cvv.length < 3 || cvv.length > 4) {
-                cvvError.innerHTML = '&#x2022; CVV number must only contain 3-4 digits.';
+                cvvError.innerHTML = ' CVV number must only contain 3-4 digits.';
                 errorCount += 1;
 
             }
 
             //  validation for Card Holder Name
             if (!pattern.test(cardHolder)) {
-                cardHolderError.innerHTML = '&#x2022; Your Card Holder Name must only contain alpha character only.';
+                cardHolderError.innerHTML = ' Your Card Holder Name must only contain alpha character only.';
                 errorCount += 1;
 
             }
             if (cardHolder.length < 5 || cardHolder.length > 25) {
-                cardHolderError.innerHTML = '&#x2022; Card Holder name must be within 5 to 25 characters long.';
+                cardHolderError.innerHTML = ' Card Holder name must be within 5 to 25 characters long.';
                 errorCount += 1;
 
             }
 
             //  validation for billing address
             if (billingAddress.length < 10 || billingAddress.length > 255) {
-                billingAddressError.innerHTML = '&#x2022; Billing Address must be within 10 to 255 characters long.';
+                billingAddressError.innerHTML = ' Billing Address must be within 10 to 255 characters long.';
                 errorCount += 1;
 
             }
@@ -710,13 +710,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             //  validate selected bank mehtod
             if (ewalletType.value === "none") {
-                ewalletTypeError.innerHTML = '&#x2022; Please select a E-Wallet to do payment.';
+                ewalletTypeError.innerHTML = ' Please select a E-Wallet to do payment.';
                 errorCount += 1;
             };
 
             //  validation for e wallet username
             if (userName.length < 5 || userName.length > 25) {
-                ewalletUsernameError.innerHTML = '&#x2022; Username must be within 5 to 25 characters long.';
+                ewalletUsernameError.innerHTML = ' Username must be within 5 to 25 characters long.';
                 errorCount += 1;
             }
 
@@ -768,37 +768,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
         //  validation for name
         if (!pattern.test(realname.value)){
-            realnameError.innerHTML = '&#x2022; Your name must only contain alpha characters only.';
+            realnameError.innerHTML = ' Your name must only contain alpha characters only.';
             errorCount += 1;
         }
 
         if (address.value.length < 15){
-            addressError.innerHTML = '&#x2022; Address must be at least 15 characters long.';
+            addressError.innerHTML = ' Address must be at least 15 characters long.';
             errorCount += 1;
 
         } else if (address.value.length > 100){
-            addressError.innerHTML = '&#x2022; Address must be within 100 characters long.';
+            addressError.innerHTML = ' Address must be within 100 characters long.';
             errorCount += 1;
 
         }
 
         // Validation for contact
         if (contact.value.length > 11 || contact.value.length < 10){
-            contactError.innerHTML = '&#x2022; Your contact number must be within 10-11 digits only.';
+            contactError.innerHTML = ' Your contact number must be within 10-11 digits only.';
             errorCount += 1;
 
         } else if (!Numpattern.test(contact.value)){
-            contactError.innerHTML = '&#x2022; Your contact number must be must contain number only.';
+            contactError.innerHTML = ' Your contact number must be must contain number only.';
             errorCount += 1;
         }
 
         // Validate delivery method
         if (deliveryMethod.value === "none"){
-            deliveryMethodError.innerHTML = '&#x2022; Please select a valid delivery method.';
+            deliveryMethodError.innerHTML = ' Please select a valid delivery method.';
             errorCount += 1;
 
         } else if (deliveryMethod.value === ""){
-            deliveryMethodError.innerHTML = '&#x2022; Please select a valid delivery method.';
+            deliveryMethodError.innerHTML = ' Please select a valid delivery method.';
             errorCount += 1;
 
         }
@@ -810,7 +810,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Validate the overall total price
         if (overallTotalPrice === 0 || isNaN(overallTotalPrice)) {
-            overallTotalPriceError.innerHTML = '&#x2022; You have no orders right now.';
+            overallTotalPriceError.innerHTML = ' You have no orders right now.';
             errorCount += 1;
         }
 

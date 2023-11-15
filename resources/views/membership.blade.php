@@ -53,9 +53,9 @@
     <aside id='membership-aside'>
         {{--Display Total Spending--}}
         @if(isset($totalAmountPaid))
-            <p><strong>Your Total Spent:</strong> RM{{ $totalAmountPaid }}</p>
+            <p><strong>Your Total Spent:</strong> RM {{ $totalAmountPaid }}</p>
             <p><strong>Current Tier Level:</strong> {{ $tier }}</p>
-            <p><strong>Discount Amount:</strong> {{ $discountAmount }}</p>
+            <p><strong>Discount Amount: </strong> RM {{ $discountAmount }}</p>
         @endif
     </aside>
 

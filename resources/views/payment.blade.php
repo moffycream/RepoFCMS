@@ -139,13 +139,13 @@
             <tr>
                 <td>
                     <div class='payment-form-payment-amount'>
-                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" value="{{ session('totalPrice') }}" readonly required>
+                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" value="{{ $overallTotalPrice - $member->discount_amount }}" readonly required>
                     </div>
                 </td>
             </tr>
 
             <tr>
-                <td><button type="submit">Confirm Payment</button></td>
+                <td><button class='button' type="submit">Confirm Payment</button></td>
             </tr>
         </table>
     </form>

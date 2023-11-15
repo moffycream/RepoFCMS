@@ -14,6 +14,7 @@
     max-width: 1600px;
     margin: 0 auto;
     margin-top: 60px;
+    margin-bottom: 60px;
     padding: 20px;
     background-color: #e8dcd4;
     border-radius: 20px;
@@ -58,6 +59,7 @@
     border-radius: 10px 10px 0 0;
     overflow: hidden;
     text-align: center;
+    table-layout: auto; 
 }
 
 #display_purchase_item_table thead tr {
@@ -96,18 +98,8 @@
 
 /* Styles for the "Next" button */
 #purchase_form_table button[type="submit"] {
-    background-color: #473447;
-    color: #fff;
     padding: 10px 30px;
-    border: none;
-    cursor: pointer;
     margin-top: 10px;
-    border-radius: 5px 5px 5px 5px;
-}
-
-#purchase_form_table button[type="submit"]:hover {
-    background-color: #e0ccd4;
-    transition: all 0.3s ease;
 }
 
 /* error message */
@@ -188,19 +180,8 @@
 
 /* Styles for the "Confirm Payment" button */
 #payment_form_table button[type="submit"] {
-    background-color: #473447;
-    color: #fff;
     padding: 10px 20px;
-    border: none;
-    cursor: pointer;
     margin-top: 10px;
-    border-radius: 5px;
-
-}
-
-#payment_form_table button[type="submit"]:hover {
-    background-color: #e0ccd4;
-    transition: all 0.3s ease;
 }
 
 #payment_form_table input,
@@ -325,11 +306,11 @@
 }
 
 #membership-aside{
+    width:270px;
     text-align: left;
     border: 3px solid #00000077;
     border-radius: 10px;
-    margin-left: 85%;
-    margin-right: 0.7%;
+    margin-left: 83.2%;
     margin-top: 10px;
     padding: 10px;
     background-color: #e0ccd4;
