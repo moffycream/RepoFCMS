@@ -137,6 +137,12 @@ class AnalyticsController extends Controller
 
     private function calculatePurchaseFrequency($orders)
     {
+
+        if ($orders->count('orderID') === 0) 
+        {
+            return 0;
+        }
+        
         $numberOfPurchases = $orders->count('orderID');
 
         $time = 365; // 365 days in a year

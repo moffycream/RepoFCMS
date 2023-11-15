@@ -138,6 +138,8 @@ class FoodMenuController extends Controller
             return response()->json(['success' => true]);
         }
 
+        session(['cart' => $cart]);
+
         return response()->json(['success' => false, 'message' => 'Item not found in the cart']);
     }
 
@@ -167,6 +169,8 @@ class FoodMenuController extends Controller
             return response()->json(['success' => true]);
         }
 
+        session(['cart' => $cart]);
+
         return response()->json(['success' => false, 'message' => 'Item not found in the cart.']);
     }
 
@@ -190,7 +194,7 @@ class FoodMenuController extends Controller
         $cart = $request->session()->get('cart', []);
 
         // Clear the cart after checkout
-        $request->session()->forget('cart');
+        //$request->session()->forget('cart');
 
         // Retrieve notifications
         $notificationController = app(NotificationController::class);
