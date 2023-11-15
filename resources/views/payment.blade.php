@@ -38,7 +38,13 @@
                             @if($membership->isNotEmpty())
                                 <ul>
                                     @foreach($membership as $member)
-                                        <p>RM {{ $member->discount_amount }}</p>
+                                        @if($member->remaining_discounts > 0)
+                                            <ul>
+                                                <p>RM {{ $member->discount_amount }}</p>
+                                            </ul>
+                                        @else
+                                            <p>RM 0</p>
+                                        @endif
                                     @endforeach
                                 </ul>
                             @else
@@ -60,7 +66,11 @@
                         <!-- Total price after discount -->
                         @if($overallTotalPrice > 0 && isset($membership) && $membership->isNotEmpty())
                             @foreach($membership as $member)
-                                <p>RM {{ $overallTotalPrice - $member->discount_amount }}</p>
+                                @if($member->remaining_discounts > 0)
+                                    <p>RM {{ $overallTotalPrice - $member->discount_amount }}</p>
+                                @else
+                                    <p>RM {{ $overallTotalPrice }}</p>
+                                @endif
                             @endforeach
                         @else
                             <p>RM: -</p>
