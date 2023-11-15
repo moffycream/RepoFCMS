@@ -60,9 +60,12 @@ class MembershipController extends Controller
                 $discountAmount = $this->getDiscountAmount($tier, $userID);
 
                 // Store the data in the 'membership' table
-                Membership::updateOrCreate(['userID' => $userID], ['tier_level' => $tier, 'total_payments' => $totalAmountPaid, 'discount_amount' => $discountAmount,]);
+                $membership = Membership::updateOrCreate(['userID' => $userID], ['tier_level' => $tier, 'total_payments' => $totalAmountPaid, 'discount_amount' => $discountAmount,]);
 
-                return view('membership', ['totalAmountPaid' => $totalAmountPaid, 'tier' => $tier, 'discountAmount'=> $discountAmount,]);
+                // Retrieve remaining_discounts
+                $remainingDiscounts = $membership->remaining_discounts;
+
+                return view('membership', ['totalAmountPaid' => $totalAmountPaid, 'tier' => $tier, 'discountAmount'=> $discountAmount, 'discountRemaining'=> $remainingDiscounts]);
             }
         }
         return view('login.access-denied');
@@ -96,5 +99,33 @@ class MembershipController extends Controller
         }
 
         return 0;
+    }
+
+    public function updateRemainingDiscount($userID) 
+    {
+        $membership = Membership::where('userID', $userID)->first();
+
+        if ($membership) {
+            // Check if the remaining discounts > 0
+            if ($membership->remaining_discounts > 0 && $membership->tier_level > 0) {
+                $membership->remaining_discounts -= 1;
+                $membership->save();
+            }
+        }
+    }
+
+    public function resetRemainingDiscounts($userID)
+    {
+        $membership = Membership::where('userID', $userID)->first();
+
+        if ($membership) {
+            // Check if the last reset date is null or if the current second is different from the last reset second
+            if ($membership->last_reset_date === null || date('m') != date('m', strtotime($membership->last_reset_date))) {
+                // Reset remaining discounts for the membership
+                $membership->remaining_discounts = 5;
+                $membership->last_reset_date = now();
+                $membership->save();
+            }
+        }
     }
 }

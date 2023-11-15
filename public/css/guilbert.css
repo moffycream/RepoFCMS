@@ -14,6 +14,7 @@
     max-width: 1600px;
     margin: 0 auto;
     margin-top: 60px;
+    margin-bottom: 60px;
     padding: 20px;
     background-color: #e8dcd4;
     border-radius: 20px;
@@ -58,6 +59,7 @@
     border-radius: 10px 10px 0 0;
     overflow: hidden;
     text-align: center;
+    table-layout: auto; 
 }
 
 #display_purchase_item_table thead tr {
@@ -96,18 +98,8 @@
 
 /* Styles for the "Next" button */
 #purchase_form_table button[type="submit"] {
-    background-color: #473447;
-    color: #fff;
     padding: 10px 30px;
-    border: none;
-    cursor: pointer;
     margin-top: 10px;
-    border-radius: 5px 5px 5px 5px;
-}
-
-#purchase_form_table button[type="submit"]:hover {
-    background-color: #e0ccd4;
-    transition: all 0.3s ease;
 }
 
 /* error message */
@@ -162,24 +154,9 @@
     text-align: center;
 }
 
-#OnlineBankingForm label {
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-#CreditCardForm label {
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-#DebitCardForm label {
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
+#OnlineBankingForm label,
+#CreditCardForm label,
+#DebitCardForm label,
 #EwalletForm label {
     font-weight: bold;
     display: inline-block;
@@ -203,19 +180,8 @@
 
 /* Styles for the "Confirm Payment" button */
 #payment_form_table button[type="submit"] {
-    background-color: #473447;
-    color: #fff;
     padding: 10px 20px;
-    border: none;
-    cursor: pointer;
     margin-top: 10px;
-    border-radius: 5px;
-
-}
-
-#payment_form_table button[type="submit"]:hover {
-    background-color: #e0ccd4;
-    transition: all 0.3s ease;
 }
 
 #payment_form_table input,
@@ -233,25 +199,29 @@
     width: 300px;
 }
 
+/* Styles for the payment amount */
+.payment-form-payment-amount {
+    text-align: left;
+}
+
+.payment-form-payment-amount label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.payment-form-payment-amount input {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
+    width: 100%;
+}
+
 .payment_error{
     color: red;
-}
-
-#membership-aside{
-    text-align: left;
-    border: 3px solid #00000077;
-    border-radius: 10px;
-    margin-left: 85%;
-    margin-right: 0.7%;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #e0ccd4;
-    font-size: 20px;
-}
-
-#membership-aside p{
-    padding-bottom: 10px;
-}
+}   
 
 /*---------------MEMBERSHIP PAGE-------------*/
 .membership-container {
@@ -333,6 +303,22 @@
 
 .benefit-item {
     margin: 5px 0;
+}
+
+#membership-aside{
+    width:270px;
+    text-align: left;
+    border: 3px solid #00000077;
+    border-radius: 10px;
+    margin-left: 83.2%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e0ccd4;
+    font-size: 20px;
+}
+
+#membership-aside p{
+    padding-bottom: 10px;
 }
 
 /*---------------ORDER TRACKING PAGE-------------*/
@@ -419,9 +405,22 @@
 }
 
 #customer-container-track-button{
+    display: inline-block;
+    background-color: #473447;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    margin: 20px;
+    cursor: pointer;
     width: 500px;
     height: 50px;
     font-size: 20px;
     font-weight: 600;
-    margin-left: 110px;
+    margin-left: 40px;
+}
+
+#customer-container-track-button:hover{
+    background-color: #2b0548;
+    transition: 0.5s;
 }

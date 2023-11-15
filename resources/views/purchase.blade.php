@@ -126,12 +126,12 @@
                 </td>
 
                 <td>
-                    <textarea id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Message: (e.g. Cleaning crew, special request )" rows="4" cols="50"></textarea>
+                    <textarea id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Message: (e.g. Cleaning crew, special request )" rows="4" cols="50" value="none"></textarea>
                     <div id="purchase_orderNotes_error" class="purchase_error"></div>
                 </td>
             </tr>
 
-            <td><button type="submit">Next</button></td>
+            <td><button class='button' type="submit">Next</button></td>
         </table>
     </form>
 

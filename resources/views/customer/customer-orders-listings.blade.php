@@ -67,7 +67,7 @@
 
             <div>
                 <form action="{{ route('order-tracking', ['orderID' => $selectedOrder->orderID]) }}" method="get">
-                    <button type="submit" id='customer-container-track-button' class="button">Track Order</button>
+                    <button type="submit" id='customer-container-track-button'>Track Order</button>
                 </form>
             </div>
 
@@ -92,7 +92,7 @@
                 {
                 $classStatus = "deliveryontheway";
                 }
-                else if($$selectedOrder->status=="Ready for pickup")
+                else if($selectedOrder->status=="Ready for pickup")
                 {
                 $classStatus = "readyforpickup";
                 }

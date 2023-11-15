@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('total_payments', 10, 2); // precison 10 and 2 decimal point
             $table->integer('discount_amount')->default(0); // default discount is 0
             $table->integer('remaining_discounts')->default(5); // only 5 discount 
+            $table->timestamp('last_reset_date')->nullable();
             $table->timestamps();
             $table->foreign('userID')->references('userID')->on('user_accounts')->onDelete('cascade');
 

@@ -49,13 +49,10 @@ class OrderHistoryController extends Controller
             $paymentInfo = $selectedOrder->payment;
 
             if ($userAccountController->verifyCustomer()) {
-                // Debug statement to check if paymentInfo exists
+              
                 if ($paymentInfo) {
-                    // Payment information exists, you can add debug statements or log it
-                    // Example: Log paymentInfo to Laravel log
                     Log::info('Payment Information: ' . json_encode($paymentInfo));
                 } else {
-                    // Payment information doesn't exist
                     Log::info('No payment information found for Order #' . $selectedOrder->orderID);
                 }
 
