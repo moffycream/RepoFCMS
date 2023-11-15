@@ -755,7 +755,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const addressError = document.getElementById('purchase_address_error');
         const contactError = document.getElementById('purchase_contact_error');
         const deliveryMethodError = document.getElementById('purchase_deliveryMethod_error');
-        const orderNotesError = document.getElementById('purchase_orderNotes_error');
         const overallTotalPriceError = document.getElementById('purchase_overallTotalPrice_error');
 
 
@@ -765,7 +764,6 @@ document.addEventListener('DOMContentLoaded', function () {
         addressError.innerHTML = '';
         contactError.innerHTML = '';
         deliveryMethodError.innerHTML = '';
-        purchase_orderNotes_error.innerHTML = '';   
         overallTotalPriceError.innerHTML = '';
 
         //  validation for name
@@ -807,8 +805,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Validate Order Notes
         if(orderNotes.value === ""){
-            orderNotesError.innerHTML = '&#x2022; Please input none if there is no extra message.';
-            errorCount += 1;
+            orderNotes.value = 'none';
         }
 
         // Validate the overall total price
