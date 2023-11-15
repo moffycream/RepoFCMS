@@ -73,6 +73,6 @@ class PurchaseController extends Controller
             }
         }
 
-        return view('payment', ['totalPrice' => $overallTotalPrice, 'notifications' => $notificationController->getNotification(), 'orderID' => $order->orderID, 'menuIDs' => $menuIDs, 'menuQuantities' => $request->input('menu_quantities')]);
+        return redirect('payment')->with(['totalPrice' => $overallTotalPrice, 'notifications' => $notificationController->getNotification(), 'orderID' => $order->orderID, 'menuIDs' => $menuIDs, 'menuQuantities' => $request->input('menu_quantities')]);
     }
 }

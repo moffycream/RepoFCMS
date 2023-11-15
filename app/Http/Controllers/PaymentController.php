@@ -33,7 +33,7 @@ class PaymentController extends Controller
             $membership = Membership::where('userID', $userID)->get();
         }
     
-        // Checks whether it is a customer session or not
+        // Checks whether it is a c     ustomer session or not
         $this->userAccountController = $userAccountController;
     
         if ($this->userAccountController->verifyCustomer()) {

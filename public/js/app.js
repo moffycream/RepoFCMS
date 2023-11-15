@@ -371,15 +371,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     </td>
 
                     <td>
-                        <label for="payment_amount">Amount: </label>
-                    </td>
-
-                    <td>
-                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
-                        <div id="payment_paymentAmount_error" class="payment_error"></div>
-                    </td>
-
-                    <td>
                         <label for="description">Description: </label>
                     </td>
 
@@ -429,15 +420,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>
                         <input type="text" id="payment_billingAddress" name="payment_billingAddress" placeholder="Billing Address" required>
                         <div id="payment_billingAddress_error" class="payment_error"></div>
-                    </td>
-                
-                    <td>
-                        <label for="payment_amount">Amount: </label>
-                    </td>
-        
-                    <td>
-                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
-                        <div id="payment_paymentAmount_error" class="payment_error"></div>
                     </td>
                 
                     <td>
@@ -493,15 +475,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     </td>
                 
                     <td>
-                        <label for="amount">Amount: </label>
-                    </td>
-        
-                    <td>
-                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
-                        <div id="payment_paymentAmount_error" class="payment_error"></div>
-                    </td>
-                
-                    <td>
                         <label for="description">Description: </label>
                     </td>
         
@@ -539,15 +512,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>
                         <input type="text" id="ewallet_username" name="ewallet_username" placeholder="Username" required>
                         <div id="payment_ewalletUsername_error" class="payment_error"></div>
-                    </td>
-                            
-                    <td>
-                        <label for="payment_amount">Amount: </label>
-                    </td>
-        
-                    <td>
-                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" required>
-                        <div id="payment_paymentAmount_error" class="payment_error"></div>
                     </td>
                 
                     <td>
@@ -623,20 +587,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const username = document.getElementById('bank_username').value;
             const password = document.getElementById('bank_password').value;
             const accountNumber = document.getElementById('account_number').value;
-            const amount = document.getElementById('payment_amount').value;
 
             const selectedBankError = document.getElementById('payment_selectedBank_error');
             const usernamekError = document.getElementById('payment_bankUsername_error');
             const passwordError = document.getElementById('payment_bankPassword_error');
             const accountNumberError = document.getElementById('payment_accountNumber_error');
-            const amountError = document.getElementById('payment_paymentAmount_error');
 
             // Clear previous errors
             selectedBankError.innerHTML = '';
             usernamekError.innerHTML = '';
             passwordError.innerHTML = '';
             accountNumberError.innerHTML = '';
-            amountError.innerHTML = '';
 
             //  validate selected bank mehtod
             if (selectedBank.value === "none"){
@@ -676,32 +637,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
 
-            //  validation for Amount
-            if (!Numpattern.test(amount)) {
-                amountError.innerHTML = '&#x2022; Amount must contain numbers only.';
-                errorCount += 1;
-
-            }
-
         } else if (PaymentChoice.value === "CreditCard" || PaymentChoice.value === "DebitCard") {
             const cardNumber = document.getElementById('payment_cardNumber').value;
             const cvv = document.getElementById('payment_cvv').value;
             const cardHolder = document.getElementById('payment_cardholder').value;
             const billingAddress = document.getElementById('payment_billingAddress').value;
-            const amount = document.getElementById('payment_amount').value;
 
             const cardNumberError = document.getElementById('payment_cardNumber_error');
             const cvvError = document.getElementById('payment_cvv_error');
             const cardHolderError = document.getElementById('payment_cardHolder_error');
             const billingAddressError = document.getElementById('payment_billingAddress_error');
-            const amountError = document.getElementById('payment_paymentAmount_error');
 
             // Clear previous errors
             cardNumberError.innerHTML = '';
             cvvError.innerHTML = '';
             cardHolderError.innerHTML = '';
             billingAddressError.innerHTML = '';
-            amountError.innerHTML = '';
 
             //  validation for Card Number
             if (!Numpattern.test(cardNumber)) {
@@ -746,26 +697,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
 
-            //  validation for Amount
-            if (!Numpattern.test(amount)) {
-                amountError.innerHTML = '&#x2022; Amount must contain numbers only.';
-                errorCount += 1;
-
-            }
-
         } else if (PaymentChoice.value === "Ewallet") {
             const userName = document.getElementById('ewallet_username').value;
             const ewalletType = document.getElementById('eWallet_type');
-            const amount = document.getElementById('payment_amount').value;
 
             const ewalletTypeError = document.getElementById('payment_ewalletType_error');
             const ewalletUsernameError = document.getElementById('payment_ewalletUsername_error');
-            const amountError = document.getElementById('payment_paymentAmount_error');
 
             // Clear previous errors
             ewalletTypeError.innerHTML = '';
             ewalletUsernameError.innerHTML = '';
-            amountError.innerHTML = '';
 
             //  validate selected bank mehtod
             if (ewalletType.value === "none") {
@@ -776,12 +717,6 @@ document.addEventListener('DOMContentLoaded', function () {
             //  validation for e wallet username
             if (userName.length < 5 || userName.length > 25) {
                 ewalletUsernameError.innerHTML = '&#x2022; Username must be within 5 to 25 characters long.';
-                errorCount += 1;
-            }
-
-            //  validation for Amount
-            if (!Numpattern.test(amount)) {
-                amountError.innerHTML = '&#x2022; Amount must contain numbers only.';
                 errorCount += 1;
             }
 

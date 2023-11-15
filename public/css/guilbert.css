@@ -162,24 +162,9 @@
     text-align: center;
 }
 
-#OnlineBankingForm label {
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-#CreditCardForm label {
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
-#DebitCardForm label {
-    font-weight: bold;
-    display: inline-block;
-    margin-bottom: 10px;
-}
-
+#OnlineBankingForm label,
+#CreditCardForm label,
+#DebitCardForm label,
 #EwalletForm label {
     font-weight: bold;
     display: inline-block;
@@ -233,25 +218,29 @@
     width: 300px;
 }
 
+/* Styles for the payment amount */
+.payment-form-payment-amount {
+    text-align: left;
+}
+
+.payment-form-payment-amount label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.payment-form-payment-amount input {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
+    width: 100%;
+}
+
 .payment_error{
     color: red;
-}
-
-#membership-aside{
-    text-align: left;
-    border: 3px solid #00000077;
-    border-radius: 10px;
-    margin-left: 85%;
-    margin-right: 0.7%;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #e0ccd4;
-    font-size: 20px;
-}
-
-#membership-aside p{
-    padding-bottom: 10px;
-}
+}   
 
 /*---------------MEMBERSHIP PAGE-------------*/
 .membership-container {
@@ -333,6 +322,22 @@
 
 .benefit-item {
     margin: 5px 0;
+}
+
+#membership-aside{
+    text-align: left;
+    border: 3px solid #00000077;
+    border-radius: 10px;
+    margin-left: 85%;
+    margin-right: 0.7%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e0ccd4;
+    font-size: 20px;
+}
+
+#membership-aside p{
+    padding-bottom: 10px;
 }
 
 /*---------------ORDER TRACKING PAGE-------------*/

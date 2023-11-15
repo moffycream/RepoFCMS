@@ -30,17 +30,15 @@
 
                 <tr>
                     <td>
-                        <p>Discount Given: </p>
+                        <p>Discount Given: -</p>
                     </td>
 
                     <td>
-                        <p>- RM </p>
                         @if(isset($membership))
                             @if($membership->isNotEmpty())
-                                <p>Discount:</p>
                                 <ul>
                                     @foreach($membership as $member)
-                                        <li>{{ $member->discount_amount }}</li>
+                                        <p>RM {{ $member->discount_amount }}</p>
                                     @endforeach
                                 </ul>
                             @else
@@ -55,11 +53,18 @@
 
                 <tr>
                     <td>
-                        <p>Total Price: </p>
+                        <p>Total Price:</p>
                     </td>
 
                     <td>
-                        <p>RM </p>
+                        <!-- Total price after discount -->
+                        @if($overallTotalPrice > 0 && isset($membership) && $membership->isNotEmpty())
+                            @foreach($membership as $member)
+                                <p>RM {{ $overallTotalPrice - $member->discount_amount }}</p>
+                            @endforeach
+                        @else
+                            <p>RM: -</p>
+                        @endif                    
                     </td>
                 </tr>
             </table>
@@ -69,13 +74,15 @@
         @csrf
 
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
-        <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
-        <input type="hidden" name="orderID" value="{{ $orderID }}">
-        @foreach($menuIDs as $menuID)
-        <input type="hidden" name="menuIDs[]" value="{{$menuID}}">
+        <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ session('totalPrice') }}">
+        <input type="hidden" name="orderID" value="{{session('orderID')}}">
+
+        @foreach(session('menuIDs', []) as $menuID)
+            <input type="hidden" name="menuIDs[]" value="{{ $menuID }}">
         @endforeach
-        @foreach($menuQuantities as $menuQuantity)
-        <input type="hidden" name="menuQuantities[]" value="{{$menuQuantity}}">
+
+        @foreach(session('menuQuantities', []) as $menuQuantity)
+            <input type="hidden" name="menuQuantities[]" value="{{ $menuQuantity }}">
         @endforeach
 
         <table id="payment_form_table">
@@ -122,6 +129,18 @@
                     <script>
                         const assetUrl = "{{ asset('images/payment-QR-code.png') }}";
                     </script>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label class='payment-form-payment-amount' for="payment_amount">Amount: </label></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class='payment-form-payment-amount'>
+                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" value="{{ session('totalPrice') }}" readonly required>
+                    </div>
                 </td>
             </tr>
 
