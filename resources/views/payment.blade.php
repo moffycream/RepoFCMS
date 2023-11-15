@@ -149,7 +149,15 @@
             <tr>
                 <td>
                     <div class='payment-form-payment-amount'>
-                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" value="{{ $overallTotalPrice - $member->discount_amount }}" readonly required>
+                        @if($overallTotalPrice > 0 && isset($membership) && $membership->isNotEmpty())
+                            @if($membership[0]->remaining_discounts > 0)
+                                <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" value="{{ $overallTotalPrice - $membership[0]->discount_amount }}" readonly required>
+                            @else
+                                <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" value="{{ $overallTotalPrice }}" readonly required>
+                            @endif
+                        @else
+                            <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" value="0" readonly required>
+                        @endif
                     </div>
                 </td>
             </tr>
