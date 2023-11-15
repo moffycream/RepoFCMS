@@ -114,8 +114,8 @@
                     <select id="purchase_deliveryMethod" name="purchase_deliveryMethod">
                         <option value="none" disabled selected>Delivery method</option>
                         <option value="Delivery">Delivery</option>
-                        <option value="Self_Pickup">Self Pick Up</option>
-                    </select>
+                        <option value="Self Pick Up">Self Pick Up</option>
+                    </select> 
                     <div id="purchase_deliveryMethod_error" class="purchase_error"></div>
                 </td>
             </tr>
@@ -126,12 +126,12 @@
                 </td>
 
                 <td>
-                    <textarea id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Message: (e.g. Cleaning crew, special request )" rows="4" cols="50"></textarea>
+                    <textarea id="purchase_orderNotes" name="purchase_orderNotes" placeholder="Message: (e.g. Cleaning crew, special request )" rows="4" cols="50" value="none"></textarea>
                     <div id="purchase_orderNotes_error" class="purchase_error"></div>
                 </td>
             </tr>
 
-            <td><button type="submit">Next</button></td>
+            <td><button class='button' type="submit">Next</button></td>
         </table>
     </form>
 

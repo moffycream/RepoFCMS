@@ -42,6 +42,7 @@ class OrderController extends Controller
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "Preparing";
+        $selectedOrder->status_update_time = now();
         $selectedOrder->save();
 
         $notificationController->createNotification('Order ' . $orderID . ' has been accepted.', $selectedOrder->userID);
@@ -61,6 +62,7 @@ class OrderController extends Controller
         {
             $selectedOrder->status = "Ready for pickup";
         }
+        $selectedOrder->status_update_time = now();
         $selectedOrder->save();
 
         $notificationController->createNotification('Order ' . $orderID . ' is ready for pickup.', $selectedOrder->userID);
@@ -73,6 +75,7 @@ class OrderController extends Controller
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "Completed";
         $selectedOrder->updated_at = now();
+        $selectedOrder->status_update_time = now();
         $selectedOrder->save();
 
         $notificationController = app(NotificationController::class);
@@ -86,7 +89,9 @@ class OrderController extends Controller
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "Order Cancelled. The refund will be done within 5-7 working days.";
+        $selectedOrder->status_update_time = now();
         $selectedOrder->save();
+        Order::updateOrCreate(['orderID' => $orderID], ['status' => $selectedOrder->status,'status_update_time' => $selectedOrder->status_update_time,]);
 
         $notificationController = app(NotificationController::class);
         $notificationController->createNotification('Order ' . $orderID . ' has been cancelled.', $selectedOrder->userID);
@@ -99,6 +104,7 @@ class OrderController extends Controller
         $orders = Order::all();
         $selectedOrder = Order::find($orderID);
         $selectedOrder->status = "Refunded";
+        $selectedOrder->status_update_time = now();
         $selectedOrder->save();
         $notificationController = app(NotificationController::class);
         $notificationController->createNotification('Order ' . $orderID . ' has been refunded.', $selectedOrder->userID);

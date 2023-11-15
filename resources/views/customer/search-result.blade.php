@@ -7,7 +7,7 @@
     <div class="search-filter-form-container">
         <form class="search-filter-form" method="POST" action="{{ route('search.filter') }}">
             @csrf
-            <p><span class="search-bold">Price filter</span></p>
+            <p><span class="filter-title">Price filter</span></p>
             <input type="hidden" name="search" value="{{$search}}">
             <div>
                 <input type="radio" name="filter" id="price0" value="price0">
@@ -33,11 +33,11 @@
                 <input type="radio" name="filter" id="price5" value="price5">
                 <label for="price5">RM 401 - RM 500</label>
             </div>
-            <div>
+            <div>   
                 <input type="radio" name="filter" id="price6" value="price6">
                 <label for="price6">RM 501 and above</label>
             </div>
-            <button class="search-filter-button" type="submit">Submit</button>
+            <button class="submit-button" type="submit">Submit</button>
         </form>
     </div>
     <div class="search-results">

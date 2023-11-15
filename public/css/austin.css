@@ -447,6 +447,17 @@
     margin: auto;
 }
 
+.inventory-edit-button:hover,
+.inventory-save-button:hover,
+.inventory-cancel-button:hover,
+.inventory-delete-button:hover,
+.inventory-add-button:hover,
+.add-menu-edit-button:hover,
+.add-menu-save-button:hover,
+.add-menu-cancel-button:hover{
+    background-color: #55086137;
+}
+
 .add-menu-edit-button,
 .add-menu-save-button,
 .add-menu-cancel-button{
@@ -519,7 +530,7 @@
 
 .inventory-table-title-big{
     border: none;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -557,6 +568,7 @@
 
 .search-container{
     display: flex;
+    background-color: var(--color-2);
 }
 
 .search-results{
@@ -567,9 +579,9 @@
 .search-result{
     display: flex;
     flex-wrap: wrap;
-    margin: 25px;
     font-size: 20px;
     background-color: #eeeeee;
+    padding: 25px;
 }
 
 .search-img{    
@@ -584,6 +596,11 @@
     border: solid 0.5px rgba(0, 0, 0, 0.164);
 }
 
+.filter-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .search-filter-form-container{
 height: 100vh;
 }
@@ -593,9 +610,7 @@ height: 100vh;
     flex-direction: column;
     min-width: 10vw;
     margin: 1vh 0.5vw 0;
-    background-color: #eeeeee;
-    border-bottom: solid 0.5px rgba(0, 0, 0, 0.164);
-    padding: 5px;
+        padding: 5px;
 }
 
 .search-bold{

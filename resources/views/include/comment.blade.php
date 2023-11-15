@@ -6,8 +6,14 @@ $commentID = $comment->commentID;
 $nestingLevel = $comment->getNestingLevel();
 $replyID = $commentID;
 @endphp
-<div class="row-container-comment comment" data-nesting-level="{{$nestingLevel}}" id="comment-{{$commentID}}">
-    <div class="comment-container">
+
+@if (session()->has('errorCommentID'))
+<div class="row-container-comment comment" data-nesting-level="{{$nestingLevel}}" id="comment-{{$commentID}}" style="display: block;">
+@else
+<div class="row-container-comment comment" data-nesting-level="{{$nestingLevel}}" id="comment-{{$commentID}}" style="display: none;">
+@endif
+    
+<div class="comment-container">
         <div class="user-profile">
             <div class="col-user-profile profile-pic">
                 @php
@@ -31,7 +37,7 @@ $replyID = $commentID;
                 <!-- Only the review history page can activate this -->
 
                 @if ($comment->user->username == session('username') && isset($reviewHistory)) 
-                <a href="{{route('review.comment.edit', $commentID)}}"><i class="fas fa-edit"></i><span>Edit</span></a>
+                <a onclick="toggleReviewCommentEdit('{{$commentID}}')"><i class="fas fa-edit"></i><span>Edit</span></a>
                 <a href="{{route('review.comment.delete', $commentID)}}"><i class="fas fa-trash"></i><span>Delete</span></a>
                 @endif
             </div>
@@ -61,6 +67,34 @@ $replyID = $commentID;
                 </form>
             </div>
         </div>
+    </div>
+    @if (session()->has('errorCommentID') && session('errorCommentID') == $commentID)
+    <div class="container-review-edit" style="display: block;" id="edit-comment-form-{{$commentID}}">
+    @else
+    <div class="container-review-edit" style="display: none;" id="edit-comment-form-{{$commentID}}">
+    @endif
+    <div class="review-edit-bg"></div>
+    <div class="review-edit">
+        <h1>Edit Comment</h1>
+        <form method="post" action="{{ route('review.comment.edit.submit', $commentID) }}">
+            @csrf
+
+            <div class="row">
+                <p>Your comment *</p>
+                <textarea id="review" name="commentContent" placeholder="Your comment" >{{$comment->commentContent}}</textarea>
+                @if (session()->has('errorCommentID') && session('errorCommentID') == $commentID)
+                @if ($errors->has('commentContent'))
+                <span class="error">{{ $errors->first('commentContent') }}</span>
+                @endif
+                @endif
+            </div>
+
+            <div class="row-action">
+                <a onclick="toggleReviewCommentEdit('{{$commentID}}')">Cancel</a>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
     </div>
     @foreach($comment->replies as $reply)
     @include('include.reply' , ['reply' => $reply, 'replyID' => $replyID])

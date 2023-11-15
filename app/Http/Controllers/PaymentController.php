@@ -24,13 +24,33 @@ class PaymentController extends Controller
 
     protected $membershipController;
 
+    public function __construct(MembershipController $membershipController)
+    {
+        $this->membershipController = $membershipController;
+    }
+
     public function index(UserAccountController $userAccountController)
     {
-        // Checks whether is customer session or not
+        $userAccountController = app(UserAccountController::class);
+        $userAccount = UserAccounts::where('username', session('username'))->first();
+        $membership = [];
+    
+        if ($userAccount) {
+            $userID = $userAccount->userID;
+            $membership = Membership::where('userID', $userID)->get();
+        }
+
+        // Check if remaining_discount is 0, then call resetRemainingDiscounts function
+        $membership_remain_discount = Membership::where('userID', $userID)->first();
+        if ($membership_remain_discount && $membership_remain_discount->remaining_discounts === 0) {
+            $this->membershipController->resetRemainingDiscounts($userID);
+        }
+    
+        // Checks whether it is a c     ustomer session or not
         $this->userAccountController = $userAccountController;
-        
+    
         if ($this->userAccountController->verifyCustomer()) {
-            return view('payment', ['notifications' => Notification::all()]);
+            return view('payment', ['notifications' => Notification::all(), 'membership' => $membership]);
         } else {
             return view('login.access-denied');
         }
@@ -142,12 +162,14 @@ class PaymentController extends Controller
                     }
                 }
 
-
                 foreach ($inventoryCounts as $ID => $count) {
                     $inventory = Inventory::find($ID);
                     $inventory->amount -= $count;
                     $inventory->save();
                 }
+
+                // Update remaining discount in the MembershipController
+                $this->membershipController->updateRemainingDiscount($userID);
 
                 return redirect()->route('payment.complete');
             }
@@ -157,16 +179,5 @@ class PaymentController extends Controller
     public function paymentComplete()
     {
         return view('payment-complete');
-    }
-
-    public function viewMembership($userID){
-        $userAccountController = app(UserAccountController::class);
-        $viewMembership = Membership::find($userID);
-        
-        if ($userAccountController->verifyCustomer()) {
-            return view('payment', ['viewMembership' => $viewMembership]);
-        } else {
-            return view('login.access-denied');
-        }
     }
 }

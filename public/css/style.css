@@ -513,7 +513,7 @@ article {
 
 .container-home>.section-1 {
     width: 100%;
-    min-height: 30vh;
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -751,6 +751,7 @@ article {
     color: #ffffff;
     padding: 10px;
     transition: 0.1s;
+    border-radius: 5px;
 }
 
 .submit-button:hover {

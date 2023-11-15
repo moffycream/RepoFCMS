@@ -73,6 +73,7 @@ class OrderListingController extends Controller
         $order = Order::find($orderID);
         $selectedOrder = $order;
         $selectedOrder->status = 'Order Cancelled. The refund will be done within 5-7 working days.';
+        $selectedOrder->status_update_time = now();
         $selectedOrder->save();
         return redirect('/customer-orders')->with(['orders' => $order]);
     }
@@ -85,6 +86,7 @@ class OrderListingController extends Controller
         $selectedOrder = $order;
         $selectedOrder->status = 'Completed';
         $selectedOrder->save();
+        $selectedOrder->status_update_time = now();
         $selectedOrder->updated_at = now();
         return redirect('/customer-orders')->with(['orders' => $order]);
     }

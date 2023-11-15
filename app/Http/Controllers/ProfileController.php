@@ -25,7 +25,6 @@ class ProfileController extends Controller
         return view('customer.profile', ['user' => $user]);
     }
 
-
     public function editProfile(Request $request)
     {
         $validator = app(ValidationController::class);

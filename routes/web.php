@@ -135,7 +135,7 @@ Route::get('/op-view-order/cancel/{orderID}', [OrderController::class, 'cancelOr
 Route::get('/customer-orders', [OrderListingController::class, 'index']);
 
 // Payment
-Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+Route::get('/payment', [PaymentController::class, 'index']);
 Route::post('/payment/store', [PaymentController::class, 'storePaymentData'])->name('payment.store');
 Route::get('/payment/payment-complete', [PaymentController::class, 'paymentComplete'])->name('payment.complete');
 
@@ -196,5 +196,3 @@ Route::get('/membership', [MembershipController::class, 'UpdateMembership']);
 
 // Customer - Order Tracking
 Route::get('/order-tracking/{orderID}', [OrderListingController::class, 'trackOrder'])->name('order-tracking');
-
-// Route::post('/payment', [PaymentController::class, 'viewMembership'])->name('viewMembership');

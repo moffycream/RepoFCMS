@@ -60,9 +60,8 @@
             </div>
             <br>
             <div class="admin-register-centre-column">
-
                 @endif
-                <select name="accountType" id="accountType" title="select account type">
+                <select name="accountType" class="accountType" id="accountType" title="select account type">
                     <optgroup label="Choose account type">
                         <option value="Customer">Customer</option>
                         <option value="OperationTeam">Operation Team</option>

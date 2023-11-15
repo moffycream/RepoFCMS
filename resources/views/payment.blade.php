@@ -4,30 +4,95 @@
 
 <div class="container-payment-page">
 
-    <h1>Orders:</h1>
+    <h1>Payment</h1>
+
+    @php
+        $overallTotalPrice = session('overallTotalPrice', 0);
+    @endphp
+
+        <div id='container-payment-show-payment'>
+            <table>
+                <tr>
+                    <td>
+                        <p>Order Total Price: </p>
+                    </td>
+
+                    <td>
+                        <!-- Display the total amount -->
+                        @if($overallTotalPrice > 0)
+                            <p id='payment-total-price'>RM {{ $overallTotalPrice }}</p>
+                        @else
+                            <p id='payment-total-price'>RM: -</p>
+                        @endif
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Discount Given: -</p>
+                    </td>
+
+                    <td>
+                        @if(isset($membership))
+                            @if($membership->isNotEmpty())
+                                <ul>
+                                    @foreach($membership as $member)
+                                        @if($member->remaining_discounts > 0)
+                                            <ul>
+                                                <p>RM {{ $member->discount_amount }}</p>
+                                            </ul>
+                                        @else
+                                            <p>RM 0</p>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            @else
+                                <!-- Membership data is not available -->
+                                <p>No Membership Data</p>
+                            @endif
+                        @else
+                            <p>No data available</p>
+                        @endif
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <p>Total Price:</p>
+                    </td>
+
+                    <td>
+                        <!-- Total price after discount -->
+                        @if($overallTotalPrice > 0 && isset($membership) && $membership->isNotEmpty())
+                            @foreach($membership as $member)
+                                @if($member->remaining_discounts > 0)
+                                    <p>RM {{ $overallTotalPrice - $member->discount_amount }}</p>
+                                @else
+                                    <p>RM {{ $overallTotalPrice }}</p>
+                                @endif
+                            @endforeach
+                        @else
+                            <p>RM: -</p>
+                        @endif                    
+                    </td>
+                </tr>
+            </table>
+        </div>
 
     <form id="PaymentForm" method="post" action="{{ route('payment.store') }}"><!-- name at route -->
         @csrf
 
-        @php
-        $overallTotalPrice = session('overallTotalPrice', 0);
-        @endphp
-
-        <!-- Display the total amount -->
-        @if($overallTotalPrice > 0)
-            <p>Total Price: RM {{ $overallTotalPrice }}</p>
-        @else
-            <p>RM: -</p>
-        @endif
-
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
-        <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
-        <input type="hidden" name="orderID" value="{{ $orderID }}">
-        @foreach($menuIDs as $menuID)
-        <input type="hidden" name="menuIDs[]" value="{{$menuID}}">
+        <input id="payment_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ session('totalPrice') }}">
+        <input type="hidden" name="orderID" value="{{session('orderID')}}">
+
+        @foreach(session('menuIDs', []) as $menuID)
+            <input type="hidden" name="menuIDs[]" value="{{ $menuID }}">
         @endforeach
-        @foreach($menuQuantities as $menuQuantity)
-        <input type="hidden" name="menuQuantities[]" value="{{$menuQuantity}}">
+
+        @foreach(session('menuQuantities', []) as $menuQuantity)
+            <input type="hidden" name="menuQuantities[]" value="{{ $menuQuantity }}">
         @endforeach
 
         <table id="payment_form_table">
@@ -78,7 +143,19 @@
             </tr>
 
             <tr>
-                <td><button type="submit">Confirm Payment</button></td>
+                <td><label class='payment-form-payment-amount' for="payment_amount">Amount: </label></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class='payment-form-payment-amount'>
+                        <input type="text" id="payment_amount" name="payment_amount" placeholder="Amount" value="{{ $overallTotalPrice - $member->discount_amount }}" readonly required>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td><button class='button' type="submit">Confirm Payment</button></td>
             </tr>
         </table>
     </form>
