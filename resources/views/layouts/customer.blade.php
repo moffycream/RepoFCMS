@@ -16,8 +16,8 @@
                         <img src="{{ asset('profile-images/profile.png') }}" alt="Profile Picture">
                     </div>
                     <div>
-                        <h2>Username</h2>
-                        <a href="#">Edit Profile</a>
+                        <h2>{{session('username')}}</h2>
+                        <a href="{{url('profile')}}">Edit Profile</a>
                     </div>
                 </div>
                 <div class="row navigation">

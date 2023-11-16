@@ -81,12 +81,18 @@
                     else if ($selectedOrder->status == "cancelled"){
                         $status = "Cancelled";
                     }
+                    else if ($selectedOrder->status == "Refunded"){
+                        $status = "Refunded";
+                    }
+                    else {
+                        $status = " ";
+                    }
       
                 @endphp
                 <p class="customer-title">Order Status</p>
                 <p class="customer-status"><div class="status-{{ preg_replace('/[^a-zA-Z0-9]/', '',strtolower($status))}}">{{$status}}</div></p>
             </div>
-            @if ($selectedOrder->status=="Completed" || $selectedOrder->status=="Cancelled")
+            @if ($selectedOrder->status=="Completed" || $selectedOrder->status=="Cancelled" || $selectedOrder->status=="Refunded")
             <div class="row-actions">
 
             </div>
@@ -103,7 +109,9 @@
                 @endif
                     @if($selectedOrder->status == 'Preparing' || $selectedOrder->status == 'Ready for pickup' || $selectedOrder->status == 'Delivery on the way')
                     @else
-                    <a class="cancel" href="{{route('op.cancel-order', $selectedOrder->orderID)}}" title="cancel order"><i class="fas fa-trash"></i></a>
+                    <!-- Add javascript confirmation -->
+
+                    <a class="cancel" href="{{route('op.cancel-order', $selectedOrder->orderID)}}" title="cancel order" onclick="cancelOrderConfirmation()"><i class="fas fa-trash"></i></a>
                     @endif
             </div>
             @endif

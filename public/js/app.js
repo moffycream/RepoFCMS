@@ -1064,3 +1064,10 @@ function toggleReviewCommentEdit(commentID) {
         reviewForm.style.display = 'none';
     }
 }
+
+function cancelOrderConfirmation() {
+    const confirmation = confirm("Are you sure you want to cancel this order?");
+    if (!confirmation) {
+        event.preventDefault(); // Prevent form submission
+    }
+}
