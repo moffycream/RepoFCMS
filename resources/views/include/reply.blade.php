@@ -3,6 +3,7 @@ $username = $reply->user->username;
 $time = $reply->getTimeDifference();
 $content = $reply->commentContent;
 $replyID = $reply->commentID;
+$replyID++;
 $nestingLevel = $reply->getNestingLevel();
 @endphp
 @if (session()->has('errorCommentID'))

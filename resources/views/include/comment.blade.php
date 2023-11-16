@@ -5,6 +5,7 @@ $content = $comment->commentContent;
 $commentID = $comment->commentID;
 $nestingLevel = $comment->getNestingLevel();
 $replyID = $commentID;
+$replyID++;
 @endphp
 
 @if (session()->has('errorCommentID'))
