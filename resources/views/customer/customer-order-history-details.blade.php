@@ -29,7 +29,7 @@
                 @endforeach
             </div>
             <div class="row-total-price">
-                <p>Order total price <span>RM{{$selectedOrder->getTotalPrice()}}</span></p>
+                <p>Order total price <span>RM{{$selectedOrder->total}}</span></p>
             </div>
         </div>
         <div class="col-customer-view-order">
@@ -78,7 +78,7 @@
                     </div>
                     <div>
                         <p class="customer-title">Payment Method</p>
-                        <p class="customer-order-info"><i class="fas fa-money-check-alt"></i>{{$paymentInfo->paymentMethod}}</p>
+                        <p class="customer-order-info"><i class="fas fa-money-check-alt"></i>{{$paymentInfo->payment_method}}</p>
                     </div>
 
                 </div>

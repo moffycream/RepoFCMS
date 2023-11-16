@@ -235,6 +235,7 @@
 .foodMenu-main-content-container 
 {
     background-color: #e8dcd4;
+    min-height: 100vh;
 }
 
 .businessAnalytics-title
