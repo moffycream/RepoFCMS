@@ -94,7 +94,7 @@
     display: inline-block;
 }
 
-.container-customer .container-customer-table span.status-refunded,
+.container-customer-order-history .container-customer-table span.status-refunded,
 .container-customer-view-order span.status-refunded
 {
     border-radius: 20px;
