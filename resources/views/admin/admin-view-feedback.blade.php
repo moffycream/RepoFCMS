@@ -10,7 +10,7 @@
         <select name="filter" id="filter">
             @php
             $selectedFeedbackID = "";
-            $selectedRating = "";r
+            $selectedRating = "";
             $selectedGeneral = "";
             $selectedCompliment = "";
             $selectedComplaint = "";
