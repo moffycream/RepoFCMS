@@ -65,7 +65,7 @@
 
             </div>
 
-            <div>
+            <div class='row-actions'>
                 <form action="{{ route('order-tracking', ['orderID' => $selectedOrder->orderID]) }}" method="get">
                     <button type="submit" id='customer-container-track-button'>Track Order</button>
                 </form>

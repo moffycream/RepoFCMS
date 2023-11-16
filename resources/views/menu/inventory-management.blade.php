@@ -108,9 +108,9 @@
                     <p>{!!$amountErrMsg!!}</p>
                     @endif
                     @if(isset($amount))
-                    <input type="text" name="amount" placeholder="Ingredient amount" value="{{$amount}}">
+                    <input type="number" name="amount" placeholder="Ingredient amount" value="{{$amount}}">
                     @else
-                    <input type="text" name="amount" placeholder="Ingredient amount">
+                    <input type="number" name="amount" placeholder="Ingredient amount">
                     @endif
                 </td>
                 <td class="inventory-table-col"><button class="inventory-add-button" type="submit"><i class="fas fa-plus"></i> Add</button></td>
