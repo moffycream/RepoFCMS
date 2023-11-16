@@ -19,11 +19,11 @@ use App\Models\Membership;
 // validations
 class PaymentController extends Controller
 {
-    // used for verification
     protected $userAccountController;
 
     protected $membershipController;
 
+    // Initialize the membership controller object
     public function __construct(MembershipController $membershipController)
     {
         $this->membershipController = $membershipController;
@@ -31,10 +31,13 @@ class PaymentController extends Controller
 
     public function index(UserAccountController $userAccountController)
     {
+        // initalize new instance
         $userAccountController = app(UserAccountController::class);
+        // Retrieve user account based on session username
         $userAccount = UserAccounts::where('username', session('username'))->first();
         $membership = [];
-    
+        
+        // retrieve membership data if username found
         if ($userAccount) {
             $userID = $userAccount->userID;
             $membership = Membership::where('userID', $userID)->get();
@@ -46,7 +49,7 @@ class PaymentController extends Controller
             $this->membershipController->resetRemainingDiscounts($userID);
         }
     
-        // Checks whether it is a c     ustomer session or not
+        // Checks whether it is a customer session or not
         $this->userAccountController = $userAccountController;
     
         if ($this->userAccountController->verifyCustomer()) {
@@ -75,8 +78,9 @@ class PaymentController extends Controller
                 $payment->payment_method = $request->input('PaymentMethod');
                 $payment->orderID = $request->input('orderID'); // Set the orderID with the provided orderID
 
-                // Set the 'bank' field based on the selected payment method
+                // each condition handles respective payment method
                 if ($request->input('PaymentMethod') === 'OnlineBanking') {
+                    // get input from payment page
                     $payment->bank = $request->input('selected_bank');
                     $payment->bank_username = $request->input('bank_username');
                     $payment->account_number = $request->input('account_number');
@@ -92,6 +96,7 @@ class PaymentController extends Controller
                     $payment->ewallet_type = "none";
                     $payment->ewallet_username = "none";
                 } elseif ($request->input('PaymentMethod') === 'CreditCard') {
+                    // get input from payment page
                     $payment->card_number = $request->input('payment_cardNumber');
                     $payment->cvv = $request->input('payment_cvv');
                     $payment->cardholder_name = $request->input('payment_cardholder');
@@ -107,6 +112,7 @@ class PaymentController extends Controller
                     $payment->ewallet_type = "none";
                     $payment->ewallet_username = "none";
                 } elseif ($request->input('PaymentMethod') === 'DebitCard') {
+                    // get input from payment page
                     $payment->card_number = $request->input('payment_cardNumber');
                     $payment->cvv = $request->input('payment_cvv');
                     $payment->cardholder_name = $request->input('payment_cardholder');
@@ -122,6 +128,7 @@ class PaymentController extends Controller
                     $payment->ewallet_type = "none";
                     $payment->ewallet_username = "none";
                 } elseif ($request->input('PaymentMethod') === 'Ewallet') {
+                    // get input from payment page
                     $payment->ewallet_type = $request->input('eWallet_type');
                     $payment->ewallet_username = $request->input('ewallet_username');
                     $payment->amount_paid = $request->input('payment_amount');

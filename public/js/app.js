@@ -582,7 +582,9 @@ document.addEventListener('DOMContentLoaded', function () {
             errorCount += 1;
         }
 
+        // condition to validate based on the payment method choosen
         if (PaymentChoice.value === "OnlineBanking") {
+            // get input from payment page
             const selectedBank = document.getElementById('selected_bank');
             const username = document.getElementById('bank_username').value;
             const password = document.getElementById('bank_password').value;
@@ -638,6 +640,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
         } else if (PaymentChoice.value === "CreditCard" || PaymentChoice.value === "DebitCard") {
+            // get input from payment page
             const cardNumber = document.getElementById('payment_cardNumber').value;
             const cvv = document.getElementById('payment_cvv').value;
             const cardHolder = document.getElementById('payment_cardholder').value;
@@ -698,6 +701,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
         } else if (PaymentChoice.value === "Ewallet") {
+            // get input from payment page
             const userName = document.getElementById('ewallet_username').value;
             const ewalletType = document.getElementById('eWallet_type');
 
@@ -728,6 +732,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // trigger function when the form is on submit
     if (PaymentForm) {
         PaymentForm.onsubmit = function (event) {
             ValidatePaymentForm(event);
@@ -738,12 +743,15 @@ document.addEventListener('DOMContentLoaded', function () {
 // purchase pages - display various payment
 document.addEventListener('DOMContentLoaded', function () {
     const PurchaseForm = document.getElementById('PurchaseForm');
+    // input pattern
     var pattern = /^[a-zA-Z ]+$/;
     var Numpattern = /^[0-9]+$/;
 
+    // purchase form validation
     function ValidatePurchaseForm(event) {
         let errorCount = 0;
 
+        // get input from the purchase page
         const realname = document.getElementById('purchase_realname');
         const address = document.getElementById('purchase_address');
         const contact = document.getElementById('purchase_contact');

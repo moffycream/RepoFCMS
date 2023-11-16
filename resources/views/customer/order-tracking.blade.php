@@ -7,6 +7,7 @@
     <h1>Order Tracking</h1>
 
     <div class="order-tracking-details">
+        <!-- Display Order Details -->
         <section id="order-tracking-order-details">
             <h2>Order Details</h2>
             <table>
@@ -49,6 +50,7 @@
             </table>
         </section>
 
+        <!-- Display Payment Details -->
         <section id="order-tracking-payment-details">
             <h2>Payment Details</h2>
             <table>
@@ -74,6 +76,7 @@
             </table>
         </section>
         
+        <!-- Display Company Details -->
         <section id="order-tracking-company-details">
             <h2>Company Details</h2>
             <table>
