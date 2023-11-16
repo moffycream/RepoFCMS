@@ -18,28 +18,7 @@ class MembershipController extends Controller
         $this->userAccountController = $userAccountController;
 
         if ($this->userAccountController->verifyCustomer()) {
-            if (session()->has('username')) {
-                $username = session('username');
-                $user = UserAccounts::where('username', $username)->first();
-    
-                if ($user) {
-                    $userID = $user->userID;
-                    $totalAmountPaid = Payment::where('userID', $userID)->sum('amount_paid');
-    
-                    // Calculate the tier based on the total amount paid
-                    $tier = $this->calculateTier($totalAmountPaid);
-                    $discountAmount = 0;
-                    $discountAmount = $this->getDiscountAmount($tier, $userID);
-    
-                    // Store the data in the 'membership' table
-                    $membership = Membership::updateOrCreate(['userID' => $userID], ['tier_level' => $tier, 'total_payments' => $totalAmountPaid, 'discount_amount' => $discountAmount,]);
-    
-                    // Retrieve remaining_discounts
-                    $remainingDiscounts = $membership->remaining_discounts;
-    
-                    return view('membership', ['totalAmountPaid' => $totalAmountPaid, 'tier' => $tier, 'discountAmount'=> $discountAmount, 'discountRemaining'=> $remainingDiscounts]);
-                }
-            }
+            return view('membership', ['notifications' => Notification::all()]);
         } else {
             return view('login.access-denied');
         }
@@ -64,6 +43,34 @@ class MembershipController extends Controller
             return 3;     
         }
     }
+
+    public function UpdateMembership()
+    {
+        if (session()->has('username')) {
+            $username = session('username');
+            $user = UserAccounts::where('username', $username)->first();
+
+            if ($user) {
+                $userID = $user->userID;
+                $totalAmountPaid = Payment::where('userID', $userID)->sum('amount_paid');
+
+                // Calculate the tier based on the total amount paid
+                $tier = $this->calculateTier($totalAmountPaid);
+                $discountAmount = 0;
+                $discountAmount = $this->getDiscountAmount($tier, $userID);
+
+                // Store the data in the 'membership' table
+                $membership = Membership::updateOrCreate(['userID' => $userID], ['tier_level' => $tier, 'total_payments' => $totalAmountPaid, 'discount_amount' => $discountAmount,]);
+
+                // Retrieve remaining_discounts
+                $remainingDiscounts = $membership->remaining_discounts;
+
+                return view('membership', ['totalAmountPaid' => $totalAmountPaid, 'tier' => $tier, 'discountAmount'=> $discountAmount, 'discountRemaining'=> $remainingDiscounts]);
+            }
+        }
+        return view('login.access-denied');
+    }
+
     // Add this function to get the discount amount based on the tier
     public function getDiscountAmount($tier, $userID)
     {
