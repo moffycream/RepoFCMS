@@ -34,9 +34,7 @@ class ProfileController extends Controller
         $emailErrormsg = "";
         $postcodeErrormsg = "";
         $imageErrormsg = "";
-
-
-        $notificationController = app(NotificationController::class);
+        
         $user = UserAccounts::find($request->userID);
         if ($user) {
             if ($request->has('username')) {

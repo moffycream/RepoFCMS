@@ -26,7 +26,9 @@
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <input type="file" accept=".png, .jpeg, .jpg" name="image" class="image">
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
                     </td>
                     <td></td>
                 </tr>
@@ -50,8 +52,9 @@
                     <td class="profile-edit-text">
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
-                    </td>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
 
                 </tr>
 
@@ -67,7 +70,10 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
+
                     </td>
                 </tr>
 
@@ -80,7 +86,9 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
                     </td>
                 </tr>
 
@@ -93,7 +101,9 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i> Cancel</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
                     </td>
                 </tr>
 
@@ -110,7 +120,9 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
                     </td>
                 </tr>
 
@@ -123,7 +135,9 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
                     </td>
                 </tr>
 
@@ -136,7 +150,9 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
                     </td>
                 </tr>
 
@@ -152,7 +168,9 @@
                     <td class=profile-edit-text>
                         <a class="edit-button"><i class="far fa-edit"></i> Edit</a>
                         <button type="submit" class="save-button"><i class="fas fa-save"></i> Save</button>
-                        <button type="submit" class="cancel-button" name="cancel"><i class="far fa-window-close"></i></i> Cancel</button>
+                        <button type="button" class="cancel-button" onclick="window.location.href='/profile/'">
+                            <i class="far fa-window-close"></i> Cancel
+                        </button>
                     </td>
                 </tr>
                 <tr>
