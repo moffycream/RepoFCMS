@@ -60,7 +60,7 @@
             <div class="row-status">
                  @php
                  $status = " ";
-                    if($selectedOrder->status == "Order Cancelled. The refund will be done within 5-7 working days.") {
+                    if($selectedOrder->status == "Order Cancelled. The refund will be done within 5-7 working days." || $selectedOrder->status == "Pending for refund") {
                         $status = "Pending for refund";
                     }
                     else if ($selectedOrder->status == "Pending"){
@@ -107,7 +107,7 @@
                 @else
                 <a href="{{route('op.accept-order', $selectedOrder->orderID)}}">Accept</a>
                 @endif
-                    @if($selectedOrder->status == 'Preparing' || $selectedOrder->status == 'Ready for pickup' || $selectedOrder->status == 'Delivery on the way')
+                    @if($selectedOrder->status == 'Preparing' || $selectedOrder->status == 'Ready for pickup' || $selectedOrder->status == 'Delivery on the way' || $selectedOrder->status == 'Pending for refund')
                     @else
                     <!-- Add javascript confirmation -->
 
