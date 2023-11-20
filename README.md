@@ -38,7 +38,7 @@ The system would have the following functions:
 - Traceability across modules
 
 
-## Getting Started
+## Getting Started (For Lecturer and Tryers of the website)
 1. Before using Laravel, you need to install PHP on your Windows.
     Please follow this video: [How to install PHP](https://www.youtube.com/watch?v=MPRLUd8Pmyo&t=203s)
 
@@ -51,79 +51,23 @@ The system would have the following functions:
 4. You also need to download NPM, 18.18.0 LTS
     Link: [NPM](https://nodejs.org/en)
 
-5. Before running the website on the local host (XAMPP), please run these 2 functions in visual studio code terminal first
-   composer update
-   php artisan migrate
+5. Before running the website on the local host (XAMPP), go to phpmyadmin to create a new database, called fcmsdb
+  
+7. Run these 2 functions in visual studio code terminal first <br>
+   composer update <br>
+   php artisan migrate <br>
 
    Composer updates ensures the latest version of the composers used are installed.
-   Migrate allows the databases to be created automatically using the template we have set.
+   Migrate allows the insertion of the databases used into fcmsdb to be created automatically using the template we have set.
 
-6. Update the .env file (just copy and paste the section into the .env file)
-APP_NAME=Laravel
-APP_ENV=local
-APP_KEY=base64:XBu3iQCHqcJue54l9HbBg6QxzWesHMIOVRUNAiVNR4c=
-APP_DEBUG=true
-APP_URL=http://localhost
+8. Update the .env file (just copy and paste the code provided in the notepad into the .env file)
 
-LOG_CHANNEL=stack
-LOG_DEPRECATIONS_CHANNEL=null
-LOG_LEVEL=debug
+9. Addtional notes: <br>
+Default admin username: FCMS <br>
+Default admin password: admin <br>
+Note: to skip 2 factor authentication for this account (because it is registered with a default gmail account), you may go to the database (user_accounts) and change the value of 'isAuthenticated' to 1,    and 'firstTimeLogin' to 0.
 
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=fcmsdb
-DB_USERNAME=root
-DB_PASSWORD=
-
-BROADCAST_DRIVER=log
-CACHE_DRIVER=file
-FILESYSTEM_DISK=local
-QUEUE_CONNECTION=sync
-SESSION_DRIVER=file
-SESSION_LIFETIME=120
-
-MEMCACHED_HOST=127.0.0.1
-
-REDIS_HOST=127.0.0.1
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=fcms20001@gmail.com
-MAIL_PASSWORD=pxutcyvhxxpimxfm
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS="fcms20001@gmail.com"
-MAIL_FROM_NAME="${APP_NAME}"
-
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_DEFAULT_REGION=us-east-1
-AWS_BUCKET=
-AWS_USE_PATH_STYLE_ENDPOINT=false
-
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
-PUSHER_HOST=
-PUSHER_PORT=443
-PUSHER_SCHEME=https
-PUSHER_APP_CLUSTER=mt1
-
-VITE_APP_NAME="${APP_NAME}"
-VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
-VITE_PUSHER_HOST="${PUSHER_HOST}"
-VITE_PUSHER_PORT="${PUSHER_PORT}"
-VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
-VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
-
-NOCAPTCHA_SECRET=6Lco5_QoAAAAAAZ8ZWUlPvOQlHF8oVuFqCtj6ZgC
-NOCAPTCHA_SITEKEY=6Lco5_QoAAAAABhnWLlNi9eyB6gqgfcNpvUh7uZF
-
-
-
+## Development Related 
 ## Frontend Checklist
 
 ### Logo 
