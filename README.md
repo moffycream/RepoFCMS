@@ -7,59 +7,117 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# RepoFCMS
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Follow the steps below to download the Laravel framework first. Then, using visual studio code, you can run the server on the local host
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Food and Beverage Catering Management System
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This project is about creating a web-based system, Food & Beverage Catering Management System, which we will be developing for the FoodEdge Gourmet Catering company.
 
-## Learning Laravel
+## Table of Contents
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [About](#about)
+- [Getting Started](#getting-started)
+- [Frontend Checklist](#frontend-checklist)
+   - [Logo](#logo)
+   - [Prefix](#prefix)
+   - [HMTL Testing](#html-testing)
+   - [Font Size](#font-size)
+   - [Colour](#colour)
+  
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## About 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The system would have the following functions:
+- Catering Management Module
+- Food and Beverage Maintenance Module
+- Customer Membership and Profile Module
+- Payment Module 
+- Business Analytics Module
+- Traceability across modules
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Getting Started (For Lecturer and Tryers of the website)
+1. Before using Laravel, you need to install PHP on your Windows.
+    Please follow this video: [How to install PHP](https://www.youtube.com/watch?v=MPRLUd8Pmyo&t=203s)
 
-### Premium Partners
+2. After PHP is installed, you need to install Composer for PHP, which is a manager for PHP, we will use this tool on Visual Studio Code
+    Please follow this video: [How to install Composer](https://www.youtube.com/watch?time_continue=238&v=nus8eLPNZF8&embeds_referring_euri=https%3A%2F%2Fwww.bing.com%2F&embeds_referring_origin=https%3A%2F%2Fwww.bing.com&source_ve_path=MTM5MTE3LDEzOTExNywxMzkxMTcsMTM5MTE3LDI4NjY2&feature=emb_logo)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+3. Then download the PHP extension for VSC </br>
+    Link: [How to install Laravel for Visual Studio Code](https://blog.devsense.com/2019/how-to-install-laravel-for-visual-studio-code#heading-4)
 
-## Contributing
+4. You also need to download NPM, 18.18.0 LTS
+    Link: [NPM](https://nodejs.org/en)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. Before running the website on the local host (XAMPP), go to phpmyadmin to create a new database, called fcmsdb
+  
+7. Run these 2 functions in visual studio code terminal first <br>
+   composer update <br>
+   php artisan migrate <br>
 
-## Code of Conduct
+   Composer updates ensures the latest version of the composers used are installed.
+   Migrate allows the insertion of the databases used into fcmsdb to be created automatically using the template we have set.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+8. Update the .env file (just copy and paste the code provided in the notepad into the .env file)
 
-## Security Vulnerabilities
+9. Addtional notes: <br>
+Default admin username: FCMS <br>
+Default admin password: admin <br>
+Note: to skip 2 factor authentication for this account (because it is registered with a default gmail account), you may go to the database (user_accounts) and change the value of 'isAuthenticated' to 1,    and 'firstTimeLogin' to 0.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Development Related 
+## Frontend Checklist
+
+### Logo 
+ </br> ![image](https://github.com/moffycream/RepoFCMS/assets/106477441/17ae9c98-0995-47cd-8f2a-ea3b094df104)
+
+
+### Prefix
+
+JS prefix: Low All classes (or id- used in JavaScript files) begin with js- and are not styled into the CSS files.
+
+```bash
+<div id="js-slider" class="my-slider">
+<!-- Or -->
+<div id="id-used-by-cms" class="js-slider my-slider">
+````
+
+class prefix: All parent classes start with container and then begin with col and row for the grid system
+```bash
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <!-- Let empty at first -->
+    </div>
+    <div class="col-sm">
+      <!-- Let empty at first -->
+    </div>
+    <div class="col-sm">
+      <!-- Let empty at first -->
+    </div>
+  </div>
+</div>
+```
+
+### HTML Testing
+
+W3C compliant: High All pages need to be tested with the W3C validator to identify possible issues in the HTML code. </br>
+- [W3C Validator](https://validator.w3.org/)
+
+### Font size
+
+Can be changed
+   - Normal: 18px
+   - Heading 1: 32px
+   - Heading 2: 28px
+   - Heading 3: 24px
+
+### Colour
+
+   ![image](https://github.com/moffycream/RepoFCMS/assets/106477441/5c63973e-b9c0-4bd3-bdf4-92e458993c10)
+
 
 ## License
 
