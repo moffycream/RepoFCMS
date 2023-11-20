@@ -7,16 +7,7 @@ use App\Models\MenuFood;
 
 class MenuFoodController extends Controller
 {
-    // Retrieve function 
-    public function index()
-    {
-
-        $menuFood = MenuFood::all();
-
-        return view('add-menu', ['listItems' => $menuFood]);
-    }
-
-    // Insert function 
+    // Register new menu food record in MenuFood database 
     public function registerNewMenuFood(Request $request, $menuID, $foodID)
     {
         $menuFood = new MenuFood();
@@ -24,29 +15,5 @@ class MenuFoodController extends Controller
         $menuFood->menuID = $menuID;
         $menuFood->foodID = $foodID;
         $menuFood->save();
-    }
-
-    // Update function 
-    public function update()
-    {
-
-        $menu = MenuFood::find(1);
-
-        $menu->topic = "Laravel";
-
-        $menu->save();
-
-        echo "Update Successful!";
-    }
-
-    // Delete function 
-    public function delete()
-    {
-
-        $menu = MenuFood::find(1);
-
-        $menu->delete();
-
-        echo "Delete Successful!";
     }
 }

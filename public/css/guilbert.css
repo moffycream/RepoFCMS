@@ -1,0 +1,414 @@
+
+/* Purchase page h1 style */
+.container-purchase-page h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+    margin: 0 auto;
+}
+
+/* Styles for the container-purchase-page */
+.container-purchase-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: #e8dcd4;
+    border-radius: 20px;
+}
+
+#PurchaseForm table{
+    padding-right: 100px;
+}
+
+/* Styles for the main container holding the tables and form */
+.container-purchase-page form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
+
+/* input area styling */
+#purchase_form_table input,
+#purchase_form_table textarea,
+#purchase_form_table select {
+    box-sizing: border-box;
+    width: 100%; 
+    padding: 10px 20px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.container-purchase-page select {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+/* Styles for the cart items table */
+#display_purchase_item_table {
+    border-collapse: collapse;
+    font-size: 18px;
+    font-family: sans-serif;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    text-align: center;
+    table-layout: auto; 
+}
+
+#display_purchase_item_table thead tr {
+    background-color: #c5abb6;
+    font-size: 20px;
+}
+
+#display_purchase_item_table thead tr th{
+    color: #000000;
+    padding: 25px;
+}
+
+#display_purchase_item_table tbody {
+    background-color: #e0ccd4;
+}
+
+#display_purchase_item_table th,
+#display_purchase_item_table td {
+    padding: 12px 15px;
+}
+
+
+#display_purchase_item_table tbody tr:last-of-type {
+    border-bottom: 2px solid #473447;
+}
+
+/* Styles for the purchase form table */
+#purchase_form_table {
+    width: 45%;
+}
+
+#purchase_form_table label {
+    font-weight: bold;
+}
+
+/* Styles for the "Next" button */
+#purchase_form_table button[type="submit"] {
+    padding: 10px 30px;
+    margin-top: 10px;
+}
+
+/* error message */
+.purchase_error{
+    color: red;
+}
+
+/*---------------PAYMENT PAGE-------------*/
+
+/* Styles for the container-payment-page */
+.container-payment-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: #e8dcd4;
+    border-radius: 20px;
+}
+
+/* Styles for the h1 heading */
+.container-payment-page h1{
+    font-size: 40px;
+    padding-bottom: 65px;
+}
+/* styling for showing the total price of the order */
+#container-payment-show-payment{
+    font-size: 28px;
+    font-family: sans-serif;
+    padding-bottom: 65px;
+    text-align: center;
+}
+
+#container-payment-show-payment table{
+    text-align: left;
+    table-layout: fixed;
+}
+
+#container-payment-show-payment tr td p{
+    color: #674c64;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+
+/* Styles for the payment_form_table */
+#payment_form_table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#OnlineBankingForm label,
+#CreditCardForm label,
+#DebitCardForm label,
+#EwalletForm label {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#payment_form_table td {
+    font-size: 20px;
+    padding: 10px;
+}
+
+/* Styles for the total price heading */
+#payment_form_table h1 {
+    padding-top: 30px;
+    font-size: 25px;
+}
+
+.payment-form-input-field{
+    text-align: left;
+}
+
+/* Styles for the "Confirm Payment" button */
+#payment_form_table button[type="submit"] {
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+#payment_form_table input,
+#payment_form_table textarea,
+#payment_form_table select {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: 1px solid #00000077;
+    border-radius: 5px;
+    margin: 5px 0;
+    width: 100%; 
+}
+
+#payment_form_table select{
+    width: 300px;
+}
+
+/* Styles for the payment amount */
+#payment-form-payment-amount p{
+    text-align: center;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.payment_error{
+    color: red;
+}   
+
+/*---------------MEMBERSHIP PAGE-------------*/
+/* styling for membership container */
+.membership-container {
+    padding: 20px;
+    text-align: center;
+    background-color: #e8dcd4;
+    padding-bottom: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.membership-container h1{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.membership-container h2{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+/* tier container styling */
+.tier-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.tier-container h2{
+    padding: 0 0 30px 0;
+}
+
+.tier-container ul li{
+    list-style: none;
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.membership-container section{
+    width: 30%;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#tier0 p,#tier1 p, #tier2 p, #tier3 p{
+    font-size: 23px;
+    padding-bottom: 40px;
+    padding-top: 15px;
+}
+
+/* background color for each tier */
+#tier0 {
+    background-color: #e8d2d9;
+    padding: 50px 0 100px 0;
+}
+
+#tier1 {
+    background-color: #e0ccd4;
+    padding: 50px 0 100px 0;
+}
+
+#tier2 {
+    background-color: #c5abb6;
+    padding: 50px 0 100px 0;
+}
+
+#tier3 {
+    background-color: #8e7387;
+    padding: 50px 0 100px 0;
+}
+
+/* Styling for benefits list */
+.benefit-list {
+    list-style: disc;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+.benefit-item {
+    margin: 5px 0;
+}
+
+/* styling for display user data */
+#membership-aside{
+    width:270px;
+    text-align: left;
+    border: 3px solid #00000077;
+    border-radius: 10px;
+    margin-left: 83.2%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e0ccd4;
+    font-size: 20px;
+}
+
+#membership-aside p{
+    padding-bottom: 10px;
+}
+
+/*---------------ORDER TRACKING PAGE-------------*/
+/* order tracking page container styling */
+.order-tracking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1800px;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px;
+    background-color: #e8dcd4;
+    border-radius: 20px;
+    border: 1px solid #00000077;
+}
+
+.order-tracking-container h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+/* styling for display order details. payment details and payment details */
+#order-tracking-order-details,
+#order-tracking-payment-details,
+#order-tracking-company-details {
+    margin-bottom: 100px;
+    margin-left: 30px;
+}
+
+#order-tracking-order-details table,
+#order-tracking-payment-details table,
+#order-tracking-company-details table {
+    font-size: 18px;
+    width: 510px;
+}
+
+#order-tracking-order-details table tr td,
+#order-tracking-payment-details table tr td,
+#order-tracking-company-details table tr td {
+    width: 100px;
+    padding-bottom: 20px;
+}
+
+#order-tracking-order-details h2,
+#order-tracking-payment-details h2,
+#order-tracking-company-details h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#order-tracking-data-span{
+    font-size: 21px;
+    font-weight: 550;
+    color: #8e7387;
+}
+
+#order-tracking-company-details {
+    width: 50%;
+    margin-right: 30px;
+    background-color: #c5abb6;
+    padding: 50px 0 100px 20px;
+    border-radius: 10px;
+}
+
+#order-tracking-payment-details{
+    width: 50%;
+    margin-right: 30px;
+    background-color: #e0ccd4;
+    padding: 50px 0 100px 20px;
+    border-radius: 10px;
+}
+
+#order-tracking-order-details {
+    width: 50%;
+    margin-right: 30px;
+    background-color: #e8d2d9;
+    padding: 50px 0 100px 20px;
+    border-radius: 10px;
+}
+
+.order-tracking-details{
+    display: flex;
+    justify-content: space-around;
+}
+
+/* styling for button to access to the order tracking page*/
+#customer-container-track-button{
+    display: inline-block;
+    background-color: #473447;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 500px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+}
+#customer-container-track-button:hover{
+    background-color: #2b0548;
+    transition: 0.5s;
+}

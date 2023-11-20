@@ -1,0 +1,626 @@
+:root {
+    --color-1: #473447;
+    --color-2: #e8dcd4;
+    --color-3: #e0ccd4;
+    --color-4: #e0e4e4;
+    --color-5: #ccdcd0;
+}
+
+/* Admin article */
+.admin-article {
+    margin-left: 5vw;
+}
+
+/* Add menu */
+.add-food-edit-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.food-logo {
+    object-fit: cover;
+    width: 25vw;
+    height: 30vh;
+    border-radius: 20px 20px 0 0;
+}
+
+.add-menu-title {
+    font-size: 60px;
+    text-align: center;
+    margin: 25px 0;
+}
+
+
+.add-menu-container {
+    margin: 100px 0;
+}
+
+.add-menu-container .row-add-menu {
+    display: flex;
+    margin: 50px 0;
+}
+
+.add-menu-container .row-add-menu .col-add-menu {
+    background-color: var(--color-2);
+    width: 25vw;
+    min-height: 75vh;
+    margin: 0 calc(20vw/6);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: #00000029 0px 1px 4px;
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+}
+
+.add-menu-container .row-add-menu .col-add-menu input {
+    font-size: 20px;
+}
+
+.add-menu-container .row-add-menu .col-add-menu input[type="file"] {
+    width: 25vw;
+    text-align-last: center;
+}
+
+
+.add-menu-container .row-add-menu .col-add-menu .col-add-menu-info-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 45vh;
+    width: 23vw;
+    margin: 0 1vw;
+}
+
+.col-add-menu-info-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.col-add-menu-info-col{
+    display: flex;
+    margin: 10px 0;
+}
+
+.col-add-menu-info-col1{
+    width: 17vw;
+}
+
+.col-add-menu-info-col2{
+    margin-left: auto;
+    width: 6vw;
+}
+
+.col-add-menu-info-col p {
+    font-size: 20px;
+    overflow-wrap: break-word;
+}
+
+.col-add-menu-action-col a{
+    background-color: white;
+    color: #000000;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 20px;
+}
+
+.add-menu-button{
+    margin: auto;
+    font-size: 100px;
+    font-weight: 900;
+}
+
+.add-menu-container .row-add-menu .col-add-menu a:link {
+    text-decoration: none;
+}
+
+.edit-menu-button {
+    font-size: 30px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+}
+
+#add-menu-error-window{
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    background-color: var(--color-1);
+    width: 30vw;
+    height: 30vh;
+}
+
+#add-menu-error-window p,
+#add-menu-error-window i{
+    color: #ffffff;
+    font-size: 30px;
+    margin: 10px 20px;
+    text-align: left;
+}
+
+#add-menu-error-window i{
+    float: right;
+    cursor: pointer;
+}
+
+/* Add menu & food form*/
+
+.add-menu-form {
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+    border-radius: 10px;
+    width: 40vw;
+    min-height: 80vh;
+    margin: auto;
+    font-size: 30px;
+    box-shadow: #00000029 0px 1px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-menu-form div {
+    margin: 20px 20px;
+}
+
+.add-menu-form div:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-food-edit-form{
+    overflow: auto;
+}
+
+.add-menu-form-title {
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.add-menu-form input[type="file"] {
+    align-self: center;
+    display: block;
+    text-align-last: center;
+}
+
+.add-menu-form input[type=file]::file-selector-button {
+    background-color: #e6d2cf;
+    color: #000000;
+    border: 1px solid var(--color-1);
+}
+
+.add-menu-form input,
+#food-description {
+    font-size: 25px;
+    padding: 10px;
+    width: 20vw;
+}
+
+#food-description{
+    resize: none;
+}
+
+.add-menu-form button {
+    margin: 10px 20px;
+    background-color: var(--color-1);
+    color: #ffffff;
+    border-radius: 10px;
+    width: 10vw;
+    font-size: 30px;
+    padding: 10px 5px;
+}
+
+.add-menu-form input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+}
+
+.food-description-div input {
+    width: 30vw;
+}
+
+.add-food-ingredient-table,
+.add-food-ingredient-table th,
+.add-food-ingredient-table tr,
+.add-food-ingredient-table td{
+    border: #000000 2px solid;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.add-food-ingredient-table{
+    max-width: 20vw;
+}
+
+.add-food-ingredient-table input{
+    max-width: 8vw;
+}
+
+.add-menu-form-input-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-form-error{
+    color: red;
+}
+
+/* Inventory management */
+
+.add-food-table-value,
+.add-food-table-edit{
+    border-collapse: collapse;
+    display: block;
+}
+
+.add-menu-table-title,
+.add-menu-table-col{
+    border: #000000 2px solid;
+    padding: 5px;
+    font-size: 15px;
+    border-collapse: collapse;
+}
+
+.add-food-table-edit input {
+    width: 100%;
+}
+
+/* Add menu dropdown checkbox*/
+.food-dropdown-check-list .food-dropdown-anchor {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 50px 5px 10px;
+    border: 1px solid var(--color-1);
+    background-color: #e6d2cf;
+}
+
+/* Create arrow */
+.food-dropdown-check-list .food-dropdown-anchor:after {
+    position: absolute;
+    content: "";
+    border-left: 3px solid black;
+    border-top: 3px solid black;
+    padding: 5px;
+    top: 30%;
+    right: 8%;
+    transform: rotate(-135deg);
+}
+
+/* Hide dropdown at default */
+.food-dropdown-check-list ul {
+    padding: 5px;
+    display: none;
+    border: 1px solid var(--color-1);
+    background-color: #e6d2cf;
+}
+
+.food-dropdown-check-list ul li {
+    list-style: none;
+}
+
+/* Make dropdown visible */
+.food-dropdown-check-list.visible ul {
+    display: block;
+}
+
+/* Admin dashboard */
+.admin-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-1);
+    width: 15vw;
+    position: fixed;
+    height: 100vh;
+    align-items: start;
+}
+
+#admin-dashboard-container-expand a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+#admin-dashboard-container-expand span {
+    color: #ffffff;
+    font-size: 20px;
+    vertical-align: bottom;
+    margin-left: 10px;
+}
+
+/* logout */
+#admin-dashboard-container-expand a:last-child {
+    margin: auto 0 2vh;
+}
+
+#admin-dashboard-container-expand p {
+    color: #ffffff69;
+    font-size: 20px;
+    margin: 0.5vh 30px 0.5vh;
+}
+
+#admin-dashboard-container-expand .admin-dashboard-icon {
+    margin-left: 30px;
+    height: 4vh;
+    object-fit: contain;
+    margin: 0.5vh 0;
+}
+
+#admin-dashboard-container-expand .admin-dashboard-line {
+    width: 13vw;
+    margin: 0.5vh 1vw 0.5vh;
+    border-color: rgba(255, 255, 255, 0.164);
+}
+
+/* Minimize icon (<<)*/
+#admin-dashboard-minimize-icon {
+    width: 20px;
+    cursor: pointer;
+    align-self: flex-end;
+    margin-right: 40px;
+    margin-top: 2vh;
+}
+
+/* Minimized dashboard */
+#admin-dashboard-container-minimize {
+    width: 3vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#admin-dashboard-container-minimize .admin-dashboard-icon {
+    height: 4vh;
+    object-fit: contain;
+    margin: 1vh 0;
+}
+
+/* Expand icon (>>)*/
+#admin-dashboard-expand-icon {
+    width: 20px;
+    cursor: pointer;
+    margin-top: 1vh;
+}
+
+#admin-dashboard-container-minimize a {
+    text-decoration: none;
+}
+
+#admin-dashboard-container-minimize p {
+    color: #ffffff69;
+    font-size: 15px;
+    margin: 1.5vh 0 1.5vh;
+}
+
+#admin-dashboard-container-minimize .admin-dashboard-line {
+    width: 3vw;
+    border-color: rgba(255, 255, 255, 0.164);
+}
+
+/* logout */
+#admin-dashboard-container-minimize a:last-child {
+    margin: auto 0 25px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Inventory management and add food edit, delete, save, cancel button */
+.inventory-edit-value,
+.inventory-save-button,
+.inventory-cancel-button,
+.add-menu-edit-value,
+.add-menu-save-button,
+.add-menu-cancel-button{
+    display: none;
+}
+
+.inventory-edit-button,
+.inventory-save-button,
+.inventory-cancel-button,
+.inventory-delete-button,
+.inventory-add-button,
+.add-menu-edit-button,
+.add-menu-save-button,
+.add-menu-cancel-button{
+    background-color: white;
+    color: #000000;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-size: 20px;
+    width: 90px;
+    margin: auto;
+}
+
+.inventory-edit-button:hover,
+.inventory-save-button:hover,
+.inventory-cancel-button:hover,
+.inventory-delete-button:hover,
+.inventory-add-button:hover,
+.add-menu-edit-button:hover,
+.add-menu-save-button:hover,
+.add-menu-cancel-button:hover{
+    background-color: #55086137;
+}
+
+.add-menu-edit-button,
+.add-menu-save-button,
+.add-menu-cancel-button{
+    width: 6vw;
+}
+
+.inventory-delete-button-no{
+    background-color: #999999;
+    color: #000000;
+    border: none;
+    padding: 5px;
+    cursor: not-allowed;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 90px;
+    margin: auto;
+}
+
+.menu-delete-button,
+.menu-delete-button-no{
+    align-self:baseline;
+    background-color: rgb(255, 71, 71);
+    width: 25vw;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 25px;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+}
+
+.menu-delete-button-no{
+    background-color: rgb(70, 70, 70);
+    color: #ffffff;
+    text-align: center;
+}
+
+.menu-delete-button-no i{
+    color: #ffffff;
+}
+
+/* Inventory management */
+.inventory-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+}
+
+.inventory-table{
+    background: linear-gradient(135deg, #fff3e8, #f3d7d7);
+    margin-bottom: 100px;
+}
+.inventory-table,
+.inventory-table-title,
+.inventory-table-col{
+    border: #000000 2px solid;
+    border-collapse: collapse;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.inventory-table input{
+    font-size: 20px;
+}
+
+.inventory-table a{
+    text-decoration: none;
+}
+
+.inventory-table-title-big{
+    border: none;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/*search*/
+.search-form{
+    border: solid 2px #000000;
+    padding: 5px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.search-form button,
+.search-form input,
+.search-form input:focus{
+    font-size: 20px;
+    border:none;
+    outline: none;
+}
+
+.search-form button{
+    border-right: solid 2px #000000;
+    padding-right: 5px;
+}
+
+.search-form button{
+    background: none;
+}
+
+.search-header{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 25px 25px;
+
+}
+
+.search-container{
+    display: flex;
+    background-color: var(--color-2);
+}
+
+.search-results{
+    border-left: solid 0.5px rgba(0, 0, 0, 0.164);
+    margin-right: 25px;
+}
+
+.search-result{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+    background-color: #eeeeee;
+    padding: 25px;
+}
+
+.search-img{    
+    height: 150px;
+    width: 300px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.search-separate-line{
+    width: 100vw;
+    border: solid 0.5px rgba(0, 0, 0, 0.164);
+}
+
+.filter-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.search-filter-form-container{
+height: 100vh;
+}
+
+.search-filter-form{
+    display: flex;
+    flex-direction: column;
+    min-width: 10vw;
+    margin: 1vh 0.5vw 0;
+        padding: 5px;
+}
+
+.search-bold{
+    font-weight: bold;
+}
+
+.search-filter-button{
+    background-color: #473447;
+    color: white;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+}

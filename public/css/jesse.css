@@ -1,0 +1,550 @@
+/* customer order listing  & customer order history*/ 
+
+.container-customer {
+    background-color: #e8dcd4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+    width: 170vh;
+    margin-bottom: 5%;
+}
+
+.container-customer-order-history
+{
+    background-color: #e8dcd4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    margin: 0 auto;
+    width: 120vh;
+    margin-bottom: 5%;
+}
+
+.container-customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  
+}
+
+.container-customer-table tr {
+    border: 5px solid #e8dcd4;
+}
+
+.container-customer-table th,
+.container-customer-table td {
+    padding: 8px;
+    text-align: left;
+}
+
+.container-customer .container-customer-table div.status-pending,
+.container-customer-view-order div.status-pending {
+    border-radius: 20px;
+    background-color: #ffc40037;
+    padding: 5px 15px;
+    color: #f3aa00;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.container-customer .container-customer-table div.status-preparing,
+.container-customer-view-order div.status-preparing {
+    border-radius: 20px;
+    background-color: #041ae037;
+    padding: 5px 15px;
+    color: #041ae0;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.container-customer .container-customer-table div.status-deliveryontheway,
+.container-customer .container-customer-table div.status-readyforpickup,
+.container-customer-view-order div.status-deliveryontheway,
+.container-customer-view-order div.status-readyforpickup 
+{
+    border-radius: 20px;
+    background-color: #00949437;
+    padding: 5px 15px;
+    color: #009494;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.container-customer .container-customer-table div.status-cancelled,
+.container-customer-view-order div.status-cancelled {
+    border-radius: 20px;
+    background-color: #c4000037;
+    padding: 5px 15px;
+    color: #ff0000;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.container-customer-order-history .container-customer-table span.status-completed,
+.container-customer-view-order span.status-completed
+{
+    border-radius: 20px;
+    background-color: #04e01337;
+    padding: 5px 15px;
+    color: #00ba0c;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.container-customer-order-history .container-customer-table span.status-refunded,
+.container-customer-view-order span.status-refunded
+{
+    border-radius: 20px;
+    background-color: #04e01337;
+    padding: 5px 15px;
+    color: #00ba0c;
+    font-weight: bold;
+    display: inline-block;
+}
+
+
+.container-customer-table th {
+    background-color: #e8dcd4;
+}
+
+.container-customer-table td {
+    background-color: #ffffff;
+}
+
+
+.view-details-button button,
+.delete-button button {
+    background-color: #473447;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100px;
+}
+
+.view-details-button button:hover,
+.delete-button button:hover {
+    background-color: #e0ccd4;
+    color: #000000;
+}
+
+/* Profile */
+.profile-container {
+   
+    border-radius: 25px;
+    padding: 20px;
+    text-align: center;
+    max-width: 50vw;
+    /* Set a maximum width of 50% of the viewport width */
+    margin: 0 auto;
+    margin-bottom: 5%;
+}
+
+.profile-img img {
+    max-width: 150px;
+    border-radius: 50%;
+    align-content: center;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+
+.profile-table {
+    margin-top: 20px;
+    width: 50%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+
+.profile-table th,
+.profile-table td {
+    text-align: left;
+    padding: 10px;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    color: #000000;
+}
+
+
+.edit-profile-td {
+    text-align: center; 
+}
+
+.edit-profile-td input[type="file"] {
+    width: 100%;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.edit-profile-td {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-table th#Name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profile-table td {
+    font-size: 20px;
+}
+
+.profile-table th.user-info {
+    text-align: center;
+    font-size: 30px;
+}
+
+.profile-table a,
+.save-button,
+.toggle-button,
+.cancel-button {
+    background-color: white;
+    color: #fff;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.1s;
+    margin: 10px 0;
+    
+}   
+
+.profile-table a:hover,
+.save-button:hover ,
+.toggle-button:hover,
+.cancel-button:hover{
+    background-color: #55086137;
+}
+
+.profile-table input[type="text"]
+{
+    font-size:20px;
+}
+
+.profile-table .profile-edit-text a,
+.save-button,
+.toggle-button,
+a.edit-button,
+.cancel-button {
+    font-size: 18px;
+    color: black;
+    display: inline-block;
+    width:60px;
+}
+
+.profile-table .profile-edit-text,
+.save-button,
+.cancel-button {
+    width: 100px;
+}
+
+.profile-Attribute,
+.save-button,
+.cancel-button,
+.image {
+    display: none;
+}
+
+.toggle-button{
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.profile-error-msg {
+    color: red;
+    font-size: 15px;
+    font-style: italic;
+}
+
+/*order listing details & order history details*/
+.container-customer-view-order {
+    box-sizing: border-box;
+    padding: 20px;
+    width: 80%;
+    margin: 25px auto;
+    background-color: #e8dcd4;
+    border-radius: 10px;
+    position: relative;
+}
+
+.container-customer-view-order h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.container-customer-view-order>a .fas {
+    color: #473447;
+    font-size: 36px;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    opacity: 80%;
+}
+
+.container-customer-view-order>a .fas:hover {
+    opacity: 100%;
+}
+
+.container-customer-view-order .panel {
+    display: flex;
+    justify-content: center;
+    min-height: 500px;
+}
+
+.container-customer-view-order .col-customer-view-order:first-child {
+    flex: 1;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-customer-view-order .col-customer-view-order:first-child h2 {
+    padding: 20px 30px;
+}
+
+.container-customer-view-order .col-customer-view-order details[open] summary {
+    background-color: #e0e4e4be;
+    border: none;
+    border-left: 5px solid #473447;
+    transition: transform 0.1s ease-in-out;
+}
+
+
+.container-customer-view-order .col-customer-view-order details summary {
+    padding: 30px 30px;
+    display: flex;
+    font-weight: bold;
+    border-top: 2px solid #0000001a;
+}
+
+.container-customer-view-order .col-customer-view-order details summary::before {
+    content: '▶';
+    transition: transform 0.1s;
+}
+
+details[open] summary::before {
+    content: '▼';
+    transform: rotate(90deg);
+}
+
+.container-customer-view-order .col-customer-view-order details summary:hover {
+    cursor: pointer;
+}
+
+.container-customer-view-order .col-customer-view-order details summary span {
+    font-size: 14px;
+    flex: 1;
+}
+
+.container-customer-view-order .col-customer-view-order details summary span:last-child {
+    text-align: right;
+}
+
+.container-customer-view-order .col-customer-view-order details summary span:first-child {
+    margin-left: 20px;
+}
+
+.container-customer-view-order .col-customer-view-order .row-element table {
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.container-customer-view-order .col-customer-view-order .row-element table td {
+    padding: 0 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.container-customer-view-order .col-customer-view-order .row-element table td:last-child {
+    text-align: right;
+}
+
+.container-customer-view-order .col-customer-view-order .row-element table .container-food-image {
+    padding: 0;
+    width: 120px;
+    height: 100px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #e0e4e4;
+    display: block;
+    margin: 10px 10px 10px 0;
+    border-radius: 10px;
+}
+
+.container-customer-view-order .col-customer-view-order .row-element table .container-food-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container-customer-view-order .col-customer-view-order .row-total-price {
+    padding: 20px 30px;
+}
+
+.container-customer-view-order .col-customer-view-order .row-total-price p {
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.container-customer-view-order .col-customer-view-order .row-total-price p span {
+    margin-left: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.container-customer-view-order .col-customer-view-order:last-child {
+    flex: 1;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-customer-view-order .col-customer-view-order .row-status {
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px 30px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-customer-view-order .col-customer-view-order .row-status .customer-title {
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 50%;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details {
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 20px 30px;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details .col-row-details {
+    display: flex;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details .col-row-details div {
+    flex: 1;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details .customer-title {
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 50%;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details .customer-bold-info {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 0 20px 0;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details .customer-order-info {
+    opacity: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details .customer-contact {
+    font-size: 18px;
+    font-weight: bold;
+    color: #041ae0;
+    margin-top: 10px;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details .customer-order-info i{
+    margin-right: 10px;
+}
+
+.container-customer-view-order .col-customer-view-order .row-details .customer-contact i {
+    color: #041ae0;
+}
+
+.container-customer-view-order .col-customer-view-order .row-actions {
+    flex: 1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.customer-container-cancel-button {
+    background-color: red;
+    color: #fff;
+    border: none;
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 10px;
+    width: auto;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-right :30px;
+    width:500px
+}
+
+.customer-container-complete-button,
+.customer-container-reorder-button
+{
+    background-color: #473447;
+    color: #fff;
+    border: none;
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
+    cursor: pointer;
+    border-radius: 10px;
+    width: auto;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-right :30px;
+    width:500px
+}
+
+.customer-container-complete-button:hover,
+.customer-container-reorder-button:hover
+{
+    opacity: 80%
+}
+
+.customer-container-cancel-button:hover {
+    background-color: darkred;
+}
+
+.customer-container-disabled-button {
+    background-color: #cccccc;
+    color: #999999;
+    cursor: not-allowed;
+}
+
+.customer-container-disabled-button:hover {
+    color: #999999;
+    background-color: #ccc;
+}

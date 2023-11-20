@@ -8,4 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class UserAccounts extends Model
 {
     protected $table = 'user_accounts'; // associated the table in the database
+
+    protected $primaryKey = 'userID'; 
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class, 'userID');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'userID');
+    }
+
+    public function membership()
+    {
+        return $this->hasOne(Membership::class, 'userID');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'userID');
+    }
 }

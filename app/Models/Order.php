@@ -9,9 +9,13 @@ use Carbon\Carbon;
 class Order extends Model
 {
     // associated the table in the database
-    protected $table = 'orders'; 
+    protected $table = 'orders';
 
-    protected $primaryKey = 'orderID'; 
+    protected $primaryKey = 'orderID';
+
+    public $timestamps = true;
+
+    protected $fillable = ['status_update_time'];
 
     protected $casts = [
         'created-at' => 'datetime:d F Y g:i A'
@@ -23,13 +27,40 @@ class Order extends Model
         return $this->belongsToMany(Menu::class, 'order_menu', 'orderID', 'menuID');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(UserAccounts::class, 'userID');
+    }
+
     public function getTotalPrice()
     {
-        return $this->menus->sum('totalPrice');
+        $totalPrice = $this->menus->sum('totalPrice');
+        $formattedTotalPrice = number_format($totalPrice, 2);
+        return $formattedTotalPrice;
+    }
+
+    public function getformattedTime()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('h:i A');
+    }
+
+    public function getformattedDate()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('d F Y');
     }
 
     public function getformattedDateTime()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('d F Y g:i A');
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d h:i A');
+    }
+
+    public function getFormattedDateTimeComplete()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->format('Y-m-d h:i A');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(Payment::class, 'orderID');
     }
 }

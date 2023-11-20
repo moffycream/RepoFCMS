@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('menuID');
             $table->char('imagePath');
             $table->char('name');
-            $table->integer('totalPrice');
+            $table->decimal('totalPrice', 10, 2);
+            $table->decimal('ratings',10,2)->default(0);
             $table->timestamps();
         });
     }
