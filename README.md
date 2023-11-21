@@ -65,7 +65,17 @@ The system would have the following functions:
 9. Addtional notes: <br>
 Default admin username: FCMS <br>
 Default admin password: admin <br>
-Note: to skip 2 factor authentication for this account (because it is registered with a default gmail account), you may go to the database (user_accounts) and change the value of 'isAuthenticated' to 1,    and 'firstTimeLogin' to 0.
+Note: to skip 2 factor authentication for this account (because it is registered with a default gmail account, and some modifications have been made for the 2FA feature, making it abit troublesome to login), you may go to the database (user_accounts) and change the value of 'isAuthenticated' to 1, and 'firstTimeLogin' to 0. <br>
+
+# Flow of the program
+1. Login as default admin (info given in additional notes)<br>
+2. Through the admin dashboard (left side of the screen), add stocks (via inventory management), add food (via add food page), add menu (via add menu page)<br>
+3. Navigate to the admin register page, then register an operation team account and normal user account (ensure your email can be accessed, as 2FA will be demonstrated when logging into these accounts for the first time)<br>
+4. Login to the user account, make a purchase of the menu created just now, make a review using the review page, then submit a feedback using the feedback page (all located in the navigation bar). You may also try to change the user account details by accessing the profile page on the top right. The search feature may also be tried to search for the food menus created just now.<br>
+5. Login to the operation team account, manage the order listings until it is completed<br>
+6. After completing the order, login to the default admin, you may now view the business analytics, reviews, and view feedback pages.<br>
+
+Note: Business analytics page will not work properly if there is no data available in the website, if this occurs, go back to the previous page.<br>
 
 ## Development Related 
 ## Frontend Checklist
