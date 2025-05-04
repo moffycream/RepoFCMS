@@ -34,6 +34,7 @@
                     </td>
 
                     <td>
+                        <!-- Display discount when there is remain discount -->
                         @if(isset($membership))
                             @if($membership->isNotEmpty())
                                 <ul>
@@ -80,7 +81,7 @@
             </table>
         </div>
 
-    <form id="PaymentForm" method="post" action="{{ route('payment.store') }}"><!-- name at route -->
+    <form id="PaymentForm" method="post" action="{{ route('payment.store') }}">
         @csrf
 
         {{-- Hidden input field to store the value of the overallTotalPrice --}}
@@ -150,6 +151,7 @@
 
                 <td>
                     <div id='payment-form-payment-amount-value'>
+                        <!-- Display discounted total price when their is discount available -->
                         @if($overallTotalPrice > 0 && isset($membership) && $membership->isNotEmpty())
                             @if($membership[0]->remaining_discounts > 0)
                                 <input type="hidden" name="payment_amount" placeholder="Amount" value="{{ $overallTotalPrice - $membership[0]->discount_amount }}" readonly required>

@@ -1,5 +1,5 @@
 
-/* Styles for the h1 heading */
+/* Purchase page h1 style */
 .container-purchase-page h1 {
     font-size: 45px;
     margin-bottom: 20px;
@@ -90,7 +90,6 @@
     width: 45%;
 }
 
-/* Styles for the form labels and input fields */
 #purchase_form_table label {
     font-weight: bold;
 }
@@ -127,7 +126,7 @@
     font-size: 40px;
     padding-bottom: 65px;
 }
-
+/* styling for showing the total price of the order */
 #container-payment-show-payment{
     font-size: 28px;
     font-family: sans-serif;
@@ -209,6 +208,7 @@
 }   
 
 /*---------------MEMBERSHIP PAGE-------------*/
+/* styling for membership container */
 .membership-container {
     padding: 20px;
     text-align: center;
@@ -229,6 +229,7 @@
     margin-bottom: 10px;
 }
 
+/* tier container styling */
 .tier-container{
     display: flex;
     justify-content: space-around;
@@ -259,6 +260,7 @@
     padding-top: 15px;
 }
 
+/* background color for each tier */
 #tier0 {
     background-color: #e8d2d9;
     padding: 50px 0 100px 0;
@@ -290,6 +292,7 @@
     margin: 5px 0;
 }
 
+/* styling for display user data */
 #membership-aside{
     width:270px;
     text-align: left;
@@ -307,6 +310,7 @@
 }
 
 /*---------------ORDER TRACKING PAGE-------------*/
+/* order tracking page container styling */
 .order-tracking-container {
     display: flex;
     flex-direction: column;
@@ -326,6 +330,7 @@
     margin-bottom: 40px;
 }
 
+/* styling for display order details. payment details and payment details */
 #order-tracking-order-details,
 #order-tracking-payment-details,
 #order-tracking-company-details {
@@ -389,6 +394,7 @@
     justify-content: space-around;
 }
 
+/* styling for button to access to the order tracking page*/
 #customer-container-track-button{
     display: inline-block;
     background-color: #473447;
@@ -402,7 +408,6 @@
     font-size: 20px;
     font-weight: 600;
 }
-
 #customer-container-track-button:hover{
     background-color: #2b0548;
     transition: 0.5s;

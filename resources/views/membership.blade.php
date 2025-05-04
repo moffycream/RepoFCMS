@@ -7,7 +7,7 @@
     <h1>Membership</h1>
 
     <div class="tier-container">
-        
+        <!-- Display tier 0 membership Details -->
         <section id="tier0">
             <h2>Tier 0 Membership</h2>
             <p>Tier 0 Benefits: </p>
@@ -19,6 +19,7 @@
             </ul>        
         </section>
 
+        <!-- Display tier 1 membership Details -->
         <section id="tier1">
             <h2>Tier 1 Membership</h2>
             <p>Tier 1 Benefits: </p>
@@ -29,6 +30,7 @@
             </ul>        
         </section>
         
+        <!-- Display tier 2 membership Details -->
         <section id="tier2">
             <h2>Tier 2 Membership</h2>
             <p>Tier 2 Benefits: </p>
@@ -38,7 +40,8 @@
                 <li class="benefit-item"><span style="color: #90EE90;">&#10004</span> Minimum Total Spent: RM 600</li>
             </ul>  
         </section>
-
+        
+        <!-- Display tier 3 membership Details -->
         <section id="tier3">
             <h2>Tier 3 Membership</h2>
             <p>Tier 3 Benefits: </p>
@@ -50,6 +53,7 @@
         </section>
     </div>
 
+    <!-- Display user current membership data -->
     <aside id='membership-aside'>
         {{--Display Total Spending--}}
         @if(isset($totalAmountPaid))

@@ -106,7 +106,7 @@ class MembershipController extends Controller
         $membership = Membership::where('userID', $userID)->first();
 
         if ($membership) {
-            // Check if the remaining discounts > 0
+            // Check if the remaining discounts > 0 and tier level is > 0
             if ($membership->remaining_discounts > 0 && $membership->tier_level > 0) {
                 $membership->remaining_discounts -= 1;
                 $membership->save();
@@ -119,7 +119,7 @@ class MembershipController extends Controller
         $membership = Membership::where('userID', $userID)->first();
 
         if ($membership) {
-            // Check if the last reset date is null or if the current second is different from the last reset second
+            // Check if the last reset date is null or if the current month is different from the last reset second
             if ($membership->last_reset_date === null || date('m') != date('m', strtotime($membership->last_reset_date))) {
                 // Reset remaining discounts for the membership
                 $membership->remaining_discounts = 5;

@@ -18,6 +18,7 @@
             </thead>
 
             <tbody>
+                <!-- Display cart item with menu id, price and quantity -->
                 <tr>
                     @php
                     $overallTotalPrice = 0; // Initialize order total price with 0
@@ -61,6 +62,7 @@
                 <td></td>
 
                 <td>
+                    <!-- Display total price -->
                     <strong>RM {{ $overallTotalPrice }}</strong>
                     {{-- Hidden input field to store the value of the overallTotalPrice --}}
                     <input id="purchase_overall_total_price" type="hidden" name="overallTotalPrice" value="{{ $overallTotalPrice }}">
